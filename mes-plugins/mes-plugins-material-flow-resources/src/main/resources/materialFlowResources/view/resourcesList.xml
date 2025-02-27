@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_RESOURCES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="resourcesList"
+      modelName="resourceDto"
+      menuAccessible="true">
+
+    <component type="window" name="window">
+        <ribbon>
+            <template name="standardGridTemplate" excludeItems="actions.new, actions.copy, actions.delete"/>
+            <group name="filters">
+                <bigButton name="showResourcesWithShortExpiryDate" icon="generateIcon24.png" message="materialFlowResources.resourcesList.window.ribbon.filters.showResourcesWithShortExpiryDate.description">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+									if(window.canClose()) {
+										#{grid}.performEvent('showResourcesWithShortExpiryDate', []);
+									}
+								}
+							});
+						]]>
+                    </script>
+                </bigButton>
+                <bigButton name="showResourcesAfterDeadline" icon="generateIcon24.png" message="materialFlowResources.resourcesList.window.ribbon.filters.showResourcesAfterDeadline.description">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+									if(window.canClose()) {
+										#{grid}.performEvent('showResourcesAfterDeadline', []);
+									}
+								}
+							});
+						]]>
+                    </script>
+                </bigButton>
+                <bigButton name="showAllResources" icon="generateIcon24.png">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+									if(window.canClose()) {
+										#{grid}.performEvent('showAllResources', []);
+									}
+								}
+							});
+						]]>
+                    </script>
+                </bigButton>
+            </group>
+        </ribbon>
+
+        <component type="grid" name="resourceGrid" reference="grid">
+            <option type="column" name="number" fields="number" link="true"/>
+            <option type="column" name="locationNumber" fields="locationNumber" link="true" width="90"/>
+            <option type="column" name="productNumber" fields="productNumber" link="true" width="100"/>
+            <option type="column" name="productName" fields="productName" link="true" width="110"/>
+            <option type="column" name="productGlobalTypeOfMaterial" fields="productGlobalTypeOfMaterial" width="85"/>
+            <option type="column" name="productCategory" fields="productCategory" width="85"/>
+
+            <option type="column" name="quantity" fields="quantity" width="100"/>
+            <option type="column" name="productUnit" fields="productUnit" width="50"/>
+            <option type="column" name="quantityInAdditionalUnit" fields="quantityInAdditionalUnit"/>
+            <option type="column" name="givenUnit" fields="givenUnit" width="50"/>
+            <option type="column" name="conversion" fields="conversion" width="80"/>
+            <option type="column" name="reservedQuantity" fields="reservedQuantity"/>
+            <option type="column" name="availableQuantity" fields="availableQuantity"/>
+            <option type="column" name="price" fields="price" width="60" authorizationRole="ROLE_RESOURCE_PRICE" />
+            <option type="column" name="value" fields="value" width="60" authorizationRole="ROLE_RESOURCE_PRICE" />
+            <option type="column" name="time" fields="time"/>
+            <option type="column" name="productionDate" fields="productionDate"/>
+            <option type="column" name="expirationDate" fields="expirationDate"
+                    classesCondition="rowObject['colorResourcesAfterDeadline']>0"
+                    classesNames="rowObject['expirationDateCellColor']"/>
+            <option type="column" name="expirationDateCellColor" fields="expirationDateCellColor" hidden="true"/>
+            <option type="column" name="colorResourcesAfterDeadline" fields="colorResourcesAfterDeadline"
+                    hidden="true"/>
+            <option type="column" name="batch" fields="batchNumber"/>
+            <option type="column" name="storageLocation" fields="storageLocationNumber"/>
+            <option type="column" name="palletNumber" fields="palletNumber"/>
+            <option type="column" name="typeOfPallet" fields="typeOfPallet"/>
+            <option type="column" name="userName" fields="userName"/>
+            <option type="column" name="isCorrected" fields="isCorrected" width="50"/>
+            <option type="column" name="waste" fields="waste" width="50"/>
+            <option type="column" name="deliveryNumber" fields="deliveryNumber" width="100"/>
+            <option type="column" name="supplierNumber" fields="supplierNumber" width="100"/>
+            <option type="column" name="qualityRating" fields="qualityRating" width="50"/>
+            <option type="column" name="blockedForQualityControl" fields="blockedForQualityControl" width="50"/>
+
+            <option type="order" column="productNumber" direction="asc"/>
+
+            <option type="searchable"
+                    value="productCategory,locationNumber,locationName,productNumber,productName,productGlobalTypeOfMaterial,quantity,productUnit,reservedQuantity,availableQuantity,price,time,productionDate,expirationDate,batch,isCorrected,storageLocation,number,quantityInAdditionalUnit,givenUnit,conversion,palletNumber,typeOfPallet,userName,waste,deliveryNumber,supplierNumber,value,qualityRating,blockedForQualityControl"/>
+            <option type="orderable"
+                    value="productCategory,locationNumber,locationName,productNumber,productName,productGlobalTypeOfMaterial,quantity,productUnit,reservedQuantity,availableQuantity,price,time,productionDate,expirationDate,batch,isCorrected,storageLocation,number,quantityInAdditionalUnit,givenUnit,conversion,palletNumber,typeOfPallet,userName,waste,deliveryNumber,supplierNumber,value,qualityRating,blockedForQualityControl"/>
+
+            <option type="defaultVisibleColumns" value="locationNumber,locationName,productNumber,productName,productGlobalTypeOfMaterial,quantity,productUnit,reservedQuantity,availableQuantity,
+                            price,time,productionDate,expirationDate,batch,isCorrected,storageLocation,number,quantityInAdditionalUnit,givenUnit,conversion,palletNumber,typeOfPallet,userName,waste,deliveryNumber,supplierNumber,value,qualityRating,blockedForQualityControl"/>
+
+            <option type="correspondingView" value="materialFlowResources/resourceDetails"/>
+            <option type="correspondingViewInModal" value="true"/>
+            <option type="correspondingComponent" value="form"/>
+
+            <option type="footerRow" value="true"/>
+            <option type="columnsToSummary"
+                    value="quantity,quantityInAdditionalUnit,value,reservedQuantity,availableQuantity"/>
+            <option type="fullscreen" value="true"/>
+            <option type="multiselect" value="true"/>
+
+            <listener event="showAllResources"
+                      class="com.qcadoo.mes.materialFlowResources.listeners.ResourcesListListeners"
+                      method="showAllResources"/>
+            <listener event="showResourcesAfterDeadline"
+                      class="com.qcadoo.mes.materialFlowResources.listeners.ResourcesListListeners"
+                      method="showResourcesAfterDeadline"/>
+            <listener event="showResourcesWithShortExpiryDate"
+                      class="com.qcadoo.mes.materialFlowResources.listeners.ResourcesListListeners"
+                      method="showResourcesWithShortExpiryDate"/>
+
+            <criteriaModifier class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.ResourcesCriteriaModifier"
+                              method="restrictToUserLocations"/>
+        </component>
+        <component type="checkbox" name="isShortFilter" reference="isShortFilter" defaultVisible="false" defaultEnabled="false"/>
+        <component type="checkbox" name="isDeadlineFilter" reference="isDeadlineFilter" defaultVisible="false" defaultEnabled="false"/>
+
+        <option type="fixedHeight" value="true"/>
+        <option type="header" value="false"/>
+    </component>
+
+    <hooks>
+        <beforeRender
+                class="com.qcadoo.mes.materialFlowResources.hooks.ResourcesListHooks"
+                method="applyFilters"/>
+    </hooks>
+</view>

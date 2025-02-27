@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING_REGISTRATION"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="trackingOperationProductOutComponentDetails" modelName="trackingOperationProductOutComponent"
+      windowHeight="640">
+
+    <component type="window" name="window">
+
+        <ribbon>
+            <group name="navigation">
+                <bigButton name="back" icon="backIcon24.png" state="enabled" action="#{window}.performBack"/>
+            </group>
+
+            <group name="actions">
+                <bigButton name="save" icon="saveIcon24.png" action="#{form}.performSave;"/>
+                <bigButton name="saveBack" icon="saveBackIcon24.png"
+                           action="#{form}.performSave; #{window}.performBack;"/>
+            </group>
+        </ribbon>
+
+        <windowTab name="mainTab">
+            <component type="form" name="form" reference="form">
+                <component type="gridLayout" name="grid" reference="grid"
+                           columns="6" rows="11" hasBorders="false">
+                    <layoutElement column="1" row="1" width="5">
+                        <component type="input" name="number" reference="number"
+                                   defaultEnabled="false">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="2" width="5">
+                        <component type="input" name="name" reference="name"
+                                   defaultEnabled="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="3" width="5">
+                        <component type="input" name="plannedQuantity" field="plannedQuantity"
+                                   reference="plannedQuantity" defaultEnabled="false">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="3">
+                        <component type="input" name="plannedQuantityUNIT"
+                                   reference="plannedQuantityUNIT" defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="4" width="5">
+                        <component type="input" name="producedSum" field="producedSum"
+                                   reference="producedSum" defaultEnabled="false">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="4">
+                        <component type="input" name="producedSumUNIT"
+                                   reference="producedSumUNIT" defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="5" width="5">
+                        <component type="input" name="wastesSum" field="wastesSum"
+                                   reference="wastesSum" defaultEnabled="false">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="5">
+                        <component type="input" name="wastesSumUNIT"
+                                   reference="wastesSumUNIT" defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="6" width="5">
+                        <component type="input" name="remainingQuantity" field="remainingQuantity"
+                                   reference="remainingQuantity" defaultEnabled="false">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="6">
+                        <component type="input" name="remainingQuantityUNIT"
+                                   reference="remainingQuantityUNIT" defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="7" width="5">
+                        <component type="input" name="usedQuantity" field="usedQuantity"
+                                   reference="usedQuantity" defaultEnabled="true">
+                            <option type="alignment" value="right"/>
+
+                            <listener event="onInputChange" method="calculateQuantityToGiven"
+                                      class="com.qcadoo.mes.productionCounting.listeners.TrackingOperationProductComponentDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="7">
+                        <component type="input" name="usedQuantityUNIT"
+                                   reference="usedQuantityUNIT" defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="8" width="5">
+                        <component type="input" name="givenQuantity" field="givenQuantity" reference="givenQuantity">
+                            <option type="alignment" value="right"/>
+                            <listener event="onInputChange" method="givenQuantityChanged"
+                                      class="com.qcadoo.mes.productionCounting.listeners.TrackingOperationProductComponentDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="8">
+                        <component type="select" name="givenUnit" reference="givenUnit"
+                                   hasLabel="false" field="givenUnit">
+                            <listener event="onSelectedEntityChange" method="calculateQuantity"
+                                      class="com.qcadoo.mes.productionCounting.listeners.TrackingOperationProductComponentDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="9" width="5">
+                        <component type="input" name="wastesQuantity" field="wastesQuantity"
+                                   reference="wastesQuantity" hasDescription="true">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="9">
+                        <component type="input" name="wastesQuantityUNIT"
+                                   reference="wastesQuantityUNIT" defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="10" width="5">
+                        <component type="select" name="causeOfWastes" reference="causeOfWastes"
+                                   field="causeOfWastes">
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="11" width="5">
+                        <component type="checkbox" name="manyReasonsForLacks"
+                                   reference="manyReasonsForLacks" field="#{form}.manyReasonsForLacks">
+                            <listener event="onChange" method="onManyReasonsForLacks"
+                                      class="com.qcadoo.mes.productionCounting.listeners.TrackingOperationProductComponentDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                </component>
+
+                <option type="header" value="true"/>
+                <option type="expression" value="#product['name']"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="lacks">
+            <component type="grid" name="lacks" useDto="true" source="#{form}.lacksDto"
+                       model="lackDto" reference="lacks">
+
+                <option type="column" name="lackQuantity" fields="lackQuantity"
+                        link="true" width="40"/>
+                <option type="column" name="productUnit" fields="productUnit"
+                        link="true" width="30"/>
+
+                <option type="column" name="reasons" fields="reasons"
+                        width="200"/>
+
+                <option type="order" column="lackQuantity" direction="desc"/>
+
+                <option type="orderable" value="lackQuantity,productUnit,reasons"/>
+                <option type="searchable" value="lackQuantity,productUnit,reasons"/>
+
+                <option type="correspondingView" value="productionCounting/lackDetails"/>
+                <option type="correspondingComponent" value="form"/>
+                <option type="correspondingViewInModal" value="true"/>
+
+                <option type="paginable" value="true"/>
+                <option type="creatable" value="true"/>
+                <option type="deletable" value="true"/>
+                <option type="fullscreen" value="true"/>
+                <option type="multiselect" value="true"/>
+
+                <listener event="remove" method="onRemoveLack"
+                          class="com.qcadoo.mes.productionCounting.listeners.TrackingOperationProductComponentDetailsListeners"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="resourceAttributes">
+            <component type="grid" name="prodOutResourceAttrVals" reference="prodOutResourceAttrVals"
+                       source="#{form}.prodOutResourceAttrVals">
+
+                <option type="column" name="number" fields="attribute"
+                        expression="#attribute['number']" link="true" width="100"/>
+
+                <option type="column" name="name" fields="attribute"
+                        expression="#attribute['name']" link="true" width="200"/>
+
+                <option type="column" name="value" fields="value"
+                        link="true" width="100"/>
+
+                <option type="column" name="description" fields="attributeValue"
+                        expression="#attributeValue['description']" width="200"/>
+
+                <option type="column" name="unit" fields="attribute"
+                        expression="#attribute['unit']" link="false" width="50"/>
+
+                <option type="order" column="number" direction="desc"/>
+
+                <option type="correspondingView" value="productionCounting/prodOutResourceAttrValDetails"/>
+                <option type="correspondingComponent" value="form"/>
+                <option type="correspondingViewInModal" value="true"/>
+                <option type="orderable" value="number,name,value,description,unit"/>
+                <option type="searchable" value="number,name,value,description,unit"/>
+
+                <option type="paginable" value="true"/>
+                <option type="creatable" value="true"/>
+                <option type="deletable" value="true"/>
+                <option type="fullscreen" value="true"/>
+                <option type="multiselect" value="true"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="attributes">
+            <component type="lookup" name="product" reference="product"
+                       field="#{form}.product" defaultVisible="false">
+                <option type="column" name="name" fields="name" link="true"
+                        width="200"/>
+                <option type="column" name="globalTypeOfMaterial" fields="globalTypeOfMaterial"
+                        link="true"/>
+
+                <option type="searchable" value="name,globalTypeOfMaterial"/>
+                <option type="orderable" value="name,globalTypeOfMaterial"/>
+
+                <option type="expression"
+                        value="'&lt;b&gt;' + #number + '&lt;/b&gt; - ' + #name"/>
+                <option type="fieldCode" value="number"/>
+            </component>
+            <component type="grid" name="productAttributeValues" reference="productAttributeValues"
+                       source="#{product}.productAttributeValues">
+
+                <option type="column" name="number" fields="attribute"
+                        expression="#attribute['number']" width="100"/>
+
+                <option type="column" name="name" fields="attribute"
+                        expression="#attribute['name']" width="200"/>
+
+                <option type="column" name="value" fields="value"
+                        width="100"/>
+
+                <option type="column" name="description" fields="attributeValue"
+                        expression="#attributeValue['description']" width="200"/>
+
+                <option type="column" name="unit" fields="attribute"
+                        expression="#attribute['unit']" link="false" width="50"/>
+
+                <option type="order" column="number" direction="desc"/>
+
+                <option type="orderable" value="number,name,value,description,unit"/>
+                <option type="searchable" value="number,name,value,description,unit"/>
+
+                <option type="paginable" value="true"/>
+                <option type="fullscreen" value="true"/>
+                <option type="multiselect" value="true"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="storageLocationTab">
+            <component type="gridLayout" name="storageLocationGridLayout" reference="storageLocationGridLayout"
+                       columns="1" rows="3" hasBorders="false">
+                <layoutElement column="1" row="1">
+                    <component type="lookup" name="storageLocation" field="#{form}.storageLocation"
+                               reference="storageLocation">
+                        <option type="column" fields="location" name="location" link="true"
+                                expression="#location['number']"/>
+
+                        <option type="searchable" value="number,location"/>
+                        <option type="orderable" value="number,location"/>
+
+                        <option type="expression" value="#number"/>
+                        <option type="fieldCode" value="number"/>
+
+                        <criteriaModifier
+                                class="com.qcadoo.mes.productionCounting.criteriaModifiers.StorageLocationCriteriaModifierPC"
+                                method="filter"/>
+                    </component>
+                </layoutElement>
+                <layoutElement column="1" row="2">
+                    <component type="lookup" name="palletNumber" reference="palletNumber"
+                               field="#{form}.palletNumber">
+                        <option type="searchable" value="number"/>
+                        <option type="orderable" value="number"/>
+
+                        <option type="expression"
+                                value="#number"/>
+                        <option type="fieldCode" value="number"/>
+
+                        <listener event="onSelectedEntityChange" method="fillTypeOfPalletField"
+                                  class="com.qcadoo.mes.productionCounting.listeners.TrackingOperationProductComponentDetailsListeners"/>
+                    </component>
+                </layoutElement>
+                <layoutElement column="1" row="3">
+                    <component type="select" name="typeOfPallet" field="#{form}.typeOfPallet"
+                               reference="typeOfPallet"/>
+                </layoutElement>
+            </component>
+        </windowTab>
+    </component>
+
+    <hooks>
+        <beforeRender
+                class="com.qcadoo.mes.productionCounting.hooks.TrackingOperationProductOutComponentDetailsHooks"
+                method="onBeforeRender"/>
+    </hooks>
+
+</view>

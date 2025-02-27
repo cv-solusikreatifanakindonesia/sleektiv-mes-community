@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<model name="product" activable="true" auditable="true" versionable="true"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+    <fields>
+        <string name="number" required="true" unique="true">
+            <validatesLength max="255"/>
+        </string>
+        <string name="name" required="true">
+            <validatesLength max="1024"/>
+        </string>
+        <enum name="globalTypeOfMaterial" values="01component,02intermediate,03finalProduct,04waste,05package"/>
+        <string name="ean">
+            <validatesWith class="com.qcadoo.mes.basic.validators.ProductValidators"
+                           method="checkEanUniqueness"/>
+        </string>
+        <dictionary name="category" dictionary="categories"/>
+        <dictionary name="unit" dictionary="units" required="true"/>
+        <hasMany name="substituteComponents" model="substituteComponent"
+                 joinField="baseProduct" cascade="delete"/>
+
+        <string name="externalNumber" unique="true"/>
+        <string name="description">
+            <validatesLength max="2048"/>
+        </string>
+
+        <hasMany name="conversionItems" joinField="product" model="unitConversionItem"
+                 plugin="qcadooModel" cascade="delete"/>
+
+        <belongsTo name="parent" model="product"/>
+        <hasMany name="children" joinField="parent"
+                 model="product"/>
+
+        <enum name="entityType" values="01particularProduct,02productsFamily"
+              default="01particularProduct" required="true"/>
+
+        <belongsTo name="producer" model="company" plugin="basic"/>
+        <belongsTo name="supplier" model="company" plugin="basic"/>
+
+        <dictionary name="additionalUnit" dictionary="units"/>
+        <decimal name="conversion" persistent="false">
+            <validatesRange from="0" exclusively="true"/>
+        </decimal>
+        <belongsTo name="assortment" model="assortment"/>
+
+        <hasMany name="productAttachments" joinField="product" model="productAttachment" cascade="delete"/>
+
+        <hasMany name="productAttributeValues" joinField="product" model="productAttributeValue" cascade="delete" copyable="true"/>
+
+        <boolean name="showInProductData" default="false"/>
+        <belongsTo name="productForm" model="forms"/>
+        <belongsTo name="size" model="size"/>
+        <integer name="expiryDateValidity">
+            <validatesRange from="0" exclusively="true"/>
+        </integer>
+        <enum name="expiryDateValidityUnit" values="01months,02days" default="01months" required="true"/>
+        <belongsTo name="model" model="model"/>
+        <belongsTo name="modelAssortment" model="assortment" persistent="false"/>
+        <boolean name="batchEvidence" default="false"/>
+        <boolean name="machinePart"/>
+        <boolean name="synchronize" copyable="false"/>
+        <belongsTo name="batchNumberPattern" model="numberPattern"/>
+        <manyToMany name="qualityCards" model="qualityCard" joinField="products" lazy="true"/>
+    </fields>
+
+    <hooks>
+        <validatesWith class="com.qcadoo.mes.basic.hooks.ProductHooks"
+                       method="validateAdditionalUnit"/>
+        <validatesWith class="com.qcadoo.mes.basic.hooks.ProductHooks"
+                       method="checkIfParentIsFamily"/>
+        <validatesWith class="com.qcadoo.mes.basic.hooks.ProductHooks"
+                       method="validateProductAttributeValues"/>
+
+        <onCreate class="com.qcadoo.mes.basic.hooks.ProductHooks" method="onCreate"/>
+
+        <onSave class="com.qcadoo.mes.basic.hooks.ProductHooks" method="onSave"/>
+
+        <onCopy class="com.qcadoo.mes.basic.hooks.ProductHooks" method="onCopy"/>
+
+        <onUpdate class="com.qcadoo.mes.basic.hooks.ProductHooks"
+                  method="calculateConversionIfUnitChanged"/>
+    </hooks>
+
+    <identifier expression="#number + ' - ' + #name"/>
+</model>

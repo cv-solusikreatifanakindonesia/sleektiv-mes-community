@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_ORDERS_VIEW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="plannedConsumptionInOrderList" modelName="product" modelPlugin="basic" menuAccessible="false">
+
+    <component type="window" name="window" reference="window">
+
+        <ribbon>
+            <group name="actions">
+                <bigButton name="refresh" icon="updateIcon24.png" state="enabled"
+                           action="#{window}.performRefresh;"/>
+            </group>
+        </ribbon>
+        <component type="form" name="product" reference="product">
+            <option type="header" value="true"/>
+            <option type="expression" value="#number"/>
+        </component>
+        <component type="form" name="form" reference="form">
+
+            <component type="gridLayout" name="orderedProductsGridLayout"
+                       columns="1" rows="1" hasBorders="false">
+                <layoutElement column="1" row="1">
+                    <component type="grid" name="plannedConsumptionInOrderGrid" reference="grid"
+                               model="plannedConsumptionInOrderDto">
+
+                        <option type="column" name="orderNumber" fields="orderNumber" link="true"
+                                correspondingView="orders/orderDetails" correspondingField="orderId"
+                                width="100"/>
+                        <option type="column" name="orderId" fields="orderId" hidden="true"/>
+                        <option type="column" name="orderStartDate" fields="orderStartDate"/>
+                        <option type="column" name="productPlannedQuantity" fields="productPlannedQuantity"/>
+                        <option type="column" name="productActualNeedQuantity" fields="productActualNeedQuantity"/>
+                        <option type="column" name="productUnit" fields="productUnit"/>
+                        <option type="column" name="productionLineNumber" fields="productionLineNumber"/>
+                        <option type="column" name="divisionNumber" fields="divisionNumber"/>
+
+                        <option type="column" name="orderProduct" fields="orderProduct"/>
+                        <option type="column" name="productNumber" fields="productNumber"/>
+
+                        <option type="column" name="orderPlanedQuantity" fields="orderPlanedQuantity"/>
+                        <option type="column" name="orderDoneQuantity" fields="orderDoneQuantity"/>
+                        <option type="column" name="orderUnit" fields="orderUnit"/>
+
+                        <option type="column" name="orderState" fields="orderState"/>
+
+                        <option type="order" column="orderStartDate" direction="desc"/>
+
+                        <option type="searchable"
+                                value="divisionNumber,orderNumber,orderStartDate,orderState,orderProduct,orderPlanedQuantity,orderDoneQuantity,orderUnit,productionLineNumber,productNumber,productPlannedQuantity,productActualNeedQuantity,productUnit"/>
+                        <option type="orderable"
+                                value="divisionNumber,orderNumber,orderStartDate,orderState,orderProduct,orderPlanedQuantity,orderDoneQuantity,orderUnit,productionLineNumber,productNumber,productPlannedQuantity,productActualNeedQuantity,productUnit"/>
+                        <option type="footerRow" value="true"/>
+                        <option type="columnsToSummary"
+                                value="orderPlanedQuantity,orderDoneQuantity,productPlannedQuantity,productActualNeedQuantity"/>
+
+                        <option type="fullscreen" value="true"/>
+                        <option type="multiselect" value="false"/>
+                        <option type="fixedHeight" value="true"/>
+
+                        <criteriaModifier
+                                class="com.qcadoo.mes.productFlowThruDivision.criteriaModifiers.PlannedConsumptionInOrderCriteriaModifiers"
+                                method="filterByProduct"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </component>
+        <option type="fixedHeight" value="true"/>
+    </component>
+    <hooks>
+        <beforeRender
+                class="com.qcadoo.mes.productFlowThruDivision.hooks.PlannedConsumptionInOrderListHooks"
+                method="onBeforeRender"/>
+    </hooks>
+
+</view>

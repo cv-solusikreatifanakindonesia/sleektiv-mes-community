@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_BASE_FUNCTIONALITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="costNormsForMaterialsInOrderList" modelPlugin="orders" modelName="order">
+
+    <component type="window" name="window" reference="window">
+
+        <ribbon>
+            <group name="navigation">
+                <bigButton name="back" icon="backIcon24.png" state="enabled" action="#{window}.performBackWithoutConfirm"/>
+            </group>
+            <template name="standardGridTemplate" excludeItems="actions.new, actions.copy, actions.delete"/>
+
+            <group name="costs">
+                <bigButton name="updateCosts" icon="updateIcon24.png" state="enabled" action="#{form}.fireEvent(updateCosts);"/>
+            </group>
+        </ribbon>
+
+        <windowTab name="mainTab" reference="mainTab">
+            <component type="form" name="order" reference="order"/>
+            <component type="form" name="form" reference="form">
+                <component type="gridLayout" name="costNormsForProductsGridLayout" hasBorders="false" columns="3" rows="6">
+                    <layoutElement column="1" row="1" height="6" width="3">
+                        <component type="grid" name="inProductsGrid" source="#{order}.technologyInstOperProductInCompDtos"
+                                   reference="grid" model="technologyInstOperProductInCompDto" useDto="true">
+                            <option type="column" name="productNumber" fields="productNumber"
+                                    width="100" link="true"/>
+                            <option type="column" name="productName" fields="productName"
+                                    width="100" link="true"/>
+                            <option type="column" name="nominalCost" fields="nominalCost"
+                                    width="80"/>
+                            <option type="column" name="nominalCostCurrency" fields="nominalCostCurrency"
+                                    width="40"/>
+                            <option type="column" name="lastPurchaseCost" fields="lastPurchaseCost"
+                                    width="80"/>
+                            <option type="column" name="lastPurchaseCostCurrency" fields="lastPurchaseCostCurrency"
+                                    width="40"/>
+                            <option type="column" name="averageCost" fields="averageCost"
+                                    width="80"/>
+                            <option type="column" name="averageCostCurrency" fields="averageCostCurrency"
+                                    width="40"/>
+                            <option type="column" name="costForOrder" fields="costForOrder"
+                                    width="80"/>
+                            <option type="column" name="costForOrderCurrency" fields="costForOrderCurrency"
+                                    width="40"/>
+                            <option type="column" name="lastOfferCost" fields="lastOfferCost"
+                                    width="80"/>
+                            <option type="column" name="lastOfferCostCurrency" fields="lastOfferCostCurrency"
+                                    width="40"/>
+                            <option type="column" name="averageOfferCost" fields="averageOfferCost"
+                                    width="80"/>
+                            <option type="column" name="averageOfferCostCurrency" fields="averageOfferCostCurrency"
+                                    width="40"/>
+                            <option type="column" name="costForNumber" fields="costForNumber"
+                                    width="80"/>
+                            <option type="column" name="unit" fields="unit"
+                                    width="30"/>
+
+                            <option type="order" column="productName" direction="asc"/>
+
+                            <option type="correspondingView" value="costNormsForMaterials/costNormsForMaterialsInOrderDetails"/>
+                            <option type="correspondingComponent" value="form"/>
+                            <option type="correspondingViewInModal" value="false"/>
+
+                            <option type="fullscreen" value="true"/>
+                            <option type="fixedHeight" value="true"/>
+                        </component>
+                    </layoutElement>
+                </component>
+
+                <listener event="updateCosts"
+                          class="com.qcadoo.mes.costNormsForMaterials.CostNormsForMaterialsService"
+                          method="updateCosts"/>
+            </component>
+        </windowTab>
+
+        <option type="header" value="false"/>
+    </component>
+
+</view>

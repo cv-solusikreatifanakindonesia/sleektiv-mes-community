@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view name="operationalTasksList" modelName="operationalTaskWithColorDto"
+      defaultAuthorizationRole="ROLE_OPERATIONAL_TASKS" menuAccessible="true"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <component type="window" name="window">
+
+        <ribbon>
+            <template name="standardGridTemplate" excludeItems="actions.copy"/>
+        </ribbon>
+
+        <component type="grid" name="operationalTasksList"
+                   reference="grid">
+            <option type="column" name="number" fields="number" link="true" width="75"/>
+            <option type="column" name="name" fields="name" link="true" width="125"/>
+            <option type="column" name="description" fields="description" link="true" width="125"/>
+            <option type="column" name="startDate" fields="startDate" width="100"/>
+            <option type="column" name="finishDate" fields="finishDate" width="100"/>
+            <option type="column" name="staffName" fields="staffName" width="125"/>
+            <option type="column" name="divisionNumber" fields="divisionNumber" width="100"/>
+            <option type="column" name="workstationNumber" fields="workstationNumber" width="100"/>
+            <option type="column" name="orderNumber" fields="orderNumber" link="true"
+                    correspondingView="orders/orderDetails" correspondingField="orderId"
+                    width="100"/>
+            <option type="column" name="orderId" fields="orderId" hidden="true"/>
+            <option type="column" name="orderProductNumber" fields="orderProductNumber" width="75"/>
+            <option type="column" name="orderProductName" fields="orderProductName" width="75"/>
+            <option type="column" name="technologyOperationComponentNodeNumber" fields="technologyOperationComponentNodeNumber"
+                    width="75"/>
+            <option type="column" name="productNumber" fields="productNumber" width="75"/>
+            <option type="column" name="productName" fields="productName" width="75"/>
+            <option type="column" name="plannedQuantity" fields="plannedQuantity" width="50"/>
+            <option type="column" name="wastesQuantity" fields="wastesQuantity" width="55"/>
+            <option type="column" name="usedQuantity" fields="usedQuantity" width="50"/>
+            <option type="column" name="productUnit" fields="productUnit" width="30"/>
+            <option type="column" name="remainingQuantity" fields="remainingQuantity" width="50"/>
+            <option type="column" name="doneInPercentage" fields="doneInPercentage" width="50"
+                    classesCondition="rowObject['operTaskFlagPercentExecutionWithColor']>0"
+                    classesNames="rowObject['percentageOfExecutionCellColor']"/>
+            <option type="column" name="percentageOfExecutionCellColor" fields="percentageOfExecutionCellColor" hidden="true"/>
+            <option type="column" name="operTaskFlagPercentExecutionWithColor" fields="operTaskFlagPercentExecutionWithColor"
+                    hidden="true"/>
+            <option type="column" name="state" fields="state" width="50"/>
+            <option type="column" name="type" fields="type" width="50"/>
+            <option type="column" name="actualStaff" fields="actualStaff" width="50"/>
+            <option type="column" name="hasChangeovers" fields="hasChangeovers" width="50"/>
+
+            <option type="order" column="startDate" direction="desc"/>
+
+            <option type="searchable" value="name,number,description,startDate,finishDate,staffName,divisionNumber,workstationNumber,orderNumber,state,type,
+							technologyOperationComponentNodeNumber,productNumber,productName,plannedQuantity,wastesQuantity,usedQuantity,remainingQuantity,doneInPercentage,productUnit,orderProductName,orderProductNumber,actualStaff,hasChangeovers"/>
+            <option type="orderable" value="name,number,description,startDate,finishDate,staffName,divisionNumber,workstationNumber,orderNumber,state,type,
+							technologyOperationComponentNodeNumber,productNumber,productName,plannedQuantity,wastesQuantity,usedQuantity,remainingQuantity,doneInPercentage,productUnit,orderProductName,orderProductNumber,actualStaff,hasChangeovers"/>
+
+            <option type="correspondingView" value="orders/operationalTaskDetails"/>
+            <option type="correspondingComponent" value="form"/>
+
+            <option type="fullscreen" value="true"/>
+            <option type="multiselect" value="true"/>
+
+            <option type="hasPredefinedFilters" value="true"/>
+            <option type="defaultPredefinedFilterName" value="open"/>
+
+            <predefinedFilters>
+                <predefinedFilter name="all">
+                </predefinedFilter>
+                <predefinedFilter name="open">
+                    <filterRestriction column="state" value="[01pending,02started]"/>
+                </predefinedFilter>
+                <predefinedFilter name="closed">
+                    <filterRestriction column="state" value="[03finished,04rejected]"/>
+                </predefinedFilter>
+            </predefinedFilters>
+
+        </component>
+        <option type="fixedHeight" value="true"/>
+        <option type="header" value="false"/>
+    </component>
+
+    <hooks>
+        <beforeRender class="com.qcadoo.mes.orders.hooks.OperationalTasksDetailsHooks" method="customRestrictionAfterRedirectFromOrder"/>
+    </hooks>
+</view>

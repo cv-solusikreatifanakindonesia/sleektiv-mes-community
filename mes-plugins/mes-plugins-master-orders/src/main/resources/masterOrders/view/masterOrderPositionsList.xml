@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_SALE" name="masterOrderPositionsList" modelName="masterOrderPositionDto"
+      menuAccessible="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <component type="window" name="window" reference="window">
+        <ribbon>
+            <template name="standardGridTemplate" excludeItems="actions.new, actions.copy, actions.delete"
+                      excludeGroups="states"/>
+            <group name="orders" defaultAuthorizationRole="ROLE_PLANNING_ORDERS">
+                <bigButton name="createOrder" icon="generateIcon24.png" state="disabled">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+									if(window.canClose()) {
+										#{grid}.performEvent('createOrder', []);
+									}
+								}
+							});
+						]]>
+                    </script>
+                </bigButton>
+                <bigButton name="generateOrders" icon="generateIcon24.png" state="enabled">
+                    <script>
+                        <![CDATA[
+                            this.addOnChangeListener({
+                                onClick: function() {
+                                    if(window.canClose()) {
+                                         #{grid}.performEvent('goToGenerateOrders', []);
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+            </group>
+            <group name="import">
+                <bigButton name="openMasterOrdersImportPage" state="enabled" icon="xlsIcon24.png"
+                           action="#{window}.fireEvent(openMasterOrdersImportPage);"/>
+            </group>
+            <group name="grouping">
+                <bigButton name="showGroupedByProduct" icon="generateIcon24.png" state="enabled">
+                    <script>
+                        <![CDATA[
+                            this.addOnChangeListener({
+                                onClick: function() {
+                                    if(window.canClose()) {
+                                         #{grid}.performEvent('showGroupedByProduct', []);
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+                <bigButton name="showGroupedByProductAndDate" icon="generateIcon24.png" state="enabled">
+                    <script>
+                        <![CDATA[
+                            this.addOnChangeListener({
+                                onClick: function() {
+                                    if(window.canClose()) {
+                                         #{grid}.performEvent('showGroupedByProductAndDate', []);
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+                <bigButton name="updateWarehouseStateAndDelivery" icon="generateIcon24.png" state="enabled">
+                    <script>
+                        <![CDATA[
+                            this.addOnChangeListener({
+                                onClick: function() {
+                                    if(window.canClose()) {
+                                         #{grid}.performEvent('updateWarehouseStateAndDelivery', []);
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+            </group>
+        </ribbon>
+
+        <component type="grid" name="masterOrderPositions" reference="grid">
+            <script>
+                <![CDATA[
+                    this.addOnChangeListener({
+						onChange: function(selectedEntitiesArray) {
+							if (selectedEntitiesArray && selectedEntitiesArray.length == 1) {
+								#{window}.getRibbonItem("orders.createOrder").enable();
+							} else {
+								#{window}.getRibbonItem("orders.createOrder").disable();
+							}
+						}
+					});
+				]]>
+            </script>
+
+            <option type="column" name="masterOrderDefinitionNumber" fields="masterOrderDefinitionNumber" link="true"
+                    width="50"/>
+            <option type="column" name="number" fields="number"
+                    width="140" link="true" correspondingView="masterOrders/masterOrderDetails" correspondingField="masterOrderId"/>
+            <option type="column" name="masterOrderId" fields="masterOrderId" hidden="true"/>
+            <option type="column" name="name" fields="name" width="140"/>
+            <option type="column" name="deadline" fields="deadline"
+                    width="80" classesNames="wrap-date"/>
+            <option type="column" name="companyName" fields="companyName"
+                    width="55"/>
+            <option type="column" name="companyCategory" fields="companyCategory"
+                    width="55"/>
+            <option type="column" name="description" fields="description" width="80"/>
+            <option type="column" name="companyPayer" fields="companyPayer"
+                    width="55"/>
+            <option type="column" name="masterOrderStatus" fields="masterOrderStatus"
+                    width="55"/>
+            <option type="column" name="productNumber" fields="productNumber" link="true"
+                    width="55"/>
+            <option type="column" name="productName" fields="productName" link="true"
+                    width="55"/>
+            <option type="column" name="modelName" fields="modelName"
+                    width="55"/>
+            <option type="column" name="technologyName" fields="technologyName"
+                    width="55"/>
+            <option type="column" name="salesPlanNumber" fields="salesPlanNumber"
+                    width="55"/>
+            <option type="column" name="salesPlanName" fields="salesPlanName"
+                    width="55"/>
+            <option type="column" name="masterOrderPositionStatus" fields="masterOrderPositionStatus" width="55"/>
+            <option type="column" name="state" fields="state" width="70"/>
+            <option type="column" name="comments" fields="comments"
+                    width="45"/>
+            <option type="column" name="masterOrderQuantity" fields="masterOrderQuantity" width="45"/>
+            <option type="column" name="cumulatedMasterOrderQuantity" fields="cumulatedMasterOrderQuantity" width="45"/>
+            <option type="column" name="producedOrderQuantity" fields="producedOrderQuantity" width="45"
+                    classesCondition="Number(rowObject['producedOrderQuantity']) >= Number(rowObject['masterOrderQuantity'])"
+                    classesNames="green-cell"/>
+            <option type="column" name="quantityTakenFromWarehouse" fields="quantityTakenFromWarehouse" width="45"/>
+            <option type="column" name="warehouseMinimumStateQuantity" fields="warehouseMinimumStateQuantity" width="45"/>
+            <option type="column" name="quantityRemainingToOrder" fields="quantityRemainingToOrder" width="45"/>
+            <option type="column" name="leftToRelease" fields="leftToRelease" width="45"/>
+            <option type="column" name="warehouseState" fields="warehouseState" width="45"/>
+            <option type="column" name="deliveredQuantity" fields="deliveredQuantity" width="45"/>
+            <option type="column" name="produceQuantity" fields="produceQuantity" width="45"/>
+            <option type="column" name="unit" fields="unit"
+                    width="35"/>
+            <option type="column" name="price" fields="price"
+                    width="35"/>
+            <option type="column" name="assortmentName" fields="assortmentName"/>
+
+            <option type="column" name="warehouseOrder" fields="warehouseOrder"/>
+
+            <option type="order" column="number" direction="desc"/>
+
+            <option type="searchable"
+                    value="masterOrderDefinitionNumber,number,name,deadline,companyName,companyCategory,description,companyPayer,quantityRemainingToOrder,quantityTakenFromWarehouse,masterOrderStatus,productNumber,productName,modelName,technologyName,salesPlanNumber,salesPlanName,masterOrderPositionStatus,comments,masterOrderQuantity,cumulatedMasterOrderQuantity,producedOrderQuantity,leftToRelease,unit,assortmentName,state,warehouseMinimumStateQuantity,warehouseOrder,warehouseState,deliveredQuantity,produceQuantity,price"/>
+            <option type="orderable"
+                    value="masterOrderDefinitionNumber,number,name,deadline,companyName,companyCategory,description,companyPayer,quantityRemainingToOrder,quantityTakenFromWarehouse,masterOrderStatus,productNumber,productName,modelName,technologyName,salesPlanNumber,salesPlanName,masterOrderPositionStatus,comments,masterOrderQuantity,cumulatedMasterOrderQuantity,producedOrderQuantity,leftToRelease,unit,assortmentName,state,warehouseMinimumStateQuantity,warehouseOrder,warehouseState,deliveredQuantity,produceQuantity,price"/>
+
+            <option type="correspondingView" value="masterOrders/masterOrderProductDetails"/>
+            <option type="correspondingComponent" value="form"/>
+
+            <option type="footerRow" value="true"/>
+            <option type="columnsToSummary"
+                    value="masterOrderQuantity,cumulatedMasterOrderQuantity,producedOrderQuantity,leftToRelease,quantityRemainingToOrder,quantityTakenFromWarehouse"/>
+
+            <option type="fullscreen" value="true"/>
+            <option type="multiselect" value="true"/>
+
+            <option type="hasPredefinedFilters" value="true"/>
+            <option type="defaultPredefinedFilterName" value="new"/>
+
+            <predefinedFilters>
+                <predefinedFilter name="all">
+                </predefinedFilter>
+                <predefinedFilter name="new">
+                    <filterRestriction column="masterOrderPositionStatus" value="nowa"/>
+                </predefinedFilter>
+                <predefinedFilter name="ordered">
+                    <filterRestriction column="masterOrderPositionStatus" value="zlecona"/>
+                </predefinedFilter>
+            </predefinedFilters>
+
+            <listener event="createOrder"
+                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      method="createOrder"/>
+            <listener event="goToGenerateOrders"
+                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      method="goToGenerateOrders"/>
+            <listener event="showGroupedByProduct"
+                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      method="showGroupedByProduct"/>
+            <listener event="showGroupedByProductAndDate"
+                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      method="showGroupedByProductAndDate"/>
+            <listener event="updateWarehouseStateAndDelivery"
+                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      method="updateWarehouseStateAndDelivery"/>
+        </component>
+
+        <option type="fixedHeight" value="true"/>
+        <option type="header" value="false"/>
+
+        <listener event="openMasterOrdersImportPage"
+                  class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                  method="openMasterOrdersImportPage"/>
+    </component>
+
+    <hooks>
+        <beforeRender
+                class="com.qcadoo.mes.masterOrders.hooks.MasterOrderPositionsListHooks"
+                method="disableButton"/>
+    </hooks>
+
+</view>

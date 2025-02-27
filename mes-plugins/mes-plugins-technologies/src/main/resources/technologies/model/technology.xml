@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<model name="technology" activable="true"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <string name="number" required="true" unique="true">
+            <validatesLength max="255"/>
+        </string>
+
+        <string name="name" required="true">
+            <validatesLength max="2048"/>
+        </string>
+
+        <belongsTo name="product" plugin="basic" model="product"
+                   lazy="false" required="true"/>
+
+        <belongsTo name="technologyGroup" plugin="technologies"
+                   model="technologyGroup" lazy="false"/>
+
+        <boolean name="externalSynchronized" default="true" copyable="false"/>
+
+        <boolean name="master" default="false" copyable="false"/>
+
+        <string name="description">
+            <validatesLength max="2048"/>
+        </string>
+
+        <tree name="operationComponents" model="technologyOperationComponent"
+              joinField="technology" cascade="delete" copyable="true"/>
+
+        <enum name="state" values="01draft,02accepted,03declined,04outdated,05checked"
+              default="01draft" required="true"/>
+        <hasMany name="stateChanges" joinField="technology" model="technologyStateChange"
+                 cascade="delete"/>
+
+        <hasMany name="technologyAttachments" model="technologyAttachment" joinField="technology"
+                 cascade="delete" copyable="true"/>
+
+        <tree name="productStructureTree" model="productStructureTreeNode"
+              joinField="mainTechnology" cascade="delete"/>
+
+        <boolean name="template" default="false" copyable="false"/>
+        <boolean name="isTemplateAccepted" default="false" copyable="false"/>
+
+        <string name="orderId" persistent="false" />
+
+        <boolean name="additionalActions" default="false"/>
+
+        <belongsTo name="qualityCard" model="qualityCard" plugin="basic"/>
+
+        <hasMany name="operationComponentDtos" model="technologyOperationComponentDto" joinField="technology"
+                 persistent="false"/>
+
+        <hasMany name="productDatas" model="productData" joinField="technology"
+                 cascade="delete"/>
+
+        <decimal name="minimalQuantity">
+            <validatesRange from="0" exclusively="true" />
+            <validatesUnscaledValue max="5" />
+            <validatesScale max="5" />
+        </decimal>
+
+        <enum name="range" values="01oneDivision,02manyDivisions"
+                    default="02manyDivisions"/>
+
+        <belongsTo name="division" plugin="basic"
+                         model="division"/>
+
+        <hasMany name="productionLines" model="technologyProductionLine"
+                       joinField="technology" cascade="delete" copyable="true"/>
+    </fields>
+
+    <hooks>
+        <validatesWith
+                class="com.qcadoo.mes.technologies.validators.TechnologyValidators"
+                method="validatesWith"/>
+        <onCreate class="com.qcadoo.mes.technologies.hooks.TechnologyModelHooks"
+                  method="onCreate"/>
+        <onCopy class="com.qcadoo.mes.technologies.hooks.TechnologyModelHooks"
+                method="onCopy"/>
+        <onSave class="com.qcadoo.mes.technologies.hooks.TechnologyModelHooks"
+                method="onSave"/>
+        <onUpdate class="com.qcadoo.mes.technologies.hooks.TechnologyModelHooks"
+                  method="onUpdate"/>
+    </hooks>
+
+    <identifier expression="#number + ' - ' + #name"/>
+</model>

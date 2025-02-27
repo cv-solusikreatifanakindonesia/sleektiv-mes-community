@@ -1,0 +1,122 @@
+<view defaultAuthorizationRole="ROLE_PLANNING" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="orderPacksSingleOrderList" modelName="order">
+
+    <component type="window" name="window" reference="window">
+        <ribbon>
+            <template name="standardGridTemplate"/>
+            <group name="orderPacks">
+                <bigButton name="generateOrderPacks" icon="generateIcon24.png">
+                    <script>
+                        <![CDATA[
+					        this.addOnChangeListener({
+                                onClick: function() {
+                                    #{order}.performEvent('generateOrderPacks', []);
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+                <bigButton name="printLabels" icon="generateIcon24.png">
+                    <script>
+                        <![CDATA[
+					        this.addOnChangeListener({
+                                onClick: function() {
+                                    #{grid}.performEvent('printLabels', []);
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+            </group>
+            <group name="processes" defaultAuthorizationRole="ROLE_ORDER_TECHNOLOGICAL_PROCESSES">
+                <bigButton name="showPackageProcesses" icon="genealogyIcon24.png">
+                    <script>
+                        <![CDATA[
+					this.addOnChangeListener({
+						onClick: function() {
+								#{grid}.performEvent('showPackageProcesses', []);
+
+						}
+					});
+				]]>
+                    </script>
+                </bigButton>
+            </group>
+            <group name="status">
+                <smallButton name="duringProduction" icon="acceptIcon16.png" state="enabled"
+                             action="#{grid}.changeState(duringProduction);"/>
+                <smallButton name="finishedProduction" icon="deleteIcon16.png" state="enabled"
+                             action="#{grid}.changeState(finishedProduction);"/>
+            </group>
+        </ribbon>
+
+        <component type="form" name="order" reference="order">
+            <listener event="generateOrderPacks"
+                      class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                      method="generateOrderPacks"/>
+        </component>
+
+        <component type="grid" name="orderPacks" reference="grid" source="#{order}.orderPacksDto"
+                   model="orderPackDto" useDto="true">
+            <script>
+                QCD = QCD || {};
+                QCD.translations = QCD.translations || {};
+
+                QCD.translations['orders.orderPack.status.differentStates'] =
+                '#{translate(orders.orderPack.status.differentStates)}';
+                QCD.translations['orders.orderPack.status.confirm.duringProduction'] =
+                '#{translate(orders.orderPack.status.confirm.duringProduction)}';
+                QCD.translations['orders.orderPack.status.duringProduction'] =
+                '#{translate(orders.orderPack.status.duringProduction)}';
+                QCD.translations['orders.orderPack.status.confirm.finishedProduction'] =
+                '#{translate(orders.orderPack.status.confirm.finishedProduction)}';
+                QCD.translations['orders.orderPack.status.finishedProduction'] =
+                '#{translate(orders.orderPack.status.finishedProduction)}';
+
+
+            </script>
+            <script type="text/javascript" src="/orders/public/js/orderPack.js"></script>
+            <script type="text/javascript" src="/orders/public/js/orderPack_grid.js"></script>
+            <option type="column" name="number" fields="number" link="true" width="40"/>
+            <option type="column" name="orderNumber" fields="orderNumber" link="true" width="50"/>
+            <option type="column" name="orderState" fields="orderState" width="40"/>
+            <option type="column" name="orderProduct" fields="orderProduct" width="50"/>
+            <option type="column" name="size" fields="size" width="60"/>
+            <option type="column" name="orderQuantity" fields="orderQuantity" width="60"/>
+            <option type="column" name="quantity" fields="quantity" width="60"/>
+            <option type="column" name="unit" fields="unit" width="50"/>
+            <option type="column" name="state" fields="state" width="60"/>
+
+            <option type="correspondingView" value="orders/orderPackSingleOrderDetails"/>
+            <option type="correspondingComponent" value="form"/>
+
+            <option type="order" column="number" direction="desc"/>
+
+            <option type="searchable"
+                    value="number,orderNumber,orderState,orderProduct,size,orderQuantity,quantity,unit,state"/>
+            <option type="orderable"
+                    value="number,orderNumber,orderState,orderProduct,size,orderQuantity,quantity,unit,state"/>
+
+            <option type="fullscreen" value="true"/>
+            <option type="multiselect" value="true"/>
+            <listener event="changeState" class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                      method="changeState"/>
+
+            <listener event="showPackageProcesses" class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                      method="showPackageProcessesFromList"/>
+
+            <listener event="printLabels"
+                      class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                      method="printLabels"/>
+        </component>
+
+        <option type="fixedHeight" value="true"/>
+        <option type="header" value="false"/>
+    </component>
+
+    <hooks>
+        <beforeRender class="com.qcadoo.mes.orders.hooks.OrderPacksSingleOrderListHooks" method="onBeforeRender"/>
+    </hooks>
+</view>

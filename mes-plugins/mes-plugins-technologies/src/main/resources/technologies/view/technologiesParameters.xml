@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view name="technologiesParameters" modelPlugin="basic" modelName="parameter"
+      defaultAuthorizationRole="ROLE_PARAMETERS"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <component type="window" name="window">
+
+        <ribbon>
+            <group name="actions" hasLabel="false">
+                <bigButton name="save" icon="saveIcon24.png" action="#{form}.performSave;"/>
+            </group>
+        </ribbon>
+
+        <windowTab name="main" reference="main">
+            <component type="form" name="technologiesGeneratorParameters" reference="form">
+                <component type="gridLayout" name="technologiesGeneratorGridLayout" columns="3" rows="1">
+                    <layoutElement column="1" row="1">
+                        <component type="gridLayout" name="leftGridLayout" columns="1" rows="9">
+                            <layoutElement column="1" row="1">
+                                <component type="checkbox" name="completeWarehousesFlowWhileChecking"
+                                           field="#{form}.completeWarehousesFlowWhileChecking"
+                                           reference="completeWarehousesFlowWhileChecking" hasDescription="true">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="2">
+                                <component type="checkbox" name="moveProductsToSubsequentOperations"
+                                           field="#{form}.moveProductsToSubsequentOperations"
+                                           reference="moveProductsToSubsequentOperations" hasDescription="true">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="3">
+                                <component type="checkbox" name="technologiesGeneratorCopyProductSize"
+                                           field="#{form}.technologiesGeneratorCopyProductSize"
+                                           reference="technologiesGeneratorCopyProductSize">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="4">
+                                <component type="checkbox" name="technologiesGeneratorCopyProductAttributes"
+                                           field="#{form}.technologiesGeneratorCopyProductAttributes"
+                                           reference="technologiesGeneratorCopyProductAttributes" hasDescription="true">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="5">
+                                <component type="checkbox" name="allowCheckedTechnologyWithoutInProducts"
+                                           field="#{form}.allowCheckedTechnologyWithoutInProducts"
+                                           reference="allowCheckedTechnologyWithoutInProducts">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="6">
+                                <component type="checkbox" name="acceptedTechnologyMarkedAsDefault"
+                                           field="#{form}.acceptedTechnologyMarkedAsDefault"
+                                           reference="acceptedTechnologyMarkedAsDefault" hasDescription="true">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="7">
+                                <component type="checkbox" name="checkForTheExistenceOfInputProductPrices"
+                                           field="#{form}.checkForTheExistenceOfInputProductPrices"
+                                           reference="checkForTheExistenceOfInputProductPrices" hasDescription="true">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="8">
+                                <component type="input" name="operationProductOutDefaultQuantity"
+                                           field="operationProductOutDefaultQuantity"
+                                           reference="operationProductOutDefaultQuantity">
+                                    <option type="alignment" value="right"/>
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="9">
+                                <component type="input" name="operationProductInDefaultQuantity"
+                                           field="operationProductInDefaultQuantity"
+                                           reference="operationProductInDefaultQuantity">
+                                    <option type="alignment" value="right"/>
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="1">
+                        <component type="gridLayout" name="rightGridLayout" columns="1" rows="2">
+                            <layoutElement column="1" row="1">
+                                <component type="checkbox" name="updateTechnologiesOnPendingOrders"
+                                           field="#{form}.updateTechnologiesOnPendingOrders"
+                                           reference="updateTechnologiesOnPendingOrders" hasDescription="true">
+                                    <option type="labelWidth" value="60"/>
+                                </component>
+                            </layoutElement>
+                            <layoutElement column="1" row="2">
+                                <component type="borderLayout" name="dimensionControlBorderLayout">
+                                    <component type="gridLayout" name="dimensionControlGridLayout"
+                                               columns="1" rows="2">
+                                        <layoutElement column="1" row="1">
+                                            <component type="checkbox" name="dimensionControlOfProducts"
+                                                       field="#{form}.dimensionControlOfProducts"
+                                                       reference="dimensionControlOfProducts" hasDescription="true">
+                                                <option type="labelWidth" value="80"/>
+
+                                                <listener event="onChange"
+                                                          class="com.qcadoo.view.api.listeners.RerenderListener"
+                                                          method="onChangeRerender"/>
+                                            </component>
+                                        </layoutElement>
+                                        <layoutElement column="1" row="2">
+                                            <component type="borderLayout" name="dimensionControlAttributesBorderLayout">
+                                                <component type="awesomeDynamicList" name="dimensionControlAttributes"
+                                                           source="#{form}.dimensionControlAttributes"
+                                                           reference="dimensionControlAttributes">
+                                                    <components>
+                                                        <component type="gridLayout" name="dimensionControlAttributesGridLayout"
+                                                                   columns="1" rows="1">
+                                                            <layoutElement column="1" row="1">
+                                                                <component type="lookup" name="attribute" field="attribute"
+                                                                           reference="attribute"
+                                                                           hasLabel="false">
+                                                                    <option type="column" fields="name" name="name"
+                                                                            link="true"/>
+
+                                                                    <option type="searchable" value="number,name"/>
+                                                                    <option type="orderable" value="number,name"/>
+
+                                                                    <option type="expression"
+                                                                            value="#number + ' - ' + #name"/>
+                                                                    <option type="fieldCode" value="number"/>
+
+                                                                    <criteriaModifier
+                                                                            class="com.qcadoo.mes.basic.criteriaModifiers.AttributeCriteriaModifiers"
+                                                                            method="showNumericForProduct"/>
+                                                                </component>
+                                                            </layoutElement>
+                                                        </component>
+                                                    </components>
+
+                                                    <option type="hasBorder" value="false"/>
+                                                    <option type="hasButtons" value="true"/>
+                                                </component>
+
+                                                <option type="label" value="dimensionControlAttributesLabel"/>
+                                            </component>
+                                        </layoutElement>
+                                    </component>
+
+                                    <option type="label" value="dimensionControlLabel"/>
+                                </component>
+                            </layoutElement>
+                        </component>
+                    </layoutElement>
+                </component>
+
+                <option type="header" value="true"/>
+                <option type="expression" value=""/>
+            </component>
+        </windowTab>
+        <windowTab name="rangeTab" reference="rangeTab">
+            <component type="gridLayout" name="gridLayout"
+                       columns="3" rows="2" reference="gridLayout">
+                <layoutElement column="1" row="1">
+                    <component type="select" name="range" field="#{form}.range"
+                               reference="range" hasDescription="true">
+
+                        <listener event="onSelectedEntityChange"
+                                  class="com.qcadoo.view.api.listeners.RerenderListener"
+                                  method="onChangeRerender"/>
+                    </component>
+                </layoutElement>
+                <layoutElement column="1" row="2">
+                    <component type="lookup" name="division" field="#{form}.division"
+                               reference="division" hasDescription="true">
+                        <option type="column" name="name" fields="name" link="true"/>
+
+                        <option type="searchable" value="name,number"/>
+                        <option type="orderable" value="name,number"/>
+
+                        <option type="expression" value="#number + ' - ' + #name"/>
+                        <option type="fieldCode" value="number"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+    </component>
+
+    <hooks>
+        <beforeRender class="com.qcadoo.mes.technologies.hooks.TechnologiesParametersHooks"
+                      method="onBeforeRender"/>
+    </hooks>
+
+</view>

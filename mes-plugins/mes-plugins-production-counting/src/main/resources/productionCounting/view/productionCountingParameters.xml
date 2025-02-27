@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view name="productionCountingParameters" modelPlugin="basic" modelName="parameter"
+      defaultAuthorizationRole="ROLE_PARAMETERS"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <component type="window" name="window">
+
+        <ribbon>
+            <group name="actions" hasLabel="false">
+                <bigButton name="save" icon="saveIcon24.png" action="#{form}.performSave;"/>
+            </group>
+        </ribbon>
+
+        <windowTab name="productionCounting" reference="productionCounting">
+            <component type="form" name="parameters" reference="form">
+                <component type="gridLayout" name="gridLayout" reference="gridLayout"
+                           columns="3" rows="7">
+                    <layoutElement column="1" row="1">
+                        <component type="select" name="typeOfProductionRecording"
+                                   reference="typeOfProductionRecording" field="#{form}.typeOfProductionRecording"
+                                   default="02cumulated" hasDescription="true">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="2">
+                        <component type="checkbox" name="registerQuantityInProduct"
+                                   reference="registerQuantityInProduct" field="#{form}.registerQuantityInProduct">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="3">
+                        <component type="checkbox" name="registerQuantityOutProduct"
+                                   reference="registerQuantityOutProduct" field="#{form}.registerQuantityOutProduct">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="4">
+                        <component type="checkbox" name="registerProductionTime"
+                                   reference="registerProductionTime" field="#{form}.registerProductionTime">
+                            <listener event="onChange"
+                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      method="onChangeRerender"/>
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="5">
+                        <component type="checkbox" name="allowAnomalyCreationOnAcceptanceRecord"
+                                   reference="allowAnomalyCreationOnAcceptanceRecord"
+                                   field="#{form}.allowAnomalyCreationOnAcceptanceRecord"
+                                   hasDescription="true">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="6">
+                        <component type="checkbox" name="automaticallyUseTheBatchPlannedInOrder" reference="automaticallyUseTheBatchPlannedInOrder"
+                                   field="#{form}.automaticallyUseTheBatchPlannedInOrder" hasDescription="true">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="1">
+                        <component type="checkbox" name="justOne" reference="justOne"
+                                   field="#{form}.justOne" hasDescription="true">
+                            <option type="labelWidth" value="80"/>
+                            <listener event="onChange"
+                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      method="onChangeRerender"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="2">
+                        <component type="checkbox" name="producingMoreThanPlanned" reference="producingMoreThanPlanned"
+                                   field="#{form}.producingMoreThanPlanned" hasDescription="true">
+                            <option type="labelWidth" value="80"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="3">
+                        <component type="checkbox" name="allowToClose" reference="allowToClose"
+                                   field="#{form}.allowToClose" hasDescription="true">
+                            <option type="labelWidth" value="80"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="4">
+                        <component type="checkbox" name="autoCloseOrder"
+                                   reference="autoCloseOrder" field="#{form}.autoCloseOrder"
+                                   hasDescription="true">
+                            <option type="labelWidth" value="80"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="5">
+                        <component type="checkbox" name="productionOrderedQuantityClosesTheOrder"
+                                   reference="productionOrderedQuantityClosesTheOrder" field="#{form}.productionOrderedQuantityClosesTheOrder"
+                                   hasDescription="true">
+                            <option type="labelWidth" value="80"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="6">
+                        <component type="checkbox" name="validateProductionRecordTimes" hasDescription="true"
+                                   reference="validateProductionRecordTimes" field="#{form}.validateProductionRecordTimes">
+                            <option type="labelWidth" value="80"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="7">
+                        <component type="checkbox" name="allowMultipleRegisteringTimeForWorker"
+                                   reference="allowMultipleRegisteringTimeForWorker"
+                                   field="#{form}.allowMultipleRegisteringTimeForWorker">
+                            <option type="labelWidth" value="80"/>
+                        </component>
+                    </layoutElement>
+
+                    <layoutElement column="3" row="1">
+                        <component type="checkbox" name="consumptionOfRawMaterialsBasedOnStandards"
+                                   reference="consumptionOfRawMaterialsBasedOnStandards"
+                                   field="#{form}.consumptionOfRawMaterialsBasedOnStandards">
+                            <option type="labelWidth" value="60"/>
+                            <listener event="onSelectedEntityChange"
+                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      method="onChangeRerender"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="3" row="2">
+                        <component type="checkbox" name="wastesConsumeRawMaterials"
+                                   reference="wastesConsumeRawMaterials"
+                                   field="#{form}.wastesConsumeRawMaterials">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+
+                    <layoutElement column="3" row="3">
+                        <component type="checkbox" name="calculateAmountTimeEmployeesOnAcceptanceRecord"
+                                   reference="calculateAmountTimeEmployeesOnAcceptanceRecord"
+                                   field="#{form}.calculateAmountTimeEmployeesOnAcceptanceRecord">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+
+                    <layoutElement column="3" row="4">
+                        <component type="select" name="releaseOfMaterials" reference="releaseOfMaterials"
+                                   field="#{form}.releaseOfMaterials" hasDescription="true">
+                            <option type="labelWidth" value="60"/>
+                            <listener event="onSelectedEntityChange"
+                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionCountingParametersListeners"
+                                      method="onReleaseOfMaterialsChange"/>
+                        </component>
+                    </layoutElement>
+
+
+                    <layoutElement column="3" row="5">
+                        <component type="select" name="receiptOfProducts" reference="receiptOfProducts"
+                                   field="#{form}.receiptOfProducts" hasDescription="true">
+                            <option type="labelWidth" value="60"/>
+                            <listener event="onSelectedEntityChange"
+                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionCountingParametersListeners"
+                                      method="onReceiptOfProductsChange"/>
+                        </component>
+                    </layoutElement>
+
+                    <layoutElement column="3" row="6">
+                        <component type="select" name="priceBasedOn" reference="priceBasedOn"
+                                   field="#{form}.priceBasedOn" hasDescription="true">
+                            <option type="labelWidth" value="60"/>
+                        </component>
+                    </layoutElement>
+                </component>
+                <option type="header" value="true"/>
+                <option type="expression" value=""/>
+            </component>
+        </windowTab>
+
+    </component>
+
+    <hooks>
+        <beforeRender
+            class="com.qcadoo.mes.productionCounting.hooks.ParametersHooksPC"
+            method="onBeforeRender"/>
+    </hooks>
+
+</view>

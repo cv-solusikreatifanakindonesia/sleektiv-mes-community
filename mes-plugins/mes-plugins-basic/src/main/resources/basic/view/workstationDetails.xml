@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="workstationDetails" modelName="workstation">
+
+    <component type="window" name="window">
+
+        <ribbon>
+            <group name="navigation">
+                <bigButton name="back" icon="backIcon24.png" state="enabled" action="#{window}.performBack"/>
+            </group>
+
+            <group name="actions" defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE_EDIT">
+                <bigButton name="save" icon="saveIcon24.png" state="enabled" action="#{form}.performSave;"
+                           accesskey="s"/>
+                <smallButton name="saveBack" icon="saveBackIcon16.png" state="enabled"
+                             action="#{form}.performSave; #{window}.performBack;"/>
+                <smallButton name="saveNew" icon="saveNewIcon16.png" state="enabled"
+                             action="#{form}.performSaveAndClear;"/>
+                <smallButton name="copy" icon="copyIcon16.png" state="disabled" action="#{form}.performCopy;"
+                             accesskey="c">
+                    <script>
+                        <![CDATA[
+                            #{form}.addOnChangeListener({
+                                onSetValue: function(value) {
+                                    if (!value || !value.content)
+                                        return;
+                                    if (value.content.entityId) {
+                                        this.enable();
+                                    } else {
+                                        this.disable();
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </smallButton>
+                <smallButton name="delete" icon="deleteIcon16.png" state="disabled" action="#{form}.performDelete;"
+                             accesskey="d">
+                    <script>
+                        <![CDATA[
+                            #{form}.addOnChangeListener({
+                                onSetValue: function(value) {
+                                    if (!value || !value.content)
+                                        return;
+                                    if (value.content.entityId) {
+                                        this.enable();
+                                    } else {
+                                        this.disable();
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </smallButton>
+                <smallButton name="cancel" icon="cancelIcon16.png" state="enabled" action="#{form}.performCancel;"
+                             accesskey="x"/>
+            </group>
+
+            <group name="actions" defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE">
+                <bigButton name="refresh" icon="updateIcon24.png" state="enabled" action="#{form}.performRefresh;"
+                           accesskey="r"/>
+            </group>
+
+            <group name="states" if="#view.getComponentByReference('form').dataDefinition.activable"
+                   defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE_EDIT">
+                <smallButton name="activate" icon="unactiveVisibleIcon.png" state="disabled"
+                             action="#{form}.performActivate;">
+                    <script>
+                        <![CDATA[
+                            #{form}.addOnChangeListener({
+                                onSetValue: function(value) {
+                                    if (!value || !value.content)
+                                        return;
+                                    if (value.content.entityId && !value.content.isActive) {
+                                        this.enable();
+                                    } else {
+                                        this.disable();
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </smallButton>
+                <smallButton name="deactivate" icon="unactiveNotVisibleIcon.png" state="disabled"
+                             action="#{form}.performDeactivate;">
+                    <script>
+                        <![CDATA[
+                            #{form}.addOnChangeListener({
+                                onSetValue: function(value) {
+                                    if (!value || !value.content)
+                                        return;
+                                    if (value.content.entityId && value.content.isActive) {
+                                        this.enable();
+                                    } else {
+                                        this.disable();
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </smallButton>
+            </group>
+
+            <group name="attachments" defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE">
+                <bigButton name="downloadAttachment" icon="generateIcon24.png" state="enabled">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+									#{form}.performEvent('downloadAttachment', []);
+								}
+							});
+						]]>
+                    </script>
+                </bigButton>
+            </group>
+        </ribbon>
+
+        <windowTab name="mainTab" reference="mainTab">
+            <component type="form" name="workstation" reference="form"
+                       defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE_EDIT">
+                <component type="gridLayout" name="gridLayout" columns="3"
+                           rows="8">
+                    <layoutElement column="1" row="1">
+                        <component type="input" name="number" field="number">
+                            <option type="alignment" value="right"/>
+                        </component>
+                        <component type="select" name="state" field="state"
+                                   reference="state" defaultVisible="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="2" height="2">
+                        <component type="textarea" name="name" field="name"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="4" height="2">
+                        <component type="textarea" name="description" field="description"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="6">
+                        <component type="lookup" name="workstationType" field="workstationType"
+                                   reference="workstationType">
+                            <option type="column" name="name" fields="name" link="true"/>
+
+                            <option type="searchable" value="name,number"/>
+                            <option type="orderable" value="name,number"/>
+
+                            <option type="expression" value="#number + ' - ' + #name"/>
+                            <option type="fieldCode" value="number"/>
+
+                            <criteriaModifier
+                                    class="com.qcadoo.mes.basic.criteriaModifiers.WorkstationTypeCriteriaModifiers"
+                                    method="showWorkstationTypesWithoutSubassembly"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="7">
+                        <component type="calendar" name="dateOfAdmission" field="dateOfAdmission"
+                                   reference="dateOfAdmission"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="8">
+                        <component type="calendar" name="dateOfWithdrawal" field="dateOfWithdrawal"
+                                   reference="dateOfWithdrawal"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="1">
+                        <component type="input" name="serialNumber" field="serialNumber" reference="serialNumber"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="2">
+                        <component type="input" name="udtNumber" field="udtNumber" reference="udtNumber"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="3">
+                        <component type="input" name="series" field="series" reference="series"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="4">
+                        <component type="input" name="producer" field="producer" reference="producer"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="5">
+                        <component type="calendar" name="productionDate" field="productionDate"
+                                   reference="productionDate"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="6">
+                        <component type="input" name="wnkNumber" field="wnkNumber" reference="wnkNumber"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="7">
+                        <component type="lookup" name="staff" field="staff"
+                                   reference="staff" hasDescription="true">
+                            <option type="column" name="name" fields="name" link="true"/>
+                            <option type="column" name="surname" fields="surname" link="true"/>
+
+                            <option type="searchable" value="name,surname"/>
+                            <option type="orderable" value="name,surname"/>
+
+                            <option type="expression" value="#name + ' ' + #surname"/>
+                            <option type="fieldCode" value="number"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="8">
+                        <component type="checkbox" name="virtual" field="virtual"
+                                   reference="virtual" hasDescription="true">
+                        </component>
+                    </layoutElement>
+                </component>
+
+                <option type="header" value="true"/>
+                <option type="expression" value="#name"/>
+
+                <listener event="downloadAttachment" method="downloadAttachment"
+                          class="com.qcadoo.mes.basic.listeners.AttachmentsListeners"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="companiesTab" reference="companiesTab">
+            <component type="gridLayout" name="companiesGridLayout"
+                       columns="2" rows="1">
+                <layoutElement column="1" row="1">
+                    <component type="lookup" name="companiesLookup" reference="companiesLookup"
+                               field="#{form}.companies" defaultVisible="false" persistent="false"
+                               hasLabel="false">
+                        <option type="column" name="name" fields="name" link="true"
+                                width="100"/>
+                        <option type="column" name="city" fields="city" link="true"
+                                width="100"/>
+
+                        <option type="searchable" value="number,name,city"/>
+                        <option type="orderable" value="number,name,city"/>
+
+                        <option type="expression"
+                                value="'&lt;b&gt;' + #number + '&lt;/b&gt; - ' + #name"/>
+                        <option type="fieldCode" value="number"/>
+
+                        <option type="multiselect" value="true"/>
+                    </component>
+                    <component type="grid" name="companies" reference="companies"
+                               source="#{form}.companies" defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE_EDIT">
+                        <option type="column" name="number" fields="number" width="50"/>
+                        <option type="column" name="name" fields="name" width="100"/>
+                        <option type="column" name="city" fields="city"
+                                width="100"/>
+
+                        <option type="searchable" value="number,name,city"/>
+                        <option type="orderable" value="number,name,city"/>
+
+                        <option type="order" column="number" direction="asc"/>
+
+                        <option type="fullscreen" value="true"/>
+                        <option type="multiselect" value="true"/>
+                        <option type="creatable" value="true"/>
+                        <option type="deletable" value="true"/>
+
+                        <option type="weakRelation" value="true"/>
+                        <option type="correspondingLookup" value="companiesLookup"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+        <windowTab name="attachments">
+            <component type="gridLayout" name="gridsLayout" columns="3"
+                       rows="6" hasBorders="false">
+                <layoutElement column="1" row="1" height="6">
+                    <component type="staticPage" name="multiUpload">
+                        <option type="page" value="basic/multiUpload.jsp"/>
+                    </component>
+                    <component type="input" name="workstationIdForMultiUpload"
+                               reference="workstationIdForMultiUpload" defaultVisible="false">
+                        <option type="alignment" value="right"/>
+                    </component>
+                    <component type="input" name="workstationMultiUploadLocale"
+                               reference="workstationMultiUploadLocale" defaultVisible="false">
+                    </component>
+                </layoutElement>
+                <layoutElement column="2" row="1" width="2" height="6">
+                    <component type="grid" name="attachments"
+                               reference="attachmentsGrid" source="#{form}.attachments"
+                               defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE">
+                        <option type="column" name="attachment" fields="name" correspondingField="attachmentLocation"
+                                link="true" attachment="true"/>
+                        <option type="column" name="attachmentLocation" fields="attachment" hidden="true"/>
+                        <option type="column" name="size" fields="size"/>
+
+                        <option type="order" column="attachment" direction="desc"/>
+
+                        <option type="deletable" value="true"/>
+                        <option type="deletableAuthorizationRole" value="ROLE_COMPANY_STRUCTURE_EDIT"/>
+                        <option type="fullscreen" value="true"/>
+                        <option type="multiselect" value="true"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+        <windowTab name="subassembliesTab" reference="subassembliesTab">
+            <component type="flowGridLayout" name="subassembliesGridLayout"
+                       columns="2" rows="3">
+                <layoutElement column="1" row="1" minHeight="3">
+                    <component type="grid" name="subassemblies" reference="subassemblies"
+                               source="#{form}.subassembliesHelpers"
+                               defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE_EDIT">
+                        <option type="column" name="number" fields="subassembly" expression="#subassembly['number']"
+                                width="50" link="true"/>
+                        <option type="column" name="name" fields="subassembly" expression="#subassembly['name']"
+                                width="100" link="true"/>
+                        <option type="column" name="workstationType" fields="subassembly" link="true"
+                                expression="#subassembly['workstationType']?.get('number')"/>
+                        <option type="column" name="type" fields="subassembly" expression="#subassembly['type']"
+                                link="true"/>
+
+                        <option type="searchable" value="number,name,workstationType,type"/>
+                        <option type="orderable" value="number,name,workstationType,type"/>
+
+                        <option type="order" column="number" direction="asc"/>
+
+                        <option type="fullscreen" value="true"/>
+                        <option type="multiselect" value="true"/>
+                        <option type="creatable" value="true"/>
+                        <option type="deletable" value="true"/>
+
+                        <option type="correspondingView" value="basic/workstationDetailsAddSubassembly"/>
+                        <option type="correspondingComponent" value="form"/>
+                        <option type="correspondingViewInModal" value="true"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+        <windowTab name="machineWorkingPeriodsTab" reference="machineWorkingPeriodsTab">
+            <component type="flowGridLayout" name="machineWorkingPeriodsGridLayout"
+                       columns="1" rows="3">
+                <layoutElement column="1" row="1" minHeight="3">
+                    <component type="grid" name="machineWorkingPeriods" reference="machineWorkingPeriods"
+                               source="#{form}.machineWorkingPeriods"
+                               defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE_EDIT">
+                        <option type="column" name="launchDate" fields="launchDate"
+                                width="50" link="true"/>
+                        <option type="column" name="launchedBy" fields="launchedBy"
+                                expression="#launchedBy['name'] + ' ' + #launchedBy['surname']"
+                                width="100" link="true"/>
+                        <option type="column" name="stopDate" fields="stopDate"
+                                width="50" link="true"/>
+                        <option type="column" name="stoppedBy" fields="stoppedBy"
+                                expression="#stoppedBy['name'] + ' ' + #stoppedBy['surname']"
+                                width="100" link="true"/>
+                        <option type="column" name="workingTime" fields="workingTime" width="50"
+                                expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#workingTime)"/>
+
+                        <option type="searchable" value="launchDate,stopDate"/>
+                        <option type="orderable" value="launchDate,stopDate"/>
+
+                        <option type="order" column="launchDate" direction="asc"/>
+
+                        <option type="fullscreen" value="true"/>
+                        <option type="multiselect" value="true"/>
+                        <option type="creatable" value="true"/>
+                        <option type="deletable" value="true"/>
+
+                        <option type="correspondingView" value="basic/machineWorkingPeriodDetails"/>
+                        <option type="correspondingComponent" value="form"/>
+                        <option type="correspondingViewInModal" value="true"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+        <windowTab name="productDimensionsTab" reference="productDimensionsTab">
+            <component type="gridLayout" name="productDimensionsGridLayout" columns="3"
+                       rows="2">
+                <layoutElement column="1" row="1">
+                    <component type="gridLayout" name="minimumDimensionGridLayout" columns="4"
+                               rows="1" hasBorders="false">
+                        <layoutElement column="1" row="1" width="3">
+                            <component type="input" name="minimumDimension" field="#{form}.minimumDimension"
+                                       reference="minimumDimension">
+                                <option type="alignment" value="right"/>
+                            </component>
+                        </layoutElement>
+                        <layoutElement column="4" row="1">
+                            <component type="select" name="minimumDimensionUnit" field="#{form}.minimumDimensionUnit"
+                                       reference="minimumDimensionUnit" hasLabel="false"/>
+                        </layoutElement>
+                    </component>
+                </layoutElement>
+                <layoutElement column="1" row="2">
+                    <component type="gridLayout" name="maximumDimensionGridLayout" columns="4"
+                               rows="1" hasBorders="false">
+                        <layoutElement column="1" row="1" width="3">
+                            <component type="input" name="maximumDimension" field="#{form}.maximumDimension"
+                                       reference="maximumDimension">
+                                <option type="alignment" value="right"/>
+                            </component>
+                        </layoutElement>
+                        <layoutElement column="4" row="1">
+                            <component type="select" name="maximumDimensionUnit" field="#{form}.maximumDimensionUnit"
+                                       reference="maximumDimensionUnit" hasLabel="false"/>
+                        </layoutElement>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+    </component>
+
+    <hooks>
+        <beforeRender
+                class="com.qcadoo.mes.basic.hooks.WorkstationDetailsHooks"
+                method="onBeforeRender"/>
+    </hooks>
+
+</view>

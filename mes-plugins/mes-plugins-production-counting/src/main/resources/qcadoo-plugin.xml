@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<plugin plugin="productionCounting" group="tracking"
+        version="${qcadoo.plugin.version}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://schema.qcadoo.org/plugin" xmlns:model="http://schema.qcadoo.org/modules/model"
+        xmlns:view="http://schema.qcadoo.org/modules/view" xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+		http://schema.qcadoo.org/plugin.xsd
+		http://schema.qcadoo.org/modules/model
+		http://schema.qcadoo.org/modules/model.xsd
+		http://schema.qcadoo.org/modules/view
+		http://schema.qcadoo.org/modules/view.xsd
+		http://schema.qcadoo.org/modules/localization
+		http://schema.qcadoo.org/modules/localization.xsd
+		http://schema.qcadoo.org/modules/menu
+		http://schema.qcadoo.org/modules/menu.xsd
+        http://schema.qcadoo.org/modules/custom
+        http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Production Counting and Balance</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Use production records to track how much products did you really produce/use and how much work did
+            you put into them. Sum them all up and analyse in the production balance report.
+        </description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>operationTimeCalculations</plugin>
+            <version>[0.4.1</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[0.4.1</version>
+        </dependency>
+        <dependency>
+            <plugin>basicProductionCounting</plugin>
+            <version>[0.4.0</version>
+        </dependency>
+        <dependency>
+            <plugin>states</plugin>
+            <version>[1.1.7</version>
+        </dependency>
+
+        <dependency>
+            <plugin>costCalculation</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <localization:translation path="locales"/>
+        <localization:translation-group name="employeeWorkingTimeSettlement"
+                                        prefix="productionCounting.validate.global.error.employeeWorkingTimeSettlement"/>
+        <localization:translation-group name="employeePieceworkSettlement"
+                                        prefix="productionCounting.validate.global.error.employeePieceworkSettlement"/>
+        <localization:translation-group name="operationDurationAnalysis"
+                                        prefix="productionCounting.validate.global.error.operationDurationAnalysis"/>
+        <localization:translation-group name="productionBalanceAnalysis"
+                                        prefix="productionCounting.validate.global.error.productionBalanceAnalysis"/>
+        <localization:translation-group name="linesProducedQuantitiesChart"
+                                        prefix="productionCounting.linesProducedQuantitiesChart"/>
+
+        <model:model model="productionTracking" resource="model/productionTracking.xml"/>
+        <model:model model="productionTrackingStateChange" resource="model/productionTrackingStateChange.xml"/>
+        <model:model model="productionBalance" resource="model/productionBalance.xml"/>
+        <model:model model="orderBalance" resource="model/orderBalance.xml"/>
+        <model:model model="trackingOperationProductInComponent"
+                     resource="model/trackingOperationProductInComponent.xml"/>
+        <model:model model="trackingOperationProductOutComponent"
+                     resource="model/trackingOperationProductOutComponent.xml"/>
+        <model:model model="staffWorkTime" resource="model/staffWorkTime.xml"/>
+
+        <model:model model="productionTrackingDto" resource="model/productionTrackingDto.xml"/>
+        <model:model model="productionTrackingForProductDto"
+                     resource="model/productionTrackingForProductDto.xml"/>
+        <model:model model="productionTrackingForProductGroupedDto"
+                     resource="model/productionTrackingForProductGroupedDto.xml"/>
+
+        <model:model model="trackingOperationProductComponentDto"
+                     resource="model/trackingOperationProductComponentDto.xml"/>
+        <model:model model="trackingOperationProductInComponentDto"
+                     resource="model/trackingOperationProductInComponentDto.xml"/>
+        <model:model model="trackingOperationProductOutComponentDto"
+                     resource="model/trackingOperationProductOutComponentDto.xml"/>
+
+        <model:model model="performanceAnalysisMv" resource="model/performanceAnalysisMv.xml"/>
+        <model:model model="performanceAnalysisDto" resource="model/performanceAnalysisDto.xml"/>
+        <model:model model="performanceAnalysisDetailDto" resource="model/performanceAnalysisDetailDto.xml"/>
+
+        <model:model model="finalProductAnalysisEntry" resource="model/finalProductAnalysisEntry.xml"/>
+        <model:model model="beforeAdditionalActionsAnalysisEntry"
+                     resource="model/beforeAdditionalActionsAnalysisEntry.xml"/>
+
+        <model:model model="anomalyReason" resource="model/anomalyReason.xml"/>
+        <model:model model="anomaly" resource="model/anomaly.xml"/>
+        <model:model model="anomalyDto" resource="model/anomalyDto.xml"/>
+        <model:model model="anomalyProductionTrackingEntryHelper"
+                     resource="model/anomalyProductionTrackingEntryHelper.xml"/>
+        <model:model model="anomalyProductionTrackingHelper" resource="model/anomalyProductionTrackingHelper.xml"/>
+        <model:model model="anomalyReasonContainer" resource="model/anomalyReasonContainer.xml"/>
+        <model:model model="anomalyExplanation" resource="model/anomalyExplanation.xml"/>
+        <model:model model="anomalyExplanationDto" resource="model/anomalyExplanationDto.xml"/>
+
+        <model:model model="productionAnalysisDto" resource="model/productionAnalysisDto.xml"/>
+
+        <model:model model="productionTrackingDraftDto" resource="model/productionTrackingDraftDto.xml"/>
+
+        <model:model model="trackingInProductReplacementHelper" resource="model/trackingInProductReplacementHelper.xml"/>
+
+        <model:model model="prodOutResourceAttrVal" resource="model/prodOutResourceAttrVal.xml"/>
+
+        <model:model model="usedBatch" resource="model/usedBatch.xml"/>
+
+        <model:model model="productionTrackingAttachment" resource="model/productionTrackingAttachment.xml"/>
+
+        <model:model model="lack" resource="model/lack.xml"/>
+        <model:model model="lackDto" resource="model/lackDto.xml"/>
+        <model:model model="lackReason" resource="model/lackReason.xml"/>
+
+        <model:model-enum-value plugin="basic" model="log" enum="logType" value="productionTracking"/>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="automaticallyUseTheBatchPlannedInOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="producingMoreThanPlanned" default="true"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="acceptRecordsFromTerminal"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:enum name="receiptOfProducts" values="01onAcceptanceRegistrationRecord,02endOfTheOrder,03manuallyToOrderGroup,04doNotCreateDocuments"
+                        default="01onAcceptanceRegistrationRecord" required="true"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:enum name="releaseOfMaterials" values="01onAcceptanceRegistrationRecord,02endOfTheOrder,03manuallyToOrderOrGroup,04doNotCreateDocuments"
+                        default="01onAcceptanceRegistrationRecord" required="true"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:enum name="typeOfProductionRecording" values="01basic,02cumulated,03forEach"
+                        default="02cumulated" required="true"/>
+        </model:model-field>
+        <model:model-field model="orderDto" plugin="orders">
+            <model:enum name="typeOfProductionRecording" values="01basic,02cumulated,03forEach"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="registerProductionTime"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="registerQuantityInProduct"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="registerQuantityOutProduct"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="justOne"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="allowToClose"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="autoCloseOrder"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="validateProductionRecordTimes"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="allowMultipleRegisteringTimeForWorker"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="consumptionOfRawMaterialsBasedOnStandards"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="wastesConsumeRawMaterials" default="true"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="allowChangesToUsedQuantityOnTerminal" default="false" required="true"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="autoRecalculateOrder"/>
+        </model:model-field>
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="allowAnomalyCreationOnAcceptanceRecord"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="includeWageGroups"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="includeTPZPB" default="true"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="includeAdditionalTimePB" default="true"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="calculateAmountTimeEmployeesOnAcceptanceRecord" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="productionOrderedQuantityClosesTheOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:enum name="materialCostsUsedPB"
+                        values="01nominal,02average,03lastPurchase,04averageOfferCost,05lastOfferCost,06costForOrder"
+                        required="true" default="01nominal"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:enum name="sourceOfOperationCostsPB"
+                        values="01technologyOperation,02parameters"
+                        required="true" default="01technologyOperation"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="averageMachineHourlyCostPB">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="averageLaborHourlyCostPB">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="productionCostMarginPB" default="0">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="materialCostMarginPB" default="0">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="additionalOverheadPB" default="0">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="registrationPriceOverheadPB" default="0">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="technicalProductionCostOverheadPB" default="0">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="profitPB" default="0">
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+                <model:validatesRange from="0"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:enum name="priceBasedOn" values="01nominalProductCost,02realProductionCost"
+                        required="true" default="01nominalProductCost"/>
+        </model:model-field>
+
+        <model:model-field model="staff" plugin="basic">
+            <model:hasMany name="productionTrackings" model="productionTracking"
+                           joinField="staff" plugin="productionCounting"/>
+        </model:model-field>
+
+        <model:model-field model="workstation" plugin="basic">
+            <model:hasMany name="productionTrackings" model="productionTracking"
+                           joinField="workstation" plugin="productionCounting"/>
+        </model:model-field>
+
+        <model:model-field model="division" plugin="basic">
+            <model:hasMany name="productionTrackings" model="productionTracking"
+                           joinField="division" plugin="productionCounting"/>
+        </model:model-field>
+
+        <model:model-field model="batch" plugin="advancedGenealogy">
+            <model:hasMany name="productionTrackings" model="productionTracking"
+                           joinField="batch" plugin="productionCounting"/>
+        </model:model-field>
+
+        <model:model-field model="palletNumber" plugin="basic">
+            <model:hasMany name="trackingOperationProductOutComponents" model="trackingOperationProductOutComponent"
+                           joinField="palletNumber" plugin="productionCounting"/>
+        </model:model-field>
+
+        <model:model-field model="storageLocation" plugin="materialFlowResources">
+            <model:hasMany name="trackingOperationProductOutComponents" model="trackingOperationProductOutComponent"
+                           joinField="storageLocation" plugin="productionCounting"/>
+        </model:model-field>
+
+        <model:model-field model="message" plugin="states">
+            <model:belongsTo name="productionTrackingStateChange"
+                             plugin="productionCounting" model="productionTrackingStateChange"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="shift">
+            <model:hasMany name="productionTrackingStateChanges"
+                           plugin="productionCounting" model="productionTrackingStateChange"
+                           joinField="shift"/>
+        </model:model-field>
+
+        <model:model-field model="order" plugin="orders">
+            <model:enum name="typeOfProductionRecording" values="01basic,02cumulated,03forEach"/>
+        </model:model-field>
+        <model:model-field model="order" plugin="orders">
+            <model:boolean name="registerProductionTime"/>
+        </model:model-field>
+        <model:model-field model="order" plugin="orders">
+            <model:boolean name="registerQuantityInProduct"/>
+        </model:model-field>
+        <model:model-field model="order" plugin="orders">
+            <model:boolean name="registerQuantityOutProduct"/>
+        </model:model-field>
+        <model:model-field model="order" plugin="orders">
+            <model:hasMany name="productionTrackings" model="productionTracking"
+                           joinField="order" plugin="productionCounting" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field model="order" plugin="orders">
+            <model:manyToMany name="productionBalance"
+                              plugin="productionCounting" model="productionBalance"
+                              joinField="orders"/>
+        </model:model-field>
+
+        <model:model-field model="technology" plugin="technologies">
+            <model:enum name="typeOfProductionRecording" values="01basic,02cumulated,03forEach"/>
+        </model:model-field>
+        <model:model-field model="technology" plugin="technologies">
+            <model:boolean name="registerProductionTime"/>
+        </model:model-field>
+        <model:model-field model="technology" plugin="technologies">
+            <model:boolean name="pieceworkProduction" default="false"/>
+        </model:model-field>
+        <model:model-field model="technology" plugin="technologies">
+            <model:belongsTo name="pieceRate"
+                             plugin="basic" model="pieceRate"/>
+        </model:model-field>
+        <model:model-field model="pieceRate" plugin="basic">
+            <model:hasMany name="technologies" model="technology"
+                           joinField="pieceRate" plugin="technologies"/>
+        </model:model-field>
+        <model:model-field model="technology" plugin="technologies">
+            <model:boolean name="registerQuantityInProduct"/>
+        </model:model-field>
+        <model:model-field model="technology" plugin="technologies">
+            <model:boolean name="registerQuantityOutProduct"/>
+        </model:model-field>
+
+        <model:model-field plugin="productionCounting" model="anomalyReason">
+            <model:manyToMany name="anomalies" plugin="productionCounting" model="anomaly" joinField="anomalyReasons"/>
+        </model:model-field>
+
+        <model:model-field plugin="materialFlow" model="location">
+            <model:hasMany name="anomalyExplanations" plugin="productionCounting" model="anomalyExplanation"
+                           joinField="location" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-hook model="parameter" plugin="basic">
+            <model:onCreate
+                    class="com.qcadoo.mes.productionCounting.hooks.ParameterHooksPC"
+                    method="onCreate"/>
+        </model:model-hook>
+
+        <model:model-hook model="parameter" plugin="basic">
+            <model:validatesWith
+                    class="com.qcadoo.mes.productionCounting.hooks.ParameterHooksPC"
+                    method="validatesWith"/>
+        </model:model-hook>
+
+        <model:model-hook model="technology" plugin="technologies">
+            <model:onCreate class="com.qcadoo.mes.productionCounting.hooks.TechnologyHookPC"
+                            method="onCreate"/>
+        </model:model-hook>
+
+        <model:model-hook model="productionCountingQuantity" plugin="basicProductionCounting">
+            <model:onDelete class="com.qcadoo.mes.productionCounting.hooks.ProductionCountingQuantityHooksPC"
+                            method="onDelete"/>
+        </model:model-hook>
+
+        <model:model-hook model="technology" plugin="technologies">
+            <model:validatesWith class="com.qcadoo.mes.productionCounting.hooks.TechnologyHookPC"
+                                 method="validatesWith"/>
+        </model:model-hook>
+
+        <model:model-hook model="order" plugin="orders">
+            <model:onCreate class="com.qcadoo.mes.productionCounting.hooks.OrderHooksPC"
+                            method="onCreate"/>
+        </model:model-hook>
+
+        <model:model-hook model="order" plugin="orders">
+            <model:onSave class="com.qcadoo.mes.productionCounting.hooks.OrderHooksPC"
+                            method="onSave"/>
+        </model:model-hook>
+
+        <model:model-hook model="order" plugin="orders">
+            <model:validatesWith class="com.qcadoo.mes.productionCounting.hooks.OrderHooksPC"
+                                 method="validatesWith"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="technologies"
+                          model="technologyOperationComponent">
+            <model:onCreate
+                    class="com.qcadoo.mes.productionCounting.hooks.TechnologyOperationComponentHooksPC"
+                    method="copyTimeNormsToTechnologyOperationComponent" />
+        </model:model-hook>
+
+        <model:model-hook model="technologyOperationComponent" plugin="technologies">
+            <model:validatesWith class="com.qcadoo.mes.productionCounting.hooks.TechnologyOperationComponentHooksPC"
+                                 method="validatesWith"/>
+        </model:model-hook>
+
+        <menu:menu-item name="performanceAnalysisMv" category="analysis"
+                        view="performanceAnalysisMvList" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item name="productionAnalysis" category="analysis"
+                        view="productionAnalysisList" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item name="finalProductAnalysis" category="analysis"
+                        view="finalProductAnalysisGenerator" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item name="beforeAdditionalActionsAnalysis" category="analysis"
+                        view="beforeAdditionalActionsAnalysisGenerator"
+                        defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item-url name="employeeWorkingTimeSettlement" category="analysis"
+                            url="/employeeWorkingTimeSettlement.html" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+        <menu:menu-item-url name="employeePieceworkSettlement" category="analysis"
+                            url="/employeePieceworkSettlement.html" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item name="productionBalance" category="analysis"
+                        view="productionBalancesList" defaultAuthorizationRole="ROLE_PRODUCTION_COUNTING"/>
+
+        <menu:menu-item name="productionTracking" category="ordersTracking"
+                        view="productionTrackingsList" defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING_REGISTRATION"/>
+
+        <menu:menu-item name="productionTrackingsDraftList" category="ordersTracking"
+                        view="productionTrackingsDraftList" defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING"/>
+
+        <menu:menu-item name="productionTrackingForProduct" category="ordersTracking"
+                        view="productionTrackingsForProductList" defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING"/>
+        <menu:menu-item name="productionTrackingForProductGrouped" category="ordersTracking"
+                        view="productionTrackingsForProductGroupedList"
+                        defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING"/>
+
+        <menu:menu-item name="anomalyReasonList" category="ordersTracking"
+                        view="anomalyReasonList" defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING"/>
+        <menu:menu-item name="anomalyList" category="ordersTracking"
+                        view="anomalyList" defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING"/>
+
+        <menu:menu-item name="trackingOperationProductInComponentAdditionalInformationReport" category="ordersTracking"
+                        view="trackingOperationProductInComponentAdditionalInformationReport"
+                        defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING"/>
+
+        <menu:menu-item-url name="productionCountingParameters" category="parameters" url="/productionCountingParameters.html"
+                            defaultAuthorizationRole="ROLE_PARAMETERS"/>
+        <menu:menu-item-url name="productionAnalysisParameters" category="parameters" url="/productionAnalysisParameters.html"
+                            defaultAuthorizationRole="ROLE_PARAMETERS"/>
+
+        <menu:menu-item-url name="operationDurationAnalysis" category="analysis"
+                            url="/operationDurationAnalysis.html" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item-url name="productionBalanceAnalysis" category="analysis"
+                            url="/productionBalanceAnalysis.html" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item-url name="linesProducedQuantitiesChart" category="analysis"
+                            url="/linesProducedQuantitiesChart.html" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <view:view resource="view/productionTrackingsList.xml"/>
+        <view:view resource="view/productionTrackingDetails.xml"/>
+        <view:view resource="view/productionBalancesList.xml"/>
+        <view:view resource="view/productionBalanceDetails.xml"/>
+        <view:view resource="view/trackingOperationProductInComponentDetails.xml"/>
+        <view:view resource="view/trackingOperationProductOutComponentDetails.xml"/>
+        <view:view resource="view/staffWorkTimeDetails.xml"/>
+
+        <view:view resource="view/productionTrackingsForProductList.xml"/>
+        <view:view resource="view/productionTrackingsForProductGroupedList.xml"/>
+
+        <view:view resource="view/performanceAnalysisMvList.xml"/>
+        <view:view resource="view/performanceAnalysisDetails.xml"/>
+
+        <view:view resource="view/finalProductAnalysisGenerator.xml"/>
+        <view:view resource="view/beforeAdditionalActionsAnalysisGenerator.xml"/>
+
+        <view:view resource="view/productionAnalysisList.xml"/>
+
+        <view:view resource="view/anomalyReasonList.xml"/>
+        <view:view resource="view/anomalyReasonDetails.xml"/>
+        <view:view resource="view/anomalyProductionTrackingDetails.xml"/>
+        <view:view resource="view/anomalyList.xml"/>
+        <view:view resource="view/anomalyDetails.xml"/>
+        <view:view resource="view/anomalyExplanationDetails.xml"/>
+
+        <view:view resource="view/trackingOperationProductInComponentAdditionalInformationReport.xml"/>
+
+        <view:view resource="view/productionTrackingsDraftList.xml"/>
+
+        <view:view resource="view/useReplacement.xml"/>
+
+        <view:view resource="view/prodOutResourceAttrValDetails.xml"/>
+        <view:view resource="view/prodOutResourceAttrValList.xml"/>
+
+        <view:view resource="view/usedBatchDetails.xml"/>
+
+        <view:view resource="view/employeeWorkingTimeSettlement.xml"/>
+        <view:view resource="view/employeePieceworkSettlement.xml"/>
+
+        <view:view resource="view/productionCountingParameters.xml"/>
+        <view:view resource="view/productionAnalysisParameters.xml"/>
+        <view:view resource="view/operationDurationAnalysis.xml"/>
+        <view:view resource="view/productionBalanceAnalysis.xml"/>
+        <view:view resource="view/linesProducedQuantitiesChart.xml"/>
+        <view:view resource="view/lackDetails.xml"/>
+
+        <view:view-tab resource="view/tabExtensions/orderDetails.xml"/>
+        <view:view-tab resource="view/tabExtensions/technologyDetails.xml"/>
+
+
+        <view:view-ribbon-group resource="view/ribbonExtensions/productDetails.xml"/>
+
+        <view:resource uri="public/**/*"/>
+
+        <view:view-hook plugin="basic" view="productDetails"
+                        type="beforeRender" class="com.qcadoo.mes.productionCounting.hooks.ProductDetailsHooksPC"
+                        method="updateButtonsState"/>
+
+        <view:view-hook plugin="orders" view="orderAdditionalDetails"
+                        type="beforeRender" class="com.qcadoo.mes.productionCounting.hooks.OrderDetailsHooksPC"
+                        method="checkTypeOfProductionRecording"/>
+        <view:view-hook plugin="orders" view="orderDetails"
+                        type="beforeRender" class="com.qcadoo.mes.productionCounting.hooks.OrderDetailsHooksPC"
+                        method="changeDoneQuantityAndAmountOfProducedQuantityFieldState"/>
+
+        <view:view-hook plugin="technologies" view="technologyDetails"
+                        type="beforeRender" class="com.qcadoo.mes.productionCounting.hooks.TechnologyDetailsHooksPC"
+                        method="setTechnologyDefaultValues"/>
+        <view:view-hook plugin="technologies" view="technologyDetails"
+                        type="beforeRender" class="com.qcadoo.mes.productionCounting.hooks.TechnologyDetailsHooksPC"
+                        method="checkTypeOfProductionRecording"/>
+
+        <view:view-hook plugin="technologies"
+                        view="technologyOperationComponentDetails" type="beforeRender"
+                        class="com.qcadoo.mes.productionCounting.hooks.TechnologyOperationComponentDetailsHooksPC"
+                        method="updateFieldsStateOnWindowLoad" />
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form"
+                            event="showProductionTrackingsForProduct"
+                            class="com.qcadoo.mes.productionCounting.listeners.ProductDetailsListenersPC"
+                            method="showProductionTrackingsForProduct"/>
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form"
+                            event="showProductionTrackingsForProductGrouped"
+                            class="com.qcadoo.mes.productionCounting.listeners.ProductDetailsListenersPC"
+                            method="showProductionTrackingsForProductGrouped"/>
+
+        <custom:custom
+                class="com.qcadoo.mes.productionCounting.ProductionCountingLoaderModule" />
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

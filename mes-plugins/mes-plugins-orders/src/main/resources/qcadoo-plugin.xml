@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<plugin plugin="orders" group="planning" version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+		http://schema.qcadoo.org/plugin.xsd 
+		http://schema.qcadoo.org/modules/model 
+		http://schema.qcadoo.org/modules/model.xsd 
+		http://schema.qcadoo.org/modules/view
+		http://schema.qcadoo.org/modules/view.xsd
+		http://schema.qcadoo.org/modules/localization 
+		http://schema.qcadoo.org/modules/localization.xsd 
+		http://schema.qcadoo.org/modules/menu
+		http://schema.qcadoo.org/modules/menu.xsd
+		http://schema.qcadoo.org/modules/custom 
+		http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Orders</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Production orders and the general production plan.</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>timeNormsForOperations</plugin>
+            <version>[1.4.0</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <localization:translation path="locales"/>
+        <localization:translation-group name="orderTechnologicalProcessesAnalysis"
+                                        prefix="orderTechnologicalProcessesAnalysis.validate.global.error.orderTechnologicalProcessesAnalysis"/>
+
+        <model:dictionary name="causesOfWastes"/>
+
+        <model:model model="order" resource="model/order.xml"/>
+        <model:model model="orderDto" resource="model/orderDto.xml"/>
+        <model:model model="orderListDto" resource="model/orderListDto.xml"/>
+        <model:model model="orderPlanningListDto" resource="model/orderPlanningListDto.xml"/>
+        <model:model model="orderStateChange" resource="model/orderStateChange.xml"/>
+
+        <model:model model="typeOfCorrectionCauses" resource="model/typeOfCorrectionCauses.xml"/>
+
+        <model:model model="reasonTypeCorrectionDateFrom" resource="model/reasonTypeCorrectionDateFrom.xml"/>
+        <model:model model="reasonTypeCorrectionDateTo" resource="model/reasonTypeCorrectionDateTo.xml"/>
+        <model:model model="reasonTypeDeviationEffectiveStart" resource="model/reasonTypeDeviationEffectiveStart.xml"/>
+        <model:model model="reasonTypeDeviationEffectiveEnd" resource="model/reasonTypeDeviationEffectiveEnd.xml"/>
+        <model:model model="reasonTypeOfChangingOrderState" resource="model/reasonTypeOfChangingOrderState.xml"/>
+
+        <model:model model="orderCategoryColor" resource="model/orderCategoryColor.xml"/>
+
+        <model:model model="changeDatesHelper" resource="model/changeDatesHelper.xml"/>
+
+        <model:model model="schedule" resource="model/schedule.xml"/>
+        <model:model model="schedulePosition" resource="model/schedulePosition.xml"/>
+        <model:model model="schedulePositionDto" resource="model/schedulePositionDto.xml"/>
+        <model:model model="scheduleStateChange" resource="model/scheduleStateChange.xml"/>
+        <model:model model="productionLineSchedule" resource="model/productionLineSchedule.xml"/>
+        <model:model model="productionLineSchedulePosition" resource="model/productionLineSchedulePosition.xml"/>
+        <model:model model="productionLineScheduleStateChange" resource="model/productionLineScheduleStateChange.xml"/>
+
+        <model:model model="operationalTask" resource="model/operationalTask.xml"/>
+        <model:model model="operationalTaskDto" resource="model/operationalTaskDto.xml"/>
+        <model:model model="operationalTaskWithColorDto" resource="model/operationalTaskWithColorDto.xml"/>
+        <model:model model="operationalTaskStateChange" resource="model/operationalTaskStateChange.xml"/>
+        <model:model model="setCategory" resource="model/setCategory.xml"/>
+        <model:model model="orderPack" resource="model/orderPack.xml"/>
+        <model:model model="orderPackStateChange" resource="model/orderPackStateChange.xml"/>
+        <model:model model="orderPackDto" resource="model/orderPackDto.xml"/>
+
+        <model:model model="orderTechnologicalProcess" resource="model/orderTechnologicalProcess.xml"/>
+        <model:model model="orderTechnologicalProcessDto" resource="model/orderTechnologicalProcessDto.xml"/>
+        <model:model model="orderTechnologicalProcessPart" resource="model/orderTechnologicalProcessPart.xml"/>
+        <model:model model="orderTechnologicalProcessWaste" resource="model/orderTechnologicalProcessWaste.xml"/>
+        <model:model model="orderTechnologicalProcessWasteDto" resource="model/orderTechnologicalProcessWasteDto.xml"/>
+        <model:model model="orderAttachment" resource="model/orderAttachment.xml"/>
+
+        <model:model model="workstationChangeoverForOperationalTask" resource="model/workstationChangeoverForOperationalTask.xml"/>
+        <model:model model="workstationChangeoverForOperationalTaskDto" resource="model/workstationChangeoverForOperationalTaskDto.xml"/>
+        <model:model model="workstationChangeoverForSchedulePosition" resource="model/workstationChangeoverForSchedulePosition.xml"/>
+
+        <model:model model="splitOrderHelper" resource="model/splitOrderHelper.xml"/>
+        <model:model model="splitOrderParent" resource="model/splitOrderParent.xml"/>
+        <model:model model="splitOrderChild" resource="model/splitOrderChild.xml"/>
+
+        <model:model model="dimensionControlAttribute" resource="model/dimensionControlAttribute.xml"/>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="orderDimensionControlOfProducts" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:hasMany name="orderDimensionControlAttributes" plugin="orders"
+                           model="dimensionControlAttribute" joinField="parameter" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attribute">
+            <model:hasMany name="orderDimensionControlAttributes" plugin="orders"
+                           model="dimensionControlAttribute" joinField="attribute" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="productionLines" model="productionLine">
+            <model:hasMany name="positions" model="productionLineSchedulePosition" plugin="orders" joinField="productionLine"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="positions" model="schedulePosition" plugin="orders" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:hasMany name="positions" model="schedulePosition" plugin="orders" joinField="workstation"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="staff">
+            <model:hasMany name="positions" model="schedulePosition" plugin="orders" joinField="staff"/>
+        </model:model-field>
+
+        <model:dictionary name="orderCategory"/>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="setMasterOrderDateBasedOnOrderDates" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:hasMany name="orderCategoryColors" plugin="orders" model="orderCategoryColor" joinField="parameter"
+                           cascade="delete"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="promptDefaultLineFromTechnology" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="canChangeProdLineForAcceptedOrders" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="setEffectiveDateFromOnInProgress" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="setEffectiveDateToOnCompleted" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="barcodeOperationComponent">
+            <model:belongsTo name="order" plugin="orders" model="order"/>
+        </model:model-field>
+
+        <model:model-field plugin="states" model="message">
+            <model:belongsTo name="orderStateChange" plugin="orders" model="orderStateChange"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="shift">
+            <model:hasMany name="orderStateChanges" plugin="orders"
+                           model="orderStateChange" joinField="shift"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="orders" plugin="orders" model="order"
+                           joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="technology">
+            <model:hasMany name="orders" plugin="orders" model="order"
+                           joinField="technology"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="createCollectiveOrders" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenCorrectingDateFrom" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenCorrectingDateTo" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenChangingStateToDeclined" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenChangingStateToInterrupted" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenChangingStateToAbandoned" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenDelayedEffectiveDateFrom" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenEarlierEffectiveDateFrom" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenDelayedEffectiveDateTo" default="false"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenEarlierEffectiveDateTo" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:integer name="delayedEffectiveDateFromTime" default="900"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:integer name="earlierEffectiveDateFromTime" default="900"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:integer name="delayedEffectiveDateToTime" default="900"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:integer name="earlierEffectiveDateToTime" default="900"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="allowQuantityChangeInAcceptedOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="adviseStartDateOfTheOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:enum name="orderStartDateBasedOn"
+                        values="01currentDate,02beginningFirstShiftNextDay,03endDateLastOrderOnTheLine"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="fillOrderDescriptionBasedOnTechnologyDescription" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="fillOrderDescriptionBasedOnProductDescription" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="reasonNeededWhenCorrectingTheRequestedVolume" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="flagPercentageOfExecutionWithColor" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="copyNotesFromMasterOrderPosition" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="realizationFromStock" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="alwaysOrderItemsWithPersonalization" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="otCopyDescriptionFromProductionOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:hasMany name="realizationLocations" joinField="realizationLocation" model="location" plugin="materialFlow"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="generatePacksForOrders" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:decimal name="optimalPackSize">
+                <model:validatesRange from="0" exclusively="true"/>
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:decimal name="restFeedingLastPack">
+                <model:validatesRange from="0" exclusively="true"/>
+                <model:validatesUnscaledValue max="7"/>
+                <model:validatesScale max="5"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="includePacksGeneratingProcessesForOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:enum name="scheduleSortOrder"
+                  values="01desc,02asc"
+                  default="01desc"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:enum name="workstationAssignCriterion"
+                  values="01shortestTime,02leastWorkstations"
+                  default="01shortestTime"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:enum name="workerAssignCriterion"
+                  values="01workstationLastOperatorLatestFinished,02workstationLastOperatorEarliestFinished,03workstationDefaultOperator"
+                  default="01workstationLastOperatorLatestFinished"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="additionalTimeExtendsOperation" default="true"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="includeTpzS" default="true"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="skipFinishedTasks" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="materialFlow" model="location">
+            <model:belongsTo name="realizationLocation" model="parameter"
+                             plugin="basic"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="shift">
+            <model:hasMany name="scheduleStateChanges"
+                           plugin="orders" model="scheduleStateChange"
+                           joinField="shift"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:belongsTo name="attributeOnTheLabel" plugin="basic" model="attribute"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attribute">
+            <model:hasMany name="attributesOnTheLabel" plugin="basic" model="parameter"
+                           joinField="attributeOnTheLabel"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="deadlineForOrderBasedOnDeliveryDate" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:integer name="deadlineForOrderEarlierThanDeliveryDate" default="0">
+                <model:validatesRange from="0"/>
+            </model:integer>
+        </model:model-field>
+
+        <model:model-hook plugin="qcadooModel" model="dictionaryItem">
+            <model:validatesWith
+                    class="com.qcadoo.mes.orders.hooks.DictionaryItemHooksO"
+                    method="validatesWith"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="basic" model="parameter">
+            <model:validatesWith
+                    class="com.qcadoo.mes.orders.hooks.ParametersHooksO"
+                    method="validatesWith"/>
+        </model:model-hook>
+        <model:model-hook plugin="basic" model="parameter">
+            <model:onSave
+                    class="com.qcadoo.mes.orders.hooks.ParametersHooksO"
+                    method="onSave"/>
+        </model:model-hook>
+
+        <model:model-field plugin="basic" model="address">
+            <model:hasMany name="orders" model="order" plugin="orders" joinField="address"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="division">
+            <model:hasMany name="orders" plugin="orders" model="order"
+                           joinField="division"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="staff">
+            <model:hasMany name="operationalTasks" plugin="orders" model="operationalTask"
+                           joinField="staff"/>
+        </model:model-field>
+        <model:model-field plugin="basic" model="staff">
+            <model:manyToMany name="operationalTasksStaff" plugin="orders"
+                              model="operationalTask" joinField="workers" copyable="true"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:hasMany name="operationalTasks" plugin="orders" model="operationalTask"
+                           joinField="workstation"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="division">
+            <model:hasMany name="operationalTasks" plugin="orders" model="operationalTask"
+                           joinField="division"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="technologyOperationComponent">
+            <model:hasMany name="operationalTasks" plugin="orders" model="operationalTask"
+                           joinField="technologyOperationComponent"/>
+        </model:model-field>
+
+        <model:model-enum-value plugin="basic" model="parameter"
+                                value="02startOperationalTask" enum="inputProductsRequiredForType"/>
+
+        <model:model-enum-value plugin="orders" model="order"
+                                value="02startOperationalTask" enum="inputProductsRequiredForType"/>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="operTaskFlagPercentExecutionWithColor" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic"  model="parameter">
+            <model:boolean name="allowChangeOrDeleteOrderTechnologicalProcess" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic"  model="parameter">
+            <model:boolean name="setOrderDatesBasedOnTaskDates" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic"  model="parameter">
+            <model:boolean name="automaticallyGenerateTasksForOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic"  model="parameter">
+            <model:boolean name="completeStationAndEmployeeInGeneratedTasks" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic"  model="parameter">
+            <model:boolean name="automaticallyGenerateProcessesForOrder" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="shift">
+            <model:hasMany name="operationalTaskStateChanges"
+                           plugin="orders" model="operationalTaskStateChange"
+                           joinField="shift"/>
+        </model:model-field>
+
+        <model:model-hook plugin="technologies" model="technology">
+            <model:onDelete
+                    class="com.qcadoo.mes.orders.hooks.TechnologyHooksO"
+                    method="checkIfTechnologyIsPrototypeForOrders"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="technologies" model="technology">
+            <model:onSave
+                    class="com.qcadoo.mes.orders.hooks.TechnologyHooksO"
+                    method="onSave"/>
+        </model:model-hook>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="orderTechnologicalProcesses" plugin="orders" model="orderTechnologicalProcess" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="staff">
+            <model:hasMany name="orderTechnologicalProcesses" plugin="orders" model="orderTechnologicalProcess" joinField="worker"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="operation">
+            <model:hasMany name="orderTechnologicalProcesses" plugin="orders" model="orderTechnologicalProcess" joinField="operation"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="technologyOperationComponent">
+            <model:hasMany name="orderTechnologicalProcesses" plugin="orders" model="orderTechnologicalProcess" joinField="technologyOperationComponent"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="technologicalProcess">
+            <model:hasMany name="orderTechnologicalProcesses" plugin="orders" model="orderTechnologicalProcess" joinField="technologicalProcess"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="orderTechnologicalProcessWastes" plugin="orders" model="orderTechnologicalProcessWaste" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="staff">
+            <model:hasMany name="orderTechnologicalProcessWastes" plugin="orders" model="orderTechnologicalProcessWaste" joinField="worker"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="technologicalProcess">
+            <model:hasMany name="orderTechnologicalProcessWastes" plugin="orders" model="orderTechnologicalProcess" joinField="technologicalProcess"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="staff">
+            <model:manyToMany name="orders" model="order" plugin="orders" joinField="staff"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attribute">
+            <model:hasMany name="workstationChangeoverForOperationalTasks" plugin="orders"
+                           model="workstationChangeoverForOperationalTask" joinField="attribute"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attributeValue">
+            <model:hasMany name="fromWorkstationChangeoverForOperationalTasks" plugin="orders"
+                           model="workstationChangeoverForOperationalTask" joinField="fromAttributeValue"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attributeValue">
+            <model:hasMany name="toWorkstationChangeoverForOperationalTasks" plugin="orders"
+                           model="workstationChangeoverForOperationalTask" joinField="toAttributeValue"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:hasMany name="workstationChangeoverForOperationalTasks" plugin="orders"
+                           model="workstationChangeoverForOperationalTask" joinField="workstation"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="workstationChangeoverNorm">
+            <model:hasMany name="workstationChangeoverForOperationalTasks" plugin="orders"
+                           model="workstationChangeoverForOperationalTask" joinField="workstationChangeoverNorm"/>
+        </model:model-field>
+
+        <model:model-field plugin="technologies" model="workstationChangeoverNorm">
+            <model:hasMany name="workstationChangeoverForSchedulePositions" plugin="orders"
+                           model="workstationChangeoverForSchedulePosition" joinField="workstationChangeoverNorm"/>
+        </model:model-field>
+
+        <model:model-enum-value plugin="basic" model="log" enum="logType" value="orderImport"/>
+
+        <menu:menu-category name="orders" defaultAuthorizationRole="ROLE_PLANNING_MENU"/>
+        <menu:menu-category name="ordersTracking" defaultAuthorizationRole="ROLE_ORDERS_TRACKING"/>
+        <menu:menu-category name="analysis" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item name="productionOrders" category="orders"
+                        view="ordersList" defaultAuthorizationRole="ROLE_ORDERS_VIEW"/>
+        <menu:menu-item name="productionOrdersPlanning" category="orders"
+                        view="ordersPlanningList" defaultAuthorizationRole="ROLE_ORDERS_VIEW"/>
+
+        <menu:menu-item name="schedulesList" category="orders"
+                        view="schedulesList" defaultAuthorizationRole="ROLE_SCHEDULES"/>
+
+        <menu:menu-item name="productionLineSchedulesList" category="orders"
+                        view="productionLineSchedulesList" defaultAuthorizationRole="ROLE_PRODUCTION_LINE_SCHEDULES"/>
+
+        <menu:menu-item name="operationalTasks" category="orders"
+                        view="operationalTasksList" defaultAuthorizationRole="ROLE_OPERATIONAL_TASKS"/>
+
+        <menu:menu-item name="orderPacksList" category="orders"
+                        view="orderPacksList" defaultAuthorizationRole="ROLE_PLANNING"/>
+
+        <menu:menu-item name="orderTechnologicalProcessesList" category="ordersTracking"
+                        view="orderTechnologicalProcessesList" defaultAuthorizationRole="ROLE_PLANNING"/>
+
+        <menu:menu-item name="orderTechnologicalProcessWastesList" category="ordersTracking"
+                        view="orderTechnologicalProcessWastesList" defaultAuthorizationRole="ROLE_PLANNING"/>
+
+        <menu:menu-item-url name="orderTechnologicalProcessesAnalysis" category="analysis"
+                        url="/orderTechnologicalProcessesAnalysis.html" defaultAuthorizationRole="ROLE_ANALYSIS_VIEWER"/>
+
+        <menu:menu-item-url name="planningParameters" category="parameters" url="/planningParameters.html"
+                            defaultAuthorizationRole="ROLE_PLANNING_PARAMETERS"/>
+
+        <menu:menu-item name="workstationChangeoverForOperationalTasksList" category="orders"
+                        view="workstationChangeoverForOperationalTasksList" defaultAuthorizationRole="ROLE_WORKSTATION_CHANGEOVERS"/>
+
+        <view:view resource="view/ordersList.xml"/>
+        <view:view resource="view/ordersImport.xml"/>
+        <view:view resource="view/ordersPlanningList.xml"/>
+        <view:view resource="view/orderDetails.xml"/>
+        <view:view resource="view/orderAdditionalDetails.xml"/>
+
+        <view:view resource="view/schedulesList.xml"/>
+        <view:view resource="view/scheduleDetails.xml"/>
+        <view:view resource="view/schedulePositionDetails.xml"/>
+        <view:view resource="view/productionLineSchedulesList.xml"/>
+        <view:view resource="view/productionLineScheduleDetails.xml"/>
+        <view:view resource="view/productionLineSchedulePositionDetails.xml"/>
+
+        <view:view resource="view/ordersParameters.xml"/>
+
+        <view:view resource="view/orderStateChangeDetails.xml"/>
+
+        <view:view resource="view/orderStateChangeReasonDialog.xml"/>
+
+        <view:view resource="view/changeDatesDetails.xml"/>
+
+        <view:view resource="view/operationalTasksList.xml"/>
+        <view:view resource="view/operationalTaskDetails.xml"/>
+        <view:view resource="view/planningParameters.xml"/>
+        <view:view resource="view/setCategory.xml"/>
+        <view:view resource="view/orderPacksList.xml"/>
+        <view:view resource="view/orderPackDetails.xml"/>
+        <view:view resource="view/orderPacksSingleOrderList.xml"/>
+        <view:view resource="view/orderPackSingleOrderDetails.xml"/>
+
+        <view:view resource="view/orderTechnologicalProcessDetails.xml"/>
+        <view:view resource="view/orderTechnologicalProcessesList.xml"/>
+        <view:view resource="view/orderTechnologicalProcessesSingleOrderList.xml"/>
+        <view:view resource="view/divideOrderTechnologicalProcess.xml"/>
+        <view:view resource="view/orderTechnologicalProcessWasteDetails.xml"/>
+        <view:view resource="view/orderTechnologicalProcessWasteSingleDetails.xml"/>
+        <view:view resource="view/orderTechnologicalProcessWastesList.xml"/>
+        <view:view resource="view/orderTechnologicalProcessesAnalysis.xml"/>
+
+        <view:view resource="view/workstationChangeoverForOperationalTaskDetails.xml"/>
+        <view:view resource="view/workstationChangeoverForOperationalTasksList.xml"/>
+
+        <view:view resource="view/splitOrdersDetails.xml"/>
+        <view:view resource="view/divideOrdersDetails.xml"/>
+
+        <view:view-ribbon-group resource="view/ribbonExtensions/productDetails.xml"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showOrdersWithProductMain"
+                            class="com.qcadoo.mes.orders.listeners.ProductDetailsListenersO"
+                            method="showOrdersWithProductMain"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showOrdersWithProductPlanned"
+                            class="com.qcadoo.mes.orders.listeners.ProductDetailsListenersO"
+                            method="showOrdersWithProductPlanned"/>
+
+        <view:view-listener plugin="technologies" view="workstationChangeoverNormsList"
+                            component="grid" event="onSelect"
+                            class="com.qcadoo.view.api.listeners.RerenderListener"
+                            method="onChangeRerender"/>
+
+        <view:view-hook plugin="basic" view="productDetails"
+                        type="beforeRender"
+                        class="com.qcadoo.mes.orders.hooks.ProductDetailsViewHooksO"
+                        method="updateRibbonState"/>
+
+        <view:view-hook plugin="technologies" view="workstationChangeoverNormDetails"
+                        type="beforeRender"
+                        class="com.qcadoo.mes.orders.hooks.WorkstationChangeoverNormDetailsHooksO"
+                        method="updateRibbonState"/>
+
+        <view:view-hook plugin="technologies" view="workstationChangeoverNormsList"
+                        type="beforeRender"
+                        class="com.qcadoo.mes.orders.hooks.WorkstationChangeoverNormsListHooksO"
+                        method="updateRibbonState"/>
+
+        <view:view-hook plugin="orders" view="ordersParameters"
+                        type="beforeRender"
+                        class="com.qcadoo.mes.orders.hooks.ParametersHooksO"
+                        method="onOrdersParameterBeforeRender"/>
+
+        <view:view-hook plugin="orders" view="planningParameters"
+                        type="beforeRender"
+                        class="com.qcadoo.mes.orders.hooks.ParametersHooksO"
+                        method="onPlanningParametersBeforeRender"/>
+
+        <view:resource uri="public/**/*"/>
+
+        <custom:custom class="com.qcadoo.mes.orders.states.module.OrderStateServiceRegisterModule"/>
+        <custom:custom class="com.qcadoo.mes.orders.OrdersLoaderModule" />
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

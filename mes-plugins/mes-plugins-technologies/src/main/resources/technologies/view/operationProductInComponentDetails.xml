@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_TECHNOLOGIES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="operationProductInComponentDetails"
+      modelName="operationProductInComponent">
+
+    <component type="window" name="window">
+        <ribbon>
+            <template name="standardFormTemplate" excludeItems="actions.copy"/>
+        </ribbon>
+
+        <windowTab name="mainTab">
+            <component type="form" name="form" reference="form">
+                <component type="gridLayout" name="gridLayout" columns="6"
+                           rows="9">
+                    <layoutElement column="1" row="1" width="5">
+                        <component type="lookup" name="technologyInputProductType" field="technologyInputProductType"
+                                   reference="technologyInputProductType">
+                            <option type="column" name="averagePrice" fields="averagePrice"/>
+
+                            <option type="searchable" value="name,averagePrice"/>
+                            <option type="orderable" value="name,averagePrice"/>
+
+                            <option type="expression" value="#name"/>
+                            <option type="fieldCode" value="name"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="2" width="5">
+                        <component type="checkbox" name="differentProductsInDifferentSizes"
+                                   reference="differentProductsInDifferentSizes"
+                                   field="#{form}.differentProductsInDifferentSizes" hasDescription="true">
+
+                            <listener event="onChange"
+                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      method="onChangeRerender"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="3" width="5">
+                        <component type="checkbox" name="variousQuantitiesInProductsBySize"
+                                   reference="variousQuantitiesInProductsBySize"
+                                   field="#{form}.variousQuantitiesInProductsBySize" hasDescription="true">
+
+                            <listener event="onChange"
+                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      method="onChangeRerender"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="4" width="5">
+                        <component type="lookup" name="product" field="product" reference="product">
+                            <option type="column" name="name" fields="name" link="true"
+                                    width="200"/>
+                            <option type="column" name="ean" fields="ean"/>
+                            <option type="column" name="globalTypeOfMaterial" fields="globalTypeOfMaterial"/>
+                            <option type="column" name="supplier" fields="supplier" expression="#supplier['number']"
+                                    width="150"/>
+
+                            <option type="searchable" value="name,ean,globalTypeOfMaterial,supplier"/>
+                            <option type="orderable" value="name,ean,globalTypeOfMaterial,supplier"/>
+
+                            <option type="expression"
+                                    value="'&lt;b&gt;' + #number + '&lt;/b&gt; - ' + #name"/>
+                            <option type="fieldCode" value="number"/>
+
+                            <listener event="onSelectedEntityChange"
+                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"
+                                      method="onProductChange"/>
+                            <listener event="onSelectedEntityChange"
+                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"
+                                      method="fillProductDataFields"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="5" width="5">
+                        <component type="input" name="quantity" field="quantity" defaultEnabled="false"
+                                   reference="quantity">
+                            <option type="alignment" value="right"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="5">
+                        <component type="input" name="unit" reference="unit"
+                                   defaultEnabled="false" hasLabel="false"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="6" width="5">
+                        <component type="input" name="quantityFormula" field="quantityFormula"
+                                   reference="quantityFormula"
+                                   hasDescription="true">
+                            <option type="alignment" value="right"/>
+
+                            <listener event="onInputChange" method="calculateQuantityFormula"
+                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="7" width="5">
+                        <component type="input" name="givenQuantity" field="givenQuantity" reference="givenQuantity">
+                            <option type="alignment" value="right"/>
+
+                            <listener event="onInputChange" method="calculateQuantity"
+                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="6" row="7">
+                        <component type="select" name="givenUnit" reference="givenUnit"
+                                   hasLabel="false" field="givenUnit">
+                            <listener event="onSelectedEntityChange" method="calculateQuantity"
+                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="1" row="8" height="2" width="5">
+                        <component type="textarea" name="description" field="description"/>
+                    </layoutElement>
+                </component>
+
+                <option type="header" value="true"/>
+                <option type="expression" value="#product['name'] + ' x ' + #quantity"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="productsBySizeGroups">
+            <component type="grid" name="productBySizeGroups" source="#{form}.productBySizeGroups"
+                       reference="productBySizeGroups">
+                <option type="column" name="sizeGroupNumber" fields="sizeGroup" expression="#sizeGroup.get('number')"
+                        width="150"
+                        link="true"/>
+                <option type="column" name="productNumber" fields="product" expression="#product.get('number')"
+                        width="150"
+                        link="true"/>
+                <option type="column" name="productName" fields="product" expression="#product.get('name')" width="150"
+                        link="true"/>
+                <option type="column" name="quantity" fields="quantity"
+                        width="100"/>
+                <option type="column" name="productUnit" fields="product" expression="#product.get('unit')"
+                        link="false" width="70"/>
+
+                <option type="order" column="sizeGroupNumber" direction="asc"/>
+
+                <option type="searchable" value="sizeGroupNumber,productNumber,productName,quantity,productUnit"/>
+                <option type="orderable" value="sizeGroupNumber,productNumber,productName,quantity,productUnit"/>
+
+                <option type="correspondingView" value="technologies/productBySizeGroupDetails"/>
+                <option type="correspondingComponent" value="form"/>
+                <option type="correspondingViewInModal" value="true"/>
+
+                <option type="deletable" value="true"/>
+                <option type="creatable" value="true"/>
+                <option type="multiselect" value="true"/>
+                <option type="fullscreen" value="true"/>
+                <option type="fixedHeight" value="true"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="attributeTab">
+            <component type="gridLayout" name="gridLayout" columns="1"
+                       rows="1">
+                <layoutElement column="1" row="1">
+                    <component type="lookup" name="attribute" reference="attribute"
+                               field="#{form}.attribute"  hasDescription="true">
+                        <option type="column" name="name" fields="name" link="true"
+                                width="200"/>
+
+                        <option type="searchable" value="name,number"/>
+                        <option type="orderable" value="name,number"/>
+
+                        <option type="expression"
+                                value="'&lt;b&gt;' + #number"/>
+                        <option type="fieldCode" value="number"/>
+
+                        <criteriaModifier
+                                class="com.qcadoo.mes.basic.criteriaModifiers.AttributeCriteriaModifiers"
+                                method="showForProductCalculatedType"/>
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+        <windowTab name="productDataTab" reference="productDataTab">
+            <component type="gridLayout" name="gridLayout" columns="3"
+                       rows="2">
+                <layoutElement column="1" row="1">
+                    <component type="checkbox" name="showInProductData" field="#{form}.showInProductData"
+                               reference="showInProductData" defaultVisible="true">
+                        <script>
+                            <![CDATA[
+                                var setNumber = function(value) {
+                                    var showInProductData = #{showInProductData}.getValue().content.value;
+
+                                    if (showInProductData == 1) {
+                                        #{productDataNumber}.setEnabled(true, true);
+                                    } else {
+                                        #{productDataNumber}.setEnabled(false, true);
+                                    }
+                                }
+
+                                this.addOnChangeListener({
+                                    onSetValue: setNumber,
+                                    onChange: setNumber
+                                });
+						    ]]>
+                        </script>
+
+                        <option type="labelWidth" value="40" />
+                    </component>
+                </layoutElement>
+                <layoutElement column="1" row="2">
+                    <component type="input" name="productDataNumber" reference="productDataNumber"
+                               field="#{form}.productDataNumber">
+                        <option type="labelWidth" value="40" />
+                        <option type="alignment" value="right" />
+                    </component>
+                </layoutElement>
+            </component>
+        </windowTab>
+
+        <windowTab name="sectionsTab" reference="sectionsTab">
+            <component type="grid" name="sections" source="#{form}.sections"
+                       reference="sections">
+
+                <option type="column" name="length" fields="length" link="true"
+                        width="100"/>
+                <option type="column" name="unit" fields="unit" link="true"
+                        width="50"/>
+                <option type="column" name="quantity" fields="quantity" link="true"
+                        width="100"/>
+
+                <option type="order" column="length" direction="asc"/>
+
+                <option type="searchable" value="length,quantity,unit"/>
+                <option type="orderable" value="length,quantity,unit"/>
+
+                <option type="correspondingView" value="technologies/sectionDetails"/>
+                <option type="correspondingComponent" value="form"/>
+                <option type="correspondingViewInModal" value="true"/>
+
+                <option type="deletable" value="true"/>
+                <option type="creatable" value="true"/>
+                <option type="multiselect" value="true"/>
+                <option type="fullscreen" value="true"/>
+                <option type="fixedHeight" value="true"/>
+            </component>
+        </windowTab>
+    </component>
+
+    <hooks>
+        <beforeRender class="com.qcadoo.mes.technologies.hooks.OPICDetailsHooks"
+                      method="onBeforeRender"/>
+    </hooks>
+</view>

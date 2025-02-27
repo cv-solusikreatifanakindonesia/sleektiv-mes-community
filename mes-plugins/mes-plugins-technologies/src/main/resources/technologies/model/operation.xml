@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<model name="operation" activable="true"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <string name="number" required="true" unique="true">
+            <validatesLength max="255"/>
+        </string>
+        <string name="name" required="true">
+            <validatesLength max="1024"/>
+        </string>
+        <string name="comment">
+            <validatesLength max="2048"/>
+        </string>
+
+        <file name="attachment"/>
+        <boolean name="areProductQuantitiesDivisible" default="false"/>
+        <boolean name="isTjDivisible" default="false"/>
+        <boolean name="optimizeCutting" default="false"/>
+
+        <belongsTo name="operationGroup" model="operationGroup"/>
+
+        <hasMany name="operationComponents" model="technologyOperationComponent"
+                 joinField="operation"/>
+
+        <hasMany name="operationTechnologiesDto" model="operationTechnologyDto"
+                 joinField="operation"/>
+
+        <hasMany name="productInComponents" model="productComponent"
+                 joinField="operationIn" cascade="delete" copyable="true"/>
+        <hasMany name="productOutComponents" model="productComponent"
+                 joinField="operationOut" cascade="delete" copyable="true"/>
+
+        <belongsTo name="workstation" plugin="basic" model="workstation" persistent="false"/>
+        <manyToMany name="workstations" plugin="basic" model="workstation"
+                    joinField="operations" copyable="true"/>
+
+        <enum name="assignedToOperation" values="01workstations,02workstationTypes"
+              default="01workstations" required="true"/>
+
+        <boolean name="createOperationOutput" default="false" copyable="false"/>
+        <belongsTo name="product" plugin="basic" model="product" copyable="false"/>
+        <belongsTo name="workstationType" plugin="basic" model="workstationType"/>
+        <belongsTo name="division" plugin="basic" model="division"/>
+
+        <integer name="quantityOfWorkstations" default="1" required="true">
+            <validatesRange from="1"/>
+        </integer>
+
+        <hasMany name="operationSkills" model="operationSkill" joinField="operation" cascade="delete" copyable="false"/>
+        <hasMany name="technologicalProcessLists" model="technologicalProcessList" joinField="operation"/>
+
+        <boolean name="showInProductData" default="false"/>
+        <boolean name="reservationRawMaterialResourceRequired" default="false"/>
+        <decimal name="productDataNumber" default="0"/>
+
+        <hasMany name="dashboardOperations" joinField="dashboardOperation"
+                       plugin="basic" model="parameter" cascade="nullify"/>
+    </fields>
+
+    <hooks>
+        <validatesWith class="com.qcadoo.mes.technologies.hooks.OperationModelValidators"
+                       method="checkIfProductsInProductComponentsAreDistinct"/>
+
+
+        <onSave class="com.qcadoo.mes.technologies.hooks.OperationModelHooks" method="onSave"/>
+    </hooks>
+
+    <identifier expression="#number + ' - ' + #name"/>
+</model>
