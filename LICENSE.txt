@@ -1,11 +1,11 @@
 ***************************************************************************
 Copyright (c) 2017 Qcadoo Limited
-Project: Qcadoo MES
-Version: ${version}
+Copyright (c) 2025 Sleektiv (CV. SOLUSI KREATIF ANAK INDONESIA)
+Project: Sleektiv MES Community (Manufacturing Execution System)
  
-This file is part of qcadoo MES.
+This file is part of Sleektiv MES Community (Manufacturing Execution System).
  
-Qcadoo is free software; you can redistribute it and/or modify
+Sleektiv MES Community is free software; you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
 by the Free Software Foundation; either version 3 of the License,
 or (at your option) any later version.
