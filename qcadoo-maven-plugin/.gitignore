@@ -1,0 +1,11 @@
+.classpath
+.project
+.settings
+.DS_Store
+.pmd
+target
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+*.iml
+.idea/

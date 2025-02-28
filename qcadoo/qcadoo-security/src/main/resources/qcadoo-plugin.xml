@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo Framework
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<plugin plugin="qcadooSecurity" group="framework" version="${qcadoo.plugin.version}"
+        system="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://schema.qcadoo.org/plugin" xmlns:model="http://schema.qcadoo.org/modules/model"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+		http://schema.qcadoo.org/plugin.xsd 
+		http://schema.qcadoo.org/modules/model 
+		http://schema.qcadoo.org/modules/model.xsd 
+		http://schema.qcadoo.org/modules/security 
+		http://schema.qcadoo.org/modules/security.xsd 
+		http://schema.qcadoo.org/modules/localization 
+		http://schema.qcadoo.org/modules/localization.xsd">
+
+    <information>
+        <name>Qcadoo Framework Security</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>System plugin responsible for security. Security mechanism is described above in Layers Description
+            chapter.
+        </description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>qcadooModel</plugin>
+            <version>[0.4.1</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <model:model model="user" resource="model/user.xml"/>
+        <model:model model="persistentToken" resource="model/persistentToken.xml"/>
+        <model:model model="group" resource="model/group.xml"/>
+        <model:model model="role" resource="model/role.xml"/>
+        <model:model model="passwordResetToken" resource="model/passwordResetToken.xml"/>
+
+        <security:role identifier="ROLE_USER"/>
+        <security:role identifier="ROLE_ADMIN"/>
+        <security:role identifier="ROLE_SUPERADMIN"/>
+        <security:role identifier="ROLE_API"/>
+        <security:role identifier="ROLE_HOME_PROFILE"/>
+        <security:role identifier="ROLE_GROUPS_VIEW"/>
+        <security:role identifier="ROLE_GROUPS_EDIT"/>
+
+        <security:user-group name="Admin" identifier="ADMIN" roles="ROLE_ADMIN, ROLE_DICTIONARY_VIEW" permissionType="02officeLicense"/>
+        <security:user-group name="User" identifier="USER" roles="ROLE_USER" permissionType="02officeLicense"/>
+        <security:user-group name="Super admin" identifier="SUPER_ADMIN" roles="ROLE_SUPERADMIN, ROLE_DICTIONARY_VIEW" permissionType="01superAdmin"/>
+        <security:user-group name="API" identifier="API" roles="ROLE_API" permissionType="01superAdmin"/>
+
+        <security:user login="admin" password="admin" email="admin@qcadoo.com" firstName="generated admin"
+                       lastName="generated admin" groupIdentifier="ADMIN"/>
+        <security:user login="superadmin" password="superadmin" email="superadmin@qcadoo.com" firstName="generated superadmin"
+                       lastName="generated superadmin" groupIdentifier="SUPER_ADMIN"/>
+        <security:user login="qcadoo_bot" password="qcadoo_bot" email="qcadoo_bot@qcadoo.com" firstName="generated qcadoo_bot"
+                       lastName="generated qcadoo_bot" groupIdentifier="API"/>
+
+        <localization:translation path="locales"/>
+        <localization:translation-group name="security"
+                                        prefix="security"/>
+
+    </modules>
+
+    <features>
+        <dev-library/>
+    </features>
+
+</plugin>
