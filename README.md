@@ -1,38 +1,45 @@
 # SLEEKTIV (Manufacturing Execution System) Community
 # System Requirement 
 
-1. Openjdk version "1.8.0_442"
-2. Apache Maven 3.6.3
-3. PostgreSQL
+    1. Openjdk version "1.8.0_442"
+    2. Apache Maven 3.6.3
+    3. PostgreSQL
 
 # Step by Step 
 
 1. Build each pom folder with command below
+
 mvn clean install -U -X -DskipTests
 
 2. Before you can start application, you have to create database.
 
 = Postgres installation =
-Currently we're working on Postgres 9.5.4. For installation manual depending on your platform follow: https://www.postgresql.org/download/.
+
+
+Currently we're working on PostgreSQL. For installation manual depending on your platform follow: https://www.postgresql.org/download/.
 By default mes will try to connect to database as user: postgres, using password: postgres123 and connecting to database mes. You can change this settings in file mes/mes-application/target/tomcat-archiver/mes-application/sleektiv/db.properties. 
 
 = Configuration preserving=
+
+
 If you want to make configuration and preserve it between mes-application builds, change file mes/mes-application/conf/tomcat/db.properties. 
 If you want to make temporary configuration for current build only, change file mes/mes-application/target/tomcat-archiver/mes-application/sleektiv/db.properties (after first build!).
 
 We no longer provide possibility to create clean database when starting Sleektiv MES Community. Instead, we attach schema dump, which You can find in the following path: 
 
-/mes/mes-application/src/main/resources/schema/mes_db_en.sql
+    /mes/mes-application/src/main/resources/schema/mes_db_en.sql
 
 Before You can run Sleektiv MES Community, all You have to do is to restore this dump using the following command (assuming, You have installed postgreSQL as the user postgres, and created database mes with password postgres123 and appropriate locale):
 
 psql -U postgres mes < path/to/schema/mes_db_en.sql
 
+
 = Schema version =
+
 
 Schema is valid for current master branch. If You decide to build Sleektiv MES Community from branch different than current branch (e.g. dev, feature/xyz), You will fail to launch the application. In order to start Sleektiv MES Community built from branch other than current master, change "hibernateHbm2ddlAuto=validate" to "hibernateHbm2ddlAuto=update" in file:
 
-mes/mes-application/target/tomcat-archiver/mes-application/sleektiv/db.properties (created after command below is being executed)
+    mes/mes-application/target/tomcat-archiver/mes-application/sleektiv/db.properties (created after command below is being executed)
 
 
 Be aware - You may be missing some views, menu position etc., but You will be able to run Sleektiv MES Community!

@@ -9,3 +9,4 @@ pom.xml.next
 release.properties
 *.iml
 .idea/
+**/target/

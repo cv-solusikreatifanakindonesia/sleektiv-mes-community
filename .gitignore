@@ -16,3 +16,4 @@ bin
 txt
 *.iml
 .idea/
+**/target/
