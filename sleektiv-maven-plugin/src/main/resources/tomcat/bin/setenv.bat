@@ -22,12 +22,12 @@
 @REM ***************************************************************************
 @REM
 
-set "JAVA_OPTS=%JAVA_OPTS% -DSLEEKTIV_CONF="%CATALINA_HOME%/qcadoo""
+set "JAVA_OPTS=%JAVA_OPTS% -DSLEEKTIV_CONF="%CATALINA_HOME%/sleektiv""
 set "JAVA_OPTS=%JAVA_OPTS% -DSLEEKTIV_PLUGINS_PATH="%CATALINA_HOME%/webapps/ROOT/WEB-INF/lib""
 set "JAVA_OPTS=%JAVA_OPTS% -DSLEEKTIV_PLUGINS_TMP_PATH="%CATALINA_HOME%/webapps/ROOT/tmp""
 set "JAVA_OPTS=%JAVA_OPTS% -DSLEEKTIV_WEBAPP_PATH="%CATALINA_HOME%/webapps/ROOT""
 set "JAVA_OPTS=%JAVA_OPTS% -DSLEEKTIV_LOG="%CATALINA_HOME%/logs""
-set "JAVA_OPTS=%JAVA_OPTS% -Dorg.owasp.esapi.resources=%CATALINA_HOME%/qcadoo"
+set "JAVA_OPTS=%JAVA_OPTS% -Dorg.owasp.esapi.resources=%CATALINA_HOME%/sleektiv"
 set "JAVA_OPTS=%JAVA_OPTS% -javaagent:%CATALINA_HOME%/lib/aspectjweaver-1.8.13.jar"
 set "JAVA_OPTS=%JAVA_OPTS% -XX:MaxMetaspaceSize=256m"
 set "CATALINA_OPTS=%CATALINA_OPTS% -server -Djava.awt.headless=true"
