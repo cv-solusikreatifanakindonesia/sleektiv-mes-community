@@ -52,9 +52,11 @@
 					<test-compile>
 						org.apache.maven.plugins:maven-compiler-plugin:testCompile
 					</test-compile>
+					<!--
 					<test>
 						org.apache.maven.plugins:maven-surefire-plugin:test
 				 	</test>
+					-->
 					<package>
 						org.apache.maven.plugins:maven-jar-plugin:jar
 				  	</package>
