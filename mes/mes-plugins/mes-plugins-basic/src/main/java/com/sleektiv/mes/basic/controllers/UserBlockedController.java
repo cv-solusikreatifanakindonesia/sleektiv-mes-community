@@ -53,7 +53,7 @@ import java.util.Objects;
 @Controller
 public final class UserBlockedController {
 
-    private static final String SYSTEM_ADMIN_CONTACT_MAIL = "pomoc@sleektiv.com";
+    private static final String SYSTEM_ADMIN_CONTACT_MAIL = "info@solusikreatifanakindonesia.com";
 
     @Value("${daysForFirstLogin:3}")
     private Integer daysForFirstLogin;

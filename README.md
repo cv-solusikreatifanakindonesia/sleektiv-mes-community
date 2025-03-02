@@ -47,7 +47,8 @@ Be aware - You may be missing some views, menu position etc., but You will be ab
 3. Building MES application
 
 Navigate to mes/mes-application and use:
-mvn clean install -Ptomcat -Dprofile=package
+
+    mvn clean install -Ptomcat -Dprofile=package
 
 4. Start MES
 
@@ -77,7 +78,10 @@ You should ignore aspects errors and log4j errors from catalina.out - these are 
 Access to local instance of MES
 
 To access started locally instance of MES, go to page (by default):
-http://localhost:8080
+    http://localhost:8080
+
+To Check Port Used
+    sudo netstat -tulnp | grep java
 
 If MES started correctly, you should see login page. Default user: admin, password: admin. Superadmin user: superadmin, password: superadmin (start with this user, and add access roles to groups!).
 
