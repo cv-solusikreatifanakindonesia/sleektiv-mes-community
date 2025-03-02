@@ -43,9 +43,9 @@ import java.util.Objects;
 @Service
 public class PositionXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     @Autowired
     private NumberService numberService;
@@ -78,10 +78,10 @@ public class PositionXlsxImportService extends XlsxImportService {
 
                 if (Objects.isNull(givenQuantity)) {
                     position.addError(positionDD.getField(PositionFields.GIVEN_QUANTITY),
-                            L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                            L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
                 }
                 if (Objects.isNull(conversion)) {
-                    position.addError(positionDD.getField(PositionFields.CONVERSION), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    position.addError(positionDD.getField(PositionFields.CONVERSION), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
                 }
 
                 if (quantitiesNonNull) {
@@ -89,7 +89,7 @@ public class PositionXlsxImportService extends XlsxImportService {
 
                     if (multipliedQuantity.compareTo(givenQuantity) != 0) {
                         position.addError(positionDD.getField(PositionFields.GIVEN_QUANTITY),
-                                L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                                L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                     }
                 }
             } else {
@@ -113,18 +113,18 @@ public class PositionXlsxImportService extends XlsxImportService {
             boolean requireExpirationDate = locationTo.getBooleanField(LocationFieldsMFR.REQUIRE_EXPIRATION_DATE);
 
             if (requirePrice && Objects.isNull(price)) {
-                position.addError(positionDD.getField(PositionFields.PRICE), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                position.addError(positionDD.getField(PositionFields.PRICE), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
             if (requireBatch && Objects.isNull(batch)) {
-                position.addError(positionDD.getField(PositionFields.BATCH), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                position.addError(positionDD.getField(PositionFields.BATCH), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
             if (requireProductionDate && Objects.isNull(productionDate)) {
                 position.addError(positionDD.getField(PositionFields.PRODUCTION_DATE),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
             if (requireExpirationDate && Objects.isNull(expirationDate)) {
                 position.addError(positionDD.getField(PositionFields.EXPIRATION_DATE),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
         }
     }
@@ -139,7 +139,7 @@ public class PositionXlsxImportService extends XlsxImportService {
             if (!storageLocation.isActive()
                     || (Objects.nonNull(storageLocationLocation) && !locationTo.equals(storageLocationLocation)))
                 position.addError(positionDD.getField(PositionFields.STORAGE_LOCATION),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
         }
     }
 
@@ -150,7 +150,7 @@ public class PositionXlsxImportService extends XlsxImportService {
             Date issueDateTime = palletNumber.getDateField(PalletNumberFields.ISSUE_DATE_TIME);
 
             if (!palletNumber.isActive() || Objects.nonNull(issueDateTime)) {
-                position.addError(positionDD.getField(PositionFields.PALLET_NUMBER), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                position.addError(positionDD.getField(PositionFields.PALLET_NUMBER), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }

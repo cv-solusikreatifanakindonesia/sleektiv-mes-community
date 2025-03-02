@@ -36,7 +36,7 @@ import com.sleektiv.model.api.Entity;
 @Service
 public class StaffXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     @Override
     public void validateEntity(final Entity staff, final DataDefinition staffDD) {
@@ -52,7 +52,7 @@ public class StaffXlsxImportService extends XlsxImportService {
                 Entity workstationDivision = workstation.getBelongsToField(WorkstationFields.DIVISION);
 
                 if (!workstationDivision.getId().equals(division.getId())) {
-                    staff.addError(staffDD.getField(StaffFields.WORKSTATION), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                    staff.addError(staffDD.getField(StaffFields.WORKSTATION), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                 }
             }
         }

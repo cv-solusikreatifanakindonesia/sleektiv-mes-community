@@ -40,9 +40,9 @@ import java.util.regex.Pattern;
 @Component
 public class BigDecimalCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT = "sleektivView.validate.field.error.invalidNumericFormat";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT = "sleektivView.validate.field.error.invalidNumericFormat";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_POLISH_DECIMAL_PATTERN = "^-?\\d+(,\\d+)?$";
 
@@ -58,7 +58,7 @@ public class BigDecimalCellParser implements CellParser {
             Either<Exception, Optional<BigDecimal>> either = BigDecimalUtils.tryParse(cellValue, locale);
 
             if (either.isLeft()) {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             } else if (either.getRight().isPresent()) {
                 valueConsumer.accept(either.getRight().get());
             }
@@ -86,7 +86,7 @@ public class BigDecimalCellParser implements CellParser {
         Matcher decimalMatcher = decimalPattern.matcher(cellValue);
 
         if (!decimalMatcher.matches()) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT);
 
             return false;
         }

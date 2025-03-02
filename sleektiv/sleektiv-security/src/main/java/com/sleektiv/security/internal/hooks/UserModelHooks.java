@@ -55,15 +55,15 @@ public class UserModelHooks {
 
     private static final String L_SELF_DELETION_ERROR = "security.message.error.selfDeletion";
 
-    private static final String L_QCADOO_SECURITY_USER = "sleektivSecurity.user.";
+    private static final String L_SLEEKTIV_SECURITY_USER = "sleektivSecurity.user.";
 
     private static final String L_LABEL = ".label";
 
-    private static final String L_QCADOO_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_TOPIC = "sleektivSecurity.user.importantFieldChange.mailTopic";
+    private static final String L_SLEEKTIV_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_TOPIC = "sleektivSecurity.user.importantFieldChange.mailTopic";
 
-    private static final String L_QCADOO_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_BODY = "sleektivSecurity.user.importantFieldChange.mailBody";
+    private static final String L_SLEEKTIV_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_BODY = "sleektivSecurity.user.importantFieldChange.mailBody";
 
-    private static final String L_QCADOO_SECURITY_USER_PASSWORD_SAME_AS_OLD = "sleektivSecurity.user.password.sameAsOld";
+    private static final String L_SLEEKTIV_SECURITY_USER_PASSWORD_SAME_AS_OLD = "sleektivSecurity.user.password.sameAsOld";
 
     @Autowired
     private HttpServletRequest httpServletRequest;
@@ -176,10 +176,10 @@ public class UserModelHooks {
     private void sendEmail(final String email, final String fieldName) {
         Locale locale = LocaleContextHolder.getLocale();
 
-        String fieldTranslated = translationService.translate(L_QCADOO_SECURITY_USER + fieldName + L_LABEL, locale);
+        String fieldTranslated = translationService.translate(L_SLEEKTIV_SECURITY_USER + fieldName + L_LABEL, locale);
 
-        String topic = translationService.translate(L_QCADOO_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_TOPIC, locale, fieldTranslated);
-        String body = translationService.translate(L_QCADOO_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_BODY, locale, fieldTranslated, getApplicationUrl());
+        String topic = translationService.translate(L_SLEEKTIV_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_TOPIC, locale, fieldTranslated);
+        String body = translationService.translate(L_SLEEKTIV_SECURITY_USER_IMPORTANT_FIELD_CHANGE_MAIL_BODY, locale, fieldTranslated, getApplicationUrl());
 
         mailService.sendEmail(email, topic, body);
     }
@@ -205,7 +205,7 @@ public class UserModelHooks {
 
                 if (Objects.nonNull(passwordOld) && Objects.nonNull(passwordNew)) {
                     if (passwordOld.compareTo(passwordNew) == 0) {
-                        user.addError(userDD.getField(UserFields.PASSWORD), L_QCADOO_SECURITY_USER_PASSWORD_SAME_AS_OLD);
+                        user.addError(userDD.getField(UserFields.PASSWORD), L_SLEEKTIV_SECURITY_USER_PASSWORD_SAME_AS_OLD);
                     } else {
                         user.setField(UserFields.PSWD_LAST_CHANGED, new Date());
                         user.setField(UserFields.IS_BLOCKED, false);

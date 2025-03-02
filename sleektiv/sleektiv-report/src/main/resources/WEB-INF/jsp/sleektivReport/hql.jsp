@@ -29,7 +29,7 @@
 
 <html>
 <head>
-	<title>QCADOO :: Report Development :: HQL</title>
+	<title>SLEEKTIV :: Report Development :: HQL</title>
 </head>
 <body>
 

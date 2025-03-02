@@ -63,7 +63,7 @@ public class DeliveredProductAddMultiListeners {
 
     private static final String L_GENERATED = "generated";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     private static final String L_DELIVERIES_DELIVERED_PRODUCT_MULTI_ERROR_INVALID = "deliveries.deliveredProductMulti.error.invalid";
 
@@ -75,7 +75,7 @@ public class DeliveredProductAddMultiListeners {
 
     private static final String L_DELIVERIES_DELIVERED_PRODUCT_MULTI_POSITION_ERROR_LOCATION_REQUIRED = "deliveries.deliveredProductMultiPosition.error.locationRequired";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_OUT_OF_RANGE_TO_SMALL = "sleektivView.validate.field.error.outOfRange.toSmall";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_OUT_OF_RANGE_TO_SMALL = "sleektivView.validate.field.error.outOfRange.toSmall";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -190,7 +190,7 @@ public class DeliveredProductAddMultiListeners {
                 DeliveredProductMultiFields.STORAGE_LOCATION).forEach(fieldName -> {
             if (Objects.isNull(deliveredProductMulti.getField(fieldName))) {
                 deliveredProductMulti.addError(deliveredProductMultiDD.getField(fieldName),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
         });
 
@@ -257,17 +257,17 @@ public class DeliveredProductAddMultiListeners {
     private void checkMissing(final Entity position, final String fieldName,
                               final DataDefinition positionDataDefinition) {
         if (Objects.isNull(position.getField(fieldName))) {
-            position.addError(positionDataDefinition.getField(fieldName), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+            position.addError(positionDataDefinition.getField(fieldName), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         }
     }
 
     private void checkMissingOrZero(final Entity position, final String fieldName,
                                     final DataDefinition positionDataDefinition) {
         if (Objects.isNull(position.getField(fieldName))) {
-            position.addError(positionDataDefinition.getField(fieldName), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+            position.addError(positionDataDefinition.getField(fieldName), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         } else if (BigDecimal.ZERO.compareTo(position.getDecimalField(fieldName)) >= 0) {
             position.addError(positionDataDefinition.getField(fieldName),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_OUT_OF_RANGE_TO_SMALL);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_OUT_OF_RANGE_TO_SMALL);
         }
     }
 
@@ -282,7 +282,7 @@ public class DeliveredProductAddMultiListeners {
             boolean requireExpirationDate = location.getBooleanField(LocationFieldsMFR.REQUIRE_EXPIRATION_DATE);
 
             if (requireExpirationDate && Objects.isNull(expirationDate)) {
-                position.addError(positionDataDefinition.getField(fieldname), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                position.addError(positionDataDefinition.getField(fieldname), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
         }
     }

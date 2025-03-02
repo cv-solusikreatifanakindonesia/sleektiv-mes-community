@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
 @Component
 public class BooleanCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_TRUE_BOOLEAN_PATTERN = "^(true|yes|tak|t|1)$";
 
@@ -50,7 +50,7 @@ public class BooleanCellParser implements CellParser {
 
             valueConsumer.accept(value);
         } else {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
         }
 
     }

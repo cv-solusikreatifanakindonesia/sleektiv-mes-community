@@ -52,7 +52,7 @@ public class ParametersHooksO {
 
     private static final String L_REALIZATION_LOCATIONS = "realizationLocations";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     private static final String L_AUTOMATICALLY_GENERATE_TASKS_FOR_ORDER = "automaticallyGenerateTasksForOrder";
 
@@ -86,18 +86,18 @@ public class ParametersHooksO {
         if (parameter.getBooleanField(ParameterFieldsO.ADVISE_START_DATE_OF_THE_ORDER)
                 && StringUtils.isEmpty(parameter.getStringField(ParameterFieldsO.ORDER_START_DATE_BASED_ON))) {
             parameter.addError(parameterDD.getField(ParameterFieldsO.ORDER_START_DATE_BASED_ON),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
 
             isValid = false;
         }
 
         boolean generatePacksForOrders = parameter.getBooleanField(GENERATE_PACKS_FOR_ORDERS);
         if (generatePacksForOrders && parameter.getDecimalField(OPTIMAL_PACK_SIZE) == null) {
-            parameter.addError(parameterDD.getField(OPTIMAL_PACK_SIZE), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+            parameter.addError(parameterDD.getField(OPTIMAL_PACK_SIZE), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             isValid = false;
         }
         if (generatePacksForOrders && parameter.getDecimalField(REST_FEEDING_LAST_PACK) == null) {
-            parameter.addError(parameterDD.getField(REST_FEEDING_LAST_PACK), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+            parameter.addError(parameterDD.getField(REST_FEEDING_LAST_PACK), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             isValid = false;
         }
 

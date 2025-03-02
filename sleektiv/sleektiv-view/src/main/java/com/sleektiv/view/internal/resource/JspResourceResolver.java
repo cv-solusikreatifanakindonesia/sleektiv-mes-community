@@ -49,7 +49,7 @@ public class JspResourceResolver implements ApplicationListener<ContextRefreshed
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Value("${QCADOO_WEBAPP_PATH}")
+    @Value("${SLEEKTIV_WEBAPP_PATH}")
     private String webappPath;
 
     @Value("${useJarStaticResources}")

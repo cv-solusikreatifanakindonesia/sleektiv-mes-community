@@ -45,7 +45,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public final class AttachmentViewerController {
 
-    public static final String QCADOO_VIEW_ATTACHMENT_VIEWER_HEADER = "sleektivView.attachmentViewer.header";
+    public static final String SLEEKTIV_VIEW_ATTACHMENT_VIEWER_HEADER = "sleektivView.attachmentViewer.header";
 
     public static final String L_ATTACHMENT = "attachment";
 
@@ -96,8 +96,8 @@ public final class AttachmentViewerController {
 
     private void appendTranslations(Locale locale, ModelAndView mav) {
         Map<String, String> translationsMap = new HashMap<String, String>();
-        translationsMap.put(QCADOO_VIEW_ATTACHMENT_VIEWER_HEADER, translationService.translate(
-                QCADOO_VIEW_ATTACHMENT_VIEWER_HEADER, locale));
+        translationsMap.put(SLEEKTIV_VIEW_ATTACHMENT_VIEWER_HEADER, translationService.translate(
+                SLEEKTIV_VIEW_ATTACHMENT_VIEWER_HEADER, locale));
         mav.addObject(L_TRANSLATIONS_MAP, translationsMap);
     }
 }

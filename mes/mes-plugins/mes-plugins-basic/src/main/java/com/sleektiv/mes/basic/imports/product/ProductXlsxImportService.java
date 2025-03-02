@@ -44,9 +44,9 @@ import com.sleektiv.model.constants.UnitConversionItemFields;
 @Service
 public class ProductXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_COST_FOR_NUMBER = "costForNumber";
 
@@ -79,7 +79,7 @@ public class ProductXlsxImportService extends XlsxImportService {
 
         if (Objects.nonNull(additionalUnit) && Objects.nonNull(unit)) {
             if (additionalUnit.equals(unit)) {
-                product.addError(productDD.getField(ProductFields.ADDITIONAL_UNIT), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                product.addError(productDD.getField(ProductFields.ADDITIONAL_UNIT), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }
@@ -91,7 +91,7 @@ public class ProductXlsxImportService extends XlsxImportService {
 
         if (Objects.nonNull(additionalUnit) && Objects.nonNull(unit)) {
             if (Objects.isNull(conversion)) {
-                product.addError(productDD.getField(ProductFields.CONVERSION), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                product.addError(productDD.getField(ProductFields.CONVERSION), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             } else {
                 List<Entity> conversionItems = Lists.newArrayList();
 

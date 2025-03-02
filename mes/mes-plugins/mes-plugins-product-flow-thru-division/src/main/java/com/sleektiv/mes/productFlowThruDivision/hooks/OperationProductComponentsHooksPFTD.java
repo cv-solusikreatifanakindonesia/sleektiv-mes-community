@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OperationProductComponentsHooksPFTD {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     public void fillProductionFlow(final DataDefinition technologyDD, final Entity operationProductComponent) {
         if (operationProductComponent.getField(OperationProductInComponentFieldsPFTD.PRODUCTION_FLOW) == null) {
@@ -47,7 +47,7 @@ public class OperationProductComponentsHooksPFTD {
                 && !ProductionFlowComponent.WAREHOUSE.getStringValue().equals(productionFlow)
                 && !ProductionFlowComponent.WITHIN_THE_PROCESS.getStringValue().equals(productionFlow)) {
             operationProductComponent.addError(dataDefinition.getField(OperationProductInComponentFieldsPFTD.PRODUCTION_FLOW),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             return false;
         }
         Entity productsFlowLocation = operationProductComponent
@@ -55,7 +55,7 @@ public class OperationProductComponentsHooksPFTD {
         if (ProductionFlowComponent.WAREHOUSE.getStringValue().equals(productionFlow) && productsFlowLocation == null) {
             operationProductComponent.addError(
                     dataDefinition.getField(OperationProductInComponentFieldsPFTD.PRODUCTS_FLOW_LOCATION),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             return false;
         }
         return true;

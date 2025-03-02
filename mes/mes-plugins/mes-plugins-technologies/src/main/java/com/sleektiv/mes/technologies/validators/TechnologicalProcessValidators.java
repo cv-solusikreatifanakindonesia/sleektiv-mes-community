@@ -32,7 +32,7 @@ import com.sleektiv.model.api.Entity;
 @Service
 public class TechnologicalProcessValidators {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     public boolean validatesWith(final DataDefinition technologicalProcessDD, final Entity technologicalProcess) {
         return checkRequiredFields(technologicalProcessDD, technologicalProcess);
@@ -45,12 +45,12 @@ public class TechnologicalProcessValidators {
         if (extendedTimeForSizeGroup
                 && technologicalProcess.getIntegerField(TechnologicalProcessFields.INCREASE_PERCENT) == null) {
             technologicalProcess.addError(dataDefinition.getField(TechnologicalProcessFields.INCREASE_PERCENT),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             isValid = false;
         }
         if (extendedTimeForSizeGroup && technologicalProcess.getField(TechnologicalProcessFields.SIZE_GROUP) == null) {
             technologicalProcess.addError(dataDefinition.getField(TechnologicalProcessFields.SIZE_GROUP),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             isValid = false;
         }
         return isValid;

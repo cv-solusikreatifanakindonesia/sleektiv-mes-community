@@ -40,7 +40,7 @@ import com.sleektiv.model.api.Entity;
 
 public abstract class CellBinder {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     private final String fieldName;
 
@@ -146,7 +146,7 @@ public abstract class CellBinder {
         @Override
         public void bind(final Cell cell, final Entity entity, final CellErrorsAccessor errorsAccessor) {
             if (Objects.isNull(cell)) {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             } else {
                 getCellParser().parse(formatCell(cell), null, errorsAccessor,
                         fieldValue -> entity.setField(getFieldName(), fieldValue));
@@ -157,7 +157,7 @@ public abstract class CellBinder {
         public void bind(final Cell cell, final Cell dependentCell, final Entity entity,
                 final CellErrorsAccessor errorsAccessor) {
             if (Objects.isNull(cell)) {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             } else {
                 getCellParser().parse(formatCell(cell), formatCell(dependentCell), errorsAccessor,
                         fieldValue -> entity.setField(getFieldName(), fieldValue));
@@ -167,7 +167,7 @@ public abstract class CellBinder {
         @Override
         public void bind(final String cellValue, final Entity entity, final CellErrorsAccessor errorsAccessor) {
             if (StringUtils.isEmpty(cellValue)) {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             } else {
                 getCellParser().parse(formatCell(cellValue), null, errorsAccessor,
                         fieldValue -> entity.setField(getFieldName(), fieldValue));

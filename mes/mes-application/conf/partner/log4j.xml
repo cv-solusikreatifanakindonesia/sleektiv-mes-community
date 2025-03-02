@@ -2,7 +2,7 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 	<appender name="root-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/root.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/root.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 	<appender name="model-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/model.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/model.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -18,7 +18,7 @@
 		</layout>
 	</appender>
 	<appender name="plugin-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/plugin.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/plugin.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -26,7 +26,7 @@
 		</layout>
 	</appender>
 	<appender name="view-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/view.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/view.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -34,7 +34,7 @@
 		</layout>
 	</appender>
 	<appender name="localization-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/localization.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/localization.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -42,7 +42,7 @@
 		</layout>
 	</appender>
 	<appender name="security-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/security.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/security.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -50,7 +50,7 @@
 		</layout>
 	</appender>
 	<appender name="security-events-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/securityEvents.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/securityEvents.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -58,7 +58,7 @@
 		</layout>
 	</appender>
 	<appender name="report-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/report.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/report.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -66,7 +66,7 @@
 		</layout>
 	</appender>
 	<appender name="connector-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/connector.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/connector.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -74,7 +74,7 @@
 		</layout>
 	</appender>
 	<appender name="activity-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/activity.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/activity.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="1" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -82,7 +82,7 @@
 		</layout>
 	</appender>
 	<appender name="warn-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/warn.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/warn.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<param name="Threshold" value="warn"/>
@@ -91,7 +91,7 @@
 		</layout>
 	</appender>
 	<appender name="translation-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/translation.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/translation.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -99,7 +99,7 @@
 		</layout>
 	</appender>
 	<appender name="performance-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/performance.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/performance.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -107,7 +107,7 @@
 		</layout>
 	</appender>
 	<appender name="sql-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/sql.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/sql.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -115,7 +115,7 @@
 		</layout>
 	</appender>
 	<appender name="cache-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/cache.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/cache.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -123,7 +123,7 @@
 		</layout>
 	</appender>
 	<appender name="cfg-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/cfg.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/cfg.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -131,7 +131,7 @@
 		</layout>
 	</appender>
 	<appender name="tool-log" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${QCADOO_LOG}/tool.log" />
+		<param name="file" value="${SLEEKTIV_LOG}/tool.log" />
 		<param name="MaxFileSize" value="100MB" />
 		<param name="MaxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">

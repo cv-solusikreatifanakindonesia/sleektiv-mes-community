@@ -42,7 +42,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductFamilyCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
 
     private static final String L_BASIC_IMPORT_ERROR_FIELD_NOT_FAMILY = "basic.import.error.field.notFamily";
 
@@ -54,7 +54,7 @@ public class ProductFamilyCellParser implements CellParser {
         Entity productFamily = getProductFamilyByNumber(cellValue);
 
         if (Objects.isNull(productFamily)) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
         } else if (!ProductFamilyElementType.PRODUCTS_FAMILY.getStringValue()
                 .equals(productFamily.getStringField(ProductFields.ENTITY_TYPE))) {
             errorsAccessor.addError(L_BASIC_IMPORT_ERROR_FIELD_NOT_FAMILY);

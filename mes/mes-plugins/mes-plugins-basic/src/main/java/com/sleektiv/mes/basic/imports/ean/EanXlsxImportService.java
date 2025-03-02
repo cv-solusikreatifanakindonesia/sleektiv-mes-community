@@ -37,7 +37,7 @@ import com.sleektiv.view.api.ViewDefinitionState;
 @Service
 public class EanXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
 
     @Override
     public boolean shouldUpdate(final ViewDefinitionState view) {
@@ -56,7 +56,7 @@ public class EanXlsxImportService extends XlsxImportService {
 
     private void validateProduct(final Entity product, final DataDefinition productDD) {
         if (Objects.isNull(product.getId())) {
-            product.addError(productDD.getField(ProductFields.NUMBER), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
+            product.addError(productDD.getField(ProductFields.NUMBER), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
         }
     }
 

@@ -40,7 +40,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GlobalTypeOfMaterialCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     @Autowired
     private TranslationService translationService;
@@ -53,7 +53,7 @@ public class GlobalTypeOfMaterialCellParser implements CellParser {
             if (match.isPresent()) {
                 valueConsumer.accept(match.get().getStringValue());
             } else {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }

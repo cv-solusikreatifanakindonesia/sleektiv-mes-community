@@ -53,7 +53,7 @@ public final class SearchRestrictions {
 
     private static DataAccessService dataAccessService;
 
-    private static final String[] QCADOO_WILDCARDS = new String[] { "*", "?" };
+    private static final String[] SLEEKTIV_WILDCARDS = new String[] { "*", "?" };
 
     private static final String[] HIBERNATE_WILDCARDS = new String[] { "%", "_" };
 
@@ -264,7 +264,7 @@ public final class SearchRestrictions {
     }
 
     private static String convertWildcards(final String value) {
-        return StringUtils.replaceEach(value, QCADOO_WILDCARDS, HIBERNATE_WILDCARDS);
+        return StringUtils.replaceEach(value, SLEEKTIV_WILDCARDS, HIBERNATE_WILDCARDS);
     }
 
     /**

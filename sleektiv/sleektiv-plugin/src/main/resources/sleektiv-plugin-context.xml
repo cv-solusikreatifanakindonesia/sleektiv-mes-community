@@ -38,9 +38,9 @@
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 	<util:properties id="plugin">
-		<prop key="restartCommand">${QCADOO_RESTART_CMD}</prop>
-		<prop key="pluginsPath">${QCADOO_PLUGINS_PATH}</prop>
-		<prop key="pluginsTmpPath">${QCADOO_PLUGINS_TMP_PATH}</prop>
+		<prop key="restartCommand">${SLEEKTIV_RESTART_CMD}</prop>
+		<prop key="pluginsPath">${SLEEKTIV_PLUGINS_PATH}</prop>
+		<prop key="pluginsTmpPath">${SLEEKTIV_PLUGINS_TMP_PATH}</prop>
 		<prop key="descriptors">sleektiv-plugin.xml</prop>
 	</util:properties>
 

@@ -42,7 +42,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BatchCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
     private static final String L_BATCH_ERROR = "materialFlow.document.importPositions.batchError";
 
     @Autowired
@@ -53,7 +53,7 @@ public class BatchCellParser implements CellParser {
             final Consumer<Object> valueConsumer) {
         Entity product = getProduct(dependentCellValue);
         if (Objects.isNull(product)) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
             return;
         }
 

@@ -47,7 +47,7 @@ import static com.sleektiv.mes.deliveries.constants.ParameterFieldsD.OTHER_ADDRE
 @Service
 public class SupplyParameterHooks {
 
-    public static final String QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    public static final String SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
     @Autowired
     private DataDefinitionService dataDefinitionService;
 
@@ -136,12 +136,12 @@ public class SupplyParameterHooks {
         if (parameter.getBooleanField(ParameterFieldsD.SEND_EMAIL_TO_SUPPLIER)) {
             if (parameter.getStringField(ParameterFieldsD.DELIVERY_EMAIL_SUBJECT) == null) {
                 parameter.addError(parameterDD.getField(ParameterFieldsD.DELIVERY_EMAIL_SUBJECT),
-                        QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
                 isValid = false;
             }
             if (parameter.getStringField(ParameterFieldsD.DELIVERY_EMAIL_BODY) == null) {
                 parameter.addError(parameterDD.getField(ParameterFieldsD.DELIVERY_EMAIL_BODY),
-                        QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
                 isValid = false;
             }
         }

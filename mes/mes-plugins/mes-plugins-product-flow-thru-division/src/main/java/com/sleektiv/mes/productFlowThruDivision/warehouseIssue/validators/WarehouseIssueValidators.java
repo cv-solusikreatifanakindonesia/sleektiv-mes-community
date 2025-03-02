@@ -36,7 +36,7 @@ import com.sleektiv.model.api.Entity;
 @Service
 public class WarehouseIssueValidators {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     @Autowired
     private WarehouseIssueParameterService warehouseIssueParameterService;
@@ -46,13 +46,13 @@ public class WarehouseIssueValidators {
         if (warehouseIssueParameterService.issueForOrder()
                 && warehouseIssue.getBelongsToField(WarehouseIssueFields.ORDER) == null) {
             warehouseIssue.addError(dataDefinition.getField(WarehouseIssueFields.ORDER),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         }
 
         if (warehouseIssueParameterService.issueForOrder()
                 && StringUtils.isEmpty(warehouseIssue.getStringField(WarehouseIssueFields.PRODUCTS_TO_ISSUE_MODE))) {
             warehouseIssue.addError(dataDefinition.getField(WarehouseIssueFields.PRODUCTS_TO_ISSUE_MODE),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         }
 
         String collectionProducts = warehouseIssue.getStringField(WarehouseIssueFields.COLLECTION_PRODUCTS);
@@ -60,12 +60,12 @@ public class WarehouseIssueValidators {
         if (collectionProducts.equals(CollectionProducts.ON_DIVISION.getStringValue())) {
             if (warehouseIssue.getBelongsToField(WarehouseIssueFields.DIVISION) == null) {
                 warehouseIssue.addError(dataDefinition.getField(WarehouseIssueFields.DIVISION),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
         } else if (collectionProducts.equals(CollectionProducts.ON_OPERATION.getStringValue())) {
             if (warehouseIssue.getBelongsToField(WarehouseIssueFields.TECHNOLOGY_OPERATION_COMPONENT) == null) {
                 warehouseIssue.addError(dataDefinition.getField(WarehouseIssueFields.TECHNOLOGY_OPERATION_COMPONENT),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
         }
         if (!warehouseIssue.isValid()) {

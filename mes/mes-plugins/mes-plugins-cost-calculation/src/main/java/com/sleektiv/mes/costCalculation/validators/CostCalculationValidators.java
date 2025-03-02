@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CostCalculationValidators {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     public boolean validatesWith(final DataDefinition dataDefinition, final Entity costCalculation) {
         boolean isValid = true;
@@ -41,14 +41,14 @@ public class CostCalculationValidators {
         if (SourceOfOperationCosts.STANDARD_LABOR_COSTS.getStringValue().equals(sourceOfOperationCosts)
                 && costCalculation.getBelongsToField(CostCalculationFields.STANDARD_LABOR_COST) == null) {
             costCalculation.addError(dataDefinition.getField(CostCalculationFields.STANDARD_LABOR_COST),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             isValid = false;
         }
         String materialCostsUsed = costCalculation.getStringField(CostCalculationFields.MATERIAL_COSTS_USED);
         if (MaterialCostsUsed.OFFER_COST_OR_LAST_PURCHASE.getStringValue().equals(materialCostsUsed)
                 && costCalculation.getBelongsToField(CostCalculationFields.OFFER) == null) {
             costCalculation.addError(dataDefinition.getField(CostCalculationFields.OFFER),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             isValid = false;
         }
         return isValid;

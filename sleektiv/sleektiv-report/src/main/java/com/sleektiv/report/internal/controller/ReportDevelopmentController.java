@@ -63,11 +63,11 @@ public class ReportDevelopmentController {
 
     private static final String L_TEMPLATE = "template";
 
-    private static final String L_QCADOO_REPORT_REPORT = "sleektivReport/report";
+    private static final String L_SLEEKTIV_REPORT_REPORT = "sleektivReport/report";
 
     private static final String L_HQL = "hql";
 
-    private static final String L_QCADOO_REPORT_HQL = "sleektivReport/hql";
+    private static final String L_SLEEKTIV_REPORT_HQL = "sleektivReport/hql";
 
     private static final Logger LOG = LoggerFactory.getLogger(ReportDevelopmentController.class);
 
@@ -86,7 +86,7 @@ public class ReportDevelopmentController {
             return new ModelAndView(new RedirectView("/"));
         }
 
-        return new ModelAndView(L_QCADOO_REPORT_HQL);
+        return new ModelAndView(L_SLEEKTIV_REPORT_HQL);
     }
 
     @RequestMapping(value = "developReport/hql", method = RequestMethod.POST)
@@ -99,7 +99,7 @@ public class ReportDevelopmentController {
             List<Entity> entities = dataDefinitionService.get("sleektivPlugin", "plugin").find(hql).list().getEntities();
 
             if (entities.isEmpty()) {
-                return new ModelAndView(L_QCADOO_REPORT_HQL).addObject(L_HQL, hql).addObject("isEmpty", true);
+                return new ModelAndView(L_SLEEKTIV_REPORT_HQL).addObject(L_HQL, hql).addObject("isEmpty", true);
             } else {
                 DataDefinition dataDefinition = entities.get(0).getDataDefinition();
 
@@ -133,11 +133,11 @@ public class ReportDevelopmentController {
                     rows.add(row);
                 }
 
-                return new ModelAndView(L_QCADOO_REPORT_HQL).addObject(L_HQL, hql).addObject("headers", headers)
+                return new ModelAndView(L_SLEEKTIV_REPORT_HQL).addObject(L_HQL, hql).addObject("headers", headers)
                         .addObject("rows", rows).addObject("isOk", true);
             }
         } catch (Exception e) {
-            return showException(L_QCADOO_REPORT_HQL, e).addObject(L_HQL, hql);
+            return showException(L_SLEEKTIV_REPORT_HQL, e).addObject(L_HQL, hql);
         }
     }
 
@@ -158,7 +158,7 @@ public class ReportDevelopmentController {
             return new ModelAndView(new RedirectView("/"));
         }
 
-        return new ModelAndView(L_QCADOO_REPORT_REPORT);
+        return new ModelAndView(L_SLEEKTIV_REPORT_REPORT);
     }
 
     @RequestMapping(value = "developReport/report", method = RequestMethod.POST)
@@ -168,7 +168,7 @@ public class ReportDevelopmentController {
         }
 
         if (file.isEmpty()) {
-            return new ModelAndView(L_QCADOO_REPORT_REPORT).addObject("isFileInvalid", true);
+            return new ModelAndView(L_SLEEKTIV_REPORT_REPORT).addObject("isFileInvalid", true);
         }
 
         try {
@@ -176,10 +176,10 @@ public class ReportDevelopmentController {
 
             List<ReportParameter> params = getReportParameters(template);
 
-            return new ModelAndView(L_QCADOO_REPORT_REPORT).addObject(L_TEMPLATE, template).addObject("isParameter", true)
+            return new ModelAndView(L_SLEEKTIV_REPORT_REPORT).addObject(L_TEMPLATE, template).addObject("isParameter", true)
                     .addObject(L_PARAMS, params).addObject(L_LOCALE, "en");
         } catch (Exception e) {
-            return showException(L_QCADOO_REPORT_REPORT, e);
+            return showException(L_SLEEKTIV_REPORT_REPORT, e);
         }
     }
 
@@ -226,7 +226,7 @@ public class ReportDevelopmentController {
             params = getReportParameters(template);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
-            return showException(L_QCADOO_REPORT_REPORT, e).addObject(L_TEMPLATE, template).addObject("isParameter", true)
+            return showException(L_SLEEKTIV_REPORT_REPORT, e).addObject(L_TEMPLATE, template).addObject("isParameter", true)
                     .addObject(L_LOCALE, locale);
         }
 
@@ -265,7 +265,7 @@ public class ReportDevelopmentController {
             return null;
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
-            return showException(L_QCADOO_REPORT_REPORT, e).addObject(L_TEMPLATE, template).addObject("isParameter", true)
+            return showException(L_SLEEKTIV_REPORT_REPORT, e).addObject(L_TEMPLATE, template).addObject("isParameter", true)
                     .addObject(L_PARAMS, params).addObject(L_LOCALE, locale);
         }
 

@@ -72,7 +72,7 @@ public class SecurityServiceImpl implements InternalSecurityService, UserDetails
 
     private static final String L_USER_ENTITY_MUST_BE_GIVEN = "User entity must be given";
 
-    private static final String L_QCADOO_BOT = "sleektiv_bot";
+    private static final String L_SLEEKTIV_BOT = "sleektiv_bot";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -181,7 +181,7 @@ public class SecurityServiceImpl implements InternalSecurityService, UserDetails
         String userName = getCurrentUserName();
 
         if (Objects.isNull(userName)) {
-            Entity user = getAndCheckUserEntity(L_QCADOO_BOT);
+            Entity user = getAndCheckUserEntity(L_SLEEKTIV_BOT);
 
             userName = user.getStringField(UserFields.USER_NAME);
         }
@@ -210,7 +210,7 @@ public class SecurityServiceImpl implements InternalSecurityService, UserDetails
         Long userId = getCurrentUserId();
 
         if (Objects.isNull(userId)) {
-            Entity user = getAndCheckUserEntity(L_QCADOO_BOT);
+            Entity user = getAndCheckUserEntity(L_SLEEKTIV_BOT);
 
             userId = user.getId();
         }

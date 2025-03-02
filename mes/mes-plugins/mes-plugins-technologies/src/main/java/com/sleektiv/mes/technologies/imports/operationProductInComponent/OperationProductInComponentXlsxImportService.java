@@ -40,7 +40,7 @@ import com.sleektiv.model.api.search.SearchRestrictions;
 @Service
 public class OperationProductInComponentXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -68,7 +68,7 @@ public class OperationProductInComponentXlsxImportService extends XlsxImportServ
                 if (Objects.isNull(operationComponent)) {
                     operationProductInComponent.addError(
                             operationProductInComponentDD.getField(OperationProductInComponentFields.OPERATION_COMPONENT),
-                            L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                            L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                 } else {
                     operationProductInComponent.setField(OperationProductInComponentFields.OPERATION_COMPONENT,
                             operationComponent);

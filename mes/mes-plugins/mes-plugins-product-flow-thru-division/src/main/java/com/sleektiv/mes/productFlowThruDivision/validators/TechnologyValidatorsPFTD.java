@@ -32,21 +32,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class TechnologyValidatorsPFTD {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     public boolean checkRequiredFields(final DataDefinition dataDefinition, final Entity technology) {
         String productionFlow = technology.getStringField(TechnologyFieldsPFTD.PRODUCTION_FLOW);
         if (technology.getId() == null && !ProductionFlowComponent.WAREHOUSE.getStringValue().equals(productionFlow)
                 && !ProductionFlowComponent.WITHIN_THE_PROCESS.getStringValue().equals(productionFlow)) {
             technology.addError(dataDefinition.getField(TechnologyFieldsPFTD.PRODUCTION_FLOW),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
 
             return false;
         }
         Entity productsFlowLocation = technology.getBelongsToField(TechnologyFieldsPFTD.PRODUCTS_FLOW_LOCATION);
         if (ProductionFlowComponent.WAREHOUSE.getStringValue().equals(productionFlow) && productsFlowLocation == null) {
             technology.addError(dataDefinition.getField(TechnologyFieldsPFTD.PRODUCTS_FLOW_LOCATION),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             return false;
         }
         return checkIfWarehousesAreDifferent(technology);

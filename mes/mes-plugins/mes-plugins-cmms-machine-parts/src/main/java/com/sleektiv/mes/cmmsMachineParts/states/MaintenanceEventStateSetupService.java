@@ -34,7 +34,7 @@ import org.springframework.stereotype.Service;
 
 @Service public class MaintenanceEventStateSetupService {
 
-    private static final String QCADOO_SECURITY = "sleektivSecurity";
+    private static final String SLEEKTIV_SECURITY = "sleektivSecurity";
 
     private static final String USER = "user";
 
@@ -45,7 +45,7 @@ import org.springframework.stereotype.Service;
     public void setupOnInProgress(final StateChangeContext stateChangeContext) {
         Entity event = stateChangeContext.getOwner();
         if (event.getBelongsToField(MaintenanceEventFields.PERSON_RECEIVING) == null) {
-            Entity user = dataDefinitionService.get(QCADOO_SECURITY, USER).get(securityService.getCurrentUserId());
+            Entity user = dataDefinitionService.get(SLEEKTIV_SECURITY, USER).get(securityService.getCurrentUserId());
             Entity staff = user.getBelongsToField(UserFieldsB.STAFF);
             if (staff != null) {
                 event.setField(MaintenanceEventFields.PERSON_RECEIVING, staff);

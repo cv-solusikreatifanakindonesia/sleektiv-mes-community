@@ -45,7 +45,7 @@ public class WarehouseMinimumStateListListener {
 
     
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -71,7 +71,7 @@ public class WarehouseMinimumStateListListener {
 
         if (state.getBelongsToField(WarehouseMinimumStateFields.LOCATION) == null) {
             LookupComponent location = (LookupComponent) view.getComponentByReference(WarehouseMinimumStateFields.LOCATION);
-            location.addMessage(new ErrorMessage(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING));
+            location.addMessage(new ErrorMessage(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING));
             location.requestComponentUpdateState();
             return;
         }

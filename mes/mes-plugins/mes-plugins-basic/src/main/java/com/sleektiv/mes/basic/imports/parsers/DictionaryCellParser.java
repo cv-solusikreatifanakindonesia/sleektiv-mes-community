@@ -18,7 +18,7 @@ import com.sleektiv.model.constants.SleektivModelConstants;
 
 public class DictionaryCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_DICTIONARY_ITEM = "sleektivView.validate.field.error.invalidDictionaryItem";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_DICTIONARY_ITEM = "sleektivView.validate.field.error.invalidDictionaryItem";
 
     private static final String L_BASIC_IMPORT_ERROR_FIELD_INACTIVE_DICTIONARY_ITEM = "basic.import.error.field.inactiveDictionaryItem";
 
@@ -42,7 +42,7 @@ public class DictionaryCellParser implements CellParser {
         Entity dictionaryItem = getDictionaryItemByName(cellValue);
 
         if (Objects.isNull(dictionaryItem)) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_DICTIONARY_ITEM);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_DICTIONARY_ITEM);
         } else if (!dictionaryItem.isActive()) {
             errorsAccessor.addError(L_BASIC_IMPORT_ERROR_FIELD_INACTIVE_DICTIONARY_ITEM);
         } else {

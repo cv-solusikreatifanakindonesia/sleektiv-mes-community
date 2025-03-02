@@ -41,7 +41,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TechnologyOperationComponentCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -51,7 +51,7 @@ public class TechnologyOperationComponentCellParser implements CellParser {
         Entity technologyOperationComponent = getTechnologyOperationComponentByNodeNumber(cellValue);
 
         if (Objects.isNull(technologyOperationComponent)) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
         } else {
             valueConsumer.accept(technologyOperationComponent);
         }

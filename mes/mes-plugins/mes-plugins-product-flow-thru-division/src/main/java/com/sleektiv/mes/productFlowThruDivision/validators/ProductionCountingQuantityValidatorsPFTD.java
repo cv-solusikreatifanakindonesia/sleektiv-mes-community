@@ -42,7 +42,7 @@ import java.util.Objects;
 @Service
 public class ProductionCountingQuantityValidatorsPFTD {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     public boolean validate(final DataDefinition dataDefinition, final Entity productionCountingQuantity) {
 
@@ -84,7 +84,7 @@ public class ProductionCountingQuantityValidatorsPFTD {
                 .getBelongsToField(ProductionCountingQuantityFieldsPFTD.COMPONENTS_LOCATION) == null) {
             productionCountingQuantity.addError(
                     dataDefinition.getField(ProductionCountingQuantityFieldsPFTD.COMPONENTS_LOCATION),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         }
         if (ProductionCountingQuantityRole.PRODUCED.getStringValue().equals(role)
                 && (ProductionCountingQuantityTypeOfMaterial.FINAL_PRODUCT.getStringValue().equals(typeOfMaterial)
@@ -93,7 +93,7 @@ public class ProductionCountingQuantityValidatorsPFTD {
                 .getBelongsToField(ProductionCountingQuantityFieldsPFTD.PRODUCTS_INPUT_LOCATION) == null) {
             productionCountingQuantity.addError(
                     dataDefinition.getField(ProductionCountingQuantityFieldsPFTD.PRODUCTS_INPUT_LOCATION),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         }
         if (ProductionCountingQuantityTypeOfMaterial.INTERMEDIATE.getStringValue().equals(typeOfMaterial)
                 && ProductionFlowComponent.WAREHOUSE.getStringValue().equals(
@@ -102,7 +102,7 @@ public class ProductionCountingQuantityValidatorsPFTD {
                 .getBelongsToField(ProductionCountingQuantityFieldsPFTD.PRODUCTS_FLOW_LOCATION) == null) {
             productionCountingQuantity.addError(
                     dataDefinition.getField(ProductionCountingQuantityFieldsPFTD.PRODUCTS_FLOW_LOCATION),
-                    L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                    L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
         }
         checkComponentsWarehouses(productionCountingQuantity);
         checkWastesWarehouse(productionCountingQuantity);

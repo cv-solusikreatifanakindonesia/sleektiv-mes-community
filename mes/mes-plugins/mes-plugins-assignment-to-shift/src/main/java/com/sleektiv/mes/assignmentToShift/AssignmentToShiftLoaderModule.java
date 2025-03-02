@@ -54,7 +54,7 @@ import com.sleektiv.tenant.api.DefaultLocaleResolver;
 @Component
 public class AssignmentToShiftLoaderModule extends Module {
 
-    private static final String L_QCADOO_MODEL = "sleektivModel";
+    private static final String L_SLEEKTIV_MODEL = "sleektivModel";
 
     protected static final Logger LOG = LoggerFactory.getLogger(AssignmentToShiftLoaderModule.class);
 
@@ -201,11 +201,11 @@ public class AssignmentToShiftLoaderModule extends Module {
     }
 
     private DataDefinition getDictionaryItemDataDefinition() {
-        return dataDefinitionService.get(L_QCADOO_MODEL, L_DICTIONARY_ITEM);
+        return dataDefinitionService.get(L_SLEEKTIV_MODEL, L_DICTIONARY_ITEM);
     }
 
     private Entity getOcupationTypeDictionary() {
-        return dataDefinitionService.get(L_QCADOO_MODEL, L_DICTIONARY).find()
+        return dataDefinitionService.get(L_SLEEKTIV_MODEL, L_DICTIONARY).find()
                 .add(SearchRestrictions.eq(L_NAME, L_OCCUPATION_TYPE)).setMaxResults(1).uniqueResult();
     }
 

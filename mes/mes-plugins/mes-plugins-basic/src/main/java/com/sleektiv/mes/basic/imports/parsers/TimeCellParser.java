@@ -35,9 +35,9 @@ import java.util.regex.Pattern;
 @Component
 public class TimeCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_WRONG_TYPE = "sleektivView.validate.field.error.wrongType";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_WRONG_TYPE = "sleektivView.validate.field.error.wrongType";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_TIME_PATTERN = "^\\d{1,2}:\\d{2}:\\d{2}$";
 
@@ -51,7 +51,7 @@ public class TimeCellParser implements CellParser {
 
                 valueConsumer.accept(value);
             } else {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }
@@ -72,7 +72,7 @@ public class TimeCellParser implements CellParser {
         Matcher timeMatcher = timePattern.matcher(cellValue);
 
         if (!timeMatcher.matches()) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_WRONG_TYPE);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_WRONG_TYPE);
 
             return false;
         }

@@ -33,14 +33,14 @@ import org.springframework.stereotype.Service;
 
 @Service public class FormHooks {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     public boolean validatesWith(final DataDefinition dataDefinition, final Entity form) {
 
         BigDecimal size = form.getDecimalField("size");
 
         if (size != null && StringUtils.isEmpty(form.getStringField("unit"))) {
-            form.addError(dataDefinition.getField("unit"), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+            form.addError(dataDefinition.getField("unit"), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
 
             return false;
         }

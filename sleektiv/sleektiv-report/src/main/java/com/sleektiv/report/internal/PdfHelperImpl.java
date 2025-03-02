@@ -80,7 +80,7 @@ public final class PdfHelperImpl implements PdfHelper {
 
     private static final Integer MINIMUM_ALLOWABLE_SIZE_COLUMN_IN_PIXEL = 63;
 
-    private static final String QCADOO_SECURITY = "sleektivSecurity";
+    private static final String SLEEKTIV_SECURITY = "sleektivSecurity";
 
     private static final String USER = "user";
 
@@ -179,8 +179,8 @@ public final class PdfHelperImpl implements PdfHelper {
     public void addMetaData(final Document document) {
         document.addSubject("Using iText");
         document.addKeywords("Java, PDF, iText");
-        document.addAuthor("QCADOO");
-        document.addCreator("QCADOO");
+        document.addAuthor("SLEEKTIV");
+        document.addCreator("SLEEKTIV");
     }
 
     @Override
@@ -504,7 +504,7 @@ public final class PdfHelperImpl implements PdfHelper {
 
     @Override
     public String getDocumentAuthor() {
-        Entity user = dataDefinitionService.get(QCADOO_SECURITY, USER).get(securityService.getCurrentUserId());
+        Entity user = dataDefinitionService.get(SLEEKTIV_SECURITY, USER).get(securityService.getCurrentUserId());
         String firstName = user.getStringField(FIRST_NAME);
         String lastName = user.getStringField(LAST_NAME);
         String userName = user.getStringField(USER_NAME);

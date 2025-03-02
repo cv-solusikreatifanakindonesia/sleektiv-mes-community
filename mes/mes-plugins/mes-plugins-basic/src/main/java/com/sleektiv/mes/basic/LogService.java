@@ -31,7 +31,7 @@ public class LogService {
 
     private static final Logger LOGGER = Logger.getLogger(LogService.class);
 
-    public static final String QCADOO_BOT = "sleektiv_bot";
+    public static final String SLEEKTIV_BOT = "sleektiv_bot";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -176,7 +176,7 @@ public class LogService {
         DataDefinition userDD = dataDefinitionService.get(SleektivSecurityConstants.PLUGIN_IDENTIFIER,
                 SleektivSecurityConstants.MODEL_USER);
 
-        Entity user = userDD.find().add(SearchRestrictions.eq(UserFields.USER_NAME, QCADOO_BOT)).uniqueResult();
+        Entity user = userDD.find().add(SearchRestrictions.eq(UserFields.USER_NAME, SLEEKTIV_BOT)).uniqueResult();
 
         if (user == null) {
             throw new RuntimeException("User sleektiv_bot not found.");

@@ -37,9 +37,9 @@ import com.sleektiv.model.api.Entity;
 @Service
 public class WorkstationXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_PRODUCTION_LINE = "productionLine";
 
@@ -57,7 +57,7 @@ public class WorkstationXlsxImportService extends XlsxImportService {
         if (Objects.nonNull(productionLine)) {
             if (Objects.isNull(division)) {
                 workstation.addError(workstationDD.getField(WorkstationFields.DIVISION),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             } else {
                 List<Entity> divisionProductionLines = division.getHasManyField(L_PRODUCTION_LINES);
 
@@ -66,7 +66,7 @@ public class WorkstationXlsxImportService extends XlsxImportService {
                         .findAny();
 
                 if (!mayBeProductionLine.isPresent()) {
-                    workstation.addError(workstationDD.getField(L_PRODUCTION_LINE), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                    workstation.addError(workstationDD.getField(L_PRODUCTION_LINE), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                 }
             }
         }

@@ -42,9 +42,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DateCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_DATE_FORMAT = "sleektivView.validate.field.error.invalidDateFormat";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_DATE_FORMAT = "sleektivView.validate.field.error.invalidDateFormat";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_DATE_PATTERN = "^\\d{4}-\\d{2}-\\d{2}$";
 
@@ -67,7 +67,7 @@ public class DateCellParser implements CellParser {
 
                     valueConsumer.accept(value);
                 } else {
-                    errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                    errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                 }
             } else {
                 valueConsumer.accept(either.getRight().get().toDate());
@@ -100,7 +100,7 @@ public class DateCellParser implements CellParser {
         Matcher dateSlashMatcher = dateSlashPattern.matcher(cellValue);
 
         if (!dateMatcher.matches() && !dateDotMatcher.matches() && !dateSlashMatcher.matches()) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_DATE_FORMAT);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_DATE_FORMAT);
 
             return false;
         }

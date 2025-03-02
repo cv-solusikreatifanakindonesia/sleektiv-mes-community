@@ -50,7 +50,7 @@ import java.util.stream.Collectors;
 @Service
 public class TechnologyStateValidationServicePFTD {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
 
     @Autowired
     private TechnologyService technologyService;
@@ -171,13 +171,13 @@ public class TechnologyStateValidationServicePFTD {
         if (technology.getField(TechnologyFields.RANGE).equals(Range.ONE_DIVISION.getStringValue())) {
             if (technology.getBelongsToField(TechnologyFieldsPFTD.COMPONENTS_LOCATION) == null) {
                 stateChangeContext.addFieldValidationError(TechnologyFieldsPFTD.COMPONENTS_LOCATION,
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
 
             }
 
             if (technology.getBelongsToField(TechnologyFieldsPFTD.PRODUCTS_INPUT_LOCATION) == null) {
                 stateChangeContext.addFieldValidationError(TechnologyFieldsPFTD.PRODUCTS_INPUT_LOCATION,
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_MISSING);
             }
         }
     }

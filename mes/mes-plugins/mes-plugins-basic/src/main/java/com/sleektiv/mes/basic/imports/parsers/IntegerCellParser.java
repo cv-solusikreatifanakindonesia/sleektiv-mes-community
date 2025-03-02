@@ -37,9 +37,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class IntegerCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT = "sleektivView.validate.field.error.invalidNumericFormat";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT = "sleektivView.validate.field.error.invalidNumericFormat";
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_INTEGER_PATTERN = "^-?\\d+$";
 
@@ -53,7 +53,7 @@ public class IntegerCellParser implements CellParser {
 
                 valueConsumer.accept(value);
             } else {
-                errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }
@@ -64,7 +64,7 @@ public class IntegerCellParser implements CellParser {
         Matcher integerMatcher = integerPattern.matcher(cellValue);
 
         if (!integerMatcher.matches()) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_INVALID_NUMERIC_FORMAT);
 
             return false;
         }

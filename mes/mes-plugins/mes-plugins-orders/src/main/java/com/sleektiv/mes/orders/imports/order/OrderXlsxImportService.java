@@ -52,7 +52,7 @@ import java.util.Set;
 @Service
 public class OrderXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_DIVISION = "division";
 
@@ -150,7 +150,7 @@ public class OrderXlsxImportService extends XlsxImportService {
                 order.setField(OrderFields.TECHNOLOGY, technology);
             } else {
                 if (!validateTechnologyStateAndProduct(technology, product)) {
-                    order.addError(orderDD.getField(OrderFields.TECHNOLOGY), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                    order.addError(orderDD.getField(OrderFields.TECHNOLOGY), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                 }
             }
         }
@@ -231,7 +231,7 @@ public class OrderXlsxImportService extends XlsxImportService {
             }
         } else {
             if (startDate.after(finishDate) || startDate.equals(finishDate)) {
-                order.addError(orderDD.getField(OrderFields.FINISH_DATE), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                order.addError(orderDD.getField(OrderFields.FINISH_DATE), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }

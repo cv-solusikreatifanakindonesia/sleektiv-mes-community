@@ -374,7 +374,7 @@ $.fn.ajaxSubmit = function(options) {
 				
 				xhr.responseText = doc.body ? doc.body.innerHTML : doc.documentElement ? doc.documentElement.innerHTML : null;
 				
-				// QCADOO error parsing - begin
+				// SLEEKTIV error parsing - begin
 				if (doc.childNodes && doc.childNodes[0] && doc.childNodes[0].data) {
 					var errorText = doc.childNodes[0].data;
 					if (errorText.substring(0, 18) == "[CDATA[ERROR PAGE:") {
@@ -382,7 +382,7 @@ $.fn.ajaxSubmit = function(options) {
 						xhr.errorText = messageBody;
 					}
 				}
-				// QCADOO error parsing - end
+				// SLEEKTIV error parsing - end
 				
 				xhr.responseXML = doc.XMLDocument ? doc.XMLDocument : doc;
 				xhr.getResponseHeader = function(header){
@@ -413,13 +413,13 @@ $.fn.ajaxSubmit = function(options) {
 					xhr.responseXML = toXml(xhr.responseText);
 				}
 				
-				// QCADOO remove <pre> tags - begin
+				// SLEEKTIV remove <pre> tags - begin
 				var hasPre = /^<(pre|PRE)[^>]*>.*<\/(pre|PRE)>$/.test(xhr.responseText);
 				if (hasPre) {
 					xhr.responseText = xhr.responseText.replace(/^<(pre|PRE)[^>]*>/,"").replace(/<\/(pre|PRE)>$/,"");
 				}
 				
-				// QCADOO remove <pre> tags - end
+				// SLEEKTIV remove <pre> tags - end
 				
 				data = httpData(xhr, s.dataType, s);
 			}

@@ -65,7 +65,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 @Service
 public class MasterOrderXlsxImportService extends XlsxImportService {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM = "sleektivView.validate.field.error.custom";
 
     private static final String L_MASTER_ORDERS_MASTER_ORDERS_IMPORT_VALIDATE_ERROR_NOT_SAME = "masterOrders.masterOrdersImport.validate.error.notSame";
 
@@ -143,7 +143,7 @@ public class MasterOrderXlsxImportService extends XlsxImportService {
         if (!areSame) {
             masterOrder.addGlobalError(L_MASTER_ORDERS_MASTER_ORDERS_IMPORT_VALIDATE_ERROR_NOT_SAME);
 
-            masterOrder.addError(masterOrderDD.getField(fieldName), L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+            masterOrder.addError(masterOrderDD.getField(fieldName), L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
         }
     }
 
@@ -154,7 +154,7 @@ public class MasterOrderXlsxImportService extends XlsxImportService {
         if (Objects.nonNull(startDate) && Objects.nonNull(finishDate)) {
             if (startDate.after(finishDate) || startDate.equals(finishDate)) {
                 masterOrder.addError(masterOrderDD.getField(MasterOrderFields.FINISH_DATE),
-                        L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                        L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
             }
         }
     }
@@ -175,7 +175,7 @@ public class MasterOrderXlsxImportService extends XlsxImportService {
                 if (!TechnologyStateStringValues.ACCEPTED.equals(technologyState)
                         || !technologyProduct.getId().equals(product.getId())) {
                     masterOrder.addError(masterOrderDD.getField(MasterOrderFields.TECHNOLOGY),
-                            L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
+                            L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_CUSTOM);
                 }
             }
         }

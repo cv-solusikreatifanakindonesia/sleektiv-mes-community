@@ -42,7 +42,7 @@ import java.util.function.Consumer;
 @Component
 public class AttributeValueCellParser implements CellParser {
 
-    private static final String L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
+    private static final String L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND = "sleektivView.validate.field.error.lookupCodeNotFound";
 
     @Autowired
     private DataDefinitionService dataDefinitionService;
@@ -52,7 +52,7 @@ public class AttributeValueCellParser implements CellParser {
         Entity attribute = getAttributeByNumber(dependentCellValue);
 
         if (Objects.isNull(attribute)) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
 
             return;
         }
@@ -60,7 +60,7 @@ public class AttributeValueCellParser implements CellParser {
         Entity attributeValue = getAttributeValueByValue(attribute, cellValue);
 
         if (Objects.isNull(attributeValue)) {
-            errorsAccessor.addError(L_QCADOO_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
+            errorsAccessor.addError(L_SLEEKTIV_VIEW_VALIDATE_FIELD_ERROR_LOOKUP_CODE_NOT_FOUND);
         } else {
             valueConsumer.accept(attributeValue);
         }
