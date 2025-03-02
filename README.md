@@ -47,7 +47,7 @@ Be aware - You may be missing some views, menu position etc., but You will be ab
 3. Building MES application
 
 Navigate to mes/mes-application and use:
-mvn clean install -o -Ptomcat -Dprofile=package
+mvn clean install -Ptomcat -Dprofile=package
 
 4. Start MES
 
