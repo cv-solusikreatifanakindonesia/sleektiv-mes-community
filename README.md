@@ -63,6 +63,7 @@ To start local instance of MES:
     chmod a+x bin/*.sh
 
     Start MES:
+    ./bin/setenv.sh
     ./bin/startup.sh
 
     Shutdown MES: 
