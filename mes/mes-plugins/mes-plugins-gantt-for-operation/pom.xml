@@ -4,19 +4,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.qcadoo.mes</groupId>
+		<groupId>com.sleektiv.mes</groupId>
 		<artifactId>mes-plugins</artifactId>
 		<version>1.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mes-plugins-gantt-for-operation</artifactId>
-	<packaging>qcadoo-plugin</packaging>
+	<packaging>sleektiv-plugin</packaging>
 
-	<name>Qcadoo MES :: Plugins :: Gantt for operations</name>
+	<name>Sleektiv MES :: Plugins :: Gantt for operations</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.qcadoo.mes</groupId>
+			<groupId>com.sleektiv.mes</groupId>
 			<artifactId>mes-plugins-production-scheduling</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
@@ -25,9 +25,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.qcadoo</groupId>
-				<artifactId>qcadoo-maven-plugin</artifactId>
-				<version>${qcadoo.maven.plugin.version}</version>
+				<groupId>com.sleektiv</groupId>
+				<artifactId>sleektiv-maven-plugin</artifactId>
+				<version>${sleektiv.maven.plugin.version}</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>

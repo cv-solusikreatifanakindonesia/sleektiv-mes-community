@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="workstationDetailsAddSubassembly" modelName="subassemblyToWorkstationHelper">
 
     <component type="window" name="window">
@@ -53,10 +53,10 @@
 
                         <option type="multiselect" value="false"/>
 
-                        <listener event="onSelectedEntityChange" class="com.qcadoo.mes.basic.hooks.SubassemblyToWorkstationHelperHooks"
+                        <listener event="onSelectedEntityChange" class="com.sleektiv.mes.basic.hooks.SubassemblyToWorkstationHelperHooks"
                                   method="subassemblyEntityChange"/>
                         <criteriaModifier
-                                class="com.qcadoo.mes.basic.criteriaModifiers.SubassemblyCriteriaModifiers"
+                                class="com.sleektiv.mes.basic.criteriaModifiers.SubassemblyCriteriaModifiers"
                                 method="showSubassembliesWithoutWorkstation"/>
                     </component>
 
@@ -70,7 +70,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.basic.hooks.SubassemblyToWorkstationHelperHooks"
+        <beforeRender class="com.sleektiv.mes.basic.hooks.SubassemblyToWorkstationHelperHooks"
                       method="beforeRenderView"/>
     </hooks>
 </view>

@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_LINE_CHANGEOVER_NORMS_IN_ORDERS"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="lineChangeoverNormsForOrderDetails" modelPlugin="orders"
       modelName="order">
 
@@ -129,7 +129,7 @@
                                         <option type="fieldCode" value="number"/>
 
                                         <listener event="onSelectedEntityChange"
-                                                  class="com.qcadoo.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
+                                                  class="com.sleektiv.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
                                                   method="fillPreviousOrderForm"/>
                                     </component>
                                 </layoutElement>
@@ -223,7 +223,7 @@
                                     <component type="checkbox" name="ownLineChangeover"
                                                field="ownLineChangeover" reference="ownLineChangeover">
                                         <listener event="onChange"
-                                                  class="com.qcadoo.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
+                                                  class="com.sleektiv.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
                                                   method="showOwnLineChangeoverDurationField"/>
                                     </component>
                                 </layoutElement>
@@ -239,16 +239,16 @@
                 </component>
 
                 <listener event="showPreviousOrder"
-                          class="com.qcadoo.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
+                          class="com.sleektiv.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
                           method="showPreviousOrder"/>
                 <listener event="showBestFittingLineChangeoverNorm"
-                          class="com.qcadoo.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
+                          class="com.sleektiv.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
                           method="showBestFittingLineChangeoverNorm"/>
                 <listener event="showLineChangeoverNormForGroup"
-                          class="com.qcadoo.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
+                          class="com.sleektiv.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
                           method="showLineChangeoverNormForGroup"/>
                 <listener event="showLineChangeoverNormForTechnology"
-                          class="com.qcadoo.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
+                          class="com.sleektiv.mes.lineChangeoverNormsForOrders.listeners.LineChangeoverNormsForOrderDetailsListeners"
                           method="showLineChangeoverNormForTechnology"/>
             </component>
         </windowTab>
@@ -258,7 +258,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.lineChangeoverNormsForOrders.hooks.LineChangeoverNormsForOrderDetailsViewHooks"
+                class="com.sleektiv.mes.lineChangeoverNormsForOrders.hooks.LineChangeoverNormsForOrderDetailsViewHooks"
                 method="onBeforeRender"/>
     </hooks>
 </view>

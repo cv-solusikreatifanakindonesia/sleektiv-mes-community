@@ -1,6 +1,6 @@
 <model name="outsourceProcessingComponentHelper" auditable="false" insertable="false" updatable="false" deletable="false"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
-       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/model"
+       xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
     <fields>
         <belongsTo name="product" plugin="basic" model="product" required="true" persistent="false"/>
@@ -16,6 +16,6 @@
     </fields>
 
     <hooks>
-        <validatesWith class="com.qcadoo.mes.masterOrders.hooks.OutsourceProcessingComponentHelperHooks" method="validateDates"/>
+        <validatesWith class="com.sleektiv.mes.masterOrders.hooks.OutsourceProcessingComponentHelperHooks" method="validateDates"/>
     </hooks>
 </model>

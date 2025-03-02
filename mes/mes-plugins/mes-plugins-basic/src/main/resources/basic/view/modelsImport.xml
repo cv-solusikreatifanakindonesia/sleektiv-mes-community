@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view name="modelsImport" menuAccessible="true" defaultAuthorizationRole="ROLE_PRODUCTS_ADDITIONAL"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
         <ribbon>
@@ -80,7 +80,7 @@
                         </script>
 
                         <listener event="onInputChange"
-                                  class="com.qcadoo.mes.basic.listeners.ModelsImportListeners"
+                                  class="com.sleektiv.mes.basic.listeners.ModelsImportListeners"
                                   method="onInputChange"/>
                     </component>
                 </layoutElement>
@@ -93,13 +93,13 @@
             </component>
 
             <listener event="processImportFile"
-                      class="com.qcadoo.mes.basic.listeners.ModelsImportListeners"
+                      class="com.sleektiv.mes.basic.listeners.ModelsImportListeners"
                       method="processImportFile"/>
             <listener event="downloadImportSchema"
-                      class="com.qcadoo.mes.basic.listeners.ModelsImportListeners"
+                      class="com.sleektiv.mes.basic.listeners.ModelsImportListeners"
                       method="downloadImportSchema"/>
             <listener event="redirectToLogs"
-                      class="com.qcadoo.mes.basic.listeners.ModelsImportListeners"
+                      class="com.sleektiv.mes.basic.listeners.ModelsImportListeners"
                       method="redirectToLogs"/>
 
             <option type="header" value="false"/>

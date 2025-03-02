@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>${artifactId}</artifactId>
+	<groupId>${groupId}</groupId>
+	<packaging>sleektiv-plugin</packaging>
+	<name>${name}</name>
+	<version>${version}</version>
+
+	<properties>
+		<sleektiv.version>0.4.3</sleektiv.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.sleektiv</groupId>
+				<artifactId>sleektiv-maven-plugin</artifactId>
+				<version>${sleektiv.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>sleektiv-releases-repository</id>
+			<url>https://nexus.qcadoo.org/content/repositories/releases</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>sleektiv-snapshots-repository</id>
+			<url>https://nexus.qcadoo.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>interval:5</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+        <pluginRepositories>
+            <pluginRepository>
+                <id>sleektiv-releases-plugin-repository</id>
+                <url>https://nexus.qcadoo.org/content/repositories/releases</url>
+                <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </releases>
+                <snapshots>
+                    <enabled>false</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </snapshots>
+             </pluginRepository>
+             <pluginRepository>
+                <id>sleektiv-snapshots-plugin-repository</id>
+                <url>https://nexus.qcadoo.org/content/repositories/snapshots</url>
+                <releases>
+                    <enabled>false</enabled>
+                    <updatePolicy>never</updatePolicy>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>interval:5</updatePolicy>
+                </snapshots>
+            </pluginRepository>
+        </pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-localization</artifactId>
+			<version>${sleektiv.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-security</artifactId>
+			<version>${sleektiv.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-model</artifactId>
+			<version>${sleektiv.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-view</artifactId>
+			<version>${sleektiv.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>
+

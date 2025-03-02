@@ -2,7 +2,7 @@
  * jQuery resize event - v1.1 - 3/14/2010
  * http://benalman.com/projects/jquery-resize-plugin/
  * 
- * Copyright (c) 2010 "Cowboy" Ben Alman
+ * Copyright (c) 2025 "Cowboy" Ben Alman
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
  */
@@ -646,7 +646,7 @@ myApp.controller('GridController', ['$scope', '$window', '$http', function ($sco
             toolbar: [true, "top"],
             rownumbers: false,
             altRows: true,
-            altclass: 'qcadooRowClass',
+            altclass: 'sleektivRowClass',
             errorTextFormat: function (response) {
                 return translateMessages(JSON.parse(response.responseText).message);
             },

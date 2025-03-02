@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_REQUIREMENTS"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="salesVolumeAddMulti" modelName="salesVolumeMulti">
 
     <component type="window" name="window" reference="window">
@@ -80,7 +80,7 @@
                                     <option type="labelWidth" value="40"/>
 
                                     <listener event="onInputChange"
-                                              class="com.qcadoo.mes.masterOrders.listeners.SalesVolumeAddMultiListeners"
+                                              class="com.sleektiv.mes.masterOrders.listeners.SalesVolumeAddMultiListeners"
                                               method="onQuantityChange"/>
                                 </component>
                             </layoutElement>
@@ -104,7 +104,7 @@
                                     <option type="labelWidth" value="40"/>
 
                                     <listener event="onInputChange"
-                                              class="com.qcadoo.mes.masterOrders.listeners.SalesVolumeAddMultiListeners"
+                                              class="com.sleektiv.mes.masterOrders.listeners.SalesVolumeAddMultiListeners"
                                               method="onQuantityChange"/>
                                 </component>
                             </layoutElement>
@@ -131,7 +131,7 @@
                             <option type="multiselect" value="true" />
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
+                                    class="com.sleektiv.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
                                     method="showParticularProductOnly"/>
                         </component>
                         <component type="grid" name="products" reference="products"
@@ -159,7 +159,7 @@
                 <option type="expression" value=""/>
 
                 <listener event="createSalesVolumes"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesVolumeAddMultiListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesVolumeAddMultiListeners"
                           method="createSalesVolumes"/>
             </component>
         </windowTab>
@@ -168,7 +168,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.masterOrders.hooks.SalesVolumeAddMultiHooks"
+                class="com.sleektiv.mes.masterOrders.hooks.SalesVolumeAddMultiHooks"
                 method="onBeforeRender"/>
     </hooks>
 </view>

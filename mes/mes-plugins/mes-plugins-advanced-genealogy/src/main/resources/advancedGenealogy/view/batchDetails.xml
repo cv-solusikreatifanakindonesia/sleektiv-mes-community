@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_BATCHES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xmlns="http://schema.qcadoo.org/view"
-	  xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+	  xmlns="http://schema.sleektiv.org/view"
+	  xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
 	  name="batchDetails" modelName="batch">
 
 	<component name="window" type="window" reference="window">
@@ -185,11 +185,11 @@
 				<option type="expression" value="#number"/>
 
 				<listener event="changeBatchState"
-						  class="com.qcadoo.mes.advancedGenealogy.states.client.BatchStateChangeViewClient"
+						  class="com.sleektiv.mes.advancedGenealogy.states.client.BatchStateChangeViewClient"
 						  method="changeState"/>
 				
 				<listener event="downloadAttachment" method="downloadAttachment"
-						  class="com.qcadoo.mes.basic.listeners.AttachmentsListeners"/>
+						  class="com.sleektiv.mes.basic.listeners.AttachmentsListeners"/>
 			</component>
 		</windowTab>
 
@@ -259,7 +259,7 @@
 
 	<hooks>
 		<beforeRender
-				class="com.qcadoo.mes.advancedGenealogy.hooks.BatchViewHooks"
+				class="com.sleektiv.mes.advancedGenealogy.hooks.BatchViewHooks"
 				method="onBeforeRender"/>
 	</hooks>
 

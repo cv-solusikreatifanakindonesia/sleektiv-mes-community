@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_BASE_FUNCTIONALITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_BASE_FUNCTIONALITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="operationDurationDetailsInOrder" modelPlugin="orders" modelName="order"
       windowWidth="640" windowHeight="500">
 
@@ -241,16 +241,16 @@
                                 <option type="column" name="effectiveDateTo" fields="effectiveDateTo"/>
 
                                 <option type="column" name="laborWorkTime" fields="laborWorkTime"
-                                        expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#laborWorkTime)"/>
+                                        expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#laborWorkTime)"/>
 
                                 <option type="column" name="machineWorkTime" fields="machineWorkTime"
-                                        expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#machineWorkTime)"/>
+                                        expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#machineWorkTime)"/>
 
                                 <option type="column" name="operationOffSet" fields="operationOffSet"
-                                        expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#operationOffSet)"/>
+                                        expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#operationOffSet)"/>
 
                                 <option type="column" name="effectiveOperationRealizationTime" fields="effectiveOperationRealizationTime"
-                                        expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#effectiveOperationRealizationTime)"/>
+                                        expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#effectiveOperationRealizationTime)"/>
 
                                 <option type="order" column="effectiveDateFrom" direction="asc"/>
 
@@ -262,7 +262,7 @@
                                 <option type="multiselect" value="true"/>
 
                                 <criteriaModifier
-                                        class="com.qcadoo.mes.productionScheduling.criteriaModifiers.OperCompTimeCalculationsCM"
+                                        class="com.sleektiv.mes.productionScheduling.criteriaModifiers.OperCompTimeCalculationsCM"
                                         method="showEntriesForOrder"/>
 
                             </component>
@@ -275,17 +275,17 @@
             <option type="expression" value="#number"/>
 
             <listener event="generateRealizationTime" method="generateRealizationTime"
-                      class="com.qcadoo.mes.productionScheduling.listeners.OperationDurationDetailsInOrderListeners"/>
+                      class="com.sleektiv.mes.productionScheduling.listeners.OperationDurationDetailsInOrderListeners"/>
             <listener event="copyRealizationTime" method="copyRealizationTime"
-                      class="com.qcadoo.mes.productionScheduling.listeners.OperationDurationDetailsInOrderListeners"/>
+                      class="com.sleektiv.mes.productionScheduling.listeners.OperationDurationDetailsInOrderListeners"/>
             <listener event="createOperationalTasks" method="createOperationalTasks"
-                      class="com.qcadoo.mes.productionScheduling.listeners.OperationDurationDetailsInOrderListeners"/>
+                      class="com.sleektiv.mes.productionScheduling.listeners.OperationDurationDetailsInOrderListeners"/>
         </component>
     </component>
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.productionScheduling.hooks.OperationDurationDetailsInOrderHooks"
+                class="com.sleektiv.mes.productionScheduling.hooks.OperationDurationDetailsInOrderHooks"
                 method="onBeforeRender"/>
     </hooks>
 

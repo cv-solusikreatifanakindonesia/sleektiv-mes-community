@@ -5,25 +5,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.qcadoo.maven</groupId>
-        <artifactId>qcadoo-super-pom</artifactId>
+        <groupId>com.sleektiv.maven</groupId>
+        <artifactId>sleektiv-super-pom</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <groupId>com.qcadoo.mes</groupId>
+    <groupId>com.sleektiv.mes</groupId>
     <artifactId>mes</artifactId>
     <version>1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Qcadoo MES</name>
+    <name>Sleektiv MES</name>
 
     <description/>
 
-    <url>https://github.com/qcadoo/mes</url>
+    <url>https://github.com/cv-solusikreatifanakindonesia/sleektiv-mes-community/tree/main/mes</url>
 
     <organization>
-        <name>Qcadoo Limited</name>
-        <url>http://www.qcadoo.com/</url>
+        <name>Sleektiv.</name>
+        <url>http://www.sleektiv.com/</url>
     </organization>
 
     <inceptionYear>2010</inceptionYear>
@@ -31,7 +31,7 @@
     <licenses>
         <license>
             <name>GNU Affero General Public License</name>
-            <url>https://github.com/qcadoo/qcadoo/raw/master/licence.txt</url>
+            <url>https://github.com/cv-solusikreatifanakindonesia/sleektiv-mes-community/tree/main/sleektiv/raw/master/licence.txt</url>
         </license>
     </licenses>
 
@@ -41,78 +41,78 @@
     </modules>
 
     <properties>
-        <qcadoo.buildVersionForUser>3.0.4</qcadoo.buildVersionForUser>
-        <qcadoo.version>${project.version}</qcadoo.version>
-        <qcadoo.plugin.version>1.5</qcadoo.plugin.version>
-        <qcadoo.maven.plugin.version>1.5-SNAPSHOT</qcadoo.maven.plugin.version>
+        <sleektiv.buildVersionForUser>3.0.4</sleektiv.buildVersionForUser>
+        <sleektiv.version>${project.version}</sleektiv.version>
+        <sleektiv.plugin.version>1.5</sleektiv.plugin.version>
+        <sleektiv.maven.plugin.version>1.5-SNAPSHOT</sleektiv.maven.plugin.version>
         <profile.name>tomcat</profile.name>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugin</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugin</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-localization</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-localization</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-security</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-security</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-view</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-view</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-report</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-report</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-menu-management</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-menu-management</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-user-management</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-user-management</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-dictionary-management</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-dictionary-management</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-custom-translation</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-custom-translation</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-custom-translation-management</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-custom-translation-management</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-export</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-export</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-commons</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-commons</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-testing</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-testing</artifactId>
+            <version>${sleektiv.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -160,7 +160,7 @@
 
     <repositories>
         <repository>
-            <id>qcadoo-releases-repository</id>
+            <id>sleektiv-releases-repository</id>
             <url>https://nexus.qcadoo.org/content/repositories/releases</url>
             <releases>
                 <enabled>true</enabled>
@@ -174,19 +174,19 @@
     </repositories>
 
     <scm>
-        <connection>scm:git:ssh://github.com/qcadoo/mes.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/qcadoo/mes.git</developerConnection>
-        <url>http://github.com/qcadoo/mes</url>
+        <connection>scm:git:ssh://github.com/cv-solusikreatifanakindonesia/sleektiv-mes-community/tree/main/mes.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/cv-solusikreatifanakindonesia/sleektiv-mes-community/tree/main/mes.git</developerConnection>
+        <url>http://github.com/cv-solusikreatifanakindonesia/sleektiv-mes-community/tree/main/mes</url>
         <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
         <repository>
-            <id>qcadoo-releases-repository</id>
+            <id>sleektiv-releases-repository</id>
             <url>https://nexus.qcadoo.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>qcadoo-snapshots-repository</id>
+            <id>sleektiv-snapshots-repository</id>
             <url>https://nexus.qcadoo.org/content/repositories/snapshots</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>

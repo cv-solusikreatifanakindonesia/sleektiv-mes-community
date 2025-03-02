@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -27,17 +27,17 @@
         "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
 	<aspects>
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.aop.RequestForQuotationStateChangeAspect" />
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.aop.OfferStateChangeAspect" />
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.aop.NegotiationStateChangeAspect" />
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.OfferStateChangeListenerAspect" />	
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.aop.RequestForQuotationStateChangeAspect" />
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.aop.OfferStateChangeAspect" />
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.aop.NegotiationStateChangeAspect" />
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.OfferStateChangeListenerAspect" />	
 	
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.aop.listeners.RequestForQuotationValidationAspect" />
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.aop.listeners.OfferValidationAspect" />
-		<aspect name="com.qcadoo.mes.supplyNegotiations.states.aop.listeners.NegotiationOnStateChangeAspect" />
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.aop.listeners.RequestForQuotationValidationAspect" />
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.aop.listeners.OfferValidationAspect" />
+		<aspect name="com.sleektiv.mes.supplyNegotiations.states.aop.listeners.NegotiationOnStateChangeAspect" />
 		
-		<aspect name="com.qcadoo.mes.supplyNegotiations.aop.DeliveryDetailsListenersSNOverrideAspect" />		
-		<aspect name="com.qcadoo.mes.supplyNegotiations.aop.OrderReportPdfSNOverrideAspect" />		
-		<aspect name="com.qcadoo.mes.supplyNegotiations.aop.OrderedProductHooksOverrideAspect" />		
+		<aspect name="com.sleektiv.mes.supplyNegotiations.aop.DeliveryDetailsListenersSNOverrideAspect" />		
+		<aspect name="com.sleektiv.mes.supplyNegotiations.aop.OrderReportPdfSNOverrideAspect" />		
+		<aspect name="com.sleektiv.mes.supplyNegotiations.aop.OrderedProductHooksOverrideAspect" />		
 	</aspects>
 </aspectj>

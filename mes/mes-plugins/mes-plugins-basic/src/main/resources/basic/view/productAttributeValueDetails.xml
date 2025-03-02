@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productAttributeValueDetails" modelName="productAttributeValue">
 
     <component type="window" name="window">
@@ -52,11 +52,11 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.basic.criteriaModifiers.AttributeCriteriaModifiers"
+                                class="com.sleektiv.mes.basic.criteriaModifiers.AttributeCriteriaModifiers"
                                 method="showForProduct"/>
 
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.basic.listeners.ProductAttributeValueDetailsListeners"
+                                  class="com.sleektiv.mes.basic.listeners.ProductAttributeValueDetailsListeners"
                                   method="onChangeAttribute"/>
                     </component>
                 </layoutElement>
@@ -75,11 +75,11 @@
                         <option type="fieldCode" value="value"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.basic.criteriaModifiers.AttributeValueCriteriaModifiers"
+                                class="com.sleektiv.mes.basic.criteriaModifiers.AttributeValueCriteriaModifiers"
                                 method="filter"/>
 
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.basic.listeners.ProductAttributeValueDetailsListeners"
+                                  class="com.sleektiv.mes.basic.listeners.ProductAttributeValueDetailsListeners"
                                   method="onChangeAttributeValue"/>
                     </component>
                     <component type="input" name="value" field="value" reference="value"
@@ -101,7 +101,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.basic.hooks.ProductAttributeValueDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.basic.hooks.ProductAttributeValueDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

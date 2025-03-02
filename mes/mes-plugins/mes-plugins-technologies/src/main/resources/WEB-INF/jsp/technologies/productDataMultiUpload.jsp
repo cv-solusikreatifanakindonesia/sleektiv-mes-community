@@ -1,13 +1,13 @@
 <%--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -46,9 +46,9 @@ String ctx = request.getContextPath();
 
     <input type="file" name="files[]" multiple>
 
-    <div id="dropzone">${requestScope.translationsMap['qcadooView.fileupload.dropzone']}</div>
+    <div id="dropzone">${requestScope.translationsMap['sleektivView.fileupload.dropzone']}</div>
 
-    <div id="maxUploadFileMessage" style="display: none;">${requestScope.translationsMap['qcadooView.errorPage.error.uploadException.maxSizeExceeded.explanation']}</div>
+    <div id="maxUploadFileMessage" style="display: none;">${requestScope.translationsMap['sleektivView.errorPage.error.uploadException.maxSizeExceeded.explanation']}</div>
 
 	<div id="progress" class="progress">
         <div class="progress-bar progress-bar-success"> </div>

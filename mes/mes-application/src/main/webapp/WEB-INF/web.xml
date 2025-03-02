@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -28,22 +28,22 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-	<display-name>Qcadoo MES</display-name>
+	<display-name>Sleektiv MES</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/root-context.xml
-			classpath*:qcadoo-model-database-context.xml
-			classpath*:qcadoo-tenant-context.xml
-			classpath*:qcadoo-plugin-context.xml
-			classpath*:qcadoo-localization-context.xml
-			classpath*:qcadoo-model-context.xml		
-			classpath*:qcadoo-security-context.xml
-			classpath*:qcadoo-view-context.xml
-			classpath*:qcadoo-web-context.xml
-			classpath*:qcadoo-report-context.xml
-			classpath*:qcadoo-mail-context.xml
+			classpath*:sleektiv-model-database-context.xml
+			classpath*:sleektiv-tenant-context.xml
+			classpath*:sleektiv-plugin-context.xml
+			classpath*:sleektiv-localization-context.xml
+			classpath*:sleektiv-model-context.xml		
+			classpath*:sleektiv-security-context.xml
+			classpath*:sleektiv-view-context.xml
+			classpath*:sleektiv-web-context.xml
+			classpath*:sleektiv-report-context.xml
+			classpath*:sleektiv-mail-context.xml
 			classpath*:root-context.xml
 			classpath*:web-context.xml
 		</param-value>
@@ -106,7 +106,7 @@
 
 	<filter>
 		<filter-name>filesystemResourcesFilter</filter-name>
-		<filter-class>com.qcadoo.view.FilesystemResourcesFilter</filter-class>
+		<filter-class>com.sleektiv.view.FilesystemResourcesFilter</filter-class>
 		<init-param>
 		   <param-name>sourceBasePath</param-name>
 		   <param-value></param-value>
@@ -178,7 +178,7 @@
 	</listener>
 
 	<servlet>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -190,42 +190,42 @@
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>/files/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>*.pdf</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>*.xls</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>*.xlsx</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Qcadoo MES</servlet-name>
+		<servlet-name>Sleektiv MES</servlet-name>
 		<url-pattern>*.csv</url-pattern>
 	</servlet-mapping>
 	

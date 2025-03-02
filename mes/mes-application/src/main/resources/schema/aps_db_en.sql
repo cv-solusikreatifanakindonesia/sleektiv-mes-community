@@ -50,10 +50,10 @@ CREATE FUNCTION public.add_group(group_identifier character varying, name charac
 
     BEGIN
 
-        SELECT count(*) INTO relationcount FROM qcadoosecurity_group WHERE identifier = group_identifier;
+        SELECT count(*) INTO relationcount FROM sleektivsecurity_group WHERE identifier = group_identifier;
 
         IF relationcount = 0 THEN
-            INSERT INTO qcadoosecurity_group (identifier, name, description, permissiontype) VALUES (group_identifier, name, description, permissiontype);
+            INSERT INTO sleektivsecurity_group (identifier, name, description, permissiontype) VALUES (group_identifier, name, description, permissiontype);
         END IF;
 
    END;
@@ -74,13 +74,13 @@ CREATE FUNCTION public.add_group_role(group_identifier character varying, role_i
 
     BEGIN
 
-        SELECT id INTO groupid FROM qcadoosecurity_group WHERE identifier = group_identifier;
+        SELECT id INTO groupid FROM sleektivsecurity_group WHERE identifier = group_identifier;
 
         IF groupid is null THEN
             RAISE EXCEPTION 'Group(%s) not found', group_identifier;
         END IF;
 
-        SELECT id INTO roleid FROM qcadoosecurity_role WHERE identifier = role_identifier;
+        SELECT id INTO roleid FROM sleektivsecurity_role WHERE identifier = role_identifier;
 
         IF roleid is null THEN
             RAISE EXCEPTION 'Role(%) not found', role_identifier;
@@ -113,7 +113,7 @@ CREATE FUNCTION public.add_group_role_by_id(groupid bigint, role_identifier char
             RAISE EXCEPTION 'Group(%s) not found', groupid;
         END IF;
 
-        SELECT id INTO roleid FROM qcadoosecurity_role WHERE identifier = role_identifier;
+        SELECT id INTO roleid FROM sleektivsecurity_role WHERE identifier = role_identifier;
 
         IF roleid is null THEN
             RAISE EXCEPTION 'Role(%) not found', role_identifier;
@@ -142,13 +142,13 @@ CREATE FUNCTION public.add_group_with_role_role(with_role_identifier character v
         groupwithrole RECORD;
 
     BEGIN
-        SELECT id INTO withroleid FROM qcadoosecurity_role WHERE identifier = with_role_identifier;
+        SELECT id INTO withroleid FROM sleektivsecurity_role WHERE identifier = with_role_identifier;
 
         IF withroleid IS NULL THEN
             RAISE EXCEPTION 'Role(%) not found', with_role_identifier;
         END IF;
 
-        SELECT id INTO roleid FROM qcadoosecurity_role WHERE identifier = role_identifier;
+        SELECT id INTO roleid FROM sleektivsecurity_role WHERE identifier = role_identifier;
 
         IF roleid IS NULL THEN
             RAISE EXCEPTION 'Role(%) not found', role_identifier;
@@ -175,10 +175,10 @@ CREATE FUNCTION public.add_role(role_identifier character varying, description c
 
     BEGIN
 
-        SELECT count(*) INTO relationcount FROM qcadoosecurity_role WHERE identifier = role_identifier;
+        SELECT count(*) INTO relationcount FROM sleektivsecurity_role WHERE identifier = role_identifier;
 
         IF relationcount = 0 THEN
-            INSERT INTO qcadoosecurity_role (identifier, description) VALUES (role_identifier, description);
+            INSERT INTO sleektivsecurity_role (identifier, description) VALUES (role_identifier, description);
         END IF;
 
     END;
@@ -234,28 +234,28 @@ CREATE FUNCTION public.add_view_item(plugin_identifier character varying, item_n
 
     BEGIN
 
-        SELECT id INTO viewid FROM qcadooview_view WHERE name = view_name;
+        SELECT id INTO viewid FROM sleektivview_view WHERE name = view_name;
 
         IF viewid IS NULL THEN
             RAISE EXCEPTION 'View(%s) not found', view_name;
         END IF;
 
-        SELECT id INTO categoryid FROM qcadooview_category WHERE name = category_name;
+        SELECT id INTO categoryid FROM sleektivview_category WHERE name = category_name;
 
         IF categoryid IS NULL THEN
             RAISE EXCEPTION 'Category(%) not found', category_name;
         END IF;
 
-        SELECT count(*) INTO relationcount FROM qcadooview_item WHERE name = item_name;
+        SELECT count(*) INTO relationcount FROM sleektivview_item WHERE name = item_name;
 
         IF relationcount = 0 THEN
-            INSERT INTO qcadooview_item (pluginidentifier, name, active, category_id, view_id, succession, authrole, entityversion)
+            INSERT INTO sleektivview_item (pluginidentifier, name, active, category_id, view_id, succession, authrole, entityversion)
             VALUES (plugin_identifier, item_name, true,
-                 (SELECT id FROM qcadooview_category WHERE name = category_name),
-                 (SELECT id FROM qcadooview_view WHERE name = view_name),
+                 (SELECT id FROM sleektivview_category WHERE name = category_name),
+                 (SELECT id FROM sleektivview_view WHERE name = view_name),
                  (SELECT COALESCE(MAX(succession), 0)
-                  FROM qcadooview_item
-                  WHERE category_id = (SELECT id FROM qcadooview_category WHERE name = category_name)) + 1, auth_role, 0);
+                  FROM sleektivview_item
+                  WHERE category_id = (SELECT id FROM sleektivview_category WHERE name = category_name)) + 1, auth_role, 0);
         END IF;
 
     END;
@@ -274,10 +274,10 @@ CREATE FUNCTION public.add_view_view(plugin_identifier character varying, view_n
 
     BEGIN
 
-        SELECT count(*) INTO relationcount FROM qcadooview_view WHERE name = view_name;
+        SELECT count(*) INTO relationcount FROM sleektivview_view WHERE name = view_name;
 
         IF relationcount = 0 THEN
-            INSERT INTO qcadooview_view (pluginidentifier, name, view, entityversion)
+            INSERT INTO sleektivview_view (pluginidentifier, name, view, entityversion)
                 VALUES (plugin_identifier, view_name, view_view, 0);
         END IF;
 
@@ -2522,17 +2522,17 @@ CREATE FUNCTION public.prepare_superadmin() RETURNS void
     _group_id bigint;
 
    BEGIN
-    SELECT id into _group_id FROm qcadoosecurity_group  WHERE identifier = 'SUPER_ADMIN';
+    SELECT id into _group_id FROm sleektivsecurity_group  WHERE identifier = 'SUPER_ADMIN';
     IF _group_id is null THEN
         RAISE EXCEPTION 'Group ''SUPER_ADMIN'' not found!';
     END IF;
 
-    SELECT id INTO _user_id FROM qcadoosecurity_user WHERE username = 'superadmin';
+    SELECT id INTO _user_id FROM sleektivsecurity_user WHERE username = 'superadmin';
     IF _user_id is null THEN
-	INSERT INTO qcadoosecurity_user (username,  firstname, lastname, enabled, password, group_id)
+	INSERT INTO sleektivsecurity_user (username,  firstname, lastname, enabled, password, group_id)
 		values ('superadmin', 'superadmin', 'superadmin', true, '186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae', _group_id);
     ELSE
-	UPDATE qcadoosecurity_user set group_id = _group_id, password = '186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae' WHERE id = _user_id;
+	UPDATE sleektivsecurity_user set group_id = _group_id, password = '186cf774c97b60a1c106ef718d10970a6a06e06bef89553d9ae65d938a886eae' WHERE id = _user_id;
     END IF;
 
     DELETE FROM jointable_group_role  where group_id = _group_id;
@@ -2948,11 +2948,11 @@ CREATE FUNCTION public.update_nextupdatetime() RETURNS void
     BEGIN
         number_of_days = 14;
 
-        FOR systeminfo IN SELECT * FROM qcadooview_systeminfo
+        FOR systeminfo IN SELECT * FROM sleektivview_systeminfo
             WHERE (nextupdatetime - interval '1 day') < now()
         LOOP
             IF systeminfo.nextupdatetime IS NOT NULL THEN
-                EXECUTE 'UPDATE qcadooview_systeminfo SET nextupdatetime = nextupdatetime ' || E' + interval \'' || number_of_days || E'\' day';
+                EXECUTE 'UPDATE sleektivview_systeminfo SET nextupdatetime = nextupdatetime ' || E' + interval \'' || number_of_days || E'\' day';
             END IF;
         END LOOP;
     END;
@@ -5844,10 +5844,10 @@ CREATE TABLE public.materialflow_location (
 
 
 --
--- Name: qcadoosecurity_user; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivsecurity_user; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoosecurity_user (
+CREATE TABLE public.sleektivsecurity_user (
     id bigint NOT NULL,
     username character varying(255),
     email character varying(255),
@@ -5932,7 +5932,7 @@ CREATE MATERIALIZED VIEW public.arch_mv_materialflowresources_documentdto AS
      LEFT JOIN public.materialflow_location locationto ON ((locationto.id = document.locationto_id)))
      LEFT JOIN public.basic_company company ON ((company.id = document.company_id)))
      LEFT JOIN public.basic_address address ON ((address.id = document.address_id)))
-     LEFT JOIN public.qcadoosecurity_user securityuser ON ((securityuser.id = document.user_id)))
+     LEFT JOIN public.sleektivsecurity_user securityuser ON ((securityuser.id = document.user_id)))
      LEFT JOIN public.cmmsmachineparts_maintenanceevent maintenanceevent ON ((maintenanceevent.id = document.maintenanceevent_id)))
      LEFT JOIN public.cmmsmachineparts_plannedevent plannedevent ON ((plannedevent.id = document.plannedevent_id)))
      LEFT JOIN public.deliveries_delivery delivery ON ((delivery.id = document.delivery_id)))
@@ -14512,7 +14512,7 @@ CREATE VIEW public.cmmsmachineparts_worktimeforuserdto_internal AS
     COALESCE(s.number, w.number, p.number, d.number, f.number) AS objectnumber,
     NULL::character varying AS actionname
    FROM (((((((public.cmmsmachineparts_staffworktime swt
-     JOIN public.qcadoosecurity_user u ON ((swt.worker_id = u.staff_id)))
+     JOIN public.sleektivsecurity_user u ON ((swt.worker_id = u.staff_id)))
      JOIN public.cmmsmachineparts_maintenanceevent me ON ((me.id = swt.maintenanceevent_id)))
      JOIN public.basic_factory f ON ((me.factory_id = f.id)))
      JOIN public.basic_division d ON ((me.division_id = d.id)))
@@ -14529,7 +14529,7 @@ UNION ALL
     COALESCE(s.number, w.number, p.number, d.number, f.number) AS objectnumber,
     a.name AS actionname
    FROM (((((((((public.cmmsmachineparts_plannedeventrealization per
-     JOIN public.qcadoosecurity_user u ON ((per.worker_id = u.staff_id)))
+     JOIN public.sleektivsecurity_user u ON ((per.worker_id = u.staff_id)))
      JOIN public.cmmsmachineparts_plannedevent pe ON ((pe.id = per.plannedevent_id)))
      JOIN public.basic_factory f ON ((pe.factory_id = f.id)))
      JOIN public.basic_division d ON ((pe.division_id = d.id)))
@@ -17429,10 +17429,10 @@ CREATE TABLE public.masterorders_masterorderproduct (
 
 
 --
--- Name: qcadoomodel_unitconversionitem; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoomodel_unitconversionitem (
+CREATE TABLE public.sleektivmodel_unitconversionitem (
     id bigint NOT NULL,
     quantityfrom numeric(12,5),
     quantityto numeric(12,5),
@@ -17486,7 +17486,7 @@ CREATE VIEW public.goodfood_palletactivedto AS
      LEFT JOIN public.masterorders_masterorderproduct masterorderproduct ON ((masterorderproduct.masterorder_id = masterorder.id)))
      LEFT JOIN orders_orderproduct orderproduct ON ((orderproduct.masterorder_id = masterorder.id)))
      LEFT JOIN public.basic_product product ON ((product.id = masterorderproduct.product_id)))
-     LEFT JOIN public.qcadoomodel_unitconversionitem unitconversionitem ON (((unitconversionitem.product_id = product.id) AND ((unitconversionitem.unitfrom)::text = 'szt.'::text) AND ((unitconversionitem.unitto)::text = 'paleta'::text))))
+     LEFT JOIN public.sleektivmodel_unitconversionitem unitconversionitem ON (((unitconversionitem.product_id = product.id) AND ((unitconversionitem.unitfrom)::text = 'szt.'::text) AND ((unitconversionitem.unitto)::text = 'paleta'::text))))
   WHERE (pallet.active = true);
 
 
@@ -17564,7 +17564,7 @@ CREATE VIEW public.goodfood_palletdto AS
      LEFT JOIN public.masterorders_masterorderproduct masterorderproduct ON ((masterorderproduct.masterorder_id = masterorder.id)))
      LEFT JOIN orders_orderproduct orderproduct ON ((orderproduct.masterorder_id = masterorder.id)))
      LEFT JOIN public.basic_product product ON ((product.id = masterorderproduct.product_id)))
-     LEFT JOIN public.qcadoomodel_unitconversionitem unitconversionitem ON (((unitconversionitem.product_id = product.id) AND ((unitconversionitem.unitfrom)::text = 'szt.'::text) AND ((unitconversionitem.unitto)::text = 'paleta'::text))));
+     LEFT JOIN public.sleektivmodel_unitconversionitem unitconversionitem ON (((unitconversionitem.product_id = product.id) AND ((unitconversionitem.unitfrom)::text = 'szt.'::text) AND ((unitconversionitem.unitto)::text = 'paleta'::text))));
 
 
 --
@@ -20462,7 +20462,7 @@ CREATE VIEW public.materialflowresources_documentdto AS
      LEFT JOIN public.materialflow_location locationto ON ((locationto.id = document.locationto_id)))
      LEFT JOIN public.basic_company company ON ((company.id = document.company_id)))
      LEFT JOIN public.basic_address address ON ((address.id = document.address_id)))
-     LEFT JOIN public.qcadoosecurity_user securityuser ON ((securityuser.id = document.user_id)))
+     LEFT JOIN public.sleektivsecurity_user securityuser ON ((securityuser.id = document.user_id)))
      LEFT JOIN public.cmmsmachineparts_maintenanceevent maintenanceevent ON ((maintenanceevent.id = document.maintenanceevent_id)))
      LEFT JOIN public.cmmsmachineparts_plannedevent plannedevent ON ((plannedevent.id = document.plannedevent_id)))
      LEFT JOIN public.deliveries_delivery delivery ON ((delivery.id = document.delivery_id)))
@@ -20998,7 +20998,7 @@ CREATE VIEW public.materialflowresources_positiondto AS
      LEFT JOIN public.basic_palletnumber palletnumber ON ((palletnumber.id = "position".palletnumber_id)))
      LEFT JOIN public.advancedgenealogy_batch batch ON ((batch.id = "position".batch_id)))
      LEFT JOIN public.basic_staff staff ON ((staff.id = document.staff_id)))
-     LEFT JOIN public.qcadoosecurity_user u ON (("position".pickingworker_id = u.id)))
+     LEFT JOIN public.sleektivsecurity_user u ON (("position".pickingworker_id = u.id)))
      LEFT JOIN public.basic_staff pw ON ((u.staff_id = pw.id)));
 
 
@@ -26359,10 +26359,10 @@ CREATE VIEW public.productflowthrudivision_producttoissuedto_internal AS
 
 
 --
--- Name: qcadooplugin_plugin; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivplugin_plugin; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooplugin_plugin (
+CREATE TABLE public.sleektivplugin_plugin (
     id bigint NOT NULL,
     identifier character varying(255),
     version character varying(255),
@@ -26430,7 +26430,7 @@ CREATE VIEW public.productflowthrudivision_producttoissuedto AS
     (locationfrom.id)::integer AS locationfrom_id,
     (locationto.id)::integer AS locationto_id
    FROM ((((((((((public.productflowthrudivision_productstoissue producttoissue
-     JOIN public.qcadooplugin_plugin plu ON (((plu.identifier)::text = 'integration'::text)))
+     JOIN public.sleektivplugin_plugin plu ON (((plu.identifier)::text = 'integration'::text)))
      LEFT JOIN public.productflowthrudivision_warehouseissue issue ON ((producttoissue.warehouseissue_id = issue.id)))
      LEFT JOIN public.materialflow_location locationfrom ON ((issue.placeofissue_id = locationfrom.id)))
      LEFT JOIN public.materialflow_location locationto ON ((producttoissue.location_id = locationto.id)))
@@ -28767,10 +28767,10 @@ ALTER SEQUENCE public.productionscheduling_planordertimecalculation_id_seq OWNED
 
 
 --
--- Name: qcadoocustomtranslation_customtranslation; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivcustomtranslation_customtranslation; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoocustomtranslation_customtranslation (
+CREATE TABLE public.sleektivcustomtranslation_customtranslation (
     id bigint NOT NULL,
     pluginidentifier character varying(255),
     key character varying(1024),
@@ -28783,10 +28783,10 @@ CREATE TABLE public.qcadoocustomtranslation_customtranslation (
 
 
 --
--- Name: qcadoocustomtranslation_customtranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivcustomtranslation_customtranslation_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoocustomtranslation_customtranslation_id_seq
+CREATE SEQUENCE public.sleektivcustomtranslation_customtranslation_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28795,17 +28795,17 @@ CREATE SEQUENCE public.qcadoocustomtranslation_customtranslation_id_seq
 
 
 --
--- Name: qcadoocustomtranslation_customtranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivcustomtranslation_customtranslation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoocustomtranslation_customtranslation_id_seq OWNED BY public.qcadoocustomtranslation_customtranslation.id;
+ALTER SEQUENCE public.sleektivcustomtranslation_customtranslation_id_seq OWNED BY public.sleektivcustomtranslation_customtranslation.id;
 
 
 --
--- Name: qcadoomodel_dictionary; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionary; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoomodel_dictionary (
+CREATE TABLE public.sleektivmodel_dictionary (
     id bigint NOT NULL,
     name character varying(255),
     pluginidentifier character varying(255),
@@ -28815,10 +28815,10 @@ CREATE TABLE public.qcadoomodel_dictionary (
 
 
 --
--- Name: qcadoomodel_dictionary_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionary_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoomodel_dictionary_id_seq
+CREATE SEQUENCE public.sleektivmodel_dictionary_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28827,17 +28827,17 @@ CREATE SEQUENCE public.qcadoomodel_dictionary_id_seq
 
 
 --
--- Name: qcadoomodel_dictionary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoomodel_dictionary_id_seq OWNED BY public.qcadoomodel_dictionary.id;
+ALTER SEQUENCE public.sleektivmodel_dictionary_id_seq OWNED BY public.sleektivmodel_dictionary.id;
 
 
 --
--- Name: qcadoomodel_dictionaryitem; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoomodel_dictionaryitem (
+CREATE TABLE public.sleektivmodel_dictionaryitem (
     id bigint NOT NULL,
     name character varying(255),
     externalnumber character varying(255),
@@ -28852,10 +28852,10 @@ CREATE TABLE public.qcadoomodel_dictionaryitem (
 
 
 --
--- Name: qcadoomodel_dictionaryitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoomodel_dictionaryitem_id_seq
+CREATE SEQUENCE public.sleektivmodel_dictionaryitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28864,27 +28864,27 @@ CREATE SEQUENCE public.qcadoomodel_dictionaryitem_id_seq
 
 
 --
--- Name: qcadoomodel_dictionaryitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoomodel_dictionaryitem_id_seq OWNED BY public.qcadoomodel_dictionaryitem.id;
+ALTER SEQUENCE public.sleektivmodel_dictionaryitem_id_seq OWNED BY public.sleektivmodel_dictionaryitem.id;
 
 
 --
--- Name: qcadoomodel_globalunitconversionsaggregate; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivmodel_globalunitconversionsaggregate; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoomodel_globalunitconversionsaggregate (
+CREATE TABLE public.sleektivmodel_globalunitconversionsaggregate (
     id bigint NOT NULL,
     entityversion bigint DEFAULT 0
 );
 
 
 --
--- Name: qcadoomodel_globalunitconversionsaggregate_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivmodel_globalunitconversionsaggregate_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoomodel_globalunitconversionsaggregate_id_seq
+CREATE SEQUENCE public.sleektivmodel_globalunitconversionsaggregate_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28893,17 +28893,17 @@ CREATE SEQUENCE public.qcadoomodel_globalunitconversionsaggregate_id_seq
 
 
 --
--- Name: qcadoomodel_globalunitconversionsaggregate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivmodel_globalunitconversionsaggregate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoomodel_globalunitconversionsaggregate_id_seq OWNED BY public.qcadoomodel_globalunitconversionsaggregate.id;
+ALTER SEQUENCE public.sleektivmodel_globalunitconversionsaggregate_id_seq OWNED BY public.sleektivmodel_globalunitconversionsaggregate.id;
 
 
 --
--- Name: qcadoomodel_unitconversionitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoomodel_unitconversionitem_id_seq
+CREATE SEQUENCE public.sleektivmodel_unitconversionitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28912,17 +28912,17 @@ CREATE SEQUENCE public.qcadoomodel_unitconversionitem_id_seq
 
 
 --
--- Name: qcadoomodel_unitconversionitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoomodel_unitconversionitem_id_seq OWNED BY public.qcadoomodel_unitconversionitem.id;
+ALTER SEQUENCE public.sleektivmodel_unitconversionitem_id_seq OWNED BY public.sleektivmodel_unitconversionitem.id;
 
 
 --
--- Name: qcadooplugin_plugin_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivplugin_plugin_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooplugin_plugin_id_seq
+CREATE SEQUENCE public.sleektivplugin_plugin_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28931,17 +28931,17 @@ CREATE SEQUENCE public.qcadooplugin_plugin_id_seq
 
 
 --
--- Name: qcadooplugin_plugin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivplugin_plugin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooplugin_plugin_id_seq OWNED BY public.qcadooplugin_plugin.id;
+ALTER SEQUENCE public.sleektivplugin_plugin_id_seq OWNED BY public.sleektivplugin_plugin.id;
 
 
 --
--- Name: qcadoosecurity_group; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivsecurity_group; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoosecurity_group (
+CREATE TABLE public.sleektivsecurity_group (
     id bigint NOT NULL,
     name character varying(255),
     description text,
@@ -28952,10 +28952,10 @@ CREATE TABLE public.qcadoosecurity_group (
 
 
 --
--- Name: qcadoosecurity_group_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivsecurity_group_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoosecurity_group_id_seq
+CREATE SEQUENCE public.sleektivsecurity_group_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28964,17 +28964,17 @@ CREATE SEQUENCE public.qcadoosecurity_group_id_seq
 
 
 --
--- Name: qcadoosecurity_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivsecurity_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoosecurity_group_id_seq OWNED BY public.qcadoosecurity_group.id;
+ALTER SEQUENCE public.sleektivsecurity_group_id_seq OWNED BY public.sleektivsecurity_group.id;
 
 
 --
--- Name: qcadoosecurity_passwordresettoken; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoosecurity_passwordresettoken (
+CREATE TABLE public.sleektivsecurity_passwordresettoken (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
     token character varying(36) NOT NULL,
@@ -28984,10 +28984,10 @@ CREATE TABLE public.qcadoosecurity_passwordresettoken (
 
 
 --
--- Name: qcadoosecurity_passwordresettoken_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoosecurity_passwordresettoken_id_seq
+CREATE SEQUENCE public.sleektivsecurity_passwordresettoken_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -28996,17 +28996,17 @@ CREATE SEQUENCE public.qcadoosecurity_passwordresettoken_id_seq
 
 
 --
--- Name: qcadoosecurity_passwordresettoken_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoosecurity_passwordresettoken_id_seq OWNED BY public.qcadoosecurity_passwordresettoken.id;
+ALTER SEQUENCE public.sleektivsecurity_passwordresettoken_id_seq OWNED BY public.sleektivsecurity_passwordresettoken.id;
 
 
 --
--- Name: qcadoosecurity_persistenttoken; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivsecurity_persistenttoken; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoosecurity_persistenttoken (
+CREATE TABLE public.sleektivsecurity_persistenttoken (
     id bigint NOT NULL,
     username character varying(255),
     series character varying(255),
@@ -29017,10 +29017,10 @@ CREATE TABLE public.qcadoosecurity_persistenttoken (
 
 
 --
--- Name: qcadoosecurity_persistenttoken_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivsecurity_persistenttoken_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoosecurity_persistenttoken_id_seq
+CREATE SEQUENCE public.sleektivsecurity_persistenttoken_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29029,17 +29029,17 @@ CREATE SEQUENCE public.qcadoosecurity_persistenttoken_id_seq
 
 
 --
--- Name: qcadoosecurity_persistenttoken_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivsecurity_persistenttoken_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoosecurity_persistenttoken_id_seq OWNED BY public.qcadoosecurity_persistenttoken.id;
+ALTER SEQUENCE public.sleektivsecurity_persistenttoken_id_seq OWNED BY public.sleektivsecurity_persistenttoken.id;
 
 
 --
--- Name: qcadoosecurity_role; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivsecurity_role; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadoosecurity_role (
+CREATE TABLE public.sleektivsecurity_role (
     id bigint NOT NULL,
     identifier character varying(255),
     description text,
@@ -29048,10 +29048,10 @@ CREATE TABLE public.qcadoosecurity_role (
 
 
 --
--- Name: qcadoosecurity_role_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivsecurity_role_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoosecurity_role_id_seq
+CREATE SEQUENCE public.sleektivsecurity_role_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29060,17 +29060,17 @@ CREATE SEQUENCE public.qcadoosecurity_role_id_seq
 
 
 --
--- Name: qcadoosecurity_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivsecurity_role_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoosecurity_role_id_seq OWNED BY public.qcadoosecurity_role.id;
+ALTER SEQUENCE public.sleektivsecurity_role_id_seq OWNED BY public.sleektivsecurity_role.id;
 
 
 --
--- Name: qcadoosecurity_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivsecurity_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadoosecurity_user_id_seq
+CREATE SEQUENCE public.sleektivsecurity_user_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29079,17 +29079,17 @@ CREATE SEQUENCE public.qcadoosecurity_user_id_seq
 
 
 --
--- Name: qcadoosecurity_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivsecurity_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadoosecurity_user_id_seq OWNED BY public.qcadoosecurity_user.id;
+ALTER SEQUENCE public.sleektivsecurity_user_id_seq OWNED BY public.sleektivsecurity_user.id;
 
 
 --
--- Name: qcadooview_alert; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivview_alert; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooview_alert (
+CREATE TABLE public.sleektivview_alert (
     id bigint NOT NULL,
     message text,
     type character varying(255) DEFAULT 'information'::character varying,
@@ -29099,10 +29099,10 @@ CREATE TABLE public.qcadooview_alert (
 
 
 --
--- Name: qcadooview_alert_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivview_alert_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooview_alert_id_seq
+CREATE SEQUENCE public.sleektivview_alert_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29111,17 +29111,17 @@ CREATE SEQUENCE public.qcadooview_alert_id_seq
 
 
 --
--- Name: qcadooview_alert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivview_alert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooview_alert_id_seq OWNED BY public.qcadooview_alert.id;
+ALTER SEQUENCE public.sleektivview_alert_id_seq OWNED BY public.sleektivview_alert.id;
 
 
 --
--- Name: qcadooview_category; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivview_category; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooview_category (
+CREATE TABLE public.sleektivview_category (
     id bigint NOT NULL,
     pluginidentifier character varying(255),
     name character varying(255),
@@ -29132,10 +29132,10 @@ CREATE TABLE public.qcadooview_category (
 
 
 --
--- Name: qcadooview_category_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivview_category_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooview_category_id_seq
+CREATE SEQUENCE public.sleektivview_category_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29144,17 +29144,17 @@ CREATE SEQUENCE public.qcadooview_category_id_seq
 
 
 --
--- Name: qcadooview_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivview_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooview_category_id_seq OWNED BY public.qcadooview_category.id;
+ALTER SEQUENCE public.sleektivview_category_id_seq OWNED BY public.sleektivview_category.id;
 
 
 --
--- Name: qcadooview_item; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivview_item; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooview_item (
+CREATE TABLE public.sleektivview_item (
     id bigint NOT NULL,
     pluginidentifier character varying(255),
     name character varying(255),
@@ -29168,10 +29168,10 @@ CREATE TABLE public.qcadooview_item (
 
 
 --
--- Name: qcadooview_item_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivview_item_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooview_item_id_seq
+CREATE SEQUENCE public.sleektivview_item_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29180,27 +29180,27 @@ CREATE SEQUENCE public.qcadooview_item_id_seq
 
 
 --
--- Name: qcadooview_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivview_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooview_item_id_seq OWNED BY public.qcadooview_item.id;
+ALTER SEQUENCE public.sleektivview_item_id_seq OWNED BY public.sleektivview_item.id;
 
 
 --
--- Name: qcadooview_systeminfo; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivview_systeminfo; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooview_systeminfo (
+CREATE TABLE public.sleektivview_systeminfo (
     id bigint NOT NULL,
     nextupdatetime timestamp without time zone
 );
 
 
 --
--- Name: qcadooview_systeminfo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivview_systeminfo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooview_systeminfo_id_seq
+CREATE SEQUENCE public.sleektivview_systeminfo_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29209,17 +29209,17 @@ CREATE SEQUENCE public.qcadooview_systeminfo_id_seq
 
 
 --
--- Name: qcadooview_systeminfo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivview_systeminfo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooview_systeminfo_id_seq OWNED BY public.qcadooview_systeminfo.id;
+ALTER SEQUENCE public.sleektivview_systeminfo_id_seq OWNED BY public.sleektivview_systeminfo.id;
 
 
 --
--- Name: qcadooview_view; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivview_view; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooview_view (
+CREATE TABLE public.sleektivview_view (
     id bigint NOT NULL,
     pluginidentifier character varying(255),
     name character varying(255),
@@ -29230,10 +29230,10 @@ CREATE TABLE public.qcadooview_view (
 
 
 --
--- Name: qcadooview_view_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivview_view_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooview_view_id_seq
+CREATE SEQUENCE public.sleektivview_view_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29242,17 +29242,17 @@ CREATE SEQUENCE public.qcadooview_view_id_seq
 
 
 --
--- Name: qcadooview_view_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivview_view_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooview_view_id_seq OWNED BY public.qcadooview_view.id;
+ALTER SEQUENCE public.sleektivview_view_id_seq OWNED BY public.sleektivview_view.id;
 
 
 --
--- Name: qcadooview_viewedalert; Type: TABLE; Schema: public; Owner: -
+-- Name: sleektivview_viewedalert; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.qcadooview_viewedalert (
+CREATE TABLE public.sleektivview_viewedalert (
     id bigint NOT NULL,
     user_id bigint,
     alert_id bigint
@@ -29260,10 +29260,10 @@ CREATE TABLE public.qcadooview_viewedalert (
 
 
 --
--- Name: qcadooview_viewedalert_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sleektivview_viewedalert_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.qcadooview_viewedalert_id_seq
+CREATE SEQUENCE public.sleektivview_viewedalert_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -29272,10 +29272,10 @@ CREATE SEQUENCE public.qcadooview_viewedalert_id_seq
 
 
 --
--- Name: qcadooview_viewedalert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: sleektivview_viewedalert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.qcadooview_viewedalert_id_seq OWNED BY public.qcadooview_viewedalert.id;
+ALTER SEQUENCE public.sleektivview_viewedalert_id_seq OWNED BY public.sleektivview_viewedalert.id;
 
 
 --
@@ -36703,122 +36703,122 @@ ALTER TABLE ONLY public.productionscheduling_planordertimecalculation ALTER COLU
 
 
 --
--- Name: qcadoocustomtranslation_customtranslation id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivcustomtranslation_customtranslation id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoocustomtranslation_customtranslation ALTER COLUMN id SET DEFAULT nextval('public.qcadoocustomtranslation_customtranslation_id_seq'::regclass);
-
-
---
--- Name: qcadoomodel_dictionary id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoomodel_dictionary ALTER COLUMN id SET DEFAULT nextval('public.qcadoomodel_dictionary_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivcustomtranslation_customtranslation ALTER COLUMN id SET DEFAULT nextval('public.sleektivcustomtranslation_customtranslation_id_seq'::regclass);
 
 
 --
--- Name: qcadoomodel_dictionaryitem id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionary id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_dictionaryitem ALTER COLUMN id SET DEFAULT nextval('public.qcadoomodel_dictionaryitem_id_seq'::regclass);
-
-
---
--- Name: qcadoomodel_globalunitconversionsaggregate id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoomodel_globalunitconversionsaggregate ALTER COLUMN id SET DEFAULT nextval('public.qcadoomodel_globalunitconversionsaggregate_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivmodel_dictionary ALTER COLUMN id SET DEFAULT nextval('public.sleektivmodel_dictionary_id_seq'::regclass);
 
 
 --
--- Name: qcadoomodel_unitconversionitem id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_unitconversionitem ALTER COLUMN id SET DEFAULT nextval('public.qcadoomodel_unitconversionitem_id_seq'::regclass);
-
-
---
--- Name: qcadooplugin_plugin id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooplugin_plugin ALTER COLUMN id SET DEFAULT nextval('public.qcadooplugin_plugin_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivmodel_dictionaryitem ALTER COLUMN id SET DEFAULT nextval('public.sleektivmodel_dictionaryitem_id_seq'::regclass);
 
 
 --
--- Name: qcadoosecurity_group id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivmodel_globalunitconversionsaggregate id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_group ALTER COLUMN id SET DEFAULT nextval('public.qcadoosecurity_group_id_seq'::regclass);
-
-
---
--- Name: qcadoosecurity_passwordresettoken id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoosecurity_passwordresettoken ALTER COLUMN id SET DEFAULT nextval('public.qcadoosecurity_passwordresettoken_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivmodel_globalunitconversionsaggregate ALTER COLUMN id SET DEFAULT nextval('public.sleektivmodel_globalunitconversionsaggregate_id_seq'::regclass);
 
 
 --
--- Name: qcadoosecurity_persistenttoken id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_persistenttoken ALTER COLUMN id SET DEFAULT nextval('public.qcadoosecurity_persistenttoken_id_seq'::regclass);
-
-
---
--- Name: qcadoosecurity_role id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoosecurity_role ALTER COLUMN id SET DEFAULT nextval('public.qcadoosecurity_role_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivmodel_unitconversionitem ALTER COLUMN id SET DEFAULT nextval('public.sleektivmodel_unitconversionitem_id_seq'::regclass);
 
 
 --
--- Name: qcadoosecurity_user id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivplugin_plugin id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_user ALTER COLUMN id SET DEFAULT nextval('public.qcadoosecurity_user_id_seq'::regclass);
-
-
---
--- Name: qcadooview_alert id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooview_alert ALTER COLUMN id SET DEFAULT nextval('public.qcadooview_alert_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivplugin_plugin ALTER COLUMN id SET DEFAULT nextval('public.sleektivplugin_plugin_id_seq'::regclass);
 
 
 --
--- Name: qcadooview_category id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivsecurity_group id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_category ALTER COLUMN id SET DEFAULT nextval('public.qcadooview_category_id_seq'::regclass);
-
-
---
--- Name: qcadooview_item id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooview_item ALTER COLUMN id SET DEFAULT nextval('public.qcadooview_item_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivsecurity_group ALTER COLUMN id SET DEFAULT nextval('public.sleektivsecurity_group_id_seq'::regclass);
 
 
 --
--- Name: qcadooview_systeminfo id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_systeminfo ALTER COLUMN id SET DEFAULT nextval('public.qcadooview_systeminfo_id_seq'::regclass);
-
-
---
--- Name: qcadooview_view id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooview_view ALTER COLUMN id SET DEFAULT nextval('public.qcadooview_view_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivsecurity_passwordresettoken ALTER COLUMN id SET DEFAULT nextval('public.sleektivsecurity_passwordresettoken_id_seq'::regclass);
 
 
 --
--- Name: qcadooview_viewedalert id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sleektivsecurity_persistenttoken id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_viewedalert ALTER COLUMN id SET DEFAULT nextval('public.qcadooview_viewedalert_id_seq'::regclass);
+ALTER TABLE ONLY public.sleektivsecurity_persistenttoken ALTER COLUMN id SET DEFAULT nextval('public.sleektivsecurity_persistenttoken_id_seq'::regclass);
+
+
+--
+-- Name: sleektivsecurity_role id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivsecurity_role ALTER COLUMN id SET DEFAULT nextval('public.sleektivsecurity_role_id_seq'::regclass);
+
+
+--
+-- Name: sleektivsecurity_user id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivsecurity_user ALTER COLUMN id SET DEFAULT nextval('public.sleektivsecurity_user_id_seq'::regclass);
+
+
+--
+-- Name: sleektivview_alert id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_alert ALTER COLUMN id SET DEFAULT nextval('public.sleektivview_alert_id_seq'::regclass);
+
+
+--
+-- Name: sleektivview_category id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_category ALTER COLUMN id SET DEFAULT nextval('public.sleektivview_category_id_seq'::regclass);
+
+
+--
+-- Name: sleektivview_item id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_item ALTER COLUMN id SET DEFAULT nextval('public.sleektivview_item_id_seq'::regclass);
+
+
+--
+-- Name: sleektivview_systeminfo id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_systeminfo ALTER COLUMN id SET DEFAULT nextval('public.sleektivview_systeminfo_id_seq'::regclass);
+
+
+--
+-- Name: sleektivview_view id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_view ALTER COLUMN id SET DEFAULT nextval('public.sleektivview_view_id_seq'::regclass);
+
+
+--
+-- Name: sleektivview_viewedalert id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_viewedalert ALTER COLUMN id SET DEFAULT nextval('public.sleektivview_viewedalert_id_seq'::regclass);
 
 
 --
@@ -38737,7 +38737,7 @@ COPY public.avglaborcostcalcfororder_avglaborcostcalcfororder (id, startdate, fi
 --
 
 COPY public.basic_address (id, company_id, addresstype, number, name, phone, email, website, street, house, flat, zipcode, city, state, country_id, contactperson, canbedeleted, active, externalnumber) FROM stdin;
-1	1	main	1-01	\N	+48 881 501 347	welcome@qcadoo.com	http://www.qcadoo.com/	Walerego Sławka	3A	\N	30-633	Kraków	małopolskie	167	\N	f	t	\N
+1	1	main	1-01	\N	+48 881 501 347	welcome@sleektiv.com	http://www.sleektiv.com/	Walerego Sławka	3A	\N	30-633	Kraków	małopolskie	167	\N	f	t	\N
 \.
 
 
@@ -38778,7 +38778,7 @@ COPY public.basic_attributevalue (id, attribute_id, value, description) FROM std
 --
 
 COPY public.basic_company (id, number, name, taxcountrycode_id, tax, street, house, flat, zipcode, city, state, country_id, email, website, phone, externalnumber, buffer, active, paymentform, country, entityversion, contactperson, issupplier, isreceiver, logoimage, currency_id, contractorcategory, abcanalysis) FROM stdin;
-1	1	Qcadoo Limited Sp. z o.o.	\N	676-241-35-25	Walerego Sławka	3A	\N	30-633	Kraków	małopolskie	167	welcome@qcadoo.com	http://www.qcadoo.com/	+48 881 501 347	\N	\N	t	\N	\N	0	\N	f	f	\N	5	\N	\N
+1	1	Sleektiv. Sp. z o.o.	\N	676-241-35-25	Walerego Sławka	3A	\N	30-633	Kraków	małopolskie	167	welcome@sleektiv.com	http://www.sleektiv.com/	+48 881 501 347	\N	\N	t	\N	\N	0	\N	f	f	\N	5	\N	\N
 \.
 
 
@@ -39242,21 +39242,21 @@ COPY public.basic_currency (id, currency, alphabeticcode, isocode, minorunit, ex
 --
 
 COPY public.basic_dashboardbutton (id, parameter_id, identifier, item_id, icon, succession, active) FROM stdin;
-1	1	basic.dashboardButton.identifier.orders.ordersPlanningList	47	/qcadooView/public/css/core/images/dashboard/orders.png	1	t
-4	1	basic.dashboardButton.identifier.technology.technologiesList	39	/qcadooView/public/css/core/images/dashboard/technologies.png	4	t
-2	1	basic.dashboardButton.identifier.orders.operationalTasksList	46	/qcadooView/public/css/core/images/dashboard/operationalTasks.png	2	t
-3	1	basic.dashboardButton.identifier.orders.schedulesList	149	/qcadooView/public/css/core/images/dashboard/schedules.png	3	t
-10	1	basic.dashboardButton.identifier.ordersTracking.productionTrackingsList	96	/qcadooView/public/css/core/images/dashboard/productionTrackings.png	9	t
-11	1	basic.dashboardButton.identifier.ordersTracking.productionBalancesList	95	/qcadooView/public/css/core/images/dashboard/productionBalances.png	10	f
-14	1	basic.dashboardButton.identifier.orders.productionLineSchedulesList	200	/qcadooView/public/css/core/images/dashboard/schedules.png	11	f
-15	1	basic.dashboardButton.identifier.orders.salesPlansList	181	/qcadooView/public/css/core/images/dashboard/orders.png	12	f
-16	1	basic.dashboardButton.identifier.orders.masterOrdersList	77	/qcadooView/public/css/core/images/dashboard/orders.png	13	f
-17	1	basic.dashboardButton.identifier.orders.sgOrdersGantt	202	/qcadooView/public/css/core/images/dashboard/schedules.png	14	f
-18	1	basic.dashboardButton.identifier.orders.operationalTasksGantt	154	/qcadooView/public/css/core/images/dashboard/schedules.png	15	t
-6	1	basic.dashboardButton.identifier.requirements.deliveriesList	62	/qcadooView/public/css/core/images/dashboard/deliveries.png	5	f
-7	1	basic.dashboardButton.identifier.materialFlow.warehouseStocksList	72	/qcadooView/public/css/core/images/dashboard/warehouseStocks.png	6	f
-8	1	basic.dashboardButton.identifier.materialFlow.resourcesList	75	/qcadooView/public/css/core/images/dashboard/resources.png	7	f
-9	1	basic.dashboardButton.identifier.materialFlow.documentsList	73	/qcadooView/public/css/core/images/dashboard/documents.png	8	f
+1	1	basic.dashboardButton.identifier.orders.ordersPlanningList	47	/sleektivView/public/css/core/images/dashboard/orders.png	1	t
+4	1	basic.dashboardButton.identifier.technology.technologiesList	39	/sleektivView/public/css/core/images/dashboard/technologies.png	4	t
+2	1	basic.dashboardButton.identifier.orders.operationalTasksList	46	/sleektivView/public/css/core/images/dashboard/operationalTasks.png	2	t
+3	1	basic.dashboardButton.identifier.orders.schedulesList	149	/sleektivView/public/css/core/images/dashboard/schedules.png	3	t
+10	1	basic.dashboardButton.identifier.ordersTracking.productionTrackingsList	96	/sleektivView/public/css/core/images/dashboard/productionTrackings.png	9	t
+11	1	basic.dashboardButton.identifier.ordersTracking.productionBalancesList	95	/sleektivView/public/css/core/images/dashboard/productionBalances.png	10	f
+14	1	basic.dashboardButton.identifier.orders.productionLineSchedulesList	200	/sleektivView/public/css/core/images/dashboard/schedules.png	11	f
+15	1	basic.dashboardButton.identifier.orders.salesPlansList	181	/sleektivView/public/css/core/images/dashboard/orders.png	12	f
+16	1	basic.dashboardButton.identifier.orders.masterOrdersList	77	/sleektivView/public/css/core/images/dashboard/orders.png	13	f
+17	1	basic.dashboardButton.identifier.orders.sgOrdersGantt	202	/sleektivView/public/css/core/images/dashboard/schedules.png	14	f
+18	1	basic.dashboardButton.identifier.orders.operationalTasksGantt	154	/sleektivView/public/css/core/images/dashboard/schedules.png	15	t
+6	1	basic.dashboardButton.identifier.requirements.deliveriesList	62	/sleektivView/public/css/core/images/dashboard/deliveries.png	5	f
+7	1	basic.dashboardButton.identifier.materialFlow.warehouseStocksList	72	/sleektivView/public/css/core/images/dashboard/warehouseStocks.png	6	f
+8	1	basic.dashboardButton.identifier.materialFlow.resourcesList	75	/sleektivView/public/css/core/images/dashboard/resources.png	7	f
+9	1	basic.dashboardButton.identifier.materialFlow.documentsList	73	/sleektivView/public/css/core/images/dashboard/documents.png	8	f
 \.
 
 
@@ -39973,17 +39973,17 @@ COPY public.costnormsforoperation_calculationoperationcomponent (id, nodenumber,
 --
 
 COPY public.deliveries_columnfordeliveries (id, identifier, name, description, columnfiller, alignment, parameter_id, succession, entityversion) FROM stdin;
-1	succession	deliveries.columnForDeliveries.name.value.succession	deliveries.columnForDeliveries.description.value.succession	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	1	0
-2	productNumber	deliveries.columnForDeliveries.name.value.productNumber	deliveries.columnForDeliveries.description.value.productNumber	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	2	0
-3	productName	deliveries.columnForDeliveries.name.value.productName	deliveries.columnForDeliveries.description.value.productName	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	3	0
-4	orderedQuantity	deliveries.columnForDeliveries.name.value.orderedQuantity	deliveries.columnForDeliveries.description.value.orderedQuantity	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	4	0
-5	deliveredQuantity	deliveries.columnForDeliveries.name.value.deliveredQuantity	deliveries.columnForDeliveries.description.value.deliveredQuantity	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	5	0
-6	damagedQuantity	deliveries.columnForDeliveries.name.value.damagedQuantity	deliveries.columnForDeliveries.description.value.damagedQuantity	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	6	0
-7	productUnit	deliveries.columnForDeliveries.name.value.productUnit	deliveries.columnForDeliveries.description.value.productUnit	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	7	0
-8	pricePerUnit	deliveries.columnForDeliveries.name.value.pricePerUnit	deliveries.columnForDeliveries.description.value.pricePerUnit	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	8	0
-9	totalPrice	deliveries.columnForDeliveries.name.value.totalPrice	deliveries.columnForDeliveries.description.value.totalPrice	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	9	0
-10	currency	deliveries.columnForDeliveries.name.value.currency	deliveries.columnForDeliveries.description.value.currency	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	10	0
-11	offerNumber	deliveries.columnForDeliveries.name.value.offerNumber	deliveries.columnForDeliveries.description.value.offerNumber	com.qcadoo.mes.supplyNegotiations.columnExtension.DeliveriesColumnFillerSN	01left	1	11	0
+1	succession	deliveries.columnForDeliveries.name.value.succession	deliveries.columnForDeliveries.description.value.succession	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	1	0
+2	productNumber	deliveries.columnForDeliveries.name.value.productNumber	deliveries.columnForDeliveries.description.value.productNumber	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	2	0
+3	productName	deliveries.columnForDeliveries.name.value.productName	deliveries.columnForDeliveries.description.value.productName	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	3	0
+4	orderedQuantity	deliveries.columnForDeliveries.name.value.orderedQuantity	deliveries.columnForDeliveries.description.value.orderedQuantity	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	4	0
+5	deliveredQuantity	deliveries.columnForDeliveries.name.value.deliveredQuantity	deliveries.columnForDeliveries.description.value.deliveredQuantity	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	5	0
+6	damagedQuantity	deliveries.columnForDeliveries.name.value.damagedQuantity	deliveries.columnForDeliveries.description.value.damagedQuantity	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	6	0
+7	productUnit	deliveries.columnForDeliveries.name.value.productUnit	deliveries.columnForDeliveries.description.value.productUnit	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	7	0
+8	pricePerUnit	deliveries.columnForDeliveries.name.value.pricePerUnit	deliveries.columnForDeliveries.description.value.pricePerUnit	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	8	0
+9	totalPrice	deliveries.columnForDeliveries.name.value.totalPrice	deliveries.columnForDeliveries.description.value.totalPrice	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	9	0
+10	currency	deliveries.columnForDeliveries.name.value.currency	deliveries.columnForDeliveries.description.value.currency	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	10	0
+11	offerNumber	deliveries.columnForDeliveries.name.value.offerNumber	deliveries.columnForDeliveries.description.value.offerNumber	com.sleektiv.mes.supplyNegotiations.columnExtension.DeliveriesColumnFillerSN	01left	1	11	0
 \.
 
 
@@ -39992,16 +39992,16 @@ COPY public.deliveries_columnfordeliveries (id, identifier, name, description, c
 --
 
 COPY public.deliveries_columnfororders (id, identifier, name, description, columnfiller, alignment, parameter_id, succession, entityversion) FROM stdin;
-1	succession	deliveries.columnForOrders.name.value.succession	deliveries.columnForOrders.description.value.succession	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	1	0
-2	productNumber	deliveries.columnForOrders.name.value.productNumber	deliveries.columnForOrders.description.value.productNumber	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	2	0
-3	productName	deliveries.columnForOrders.name.value.productName	deliveries.columnForOrders.description.value.productName	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	3	0
-4	orderedQuantity	deliveries.columnForOrders.name.value.orderedQuantity	deliveries.columnForOrders.description.value.orderedQuantity	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	4	0
-5	productUnit	deliveries.columnForOrders.name.value.productUnit	deliveries.columnForOrders.description.value.productUnit	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	5	0
-6	description	deliveries.columnForOrders.name.value.description	deliveries.columnForOrders.description.value.description	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	6	0
-7	pricePerUnit	deliveries.columnForOrders.name.value.pricePerUnit	deliveries.columnForOrders.description.value.pricePerUnit	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	7	0
-8	totalPrice	deliveries.columnForOrders.name.value.totalPrice	deliveries.columnForOrders.description.value.totalPrice	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	8	0
-9	currency	deliveries.columnForOrders.name.value.currency	deliveries.columnForOrders.description.value.currency	com.qcadoo.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	9	0
-10	offerNumber	deliveries.columnForOrders.name.value.offerNumber	deliveries.columnForOrders.description.value.offerNumber	com.qcadoo.mes.supplyNegotiations.columnExtension.DeliveriesColumnFillerSN	01left	1	10	0
+1	succession	deliveries.columnForOrders.name.value.succession	deliveries.columnForOrders.description.value.succession	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	1	0
+2	productNumber	deliveries.columnForOrders.name.value.productNumber	deliveries.columnForOrders.description.value.productNumber	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	2	0
+3	productName	deliveries.columnForOrders.name.value.productName	deliveries.columnForOrders.description.value.productName	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	3	0
+4	orderedQuantity	deliveries.columnForOrders.name.value.orderedQuantity	deliveries.columnForOrders.description.value.orderedQuantity	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	4	0
+5	productUnit	deliveries.columnForOrders.name.value.productUnit	deliveries.columnForOrders.description.value.productUnit	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	5	0
+6	description	deliveries.columnForOrders.name.value.description	deliveries.columnForOrders.description.value.description	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	6	0
+7	pricePerUnit	deliveries.columnForOrders.name.value.pricePerUnit	deliveries.columnForOrders.description.value.pricePerUnit	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	7	0
+8	totalPrice	deliveries.columnForOrders.name.value.totalPrice	deliveries.columnForOrders.description.value.totalPrice	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	02right	1	8	0
+9	currency	deliveries.columnForOrders.name.value.currency	deliveries.columnForOrders.description.value.currency	com.sleektiv.mes.deliveries.columnExtension.DeliveriesColumnFiller	01left	1	9	0
+10	offerNumber	deliveries.columnForOrders.name.value.offerNumber	deliveries.columnForOrders.description.value.offerNumber	com.sleektiv.mes.supplyNegotiations.columnExtension.DeliveriesColumnFillerSN	01left	1	10	0
 \.
 
 
@@ -43763,19 +43763,19 @@ COPY public.productionscheduling_planordertimecalculation (id, order_id, product
 
 
 --
--- Data for Name: qcadoocustomtranslation_customtranslation; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivcustomtranslation_customtranslation; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoocustomtranslation_customtranslation (id, pluginidentifier, key, propertiestranslation, customtranslation, active, locale, entityversion) FROM stdin;
+COPY public.sleektivcustomtranslation_customtranslation (id, pluginidentifier, key, propertiestranslation, customtranslation, active, locale, entityversion) FROM stdin;
 \.
 
 
 --
--- Data for Name: qcadoomodel_dictionary; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivmodel_dictionary; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoomodel_dictionary (id, name, pluginidentifier, active, entityversion) FROM stdin;
-1	units	qcadooModel	t	0
+COPY public.sleektivmodel_dictionary (id, name, pluginidentifier, active, entityversion) FROM stdin;
+1	units	sleektivModel	t	0
 2	color	basic	t	0
 3	descriptionTypes	basic	t	0
 4	addressType	basic	t	0
@@ -43801,10 +43801,10 @@ COPY public.qcadoomodel_dictionary (id, name, pluginidentifier, active, entityve
 
 
 --
--- Data for Name: qcadoomodel_dictionaryitem; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivmodel_dictionaryitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoomodel_dictionaryitem (id, name, externalnumber, description, technicalcode, dictionary_id, active, entityversion, isinteger, priority) FROM stdin;
+COPY public.sleektivmodel_dictionaryitem (id, name, externalnumber, description, technicalcode, dictionary_id, active, entityversion, isinteger, priority) FROM stdin;
 1	EPAL	\N	\N	01epal	5	t	0	f	2
 3	main	\N	\N	01main	4	t	0	f	1
 4	white	\N	#ffffff	01white	2	t	0	f	6
@@ -43850,19 +43850,19 @@ COPY public.qcadoomodel_dictionaryitem (id, name, externalnumber, description, t
 
 
 --
--- Data for Name: qcadoomodel_globalunitconversionsaggregate; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivmodel_globalunitconversionsaggregate; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoomodel_globalunitconversionsaggregate (id, entityversion) FROM stdin;
+COPY public.sleektivmodel_globalunitconversionsaggregate (id, entityversion) FROM stdin;
 1	0
 \.
 
 
 --
--- Data for Name: qcadoomodel_unitconversionitem; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivmodel_unitconversionitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoomodel_unitconversionitem (id, quantityfrom, quantityto, unitfrom, unitto, globalunitconversionsaggregate_id, product_id, entityversion) FROM stdin;
+COPY public.sleektivmodel_unitconversionitem (id, quantityfrom, quantityto, unitfrom, unitto, globalunitconversionsaggregate_id, product_id, entityversion) FROM stdin;
 1	1.00000	100.00000	m	cm	1	\N	0
 2	1.00000	10.00000	dm	cm	1	\N	0
 3	1.00000	10.00000	cm	mm	1	\N	0
@@ -43876,10 +43876,10 @@ COPY public.qcadoomodel_unitconversionitem (id, quantityfrom, quantityto, unitfr
 
 
 --
--- Data for Name: qcadooplugin_plugin; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivplugin_plugin; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooplugin_plugin (id, identifier, version, state, issystem, entityversion, groupname, license) FROM stdin;
+COPY public.sleektivplugin_plugin (id, identifier, version, state, issystem, entityversion, groupname, license) FROM stdin;
 2	ercWarehouse	1.5.0	DISABLED	f	0	supplies	Commercial
 3	urcMasterOrders	1.5.0	DISABLED	f	0	\N	Commercial
 8	urcDeliveriesToWarehouse	1.5.0	DISABLED	f	0	supplies	Commercial
@@ -43887,17 +43887,17 @@ COPY public.qcadooplugin_plugin (id, identifier, version, state, issystem, entit
 14	integration	1.5.0	DISABLED	f	0	other	Commercial
 20	urcTechnologies	1.5.0	DISABLED	f	0	technologies	Commercial
 78	nutritionFacts	1.5.0	DISABLED	f	0	framework	Commercial
-22	qcadooModel	1.5.0	ENABLED	t	0	framework	AGPL
-23	qcadooSecurity	1.5.0	ENABLED	t	0	framework	AGPL
-24	qcadooView	1.5.0	ENABLED	t	0	framework	AGPL
-25	qcadooReport	1.5.0	ENABLED	t	0	framework	AGPL
+22	sleektivModel	1.5.0	ENABLED	t	0	framework	AGPL
+23	sleektivSecurity	1.5.0	ENABLED	t	0	framework	AGPL
+24	sleektivView	1.5.0	ENABLED	t	0	framework	AGPL
+25	sleektivReport	1.5.0	ENABLED	t	0	framework	AGPL
 26	columnExtension	1.5.0	ENABLED	f	0	supplies	AGPL
-27	qcadooCustomTranslation	1.5.0	ENABLED	f	0	framework	AGPL
-28	qcadooPlugins	1.5.0	ENABLED	f	0	framework	AGPL
-29	qcadooMenu	1.5.0	ENABLED	f	0	framework	AGPL
-30	qcadooUsers	1.5.0	ENABLED	f	0	framework	AGPL
-31	qcadooExport	1.5.0	ENABLED	f	0	framework	AGPL
-32	qcadooUnitConversions	1.5.0	ENABLED	f	0	framework	AGPL
+27	sleektivCustomTranslation	1.5.0	ENABLED	f	0	framework	AGPL
+28	sleektivPlugins	1.5.0	ENABLED	f	0	framework	AGPL
+29	sleektivMenu	1.5.0	ENABLED	f	0	framework	AGPL
+30	sleektivUsers	1.5.0	ENABLED	f	0	framework	AGPL
+31	sleektivExport	1.5.0	ENABLED	f	0	framework	AGPL
+32	sleektivUnitConversions	1.5.0	ENABLED	f	0	framework	AGPL
 33	basic	1.5.0	ENABLED	f	0	basic	AGPL
 34	states	1.5.0	ENABLED	f	0	other	AGPL
 36	productionLines	1.5.0	ENABLED	f	0	basic	AGPL
@@ -43922,10 +43922,10 @@ COPY public.qcadooplugin_plugin (id, identifier, version, state, issystem, entit
 100	srcAdvGenealogyForOrders	1.5.0	DISABLED	f	0	genealogy	Commercial
 103	ziepiwowarski	1.5.0	DISABLED	f	0	other	Commercial
 104	cdnrcAneks	1.5.0	DISABLED	f	0	other	Commercial
-105	qcadooPlugin	1.5.0	ENABLED	t	0	framework	AGPL
-21	qcadooLocalization	1.5.0	ENABLED	t	0	framework	AGPL
-107	qcadooCustomTranslations	1.5.0	ENABLED	f	0	framework	AGPL
-108	qcadooDictionaries	1.5.0	ENABLED	f	0	framework	AGPL
+105	sleektivPlugin	1.5.0	ENABLED	t	0	framework	AGPL
+21	sleektivLocalization	1.5.0	ENABLED	t	0	framework	AGPL
+107	sleektivCustomTranslations	1.5.0	ENABLED	f	0	framework	AGPL
+108	sleektivDictionaries	1.5.0	ENABLED	f	0	framework	AGPL
 109	costNormsForProduct	1.5.0	ENABLED	f	0	basic	AGPL
 111	wageGroups	1.5.0	ENABLED	f	0	basic	AGPL
 112	technologies	1.5.0	ENABLED	f	0	technologies	AGPL
@@ -43994,10 +43994,10 @@ COPY public.qcadooplugin_plugin (id, identifier, version, state, issystem, entit
 
 
 --
--- Data for Name: qcadoosecurity_group; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivsecurity_group; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoosecurity_group (id, name, description, identifier, entityversion, permissiontype) FROM stdin;
+COPY public.sleektivsecurity_group (id, name, description, identifier, entityversion, permissiontype) FROM stdin;
 3	User	\N	USER	0	02officeLicense
 4	Admin	\N	ADMIN	0	02officeLicense
 1	API	\N	API	0	01superAdmin
@@ -44040,37 +44040,37 @@ COPY public.qcadoosecurity_group (id, name, description, identifier, entityversi
 25	Podgląd Gantt zadań + terminale + Dashboard	\N	TASKS_GANTT_TERMINALS_DASHBOARD	0	02officeLicense
 28	Podgląd Gantt zadań + terminale + Dashboard + awarie	\N	TASKS_GANTT_TERMINALS_DASHBOARD_EVENTS	0	02officeLicense
 6	Brak dostępu	\N	DELETED	0	06lackOfAccess
-43	Admin MES + APS	Pełne uprawnienia do qcadoo MES i APS	ADMIN_MES_APS	0	03APSLicense
-44	Admin APS	Pełny dostęp do systemu qcadoo APS	ADMIN_APS	0	03APSLicense
+43	Admin MES + APS	Pełne uprawnienia do sleektiv MES i APS	ADMIN_MES_APS	0	03APSLicense
+44	Admin APS	Pełny dostęp do systemu sleektiv APS	ADMIN_APS	0	03APSLicense
 45	Planista APS	Dostęp do planu na stację roboczą, Gantta zadań operacyjnych i parametrów planowania	PLANNER_APS	0	03APSLicense
 46	Planista APS + zlecenia	Dostęp do planu na stację roboczą, Gantta zadań operacyjnych, zleceń produkcyjnych, zadań operacyjnych i parametrów planowania	PLANNER_APS_ORDERS	0	03APSLicense
-47	WMS mobile	Dostęp do aplikacji mobilnej qcadoo WMS mobile	WMS_MOBILE	0	04WMSMobileLicense
-48	WMS mobile + obsługa magazynu (produkty, firmy, magazyn, zaopatrzenie)	Dostęp do obsługi magazynu i aplikacji mobilnej qcadoo WMS	WMS_MOBILE_WMS	0	04WMSMobileLicense
-49	WMS mobile + obsługa magazynu (produkty, firmy, magazyn, zaopatrzenie) + dźwięki	Dostęp do obsługi magazynu, aplikacji mobilnej qcadoo WMS i notyfikacji dźwiękowych	WMS_MOBILE_WMS_SOUNDS	0	04WMSMobileLicense
+47	WMS mobile	Dostęp do aplikacji mobilnej sleektiv WMS mobile	WMS_MOBILE	0	04WMSMobileLicense
+48	WMS mobile + obsługa magazynu (produkty, firmy, magazyn, zaopatrzenie)	Dostęp do obsługi magazynu i aplikacji mobilnej sleektiv WMS	WMS_MOBILE_WMS	0	04WMSMobileLicense
+49	WMS mobile + obsługa magazynu (produkty, firmy, magazyn, zaopatrzenie) + dźwięki	Dostęp do obsługi magazynu, aplikacji mobilnej sleektiv WMS i notyfikacji dźwiękowych	WMS_MOBILE_WMS_SOUNDS	0	04WMSMobileLicense
 \.
 
 
 --
--- Data for Name: qcadoosecurity_passwordresettoken; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivsecurity_passwordresettoken; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoosecurity_passwordresettoken (id, user_id, token, active, expirationtime) FROM stdin;
+COPY public.sleektivsecurity_passwordresettoken (id, user_id, token, active, expirationtime) FROM stdin;
 \.
 
 
 --
--- Data for Name: qcadoosecurity_persistenttoken; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivsecurity_persistenttoken; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoosecurity_persistenttoken (id, username, series, token, lastused, entityversion) FROM stdin;
+COPY public.sleektivsecurity_persistenttoken (id, username, series, token, lastused, entityversion) FROM stdin;
 \.
 
 
 --
--- Data for Name: qcadoosecurity_role; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivsecurity_role; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoosecurity_role (id, identifier, description, entityversion) FROM stdin;
+COPY public.sleektivsecurity_role (id, identifier, description, entityversion) FROM stdin;
 2	ROLE_API	\N	0
 3	ROLE_SUPERADMIN	\N	0
 4	ROLE_ADMIN	\N	0
@@ -44234,32 +44234,32 @@ COPY public.qcadoosecurity_role (id, identifier, description, entityversion) FRO
 
 
 --
--- Data for Name: qcadoosecurity_user; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivsecurity_user; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadoosecurity_user (id, username, email, firstname, lastname, enabled, description, password, lastactivity, staff_id, group_id, entityversion, factory_id, ipaddress, showonlymyregistrationrecords, productionline_id, groupchangedate, pswdlastchanged, afterfirstpswdchange, isblocked, showonlymyoperationaltasksandorders) FROM stdin;
-3	qcadoo_bot	\N	qcadoo_bot	qcadoo_bot	t	\N	\N	\N	\N	1	0	\N	\N	f	\N	2022-05-26 00:00:00	\N	f	f	f
-2	admin	admin@qcadoo.com	generated admin	generated admin	t	\N	$2a$11$fK09LNi7Y4ZHKWAg0PCLxeOP/oTENa6AKO4CcuxYRbtrOeStRZYVm	\N	\N	4	0	\N	\N	f	\N	2022-05-26 00:00:00	\N	t	f	f
-1	superadmin	superadmin@qcadoo.com	generated superadmin	generated superadmin	t	\N	$2a$11$tzoAWwNksWYQPgkvvczy6eQaJHMAFBlUlq5OzAz.GeNNMqTEt1FE2	\N	\N	2	0	\N	\N	f	\N	2022-05-26 00:00:00	\N	t	f	f
+COPY public.sleektivsecurity_user (id, username, email, firstname, lastname, enabled, description, password, lastactivity, staff_id, group_id, entityversion, factory_id, ipaddress, showonlymyregistrationrecords, productionline_id, groupchangedate, pswdlastchanged, afterfirstpswdchange, isblocked, showonlymyoperationaltasksandorders) FROM stdin;
+3	sleektiv_bot	\N	sleektiv_bot	sleektiv_bot	t	\N	\N	\N	\N	1	0	\N	\N	f	\N	2022-05-26 00:00:00	\N	f	f	f
+2	admin	admin@sleektiv.com	generated admin	generated admin	t	\N	$2a$11$fK09LNi7Y4ZHKWAg0PCLxeOP/oTENa6AKO4CcuxYRbtrOeStRZYVm	\N	\N	4	0	\N	\N	f	\N	2022-05-26 00:00:00	\N	t	f	f
+1	superadmin	superadmin@sleektiv.com	generated superadmin	generated superadmin	t	\N	$2a$11$tzoAWwNksWYQPgkvvczy6eQaJHMAFBlUlq5OzAz.GeNNMqTEt1FE2	\N	\N	2	0	\N	\N	f	\N	2022-05-26 00:00:00	\N	t	f	f
 \.
 
 
 --
--- Data for Name: qcadooview_alert; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivview_alert; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooview_alert (id, message, type, expirationdate, sound) FROM stdin;
+COPY public.sleektivview_alert (id, message, type, expirationdate, sound) FROM stdin;
 \.
 
 
 --
--- Data for Name: qcadooview_category; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivview_category; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooview_category (id, pluginidentifier, name, succession, authrole, entityversion) FROM stdin;
-2	qcadooView	home	2	\N	0
+COPY public.sleektivview_category (id, pluginidentifier, name, succession, authrole, entityversion) FROM stdin;
+2	sleektivView	home	2	\N	0
 3	basic	companyStructure	3	ROLE_COMPANY_STRUCTURE	0
-1	qcadooView	administration	1	ROLE_HOME_PROFILE	0
+1	sleektivView	administration	1	ROLE_HOME_PROFILE	0
 17	basic	calendars	4	ROLE_SHIFTS	0
 18	basic	staff	5	\N	0
 4	basic	basic	6	\N	0
@@ -44280,18 +44280,18 @@ COPY public.qcadooview_category (id, pluginidentifier, name, succession, authrol
 
 
 --
--- Data for Name: qcadooview_item; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivview_item; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooview_item (id, pluginidentifier, name, active, category_id, view_id, succession, authrole, entityversion) FROM stdin;
-1	qcadooView	systemInfo	t	1	1	1	\N	0
-2	qcadooPlugins	plugins	t	1	2	2	ROLE_SUPERADMIN	0
-4	qcadooCustomTranslations	customTranslations	t	1	4	4	\N	0
-5	qcadooUsers	groups	t	1	5	5	\N	0
-6	qcadooUsers	roles	t	1	6	6	\N	0
-7	qcadooUsers	users	t	1	7	7	\N	0
-9	qcadooDictionaries	dictionaries	t	1	9	9	\N	0
-10	qcadooUnitConversions	unitConversions	t	1	10	10	ROLE_UNIT_CONVERSIONS	0
+COPY public.sleektivview_item (id, pluginidentifier, name, active, category_id, view_id, succession, authrole, entityversion) FROM stdin;
+1	sleektivView	systemInfo	t	1	1	1	\N	0
+2	sleektivPlugins	plugins	t	1	2	2	ROLE_SUPERADMIN	0
+4	sleektivCustomTranslations	customTranslations	t	1	4	4	\N	0
+5	sleektivUsers	groups	t	1	5	5	\N	0
+6	sleektivUsers	roles	t	1	6	6	\N	0
+7	sleektivUsers	users	t	1	7	7	\N	0
+9	sleektivDictionaries	dictionaries	t	1	9	9	\N	0
+10	sleektivUnitConversions	unitConversions	t	1	10	10	ROLE_UNIT_CONVERSIONS	0
 11	basic	logsList	t	1	11	11	ROLE_LOGS	0
 215	orders	workstationChangeoverForOperationalTasksList	t	7	214	18	ROLE_WORKSTATION_CHANGEOVERS	0
 26	basic	countries	t	1	26	12	ROLE_COUNTRIES	0
@@ -44326,7 +44326,7 @@ COPY public.qcadooview_item (id, pluginidentifier, name, active, category_id, vi
 186	technologies	technologyInputProductTypesList	t	5	185	9	ROLE_TECHNOLOGIES	0
 96	productionCounting	productionTracking	t	8	96	1	ROLE_PRODUCTION_TRACKING_REGISTRATION	0
 25	basic	staff	t	18	25	9	ROLE_STAFF_WAGES	0
-8	qcadooUsers	profile	t	1	8	8	ROLE_HOME_PROFILE	0
+8	sleektivUsers	profile	t	1	8	8	ROLE_HOME_PROFILE	0
 165	basic	generalParameters	t	21	164	1	ROLE_PARAMETERS	0
 167	technologies	technologiesParameters	t	21	166	3	ROLE_PARAMETERS	0
 170	productionCounting	productionCountingParameters	t	21	169	6	ROLE_PARAMETERS	0
@@ -44347,7 +44347,7 @@ COPY public.qcadooview_item (id, pluginidentifier, name, active, category_id, vi
 48	orders	productionOrders	t	7	48	5	ROLE_ORDERS_VIEW	0
 47	orders	productionOrdersPlanning	t	7	47	4	ROLE_ORDERS_VIEW	0
 204	arch	archivingList	t	16	203	8	ROLE_ARCHIVING	0
-3	qcadooMenu	menu	t	1	3	3	ROLE_MENU_VIEW	0
+3	sleektivMenu	menu	t	1	3	3	ROLE_MENU_VIEW	0
 161	basic	formsList	f	4	160	27	ROLE_FORMS	0
 222	masterOrders	pricesListsList	f	23	221	4	ROLE_SALE	0
 46	orders	operationalTasks	t	7	46	6	ROLE_OPERATIONAL_TASKS	0
@@ -44372,7 +44372,7 @@ COPY public.qcadooview_item (id, pluginidentifier, name, active, category_id, vi
 55	advancedGenealogy	batches	f	11	55	1	ROLE_BATCHES	0
 82	cmmsMachineParts	actions	f	4	82	16	ROLE_ACTIONS	0
 84	cmmsMachineParts	machineParts	f	4	84	17	ROLE_MACHINE_PARTS	0
-133	qcadooView	attachmentViewer	f	1	132	14	\N	0
+133	sleektivView	attachmentViewer	f	1	132	14	\N	0
 136	integrationScales	scales	f	4	135	22	ROLE_COMPANY_STRUCTURE	0
 122	materialFlowResources	palletStorageState	f	6	121	8	ROLE_MATERIAL_FLOW	0
 125	materialFlowResources	palletBalances	f	6	124	14	ROLE_MATERIAL_FLOW	0
@@ -44462,28 +44462,28 @@ COPY public.qcadooview_item (id, pluginidentifier, name, active, category_id, vi
 
 
 --
--- Data for Name: qcadooview_systeminfo; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivview_systeminfo; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooview_systeminfo (id, nextupdatetime) FROM stdin;
+COPY public.sleektivview_systeminfo (id, nextupdatetime) FROM stdin;
 \.
 
 
 --
--- Data for Name: qcadooview_view; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivview_view; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooview_view (id, pluginidentifier, name, view, url, entityversion) FROM stdin;
-1	qcadooView	systemInfo	\N	/systemInfo.html	0
-2	qcadooPlugins	pluginsList	pluginsList	\N	0
-3	qcadooMenu	menuCategoriesList	menuCategoriesList	\N	0
-4	qcadooCustomTranslations	customTranslationsList	customTranslationsList	\N	0
-5	qcadooUsers	groupsList	groupsList	\N	0
-6	qcadooUsers	rolesList	rolesList	\N	0
-7	qcadooUsers	usersList	usersList	\N	0
-8	qcadooUsers	profile	\N	/userProfile.html	0
-9	qcadooDictionaries	dictionariesList	dictionariesList	\N	0
-10	qcadooUnitConversions	unitConversions	\N	/unitConversions.html	0
+COPY public.sleektivview_view (id, pluginidentifier, name, view, url, entityversion) FROM stdin;
+1	sleektivView	systemInfo	\N	/systemInfo.html	0
+2	sleektivPlugins	pluginsList	pluginsList	\N	0
+3	sleektivMenu	menuCategoriesList	menuCategoriesList	\N	0
+4	sleektivCustomTranslations	customTranslationsList	customTranslationsList	\N	0
+5	sleektivUsers	groupsList	groupsList	\N	0
+6	sleektivUsers	rolesList	rolesList	\N	0
+7	sleektivUsers	usersList	usersList	\N	0
+8	sleektivUsers	profile	\N	/userProfile.html	0
+9	sleektivDictionaries	dictionariesList	dictionariesList	\N	0
+10	sleektivUnitConversions	unitConversions	\N	/unitConversions.html	0
 11	basic	logsList	logsList	\N	0
 12	basic	factoriesList	factoriesList	\N	0
 13	basic	divisionsList	divisionsList	\N	0
@@ -44502,7 +44502,7 @@ COPY public.qcadooview_view (id, pluginidentifier, name, view, url, entityversio
 26	basic	countriesList	countriesList	\N	0
 27	basic	companiesList	companiesList	\N	0
 28	basic	conversion	\N	/unitConversions.html	0
-30	basic	dictionariesInBasic	\N	/page/qcadooDictionaries/dictionariesList.html	0
+30	basic	dictionariesInBasic	\N	/page/sleektivDictionaries/dictionariesList.html	0
 31	basic	home	\N	/dashboard.html	0
 32	productionLines	productionLinesList	productionLinesList	\N	0
 33	wageGroups	wagesList	wagesList	\N	0
@@ -44568,7 +44568,7 @@ COPY public.qcadooview_view (id, pluginidentifier, name, view, url, entityversio
 129	materialFlowResources	stocktakingsList	stocktakingsList	\N	0
 130	materialFlowResources	warehouseStockReportsList	warehouseStockReportsList	\N	0
 131	basic	exceptionsForLineList	exceptionsForLineList	\N	0
-132	qcadooView	attachmentViewer	\N	/attachmentViewer.html	0
+132	sleektivView	attachmentViewer	\N	/attachmentViewer.html	0
 133	basic	attachmentsList	attachmentsList	\N	0
 134	goodFood	extrusionMixesList	extrusionMixesList	\N	0
 135	integrationScales	scalesList	scalesList	\N	0
@@ -44652,10 +44652,10 @@ COPY public.qcadooview_view (id, pluginidentifier, name, view, url, entityversio
 
 
 --
--- Data for Name: qcadooview_viewedalert; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sleektivview_viewedalert; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.qcadooview_viewedalert (id, user_id, alert_id) FROM stdin;
+COPY public.sleektivview_viewedalert (id, user_id, alert_id) FROM stdin;
 \.
 
 
@@ -44929,14 +44929,14 @@ COPY public.subcontractorportal_subordertmp (id, number, ordernumber, datefrom, 
 --
 
 COPY public.supplynegotiations_columnforoffers (id, identifier, name, description, columnfiller, alignment, parameter_id, succession, entityversion) FROM stdin;
-1	succession	supplyNegotiations.columnForOffers.name.value.succession	supplyNegotiations.columnForOffers.description.value.succession	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	1	0
-2	productNumber	supplyNegotiations.columnForOffers.name.value.productNumber	supplyNegotiations.columnForOffers.description.value.productNumber	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	2	0
-3	productName	supplyNegotiations.columnForOffers.name.value.productName	supplyNegotiations.columnForOffers.description.value.productName	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	3	0
-4	quantity	supplyNegotiations.columnForOffers.name.value.quantity	supplyNegotiations.columnForOffers.description.value.quantity	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	4	0
-5	productUnit	supplyNegotiations.columnForOffers.name.value.productUnit	supplyNegotiations.columnForOffers.description.value.productUnit	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	5	0
-6	pricePerUnit	supplyNegotiations.columnForOffers.name.value.pricePerUnit	supplyNegotiations.columnForOffers.description.value.pricePerUnit	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	6	0
-7	totalPrice	supplyNegotiations.columnForOffers.name.value.totalPrice	supplyNegotiations.columnForOffers.description.value.totalPrice	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	7	0
-8	currency	supplyNegotiations.columnForOffers.name.value.currency	supplyNegotiations.columnForOffers.description.value.currency	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	8	0
+1	succession	supplyNegotiations.columnForOffers.name.value.succession	supplyNegotiations.columnForOffers.description.value.succession	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	1	0
+2	productNumber	supplyNegotiations.columnForOffers.name.value.productNumber	supplyNegotiations.columnForOffers.description.value.productNumber	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	2	0
+3	productName	supplyNegotiations.columnForOffers.name.value.productName	supplyNegotiations.columnForOffers.description.value.productName	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	3	0
+4	quantity	supplyNegotiations.columnForOffers.name.value.quantity	supplyNegotiations.columnForOffers.description.value.quantity	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	4	0
+5	productUnit	supplyNegotiations.columnForOffers.name.value.productUnit	supplyNegotiations.columnForOffers.description.value.productUnit	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	5	0
+6	pricePerUnit	supplyNegotiations.columnForOffers.name.value.pricePerUnit	supplyNegotiations.columnForOffers.description.value.pricePerUnit	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	6	0
+7	totalPrice	supplyNegotiations.columnForOffers.name.value.totalPrice	supplyNegotiations.columnForOffers.description.value.totalPrice	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	7	0
+8	currency	supplyNegotiations.columnForOffers.name.value.currency	supplyNegotiations.columnForOffers.description.value.currency	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	8	0
 \.
 
 
@@ -44945,12 +44945,12 @@ COPY public.supplynegotiations_columnforoffers (id, identifier, name, descriptio
 --
 
 COPY public.supplynegotiations_columnforrequests (id, identifier, name, description, columnfiller, alignment, parameter_id, succession, entityversion) FROM stdin;
-1	succession	supplyNegotiations.columnForRequests.name.value.succession	supplyNegotiations.columnForRequests.description.value.succession	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	1	0
-2	productNumber	supplyNegotiations.columnForRequests.name.value.productNumber	supplyNegotiations.columnForRequests.description.value.productNumber	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	2	0
-3	productName	supplyNegotiations.columnForRequests.name.value.productName	supplyNegotiations.columnForRequests.description.value.productName	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	3	0
-4	orderedQuantity	supplyNegotiations.columnForRequests.name.value.orderedQuantity	supplyNegotiations.columnForRequests.description.value.orderedQuantity	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	4	0
-5	productUnit	supplyNegotiations.columnForRequests.name.value.productUnit	supplyNegotiations.columnForRequests.description.value.productUnit	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	5	0
-6	annualVolume	supplyNegotiations.columnForRequests.name.value.annualVolume	supplyNegotiations.columnForRequests.description.value.annualVolume	com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	6	0
+1	succession	supplyNegotiations.columnForRequests.name.value.succession	supplyNegotiations.columnForRequests.description.value.succession	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	1	0
+2	productNumber	supplyNegotiations.columnForRequests.name.value.productNumber	supplyNegotiations.columnForRequests.description.value.productNumber	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	2	0
+3	productName	supplyNegotiations.columnForRequests.name.value.productName	supplyNegotiations.columnForRequests.description.value.productName	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	3	0
+4	orderedQuantity	supplyNegotiations.columnForRequests.name.value.orderedQuantity	supplyNegotiations.columnForRequests.description.value.orderedQuantity	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	4	0
+5	productUnit	supplyNegotiations.columnForRequests.name.value.productUnit	supplyNegotiations.columnForRequests.description.value.productUnit	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	01left	1	5	0
+6	annualVolume	supplyNegotiations.columnForRequests.name.value.annualVolume	supplyNegotiations.columnForRequests.description.value.annualVolume	com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller	02right	1	6	0
 \.
 
 
@@ -49877,122 +49877,122 @@ SELECT pg_catalog.setval('public.productionscheduling_planordertimecalculation_i
 
 
 --
--- Name: qcadoocustomtranslation_customtranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivcustomtranslation_customtranslation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadoocustomtranslation_customtranslation_id_seq', 1, false);
-
-
---
--- Name: qcadoomodel_dictionary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadoomodel_dictionary_id_seq', 25, true);
+SELECT pg_catalog.setval('public.sleektivcustomtranslation_customtranslation_id_seq', 1, false);
 
 
 --
--- Name: qcadoomodel_dictionaryitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadoomodel_dictionaryitem_id_seq', 42, false);
-
-
---
--- Name: qcadoomodel_globalunitconversionsaggregate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadoomodel_globalunitconversionsaggregate_id_seq', 2, false);
+SELECT pg_catalog.setval('public.sleektivmodel_dictionary_id_seq', 25, true);
 
 
 --
--- Name: qcadoomodel_unitconversionitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadoomodel_unitconversionitem_id_seq', 10, false);
-
-
---
--- Name: qcadooplugin_plugin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadooplugin_plugin_id_seq', 163, true);
+SELECT pg_catalog.setval('public.sleektivmodel_dictionaryitem_id_seq', 42, false);
 
 
 --
--- Name: qcadoosecurity_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivmodel_globalunitconversionsaggregate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadoosecurity_group_id_seq', 49, true);
-
-
---
--- Name: qcadoosecurity_passwordresettoken_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadoosecurity_passwordresettoken_id_seq', 1, false);
+SELECT pg_catalog.setval('public.sleektivmodel_globalunitconversionsaggregate_id_seq', 2, false);
 
 
 --
--- Name: qcadoosecurity_persistenttoken_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadoosecurity_persistenttoken_id_seq', 1, false);
-
-
---
--- Name: qcadoosecurity_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadoosecurity_role_id_seq', 176, true);
+SELECT pg_catalog.setval('public.sleektivmodel_unitconversionitem_id_seq', 10, false);
 
 
 --
--- Name: qcadoosecurity_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivplugin_plugin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadoosecurity_user_id_seq', 3, true);
-
-
---
--- Name: qcadooview_alert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadooview_alert_id_seq', 1, false);
+SELECT pg_catalog.setval('public.sleektivplugin_plugin_id_seq', 163, true);
 
 
 --
--- Name: qcadooview_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivsecurity_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadooview_category_id_seq', 23, true);
-
-
---
--- Name: qcadooview_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadooview_item_id_seq', 222, true);
+SELECT pg_catalog.setval('public.sleektivsecurity_group_id_seq', 49, true);
 
 
 --
--- Name: qcadooview_systeminfo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadooview_systeminfo_id_seq', 1, false);
-
-
---
--- Name: qcadooview_view_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.qcadooview_view_id_seq', 221, true);
+SELECT pg_catalog.setval('public.sleektivsecurity_passwordresettoken_id_seq', 1, false);
 
 
 --
--- Name: qcadooview_viewedalert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: sleektivsecurity_persistenttoken_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.qcadooview_viewedalert_id_seq', 1, false);
+SELECT pg_catalog.setval('public.sleektivsecurity_persistenttoken_id_seq', 1, false);
+
+
+--
+-- Name: sleektivsecurity_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivsecurity_role_id_seq', 176, true);
+
+
+--
+-- Name: sleektivsecurity_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivsecurity_user_id_seq', 3, true);
+
+
+--
+-- Name: sleektivview_alert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivview_alert_id_seq', 1, false);
+
+
+--
+-- Name: sleektivview_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivview_category_id_seq', 23, true);
+
+
+--
+-- Name: sleektivview_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivview_item_id_seq', 222, true);
+
+
+--
+-- Name: sleektivview_systeminfo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivview_systeminfo_id_seq', 1, false);
+
+
+--
+-- Name: sleektivview_view_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivview_view_id_seq', 221, true);
+
+
+--
+-- Name: sleektivview_viewedalert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sleektivview_viewedalert_id_seq', 1, false);
 
 
 --
@@ -53210,10 +53210,10 @@ ALTER TABLE ONLY public.deliveries_parameterdeliveryordercolumn
 
 
 --
--- Name: qcadoomodel_dictionaryitem dictionaryitem_externalnumber_unique; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem dictionaryitem_externalnumber_unique; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_dictionaryitem
+ALTER TABLE ONLY public.sleektivmodel_dictionaryitem
     ADD CONSTRAINT dictionaryitem_externalnumber_unique UNIQUE (dictionary_id, externalnumber);
 
 
@@ -55466,139 +55466,139 @@ ALTER TABLE ONLY public.productionscheduling_planordertimecalculation
 
 
 --
--- Name: qcadoocustomtranslation_customtranslation qcadoocustomtranslation_customtranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivcustomtranslation_customtranslation sleektivcustomtranslation_customtranslation_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoocustomtranslation_customtranslation
-    ADD CONSTRAINT qcadoocustomtranslation_customtranslation_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadoomodel_dictionary qcadoomodel_dictionary_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoomodel_dictionary
-    ADD CONSTRAINT qcadoomodel_dictionary_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivcustomtranslation_customtranslation
+    ADD CONSTRAINT sleektivcustomtranslation_customtranslation_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadoomodel_dictionaryitem qcadoomodel_dictionaryitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionary sleektivmodel_dictionary_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_dictionaryitem
-    ADD CONSTRAINT qcadoomodel_dictionaryitem_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadoomodel_globalunitconversionsaggregate qcadoomodel_globalunitconversionsaggregate_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoomodel_globalunitconversionsaggregate
-    ADD CONSTRAINT qcadoomodel_globalunitconversionsaggregate_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivmodel_dictionary
+    ADD CONSTRAINT sleektivmodel_dictionary_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadoomodel_unitconversionitem qcadoomodel_unitconv_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem sleektivmodel_dictionaryitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_unitconversionitem
-    ADD CONSTRAINT qcadoomodel_unitconv_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadooplugin_plugin qcadooplugin_plugin_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooplugin_plugin
-    ADD CONSTRAINT qcadooplugin_plugin_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivmodel_dictionaryitem
+    ADD CONSTRAINT sleektivmodel_dictionaryitem_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadoosecurity_group qcadoosecurity_group_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_globalunitconversionsaggregate sleektivmodel_globalunitconversionsaggregate_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_group
-    ADD CONSTRAINT qcadoosecurity_group_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadoosecurity_passwordresettoken qcadoosecurity_passwordresettoken_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoosecurity_passwordresettoken
-    ADD CONSTRAINT qcadoosecurity_passwordresettoken_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivmodel_globalunitconversionsaggregate
+    ADD CONSTRAINT sleektivmodel_globalunitconversionsaggregate_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadoosecurity_persistenttoken qcadoosecurity_persistenttoken_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem sleektivmodel_unitconv_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_persistenttoken
-    ADD CONSTRAINT qcadoosecurity_persistenttoken_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadoosecurity_role qcadoosecurity_role_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadoosecurity_role
-    ADD CONSTRAINT qcadoosecurity_role_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivmodel_unitconversionitem
+    ADD CONSTRAINT sleektivmodel_unitconv_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadoosecurity_user qcadoosecurity_user_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivplugin_plugin sleektivplugin_plugin_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_user
-    ADD CONSTRAINT qcadoosecurity_user_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadooview_alert qcadooview_alert_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooview_alert
-    ADD CONSTRAINT qcadooview_alert_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivplugin_plugin
+    ADD CONSTRAINT sleektivplugin_plugin_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadooview_category qcadooview_category_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_group sleektivsecurity_group_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_category
-    ADD CONSTRAINT qcadooview_category_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadooview_item qcadooview_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooview_item
-    ADD CONSTRAINT qcadooview_item_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivsecurity_group
+    ADD CONSTRAINT sleektivsecurity_group_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadooview_systeminfo qcadooview_systeminfo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken sleektivsecurity_passwordresettoken_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_systeminfo
-    ADD CONSTRAINT qcadooview_systeminfo_pkey PRIMARY KEY (id);
-
-
---
--- Name: qcadooview_view qcadooview_view_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.qcadooview_view
-    ADD CONSTRAINT qcadooview_view_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivsecurity_passwordresettoken
+    ADD CONSTRAINT sleektivsecurity_passwordresettoken_pkey PRIMARY KEY (id);
 
 
 --
--- Name: qcadooview_viewedalert qcadooview_viewedalert_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_persistenttoken sleektivsecurity_persistenttoken_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_viewedalert
-    ADD CONSTRAINT qcadooview_viewedalert_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sleektivsecurity_persistenttoken
+    ADD CONSTRAINT sleektivsecurity_persistenttoken_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivsecurity_role sleektivsecurity_role_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivsecurity_role
+    ADD CONSTRAINT sleektivsecurity_role_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivsecurity_user sleektivsecurity_user_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivsecurity_user
+    ADD CONSTRAINT sleektivsecurity_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivview_alert sleektivview_alert_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_alert
+    ADD CONSTRAINT sleektivview_alert_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivview_category sleektivview_category_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_category
+    ADD CONSTRAINT sleektivview_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivview_item sleektivview_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_item
+    ADD CONSTRAINT sleektivview_item_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivview_systeminfo sleektivview_systeminfo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_systeminfo
+    ADD CONSTRAINT sleektivview_systeminfo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivview_view sleektivview_view_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_view
+    ADD CONSTRAINT sleektivview_view_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleektivview_viewedalert sleektivview_viewedalert_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sleektivview_viewedalert
+    ADD CONSTRAINT sleektivview_viewedalert_pkey PRIMARY KEY (id);
 
 
 --
@@ -57982,7 +57982,7 @@ CREATE INDEX idx_pro_uctoutcomponent_productiontracking_id ON public.productionc
 -- Name: idx_qca_tconversionitem_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX idx_qca_tconversionitem_product_id ON public.qcadoomodel_unitconversionitem USING btree (product_id);
+CREATE INDEX idx_qca_tconversionitem_product_id ON public.sleektivmodel_unitconversionitem USING btree (product_id);
 
 
 --
@@ -59001,11 +59001,11 @@ ALTER TABLE ONLY public.goodfood_confectioninputproduct
 
 
 --
--- Name: qcadooview_viewedalert alert_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivview_viewedalert alert_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_viewedalert
-    ADD CONSTRAINT alert_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivview_viewedalert
+    ADD CONSTRAINT alert_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -60165,7 +60165,7 @@ ALTER TABLE ONLY public.productionpershift_dailyprogress
 --
 
 ALTER TABLE ONLY public.basic_dashboardbutton
-    ADD CONSTRAINT dashboardbutton_item_fkey FOREIGN KEY (item_id) REFERENCES public.qcadooview_item(id) DEFERRABLE;
+    ADD CONSTRAINT dashboardbutton_item_fkey FOREIGN KEY (item_id) REFERENCES public.sleektivview_item(id) DEFERRABLE;
 
 
 --
@@ -60409,11 +60409,11 @@ ALTER TABLE ONLY public.deliveries_deliverystatechange
 
 
 --
--- Name: qcadoomodel_dictionaryitem dictionaryitem_dictionary_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_dictionaryitem dictionaryitem_dictionary_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_dictionaryitem
-    ADD CONSTRAINT dictionaryitem_dictionary_fkey FOREIGN KEY (dictionary_id) REFERENCES public.qcadoomodel_dictionary(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivmodel_dictionaryitem
+    ADD CONSTRAINT dictionaryitem_dictionary_fkey FOREIGN KEY (dictionary_id) REFERENCES public.sleektivmodel_dictionary(id) DEFERRABLE;
 
 
 --
@@ -60597,7 +60597,7 @@ ALTER TABLE ONLY public.materialflowresources_document
 --
 
 ALTER TABLE ONLY public.materialflowresources_document
-    ADD CONSTRAINT document_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT document_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -60661,7 +60661,7 @@ ALTER TABLE ONLY public.goodfood_eventlog
 --
 
 ALTER TABLE ONLY public.goodfood_eventlog
-    ADD CONSTRAINT eventlog_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT eventlog_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -61197,7 +61197,7 @@ ALTER TABLE ONLY public.cdnrcgoodfood_cancelprotocol
 --
 
 ALTER TABLE ONLY public.jointable_group_role
-    ADD CONSTRAINT group_role_group_fkey FOREIGN KEY (group_id) REFERENCES public.qcadoosecurity_group(id) DEFERRABLE;
+    ADD CONSTRAINT group_role_group_fkey FOREIGN KEY (group_id) REFERENCES public.sleektivsecurity_group(id) DEFERRABLE;
 
 
 --
@@ -61205,7 +61205,7 @@ ALTER TABLE ONLY public.jointable_group_role
 --
 
 ALTER TABLE ONLY public.jointable_group_role
-    ADD CONSTRAINT group_role_role_fkey FOREIGN KEY (role_id) REFERENCES public.qcadoosecurity_role(id) DEFERRABLE;
+    ADD CONSTRAINT group_role_role_fkey FOREIGN KEY (role_id) REFERENCES public.sleektivsecurity_role(id) DEFERRABLE;
 
 
 --
@@ -61241,19 +61241,19 @@ ALTER TABLE ONLY public.jointable_issue_productstoissuehelper
 
 
 --
--- Name: qcadooview_item item_category_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivview_item item_category_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_item
-    ADD CONSTRAINT item_category_fkey FOREIGN KEY (category_id) REFERENCES public.qcadooview_category(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivview_item
+    ADD CONSTRAINT item_category_fkey FOREIGN KEY (category_id) REFERENCES public.sleektivview_category(id) DEFERRABLE;
 
 
 --
--- Name: qcadooview_item item_view_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivview_item item_view_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_item
-    ADD CONSTRAINT item_view_fkey FOREIGN KEY (view_id) REFERENCES public.qcadooview_view(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivview_item
+    ADD CONSTRAINT item_view_fkey FOREIGN KEY (view_id) REFERENCES public.sleektivview_view(id) DEFERRABLE;
 
 
 --
@@ -61413,7 +61413,7 @@ ALTER TABLE ONLY public.basic_licenseusage
 --
 
 ALTER TABLE ONLY public.basic_licenseusage
-    ADD CONSTRAINT licenseusage_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT licenseusage_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -61493,7 +61493,7 @@ ALTER TABLE ONLY public.materialflow_location
 --
 
 ALTER TABLE ONLY public.basic_log
-    ADD CONSTRAINT log_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT log_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -63985,11 +63985,11 @@ ALTER TABLE ONLY public.basic_parameter
 
 
 --
--- Name: qcadoosecurity_passwordresettoken passwordresettoken_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_passwordresettoken passwordresettoken_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_passwordresettoken
-    ADD CONSTRAINT passwordresettoken_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivsecurity_passwordresettoken
+    ADD CONSTRAINT passwordresettoken_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -64365,7 +64365,7 @@ ALTER TABLE ONLY public.materialflowresources_position
 --
 
 ALTER TABLE ONLY public.materialflowresources_position
-    ADD CONSTRAINT position_pickingworker_fkey FOREIGN KEY (pickingworker_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT position_pickingworker_fkey FOREIGN KEY (pickingworker_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -65633,19 +65633,19 @@ ALTER TABLE ONLY public.productionpershift_progressforday
 
 
 --
--- Name: qcadoomodel_unitconversionitem qcadoomodel_unitconv_aggregate_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem sleektivmodel_unitconv_aggregate_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_unitconversionitem
-    ADD CONSTRAINT qcadoomodel_unitconv_aggregate_fkey FOREIGN KEY (globalunitconversionsaggregate_id) REFERENCES public.qcadoomodel_globalunitconversionsaggregate(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivmodel_unitconversionitem
+    ADD CONSTRAINT sleektivmodel_unitconv_aggregate_fkey FOREIGN KEY (globalunitconversionsaggregate_id) REFERENCES public.sleektivmodel_globalunitconversionsaggregate(id) DEFERRABLE;
 
 
 --
--- Name: qcadoomodel_unitconversionitem qcadoomodel_unitconv_product_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivmodel_unitconversionitem sleektivmodel_unitconv_product_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoomodel_unitconversionitem
-    ADD CONSTRAINT qcadoomodel_unitconv_product_fkey FOREIGN KEY (product_id) REFERENCES public.basic_product(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivmodel_unitconversionitem
+    ADD CONSTRAINT sleektivmodel_unitconv_product_fkey FOREIGN KEY (product_id) REFERENCES public.basic_product(id) DEFERRABLE;
 
 
 --
@@ -67921,34 +67921,34 @@ ALTER TABLE ONLY public.advancedgenealogy_usedbatchsimple
 
 
 --
--- Name: qcadoosecurity_user user_factory_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_user user_factory_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_user
+ALTER TABLE ONLY public.sleektivsecurity_user
     ADD CONSTRAINT user_factory_fkey FOREIGN KEY (factory_id) REFERENCES public.basic_factory(id) DEFERRABLE;
 
 
 --
--- Name: qcadoosecurity_user user_group_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_user user_group_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_user
-    ADD CONSTRAINT user_group_fkey FOREIGN KEY (group_id) REFERENCES public.qcadoosecurity_group(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivsecurity_user
+    ADD CONSTRAINT user_group_fkey FOREIGN KEY (group_id) REFERENCES public.sleektivsecurity_group(id) DEFERRABLE;
 
 
 --
--- Name: qcadoosecurity_user user_productionline_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_user user_productionline_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_user
+ALTER TABLE ONLY public.sleektivsecurity_user
     ADD CONSTRAINT user_productionline_fkey FOREIGN KEY (productionline_id) REFERENCES public.productionlines_productionline(id) DEFERRABLE;
 
 
 --
--- Name: qcadoosecurity_user user_staff_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivsecurity_user user_staff_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadoosecurity_user
+ALTER TABLE ONLY public.sleektivsecurity_user
     ADD CONSTRAINT user_staff_fkey FOREIGN KEY (staff_id) REFERENCES public.basic_staff(id) DEFERRABLE;
 
 
@@ -67965,7 +67965,7 @@ ALTER TABLE ONLY public.materialflow_userlocation
 --
 
 ALTER TABLE ONLY public.materialflow_userlocation
-    ADD CONSTRAINT userlocation_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT userlocation_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
@@ -67981,15 +67981,15 @@ ALTER TABLE ONLY public.basic_viewedactivity
 --
 
 ALTER TABLE ONLY public.basic_viewedactivity
-    ADD CONSTRAINT viewedactivity_user_fkey FOREIGN KEY (user_id) REFERENCES public.qcadoosecurity_user(id) DEFERRABLE;
+    ADD CONSTRAINT viewedactivity_user_fkey FOREIGN KEY (user_id) REFERENCES public.sleektivsecurity_user(id) DEFERRABLE;
 
 
 --
--- Name: qcadooview_viewedalert viewedalert_alert_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sleektivview_viewedalert viewedalert_alert_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.qcadooview_viewedalert
-    ADD CONSTRAINT viewedalert_alert_fkey FOREIGN KEY (alert_id) REFERENCES public.qcadooview_alert(id) DEFERRABLE;
+ALTER TABLE ONLY public.sleektivview_viewedalert
+    ADD CONSTRAINT viewedalert_alert_fkey FOREIGN KEY (alert_id) REFERENCES public.sleektivview_alert(id) DEFERRABLE;
 
 
 --

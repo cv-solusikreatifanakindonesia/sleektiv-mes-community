@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_REQUIREMENTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="materialRequirementDetails" modelName="materialRequirement">
 
     <component type="window" name="window" reference="window">
@@ -178,7 +178,7 @@
                                 <component type="checkbox" name="includeWarehouse" reference="includeWarehouse"
                                            field="includeWarehouse" hasDescription="true">
                                     <listener event="onChange"
-                                              class="com.qcadoo.view.api.listeners.RerenderListener"
+                                              class="com.sleektiv.view.api.listeners.RerenderListener"
                                               method="onChangeRerender"/>
                                 </component>
                             </layoutElement>
@@ -199,7 +199,7 @@
                                            reference="showCurrentStockLevel"
                                            field="showCurrentStockLevel" hasDescription="true">
                                     <listener event="onChange"
-                                              class="com.qcadoo.view.api.listeners.RerenderListener"
+                                              class="com.sleektiv.view.api.listeners.RerenderListener"
                                               method="onChangeRerender"/>
                                 </component>
                             </layoutElement>
@@ -270,10 +270,10 @@
                 <option type="expression" value="#name"/>
 
                 <listener event="printMaterialRequirement"
-                          class="com.qcadoo.mes.materialRequirements.listeners.MaterialRequirementDetailsListeners"
+                          class="com.sleektiv.mes.materialRequirements.listeners.MaterialRequirementDetailsListeners"
                           method="printMaterialRequirement"/>
                 <listener event="generateMaterialRequirement"
-                          class="com.qcadoo.mes.materialRequirements.listeners.MaterialRequirementDetailsListeners"
+                          class="com.sleektiv.mes.materialRequirements.listeners.MaterialRequirementDetailsListeners"
                           method="generateMaterialRequirement"/>
             </component>
         </windowTab>
@@ -322,7 +322,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.materialRequirements.hooks.MaterialRequirementDetailsHooks"
+                class="com.sleektiv.mes.materialRequirements.hooks.MaterialRequirementDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

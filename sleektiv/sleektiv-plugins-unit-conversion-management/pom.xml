@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sleektiv</groupId>
+		<artifactId>sleektiv</artifactId>
+		<version>1.5-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>sleektiv-plugins-unit-conversion-management</artifactId>
+	<packaging>sleektiv-plugin</packaging>
+
+	<name>Sleektiv Framework :: Plugins :: Unit Conversion Management</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-view</artifactId>
+			<version>1.5-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-plugins-dictionary-management</artifactId>
+			<version>1.5-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.sleektiv</groupId>
+				<artifactId>sleektiv-maven-plugin</artifactId>
+				<version>${sleektiv.maven.plugin.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

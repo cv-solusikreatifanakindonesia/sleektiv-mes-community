@@ -1,13 +1,13 @@
 <%--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.3
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -33,25 +33,25 @@ String ctx = request.getContextPath();
 %>
 
 <div id="gridWrapper">
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/jquery.auto-complete.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/jquery.auto-complete.js?ver=${buildNumber}"></script>
 
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/jquery.jqGrid.min.js?ver=${buildNumber}"></script>
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/angular.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/jquery.jqGrid.min.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/angular.js?ver=${buildNumber}"></script>
 
     <c:choose>
         <c:when test="${locale == 'pl'}">
-            <script type="text/ecmascript" src="/qcadooView/public/js/crud/qcd/components/jqGrid/grid.locale-pl.js?ver=${buildNumber}"></script>
+            <script type="text/ecmascript" src="/sleektivView/public/js/crud/qcd/components/jqGrid/grid.locale-pl.js?ver=${buildNumber}"></script>
         </c:when>
         <c:when test="${locale == 'cn'}">
-            <script type="text/ecmascript" src="/qcadooView/public/js/crud/qcd/components/jqGrid/grid.locale-cn.js?ver=${buildNumber}"></script>
+            <script type="text/ecmascript" src="/sleektivView/public/js/crud/qcd/components/jqGrid/grid.locale-cn.js?ver=${buildNumber}"></script>
         </c:when>
         <c:otherwise>
-            <script type="text/ecmascript" src="/qcadooView/public/js/crud/qcd/components/jqGrid/grid.locale-en.js?ver=${buildNumber}"></script>
+            <script type="text/ecmascript" src="/sleektivView/public/js/crud/qcd/components/jqGrid/grid.locale-en.js?ver=${buildNumber}"></script>
         </c:otherwise>
     </c:choose>
 
     <script src="/cmmsMachineParts/public/js/gridOptions.js?ver=${buildNumber}"></script>
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/jquery.blockUI.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/jquery.blockUI.js?ver=${buildNumber}"></script>
 
     <link rel="stylesheet" type="text/css" media="screen" href="/basic/public/css/ui.jqgrid.css?ver=${buildNumber}" />
     <link rel="stylesheet" type="text/css" media="screen" href="/basic/public/css/custom.css?ver=${buildNumber}">

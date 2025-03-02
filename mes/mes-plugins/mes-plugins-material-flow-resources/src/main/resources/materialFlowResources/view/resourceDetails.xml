@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_RESOURCES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="resourceDetails" modelName="resource">
 
     <component type="window" name="window" reference="window">
@@ -70,7 +70,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -87,7 +87,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.StorageLocationCriteriaModifiers"
+                                    class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.StorageLocationCriteriaModifiers"
                                     method="showStorageLocationsForLocation"/>
                         </component>
                     </layoutElement>
@@ -97,7 +97,7 @@
                             <option type="alignment" value="right"/>
 
                             <listener event="onInputChange"
-                                      class="com.qcadoo.mes.materialFlowResources.hooks.ResourceDetailsHooks"
+                                      class="com.sleektiv.mes.materialFlowResources.hooks.ResourceDetailsHooks"
                                       method="onQuantityChange"/>
                         </component>
                     </layoutElement>
@@ -113,7 +113,7 @@
                             <option type="alignment" value="right"/>
 
                             <listener event="onInputChange"
-                                      class="com.qcadoo.mes.materialFlowResources.hooks.ResourceDetailsHooks"
+                                      class="com.sleektiv.mes.materialFlowResources.hooks.ResourceDetailsHooks"
                                       method="onQuantityInAdditionalUnitChange"/>
                         </component>
                     </layoutElement>
@@ -150,7 +150,7 @@
                             <option type="required" value="true"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.advancedGenealogy.criteriaModifier.BatchCriteriaModifier"
+                                    class="com.sleektiv.mes.advancedGenealogy.criteriaModifier.BatchCriteriaModifier"
                                     method="filterByProduct"/>
                         </component>
                     </layoutElement>
@@ -176,7 +176,7 @@
                         <component type="input" name="conversion" field="conversion"
                                    reference="conversion">
                             <listener event="onInputChange"
-                                      class="com.qcadoo.mes.materialFlowResources.hooks.ResourceDetailsHooks"
+                                      class="com.sleektiv.mes.materialFlowResources.hooks.ResourceDetailsHooks"
                                       method="onConversionChange"/>
                         </component>
                     </layoutElement>
@@ -191,7 +191,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.materialFlowResources.listeners.ResourceDetailsListeners"
+                                      class="com.sleektiv.mes.materialFlowResources.listeners.ResourceDetailsListeners"
                                       method="fillTypeOfPalletField"/>
                         </component>
                     </layoutElement>
@@ -208,7 +208,7 @@
                 </component>
 
                 <listener event="createResourceCorrection"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.ResourceDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.ResourceDetailsListeners"
                           method="createResourceCorrection"/>
 
                 <option type="header" value="true"/>
@@ -284,7 +284,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.materialFlowResources.hooks.ResourceDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.materialFlowResources.hooks.ResourceDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

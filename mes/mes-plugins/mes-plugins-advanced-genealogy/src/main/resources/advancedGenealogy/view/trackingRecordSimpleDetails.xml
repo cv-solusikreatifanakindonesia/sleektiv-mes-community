@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -23,8 +23,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_ADVANCED_GENEALOGY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-	xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_ADVANCED_GENEALOGY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+	xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
 	name="trackingRecordSimpleDetails" modelName="trackingRecord">
 
 	<component name="window" type="window" reference="window">
@@ -165,7 +165,7 @@
 								<option type="fieldCode" value="number" />
 
 								<listener event="onSelectedEntityChange"
-									class="com.qcadoo.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
+									class="com.sleektiv.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
 									method="fillUnitField" />
 							</component>
 						</layoutElement>
@@ -231,11 +231,11 @@
 					value="(#producedBatch.get('supplier') == null) ? #producedBatch.get('number') + ' - ' + #producedBatch.get('product').get('name') + ' (' + #producedBatch.get('product').get('number') + ')' : #producedBatch.get('number') + ' - ' + #producedBatch.get('product').get('name') + ' (' + #producedBatch.get('product').get('number') + ') - ' + #producedBatch.get('supplier').get('name')" />
 
 				<listener event="printTrackingRecordReport"
-					class="com.qcadoo.mes.advancedGenealogy.print.TrackingRecordReportService"
+					class="com.sleektiv.mes.advancedGenealogy.print.TrackingRecordReportService"
 					method="printTrackingRecordReport" />
 
 				<listener event="changeTrackingRecordState"
-					class="com.qcadoo.mes.advancedGenealogy.states.client.TrackingRecordStateChangeViewClient"
+					class="com.sleektiv.mes.advancedGenealogy.states.client.TrackingRecordStateChangeViewClient"
 					method="changeState" />
 			</component>
 		</windowTab>
@@ -260,15 +260,15 @@
 	</component>
 
 	<hooks>
-		<beforeRender class="com.qcadoo.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
+		<beforeRender class="com.sleektiv.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
 			method="filterStateChangeHistory" />
-		<beforeRender class="com.qcadoo.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
+		<beforeRender class="com.sleektiv.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
 			method="generateOrderNumber" />
 		<beforeRender
-			class="com.qcadoo.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
+			class="com.sleektiv.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
 			method="fillUnitField" />
 		<beforeRender
-			class="com.qcadoo.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
+			class="com.sleektiv.mes.advancedGenealogy.hooks.TrackingRecordSimpleViewHooks"
 			method="setEntityTypeToSimple" />
 	</hooks>
 </view>

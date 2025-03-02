@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,14 +25,14 @@
 
 -->
 <model name="masterOrderProduct" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://schema.qcadoo.org/model"
-       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+       xmlns="http://schema.sleektiv.org/model"
+       xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
     <fields>
         <belongsTo name="product" plugin="basic" model="product" required="true"/>
         <belongsTo name="technology" plugin="technologies" model="technology">
             <validatesWith
-                    class="com.qcadoo.mes.masterOrders.validators.MasterOrderProductValidators"
+                    class="com.sleektiv.mes.masterOrders.validators.MasterOrderProductValidators"
                     method="checkIfCanChangeTechnology"/>
         </belongsTo>
 
@@ -104,11 +104,11 @@
 
     <hooks>
         <validatesWith
-                class="com.qcadoo.mes.masterOrders.validators.MasterOrderProductValidators"
+                class="com.sleektiv.mes.masterOrders.validators.MasterOrderProductValidators"
                 method="onValidate"/>
-        <onDelete class="com.qcadoo.mes.masterOrders.hooks.MasterOrderProductHooks"
+        <onDelete class="com.sleektiv.mes.masterOrders.hooks.MasterOrderProductHooks"
                   method="onDelete"/>
-        <onSave class="com.qcadoo.mes.masterOrders.hooks.MasterOrderProductHooks"
+        <onSave class="com.sleektiv.mes.masterOrders.hooks.MasterOrderProductHooks"
                   method="onSave"/>
     </hooks>
 

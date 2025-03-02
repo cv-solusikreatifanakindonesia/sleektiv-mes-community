@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,5 +25,5 @@
 
 -->
 <column>
-	<row IDENTIFIER="offerNumber" NAME="deliveries.columnForOrders.name.value.offerNumber" DESCRIPTION="deliveries.columnForOrders.description.value.offerNumber" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.DeliveriesColumnFillerSN" ALIGNMENT="01left" />
+	<row IDENTIFIER="offerNumber" NAME="deliveries.columnForOrders.name.value.offerNumber" DESCRIPTION="deliveries.columnForOrders.description.value.offerNumber" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.DeliveriesColumnFillerSN" ALIGNMENT="01left" />
 </column>

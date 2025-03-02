@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_MATERIAL_FLOW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="storageLocationsDetails" modelName="storageLocation">
 
     <component type="window" name="window" reference="window">
@@ -54,7 +54,7 @@
                             <option type="fieldCode" value="name"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -62,7 +62,7 @@
                         <component type="checkbox" name="placeStorageLocation" field="placeStorageLocation"
                                    reference="placeStorageLocation">
                             <listener event="onChange"
-                                      class="com.qcadoo.mes.materialFlowResources.listeners.StorageLocationsDetailsListeners"
+                                      class="com.sleektiv.mes.materialFlowResources.listeners.StorageLocationsDetailsListeners"
                                       method="updateFields"/>
                         </component>
                     </layoutElement>
@@ -100,7 +100,7 @@
 
                 <option type="multiselect" value="true"/>
 
-                <criteriaModifier class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.ProductsCriteriaModifiers"
+                <criteriaModifier class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.ProductsCriteriaModifiers"
                                   method="showNotAssignedProducts"/>
             </component>
             <component type="grid" name="products" reference="products"
@@ -128,7 +128,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.materialFlowResources.hooks.StorageLocationsDetailsHooks"
+                class="com.sleektiv.mes.materialFlowResources.hooks.StorageLocationsDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 </view>

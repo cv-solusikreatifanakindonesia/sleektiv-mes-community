@@ -14,10 +14,10 @@ QCD.resourcesAttributes = (function () {
         footerRowHeight: 21
     };
     let pagerOptions = {
-        showAllText: QCD.translate('qcadooView.slickGrid.pager.showAllText'),
-        showPageText: QCD.translate('qcadooView.slickGrid.pager.showPageText'),
-        show: QCD.translate('qcadooView.slickGrid.pager.show'),
-        all: QCD.translate('qcadooView.slickGrid.pager.all')
+        showAllText: QCD.translate('sleektivView.slickGrid.pager.showAllText'),
+        showPageText: QCD.translate('sleektivView.slickGrid.pager.showPageText'),
+        show: QCD.translate('sleektivView.slickGrid.pager.show'),
+        all: QCD.translate('sleektivView.slickGrid.pager.all')
     };
     let columnFilters = {};
 

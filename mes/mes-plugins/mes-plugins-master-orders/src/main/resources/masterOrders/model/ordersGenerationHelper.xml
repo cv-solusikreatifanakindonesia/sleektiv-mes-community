@@ -1,6 +1,6 @@
 <model name="ordersGenerationHelper" auditable="false" insertable="false" updatable="false" deletable="false"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
-       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/model"
+       xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
     <fields>
         <decimal name="plannedQuantity" required="true">
@@ -15,6 +15,6 @@
     </fields>
 
     <hooks>
-        <validatesWith class="com.qcadoo.mes.masterOrders.hooks.OrdersGenerationHelperHooks" method="validateDates"/>
+        <validatesWith class="com.sleektiv.mes.masterOrders.hooks.OrdersGenerationHelperHooks" method="validateDates"/>
     </hooks>
 </model>

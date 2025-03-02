@@ -4,24 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.qcadoo.mes</groupId>
+		<groupId>com.sleektiv.mes</groupId>
 		<artifactId>mes-plugins</artifactId>
 		<version>1.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mes-plugins-tech-subcontr-for-oper-tasks</artifactId>
-	<packaging>qcadoo-plugin</packaging>
+	<packaging>sleektiv-plugin</packaging>
 
-	<name>Qcadoo MES :: Plugins :: Technology subcontracting for operational tasks</name>
+	<name>Sleektiv MES :: Plugins :: Technology subcontracting for operational tasks</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.qcadoo.mes</groupId>
+			<groupId>com.sleektiv.mes</groupId>
 			<artifactId>mes-plugins-tech-subcontracting</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.qcadoo.mes</groupId>
+			<groupId>com.sleektiv.mes</groupId>
 			<artifactId>mes-plugins-orders</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
@@ -30,9 +30,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.qcadoo</groupId>
-				<artifactId>qcadoo-maven-plugin</artifactId>
-				<version>${qcadoo.maven.plugin.version}</version>
+				<groupId>com.sleektiv</groupId>
+				<artifactId>sleektiv-maven-plugin</artifactId>
+				<version>${sleektiv.maven.plugin.version}</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>

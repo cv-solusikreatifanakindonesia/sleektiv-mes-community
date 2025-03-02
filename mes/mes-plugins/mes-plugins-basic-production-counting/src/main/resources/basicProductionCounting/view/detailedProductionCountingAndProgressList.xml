@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTION_COUNTING_QUANTITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="detailedProductionCountingAndProgressList" modelName="order" modelPlugin="orders">
 
     <component type="window" name="window" reference="window">
@@ -83,9 +83,9 @@
                 <option type="expression" value="#number"/>
 
                 <listener event="performActionOnBack" method="performActionOnBack"
-                          class="com.qcadoo.mes.basicProductionCounting.hooks.DetailedProductionCountingAndProgressListHooks"/>
+                          class="com.sleektiv.mes.basicProductionCounting.hooks.DetailedProductionCountingAndProgressListHooks"/>
                 <listener event="printManifestoReport" method="printManifestoReport"
-                          class="com.qcadoo.mes.basicProductionCounting.listeners.DetailedProductionCountingAndProgressListListeners"/>
+                          class="com.sleektiv.mes.basicProductionCounting.listeners.DetailedProductionCountingAndProgressListListeners"/>
             </component>
             <component type="form" name="basicProductionCounting"
                        reference="form">
@@ -162,7 +162,7 @@
                                 var that = this;
                                 this.onDeleteButtonClicked = function () {
                                     var selectedEntities = #{grid}.getValue().content.selectedEntities;
-                                    if (window.confirm("#{translate(qcadooView.grid.confirmDeleteMessage)}" + "?")) {
+                                    if (window.confirm("#{translate(sleektivView.grid.confirmDeleteMessage)}" + "?")) {
                                         #{grid}.fireEvent(null,'removeSelectedProductionCountingQuantities',[selectedEntities]);
                                     }
                             };
@@ -211,12 +211,12 @@
                     <option type="selectableWhenDisabled" value="true"/>
 
                     <rowStyleResolver
-                            class="com.qcadoo.mes.basicProductionCounting.rowStyleResolvers.DetailedProductionCountingAndProgressListCriteriaModifiers"
+                            class="com.sleektiv.mes.basicProductionCounting.rowStyleResolvers.DetailedProductionCountingAndProgressListCriteriaModifiers"
                             method="fillRowStylesDependsOfTypeOfMaterial"/>
 
                     <listener event="removeSelectedProductionCountingQuantities"
                               method="onRemoveSelectedProductionCountingQuantities"
-                              class="com.qcadoo.mes.basicProductionCounting.hooks.DetailedProductionCountingAndProgressListHooks"/>
+                              class="com.sleektiv.mes.basicProductionCounting.hooks.DetailedProductionCountingAndProgressListHooks"/>
 
                 </component>
             </component>
@@ -252,7 +252,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.basicProductionCounting.hooks.DetailedProductionCountingAndProgressListHooks"
+                class="com.sleektiv.mes.basicProductionCounting.hooks.DetailedProductionCountingAndProgressListHooks"
                 method="setGridEditableDependsOfOrderState"/>
     </hooks>
 

@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <model name="productionTracking" activable="true" auditable="true"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
-	   xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/model"
+	   xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
 	<fields>
 		<string name="number" unique="true">
@@ -88,7 +88,7 @@
 		<hasMany name="stateChanges" model="productionTrackingStateChange"
 				 joinField="productionTracking" cascade="delete"/>
 
-		<belongsTo name="user" model="user" plugin="qcadooSecurity" persistent="false"/>
+		<belongsTo name="user" model="user" plugin="sleektivSecurity" persistent="false"/>
 
 		<belongsTo name="batch" model="batch" plugin="advancedGenealogy"/>
 		<boolean name="addBatch" default="false" persistent="false"/>
@@ -107,19 +107,19 @@
 
 	<hooks>
 		<validatesWith
-				class="com.qcadoo.mes.productionCounting.validators.ProductionTrackingValidators"
+				class="com.sleektiv.mes.productionCounting.validators.ProductionTrackingValidators"
 				method="validatesWith"/>
 		<onCreate
-				class="com.qcadoo.mes.productionCounting.hooks.ProductionTrackingHooks"
+				class="com.sleektiv.mes.productionCounting.hooks.ProductionTrackingHooks"
 				method="onCreate"/>
 		<onSave
-				class="com.qcadoo.mes.productionCounting.hooks.ProductionTrackingHooks"
+				class="com.sleektiv.mes.productionCounting.hooks.ProductionTrackingHooks"
 				method="onSave"/>
 		<onCopy
-				class="com.qcadoo.mes.productionCounting.hooks.ProductionTrackingHooks"
+				class="com.sleektiv.mes.productionCounting.hooks.ProductionTrackingHooks"
 				method="onCopy"/>
 		<onDelete
-				class="com.qcadoo.mes.productionCounting.hooks.ProductionTrackingHooks"
+				class="com.sleektiv.mes.productionCounting.hooks.ProductionTrackingHooks"
 				method="onDelete"/>
 	</hooks>
 

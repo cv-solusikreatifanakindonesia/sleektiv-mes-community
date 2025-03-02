@@ -8,28 +8,28 @@ String ctx = request.getContextPath();
 %>
 
 <div id="gridWrapper">
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/jquery-1.8.3.min.js?ver=${buildNumber}"></script>
-    <script type="text/javascript" src="/qcadooView/public/js/core/qcd/core/messagesController.js?ver=${buildNumber}"></script>
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/jquery.jqGrid.min.js?ver=${buildNumber}"></script>
-    <script src="/qcadooView/public/js/crud/qcd/components/jqGrid/angular.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/jquery-1.8.3.min.js?ver=${buildNumber}"></script>
+    <script type="text/javascript" src="/sleektivView/public/js/core/qcd/core/messagesController.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/jquery.jqGrid.min.js?ver=${buildNumber}"></script>
+    <script src="/sleektivView/public/js/crud/qcd/components/jqGrid/angular.js?ver=${buildNumber}"></script>
     <script src="/basic/public/js/genericLookupOptions.js?ver=${buildNumber}"></script>
 
     <c:choose>
         <c:when test="${locale == 'pl'}">
-            <script type="text/ecmascript" src="/qcadooView/public/js/crud/qcd/components/jqGrid/grid.locale-pl.js?ver=${buildNumber}"></script>
+            <script type="text/ecmascript" src="/sleektivView/public/js/crud/qcd/components/jqGrid/grid.locale-pl.js?ver=${buildNumber}"></script>
         </c:when>
         <c:when test="${locale == 'cn'}">
-            <script type="text/ecmascript" src="/qcadooView/public/js/crud/qcd/components/jqGrid/grid.locale-cn.js?ver=${buildNumber}"></script>
+            <script type="text/ecmascript" src="/sleektivView/public/js/crud/qcd/components/jqGrid/grid.locale-cn.js?ver=${buildNumber}"></script>
         </c:when>
         <c:otherwise>
-            <script type="text/ecmascript" src="/qcadooView/public/js/crud/qcd/components/jqGrid/grid.locale-en.js?ver=${buildNumber}"></script>
+            <script type="text/ecmascript" src="/sleektivView/public/js/crud/qcd/components/jqGrid/grid.locale-en.js?ver=${buildNumber}"></script>
         </c:otherwise>
     </c:choose>
 
     <link rel="stylesheet" type="text/css" media="screen" href="/basic/public/css/ui.jqgrid.css?ver=${buildNumber}" />
     <link rel="stylesheet" type="text/css" media="screen" href="/basic/public/css/_jquery-ui-1.8.5.custom.css?ver=${buildNumber}" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/crud/components/window.css?ver=${buildNumber}" type="text/css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/crud/components/grid.css?ver=${buildNumber}" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/crud/components/window.css?ver=${buildNumber}" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/crud/components/grid.css?ver=${buildNumber}" type="text/css" />
     
     <link rel="stylesheet" type="text/css" media="screen" href="/basic/public/css/custom.css?ver=${buildNumber}">
 

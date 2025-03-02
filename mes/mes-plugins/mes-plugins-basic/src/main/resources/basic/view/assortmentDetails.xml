@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTS_ADDITIONAL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="assortmentDetails" modelName="assortment">
 
     <component type="window" name="window" reference="window">
@@ -90,7 +90,7 @@
 
                         <option type="multiselect" value="true"/>
 
-                        <criteriaModifier class="com.qcadoo.mes.basic.criteriaModifiers.ModelCriteriaModifiers"
+                        <criteriaModifier class="com.sleektiv.mes.basic.criteriaModifiers.ModelCriteriaModifiers"
                                           method="showModelsWithoutAssortment"/>
                     </component>
                     <component type="grid" name="models" reference="models"
@@ -134,7 +134,7 @@
 
                         <option type="multiselect" value="true"/>
 
-                        <criteriaModifier class="com.qcadoo.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
+                        <criteriaModifier class="com.sleektiv.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
                                           method="showProductsWithoutAssortment"/>
                     </component>
                     <component type="grid" name="products" reference="products"

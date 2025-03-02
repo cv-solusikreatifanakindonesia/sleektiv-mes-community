@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view name="technologicalProcessDetails" modelName="technologicalProcess"
       defaultAuthorizationRole="ROLE_TECHNOLOGICAL_PROCESSES"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component name="window" type="window" reference="window">
         <ribbon>
@@ -52,7 +52,7 @@
                             <option type="expression" value="#number + ' - ' + #name"/>
                             <option type="fieldCode" value="number"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -67,7 +67,7 @@
                             <option type="expression" value="#number + ' - ' + #name"/>
                             <option type="fieldCode" value="number"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.technologies.criteriaModifiers.TechnologicalProcessDetailsCriteriaModifiers"
+                                    class="com.sleektiv.mes.technologies.criteriaModifiers.TechnologicalProcessDetailsCriteriaModifiers"
                                     method="showWorkstationsForWorkstationType"/>
                         </component>
                     </layoutElement>
@@ -91,7 +91,7 @@
                         <component type="checkbox" name="extendedTimeForSizeGroup" field="extendedTimeForSizeGroup"
                                    reference="extendedTimeForSizeGroup" hasDescription="true">
                             <listener event="onChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -132,7 +132,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.technologies.hooks.TechnologicalProcessDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.technologies.hooks.TechnologicalProcessDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 

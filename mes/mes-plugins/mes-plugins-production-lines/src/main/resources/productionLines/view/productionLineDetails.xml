@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_COMPANY_STRUCTURE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productionLineDetails"
       modelName="productionLine">
 
@@ -176,7 +176,7 @@
                 <option type="expression" value="#name"/>
 
                 <listener event="generateFactoryStructure"
-                          class="com.qcadoo.mes.productionLines.listeners.ProductionLineDetailsListeners"
+                          class="com.sleektiv.mes.productionLines.listeners.ProductionLineDetailsListeners"
                           method="generateFactoryStructure"/>
 
             </component>
@@ -250,7 +250,7 @@
                                 var that = this;
                                 this.onDeleteButtonClicked = function () {
                                     var selectedEntities = #{workstations}.getValue().content.selectedEntities;
-                                    if (window.confirm("#{translate(qcadooView.grid.confirmDeleteMessage)}" + "?")) {
+                                    if (window.confirm("#{translate(sleektivView.grid.confirmDeleteMessage)}" + "?")) {
                                         #{divisions}.fireEvent(null,'removeSelectedDivisions',[selectedEntities]);
                                         that.performDeleteWithoutConfirm();
                                     }
@@ -275,7 +275,7 @@
 
                         <listener event="removeSelectedDivisions"
                                   method="onRemoveSelectedDivisions"
-                                  class="com.qcadoo.mes.productionLines.listeners.ProductionLineDetailsListeners"/>
+                                  class="com.sleektiv.mes.productionLines.listeners.ProductionLineDetailsListeners"/>
 
                     </component>
                 </layoutElement>
@@ -295,7 +295,7 @@
 
                         <option type="multiselect" value="true"/>
                         <criteriaModifier
-                            class="com.qcadoo.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
+                            class="com.sleektiv.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
                             method="showWorkstationsWithoutProductionLineOnly"/>
 
                     </component>
@@ -308,7 +308,7 @@
                                 this.onDeleteButtonClicked = function () {
                                     var selectedEntities = #{workstations}.getValue().content.selectedEntities;
 
-                                    if (window.confirm("#{translate(qcadooView.grid.confirmDeleteMessage)}" + "?")) {
+                                    if (window.confirm("#{translate(sleektivView.grid.confirmDeleteMessage)}" + "?")) {
                                         #{workstations}.fireEvent(null,'removeSelectedEntites',[selectedEntities]);
                                     }
                                 };
@@ -331,14 +331,14 @@
                         <option type="correspondingLookup" value="workstationsLookup"/>
 
                         <criteriaModifier
-                            class="com.qcadoo.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
+                            class="com.sleektiv.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
                             method="showWorkstationsForCurrentProductionLine"/>
                         <listener event="addExistingEntity"
                                   method="onAddExistingEntity"
-                                  class="com.qcadoo.mes.productionLines.listeners.ProductionLineDetailsListeners"/>
+                                  class="com.sleektiv.mes.productionLines.listeners.ProductionLineDetailsListeners"/>
                         <listener event="removeSelectedEntites"
                                   method="onRemoveSelectedEntity"
-                                  class="com.qcadoo.mes.productionLines.listeners.ProductionLineDetailsListeners"/>
+                                  class="com.sleektiv.mes.productionLines.listeners.ProductionLineDetailsListeners"/>
                     </component>
                 </layoutElement>
             </component>
@@ -465,11 +465,11 @@
     </component>
     <hooks>
         <beforeRender
-            class="com.qcadoo.mes.productionLines.hooks.ProductionLineDetailsViewHooks"
+            class="com.sleektiv.mes.productionLines.hooks.ProductionLineDetailsViewHooks"
             method="generateProductionLineNumber"/>
 
         <beforeRender
-            class="com.qcadoo.mes.productionLines.hooks.ProductionLineDetailsViewHooks"
+            class="com.sleektiv.mes.productionLines.hooks.ProductionLineDetailsViewHooks"
             method="fillCriteriaModifiers"/>
     </hooks>
 </view>

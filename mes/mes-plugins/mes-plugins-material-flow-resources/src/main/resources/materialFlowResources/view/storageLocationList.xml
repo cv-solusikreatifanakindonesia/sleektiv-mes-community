@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_MATERIAL_FLOW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="storageLocationList"
       modelName="storageLocation"
       menuAccessible="true">
@@ -75,18 +75,18 @@
             <option type="multiselect" value="true"/>
 
             <criteriaModifier
-                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.StorageLocationsCriteriaModifier"
+                    class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.StorageLocationsCriteriaModifier"
                     method="restrictToUserLocations"/>
 
             <listener event="redirectToAddManyStorageLocations" method="redirectToAddManyStorageLocations"
-                      class="com.qcadoo.mes.materialFlowResources.listeners.StorageLocationsListListeners"/>
+                      class="com.sleektiv.mes.materialFlowResources.listeners.StorageLocationsListListeners"/>
 
             <listener event="printStorageLocationNumbersReport" method="printStorageLocationNumbersReport"
-                      class="com.qcadoo.mes.materialFlowResources.listeners.StorageLocationsListListeners"/>
+                      class="com.sleektiv.mes.materialFlowResources.listeners.StorageLocationsListListeners"/>
         </component>
 
         <listener event="openStorageLocationsImportPage"
-                  class="com.qcadoo.mes.materialFlowResources.listeners.StorageLocationsListListeners"
+                  class="com.sleektiv.mes.materialFlowResources.listeners.StorageLocationsListListeners"
                   method="openStorageLocationsImportPage"/>
 
         <option type="fixedHeight" value="true"/>
@@ -94,7 +94,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.materialFlowResources.hooks.StorageLocationsListHooks"
+        <beforeRender class="com.sleektiv.mes.materialFlowResources.hooks.StorageLocationsListHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

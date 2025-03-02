@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_PRODUCTION_COUNTING_QUANTITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_PRODUCTION_COUNTING_QUANTITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productionCountingQuantityAdvancedDetails" modelName="productionCountingQuantity"
       windowWidth="1000" windowHeight="580">
 
@@ -64,7 +64,7 @@
                             <option type="fieldCode" value="nodeNumber"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.basicProductionCounting.criteriaModifiers.TechnologyOperationComponentCriteriaModifiersBPC"
+                                    class="com.sleektiv.mes.basicProductionCounting.criteriaModifiers.TechnologyOperationComponentCriteriaModifiersBPC"
                                     method="restrictTechnologyOperationComponentsToOrderTechnology"/>
                         </component>
                     </layoutElement>
@@ -80,7 +80,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.basicProductionCounting.listeners.ProductionCountingQuantityAdvancedDetailsListeners"
+                                      class="com.sleektiv.mes.basicProductionCounting.listeners.ProductionCountingQuantityAdvancedDetailsListeners"
                                       method="fillUnitFields"/>
                         </component>
                     </layoutElement>
@@ -147,14 +147,14 @@
                                    reference="typeOfMaterial">
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.basicProductionCounting.listeners.ProductionCountingQuantityAdvancedDetailsListeners"
+                                      class="com.sleektiv.mes.basicProductionCounting.listeners.ProductionCountingQuantityAdvancedDetailsListeners"
                                       method="setTechnologyOperationComponentFieldRequired"/>
                         </component>
                     </layoutElement>
                 </component>
 
                 <listener event="saveProductionCountingQuantity"
-                          class="com.qcadoo.mes.basicProductionCounting.listeners.ProductionCountingQuantityAdvancedDetailsListeners"
+                          class="com.sleektiv.mes.basicProductionCounting.listeners.ProductionCountingQuantityAdvancedDetailsListeners"
                           method="saveProductionCountingQuantity"/>
                 <option type="header" value="true"/>
                 <option type="expression" value="#product['name']"/>
@@ -210,7 +210,7 @@
                 <option type="fieldCode" value="number"/>
                 <option type="multiselect" value="true"/>
                 <criteriaModifier
-                        class="com.qcadoo.mes.advancedGenealogy.criteriaModifier.BatchCriteriaModifier"
+                        class="com.sleektiv.mes.advancedGenealogy.criteriaModifier.BatchCriteriaModifier"
                         method="filterByProductAndActive"/>
             </component>
 
@@ -267,7 +267,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.basicProductionCounting.hooks.ProductionCountingQuantityAdvancedDetailsHooks"
+                class="com.sleektiv.mes.basicProductionCounting.hooks.ProductionCountingQuantityAdvancedDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

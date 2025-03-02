@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_ORDER_DETAILS_VIEW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="orderDetails" modelName="order">
 
     <component type="window" name="window" reference="window">
@@ -496,7 +496,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                       method="clearAddress"/>
                         </component>
                     </layoutElement>
@@ -520,7 +520,7 @@
                             <option type="withTimePicker" value="true"/>
 
                             <listener event="onChange"
-                                      class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                       method="copyStartDateToDetails"/>
                         </component>
                     </layoutElement>
@@ -531,7 +531,7 @@
                             <option type="withTimePicker" value="true"/>
 
                             <listener event="onChange"
-                                      class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                       method="copyFinishDateToDetails"/>
                         </component>
                     </layoutElement>
@@ -558,13 +558,13 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                       method="changeOrderProduct"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.basic.util.UnitService"
+                                      class="com.sleektiv.mes.basic.util.UnitService"
                                       method="fillProductUnit"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                       method="onTechnologyChange"/>
                         </component>
                     </layoutElement>
@@ -594,11 +594,11 @@
                                         <option type="fieldCode" value="number"/>
 
                                         <criteriaModifier
-                                                class="com.qcadoo.mes.orders.criteriaModifiers.TechnologyCriteriaModifiersO"
+                                                class="com.sleektiv.mes.orders.criteriaModifiers.TechnologyCriteriaModifiersO"
                                                 method="showAcceptedTechnologyForProduct"/>
 
                                         <listener event="onSelectedEntityChange"
-                                                  class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                                  class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                                   method="onTechnologyChange"/>
                                     </component>
                                 </layoutElement>
@@ -625,11 +625,11 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.orders.criteriaModifiers.ProductionLineCriteriaModifiersO"
+                                    class="com.sleektiv.mes.orders.criteriaModifiers.ProductionLineCriteriaModifiersO"
                                     method="filterProductionLines"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                       method="onProductionLineChange"/>
                         </component>
                     </layoutElement>
@@ -642,7 +642,7 @@
                                     <option type="labelWidth" value="55"/>
                                     <option type="alignment" value="right"/>
                                     <listener event="onInputChange" method="onQuantityChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                                 </component>
                             </layoutElement>
                             <layoutElement column="7" row="1">
@@ -665,7 +665,7 @@
                                     <option type="alignment" value="right"/>
 
                                     <listener event="onInputChange" method="onQuantityForAdditionalUnitChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                                 </component>
                             </layoutElement>
                             <layoutElement column="7" row="1">
@@ -738,31 +738,31 @@
                         value="#name + ' - ' + #number + ' - ' + '@orders.order.state.value.' + #state"/>
 
                 <listener event="changeState"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                           method="changeState"/>
                 <listener event="showOrderParameters" method="showOrderParameters"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="printOrderReport" method="printOrderReport"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="printProductionGuide" method="printProductionGuide"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="showOperationalTasks" method="showOperationalTasks"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="showOrderPacks" method="showOrderPacks"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="showOrderTechnologicalProcesses" method="showOrderTechnologicalProcesses"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="generateOperationalTasks" method="generateOperationalTasks"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"/>
                 <listener event="downloadAttachment" method="downloadAttachment"
-                          class="com.qcadoo.mes.basic.listeners.AttachmentsListeners"/>
+                          class="com.sleektiv.mes.basic.listeners.AttachmentsListeners"/>
 
                 <listener event="splitOrdersParts"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                           method="splitOrdersParts"/>
 
                 <listener event="splitOrders"
-                          class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                           method="splitOrders"/>
 
             </component>
@@ -783,7 +783,7 @@
                                     <option type="withTimePicker" value="true"/>
 
                                     <listener event="onChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                               method="copyStartDate"/>
                                 </component>
                             </layoutElement>
@@ -794,7 +794,7 @@
                                     <option type="withTimePicker" value="true"/>
 
                                     <listener event="onChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                               method="copyStartDate"/>
                                 </component>
                             </layoutElement>
@@ -805,7 +805,7 @@
                                     <option type="withTimePicker" value="true"/>
 
                                     <listener event="onChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                               method="copyStartDate"/>
                                 </component>
                             </layoutElement>
@@ -921,7 +921,7 @@
                                     <option type="withTimePicker" value="true"/>
 
                                     <listener event="onChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                               method="copyEndDate"/>
                                 </component>
                             </layoutElement>
@@ -932,7 +932,7 @@
                                     <option type="withTimePicker" value="true"/>
 
                                     <listener event="onChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                               method="copyEndDate"/>
                                 </component>
                             </layoutElement>
@@ -943,7 +943,7 @@
                                     <option type="withTimePicker" value="true"/>
 
                                     <listener event="onChange"
-                                              class="com.qcadoo.mes.orders.listeners.OrderDetailsListeners"
+                                              class="com.sleektiv.mes.orders.listeners.OrderDetailsListeners"
                                               method="copyEndDate"/>
                                 </component>
                             </layoutElement>
@@ -1300,7 +1300,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.orders.hooks.OrderDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.orders.hooks.OrderDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 

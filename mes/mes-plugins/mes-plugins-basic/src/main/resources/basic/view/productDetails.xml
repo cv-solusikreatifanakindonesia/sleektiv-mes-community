@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productDetails" modelName="product">
 
     <component type="window" name="window" reference="window">
@@ -226,7 +226,7 @@
                             <option type="fieldCode" value="name"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -241,7 +241,7 @@
                             <option type="fieldCode" value="name"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.basic.criteriaModifiers.ModelCriteriaModifiers"
+                                    class="com.sleektiv.mes.basic.criteriaModifiers.ModelCriteriaModifiers"
                                     method="showModelWithAssortment"/>
                         </component>
                     </layoutElement>
@@ -250,18 +250,18 @@
                 <option type="header" value="true"/>
                 <option type="expression" value="#number + ' - ' + #name"/>
 
-                <listener event="getDefaultConversions" class="com.qcadoo.mes.basic.ProductService"
+                <listener event="getDefaultConversions" class="com.sleektiv.mes.basic.ProductService"
                           method="getDefaultConversions"/>
-                <listener event="openAdditionalDetails" class="com.qcadoo.mes.basic.ProductService"
+                <listener event="openAdditionalDetails" class="com.sleektiv.mes.basic.ProductService"
                           method="openAdditionalDetails"/>
-                <listener event="cleanExternalNumber" class="com.qcadoo.mes.basic.ProductService"
+                <listener event="cleanExternalNumber" class="com.sleektiv.mes.basic.ProductService"
                           method="cleanExternalNumber"/>
-                <listener event="productFamilySizes" class="com.qcadoo.mes.basic.ProductService"
+                <listener event="productFamilySizes" class="com.sleektiv.mes.basic.ProductService"
                           method="productFamilySizes"/>
                 <listener event="downloadAttachment" method="downloadAttachment"
-                          class="com.qcadoo.mes.basic.listeners.AttachmentsListeners"/>
+                          class="com.sleektiv.mes.basic.listeners.AttachmentsListeners"/>
 
-                <listener event="addManyReplacements" class="com.qcadoo.mes.basic.listeners.ReplacementsListeners"
+                <listener event="addManyReplacements" class="com.sleektiv.mes.basic.listeners.ReplacementsListeners"
                           method="openReplacements"/>
 
             </component>
@@ -274,7 +274,7 @@
                     <component type="select" name="entityType" field="#{form}.entityType"
                                reference="entityType">
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.view.api.listeners.RerenderListener"
+                                  class="com.sleektiv.view.api.listeners.RerenderListener"
                                   method="onChangeRerender"/>
                     </component>
                 </layoutElement>
@@ -291,7 +291,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
+                                class="com.sleektiv.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
                                 method="showFamiliesByMachinePartType"/>
                     </component>
                 </layoutElement>
@@ -504,9 +504,9 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.basic.hooks.ProductDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.basic.hooks.ProductDetailsHooks"
                       method="onBeforeRender"/>
-        <beforeRender class="com.qcadoo.mes.basic.hooks.ProductHooks"
+        <beforeRender class="com.sleektiv.mes.basic.hooks.ProductHooks"
                       method="setCriteriaModifierParameters"/>
     </hooks>
 </view>

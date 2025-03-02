@@ -17,7 +17,7 @@ QCD.linesProducedQuantitiesChart = (function() {
 
                 new QCD.MessagesController().addMessage({
                     type: 'failure',
-                    title: QCD.translate('qcadooView.notification.failure'),
+                    title: QCD.translate('sleektivView.notification.failure'),
                     content: QCD.translate(message),
                     autoClose: false,
                     extraLarge: false

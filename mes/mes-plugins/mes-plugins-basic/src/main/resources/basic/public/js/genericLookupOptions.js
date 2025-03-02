@@ -71,7 +71,7 @@ myApp.controller('GridController', ['$scope', '$window', '$http', function ($sco
         function successfunc(rowID, response) {
             showMessage({
                 type: 'success',
-                content: QCD.translate('qcadooView.message.saveMessage')
+                content: QCD.translate('sleektivView.message.saveMessage')
             });
 
             return true;

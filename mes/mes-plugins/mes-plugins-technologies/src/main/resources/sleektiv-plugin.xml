@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
+    Version: 1.4
+
+    This file is part of Sleektiv.
+
+    Sleektiv is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<plugin plugin="technologies" group="technologies" version="${sleektiv.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/plugin"
+        xmlns:model="http://schema.sleektiv.org/modules/model" xmlns:view="http://schema.sleektiv.org/modules/view"
+        xmlns:menu="http://schema.sleektiv.org/modules/menu" xmlns:custom="http://schema.sleektiv.org/modules/custom"
+        xmlns:localization="http://schema.sleektiv.org/modules/localization"
+        xsi:schemaLocation="
+		http://schema.sleektiv.org/plugin 
+		http://schema.sleektiv.org/plugin.xsd 
+		http://schema.sleektiv.org/modules/model 
+		http://schema.sleektiv.org/modules/model.xsd 
+		http://schema.sleektiv.org/modules/view 
+		http://schema.sleektiv.org/modules/view.xsd 
+		http://schema.sleektiv.org/modules/localization 
+		http://schema.sleektiv.org/modules/localization.xsd 
+		http://schema.sleektiv.org/modules/menu 
+		http://schema.sleektiv.org/modules/menu.xsd 
+		http://schema.sleektiv.org/modules/custom 
+		http://schema.sleektiv.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Technologies</name>
+        <vendor>
+            <name>Sleektiv.</name>
+            <url>http://www.sleektiv.com/</url>
+        </vendor>
+        <description>A tree of operations which defines the manufacturing process.</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>states</plugin>
+            <version>[1.1.7</version>
+        </dependency>
+        <dependency>
+            <plugin>productionLines</plugin>
+            <version>[1.4.0</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <localization:translation path="locales"/>
+        <localization:translation-group name="technologyConfigurator" prefix="technologies.technologyConfigurator"/>
+
+        <model:model model="productComponent" resource="model/productComponent.xml"/>
+        <model:model model="productToProductGroupTechnology" resource="model/productToProductGroupTechnology.xml"/>
+        <model:model model="operation" resource="model/operation.xml"/>
+        <model:model model="operationGroup" resource="model/operationGroup.xml"/>
+        <model:model model="operationProductOutComponent"
+                     resource="model/operationProductOutComponent.xml"/>
+        <model:model model="operationProductInComponent" resource="model/operationProductInComponent.xml"/>
+        <model:model model="operationProductInComponentDto" resource="model/operationProductInComponentDto.xml"/>
+
+        <model:model model="technology" resource="model/technology.xml"/>
+        <model:model model="technologyDto" resource="model/technologyDto.xml"/>
+        <model:model model="technologyOperationComponent"
+                     resource="model/technologyOperationComponent.xml"/>
+        <model:model model="productStructureTreeNode" resource="model/productStructureTreeNode.xml"/>
+
+        <model:model model="technologyStateChange" resource="model/technologyStateChange.xml"/>
+
+        <model:model model="technologyGroup" resource="model/technologyGroup.xml"/>
+
+        <model:model model="barcodeOperationComponent" resource="model/barcodeOperationComponent.xml"/>
+
+        <model:model model="changeTechnologyParameters"
+                     resource="model/changeTechnologyParameters.xml"/>
+
+        <model:model model="modifyTechnologyHelper"
+                     resource="model/modifyTechnologyHelper.xml"/>
+        <model:model model="modifyTechnologyAddProductHelper"
+                     resource="model/modifyTechnologyAddProductHelper.xml"/>
+
+        <model:model model="operationSkill" resource="model/operationSkill.xml"/>
+
+        <model:model model="operationProductInProductDto" resource="model/operationProductInProductDto.xml"/>
+
+        <model:model model="technologyOperationComponentDto" resource="model/technologyOperationComponentDto.xml"/>
+        <model:model model="technologicalProcess" resource="model/technologicalProcess.xml"/>
+        <model:model model="technologicalProcessComponent" resource="model/technologicalProcessComponent.xml"/>
+        <model:model model="technologicalProcessList" resource="model/technologicalProcessList.xml"/>
+
+        <model:model model="technologyInputProductType" resource="model/technologyInputProductType.xml"/>
+        <model:model model="productBySizeGroup" resource="model/productBySizeGroup.xml"/>
+        <model:model model="productionLineTechnologyGroup" resource="model/productionLineTechnologyGroup.xml"/>
+        <model:model model="operationTechnologyDto" resource="model/operationTechnologyDto.xml"/>
+        <model:model model="pieceRateTechnologyDto" resource="model/pieceRateTechnologyDto.xml"/>
+
+        <model:model model="technologyToCreationHelper" resource="model/technologyToCreationHelper.xml"/>
+
+        <model:model model="productData" resource="model/productData.xml"/>
+        <model:model model="productDataInput" resource="model/productDataInput.xml"/>
+        <model:model model="productDataOperation" resource="model/productDataOperation.xml"/>
+        <model:model model="productDataAttachment" resource="model/productDataAttachment.xml"/>
+
+        <model:model model="workstationChangeoverNorm" resource="model/workstationChangeoverNorm.xml"/>
+        <model:model model="workstationChangeoverNormDto" resource="model/workstationChangeoverNormDto.xml"/>
+        <model:model model="workstationStateChange" resource="model/workstationStateChange.xml"/>
+
+        <model:model model="section" resource="model/section.xml"/>
+
+        <model:model model="dimensionControlAttribute" resource="model/dimensionControlAttribute.xml"/>
+
+        <model:model model="technologyProductionLine" resource="model/technologyProductionLine.xml"/>
+
+        <model:model-field plugin="productionLines" model="productionLine">
+            <model:hasMany name="technologyProductionLines" model="technologyProductionLine"
+                           plugin="technologies" joinField="productionLine"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:boolean name="dimensionControlOfProducts" default="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:hasMany name="dimensionControlAttributes" plugin="technologies"
+                           model="dimensionControlAttribute" joinField="parameter" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attribute">
+            <model:hasMany name="dimensionControlAttributes" plugin="technologies"
+                           model="dimensionControlAttribute" joinField="attribute" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attribute">
+            <model:hasMany name="workstationChangeoverNorms" plugin="technologies"
+                           model="workstationChangeoverNorm" joinField="attribute"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attributeValue">
+            <model:hasMany name="fromWorkstationChangeoverNorms" plugin="technologies"
+                           model="workstationChangeoverNorm" joinField="fromAttributeValue"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="attributeValue">
+            <model:hasMany name="toWorkstationChangeoverNorms" plugin="technologies"
+                           model="workstationChangeoverNorm" joinField="toAttributeValue"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstationType">
+            <model:hasMany name="technologicalProcesses" plugin="technologies"
+                           model="technologicalProcess" joinField="workstationType"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstationType">
+            <model:hasMany name="workstationChangeoverNorms" plugin="technologies"
+                           model="workstationChangeoverNorm" joinField="workstationType"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:hasMany name="technologicalProcesses" plugin="technologies"
+                           model="technologicalProcess" joinField="workstation"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:hasMany name="workstationChangeoverNorms" plugin="technologies"
+                           model="workstationChangeoverNorm" joinField="workstation"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="sizeGroup">
+            <model:hasMany name="technologicalProcesses" plugin="technologies"
+                            model="technologicalProcess" joinField="sizeGroup"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="sizeGroup">
+            <model:hasMany name="technologicalProcessComponents" plugin="technologies"
+                           model="technologicalProcessComponent" joinField="sizeGroup"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="technologicalProcessRate">
+            <model:hasMany name="technologicalProcesses" plugin="technologies"
+                           model="technologicalProcess" joinField="technologicalProcessRate"/>
+        </model:model-field>
+
+        <model:model-field plugin="states" model="message">
+            <model:belongsTo name="technologyStateChange" plugin="technologies" model="technologyStateChange"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="shift">
+            <model:hasMany name="technologyStateChanges" plugin="technologies"
+                           model="technologyStateChange" joinField="shift"/>
+        </model:model-field>
+
+        <model:model model="technologyAttachment" resource="model/technologyAttachment.xml"/>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="operationProductInComponents"
+                           plugin="technologies" model="operationProductInComponent" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="operationProductInComponentsDto"
+                           plugin="technologies" model="operationProductInComponentDto" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="operationProductInProductsDto"
+                           plugin="technologies" model="operationProductInProductDto" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="operationProductOutComponents"
+                           plugin="technologies" model="operationProductOutComponent"
+                           joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="productBySizeGroups"
+                           plugin="technologies" model="productBySizeGroup" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="technologies" plugin="technologies"
+                           model="technology" joinField="product" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:belongsTo name="technologyGroup" plugin="technologies" model="technologyGroup"
+                             lazy="false"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="sizeGroup">
+            <model:hasMany name="productBySizeGroups"
+                           plugin="technologies" model="productBySizeGroup" joinField="sizeGroup"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:manyToMany name="operations" plugin="technologies"
+                              model="operation" joinField="workstations"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:manyToMany name="operationComponents" plugin="technologies"
+                              model="technologyOperationComponent" joinField="workstations" lazy="true"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstationType">
+            <model:hasMany name="operations" plugin="technologies"
+                           model="operation" joinField="workstationType"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="division">
+            <model:hasMany name="operations" plugin="technologies"
+                           model="operation" joinField="division"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="division">
+            <model:hasMany name="technologyOperationComponents" plugin="technologies"
+                           model="technologyOperationComponent" joinField="division"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="skill">
+            <model:hasMany name="operationSkills" plugin="technologies"
+                           model="operationSkill" joinField="skill" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:enum name="range" values="01oneDivision,02manyDivisions"
+                        default="01oneDivision"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:belongsTo name="division" plugin="basic"
+                             model="division"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="completeWarehousesFlowWhileChecking" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="updateTechnologiesOnPendingOrders" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="moveProductsToSubsequentOperations" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="technologiesGeneratorCopyProductSize" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="technologiesGeneratorCopyProductAttributes" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="allowCheckedTechnologyWithoutInProducts" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="acceptedTechnologyMarkedAsDefault" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:boolean name="checkForTheExistenceOfInputProductPrices" default="false"/>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="operationProductInDefaultQuantity">
+                <model:validatesRange from="0" exclusively="true"/>
+                <model:validatesUnscaledValue max="9"/>
+                <model:validatesScale max="5"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field model="parameter" plugin="basic">
+            <model:decimal name="operationProductOutDefaultQuantity">
+                <model:validatesRange from="0" exclusively="true"/>
+                <model:validatesUnscaledValue max="9"/>
+                <model:validatesScale max="5"/>
+            </model:decimal>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="qualityCard">
+            <model:hasMany name="technologies" model="technology" joinField="qualityCard" plugin="technologies"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="staff">
+            <model:hasMany name="productDatas" plugin="technologies" model="productData" joinField="staff"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="product">
+            <model:hasMany name="productDatas" plugin="technologies" model="productData" joinField="product"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="workstation">
+            <model:hasMany name="stateChanges" plugin="technologies" model="workstationStateChange" joinField="workstation" cascade="delete"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="pieceRate">
+            <model:hasMany name="pieceRateTechnologiesDto" plugin="technologies"
+                           model="pieceRateTechnologyDto" joinField="pieceRate"/>
+        </model:model-field>
+
+        <model:model-field plugin="basic" model="parameter">
+            <model:belongsTo name="dashboardOperation" plugin="technologies" model="operation"/>
+        </model:model-field>
+
+        <model:model-hook plugin="basic" model="parameter">
+            <model:validatesWith
+                    class="com.sleektiv.mes.technologies.hooks.ParameterHooksT"
+                    method="validatesWith"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="basic" model="division">
+            <model:onDelete class="com.sleektiv.mes.technologies.hooks.DivisionHooksT" method="onDelete"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="basic" model="workstation">
+            <model:onDelete
+                    class="com.sleektiv.mes.technologies.hooks.WorkstationHooksT"
+                    method="onDelete"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="basic" model="product">
+            <model:onDelete
+                    class="com.sleektiv.mes.technologies.hooks.ProductHooksT"
+                    method="onDelete"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="basic" model="machineWorkingPeriod">
+            <model:onSave
+                    class="com.sleektiv.mes.technologies.hooks.MachineWorkingPeriodHooksT"
+                    method="onSave"/>
+        </model:model-hook>
+
+        <model:model-hook plugin="basic" model="machineWorkingPeriod">
+            <model:onDelete
+                    class="com.sleektiv.mes.technologies.hooks.MachineWorkingPeriodHooksT"
+                    method="onDelete"/>
+        </model:model-hook>
+
+        <model:model-enum-value plugin="basic" model="log" enum="logType" value="operationImport"/>
+        <model:model-enum-value plugin="basic" model="log" enum="logType" value="operationProductInComponentImport"/>
+        <model:model-enum-value plugin="basic" model="log" enum="logType" value="productToProductGroupTechnologyImport"/>
+        <model:model-enum-value plugin="basic" model="log" enum="logType" value="workstationChangeoverNormImport"/>
+
+        <menu:menu-category name="technology" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+
+        <menu:menu-item name="technologies" category="technology"
+                        view="technologiesList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+        <menu:menu-item name="operations" category="technology"
+                        view="operationsList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+        <menu:menu-item name="operationGroups" category="technology"
+                        view="operationGroupsList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+        <menu:menu-item name="technologyGroups" category="technology"
+                        view="technologyGroupsList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+        <menu:menu-item name="productsToProductGroupTechnology" category="technology"
+                        view="productsToProductGroupTechnologyList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+        <menu:menu-item name="technologicalProcessesList" category="technology"
+                        view="technologicalProcessesList" defaultAuthorizationRole="ROLE_TECHNOLOGICAL_PROCESSES"/>
+        <menu:menu-item name="technologicalProcessListsList" category="technology"
+                        view="technologicalProcessListsList" defaultAuthorizationRole="ROLE_TECHNOLOGICAL_PROCESSES"/>
+        <menu:menu-item name="technologyInputProductTypesList" category="technology"
+                        view="technologyInputProductTypesList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+
+        <menu:menu-item name="productionLineTechnologyGroupList" category="technology"
+                        view="productionLineTechnologyGroupList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+
+        <menu:menu-item-url name="technologiesParameters" category="parameters" url="/technologiesParameters.html"
+                            defaultAuthorizationRole="ROLE_PARAMETERS"/>
+
+        <menu:menu-item name="productData" category="technology"
+                        view="productDatasList"/>
+
+        <menu:menu-item-url name="technologyConfigurator" category="technology" defaultAuthorizationRole="ROLE_TECHNOLOGIES"
+                            url="/technologyConfigurator.html"/>
+
+        <menu:menu-item name="technologies" category="technology"
+                        view="workstationChangeoverNormsList" defaultAuthorizationRole="ROLE_TECHNOLOGIES"/>
+
+        <view:view resource="view/operationsList.xml"/>
+        <view:view resource="view/operationsImport.xml"/>
+        <view:view resource="view/operationDetails.xml"/>
+        <view:view resource="view/operationGroupsList.xml"/>
+        <view:view resource="view/operationGroupDetails.xml"/>
+        <view:view resource="view/technologiesList.xml"/>
+        <view:view resource="view/productTechnologiesList.xml"/>
+        <view:view resource="view/technologiesAttachments.xml"/>
+        <view:view resource="view/operationProductInComponentsImport.xml"/>
+        <view:view resource="view/technologyDetails.xml"/>
+        <view:view resource="view/technologyOperationComponentDetails.xml"/>
+        <view:view resource="view/technologyReferenceTechnologyComponentDetails.xml"/>
+        <view:view resource="view/operationProductInComponentDetails.xml"/>
+        <view:view resource="view/operationProductOutComponentDetails.xml"/>
+        <view:view resource="view/technologiesWithUsingProductList.xml"/>
+        <view:view resource="view/technologiesWithUsingOperationList.xml"/>
+        <view:view resource="view/technologiesWithUsingPieceRateList.xml"/>
+
+        <view:view resource="view/technologyGroupsList.xml"/>
+        <view:view resource="view/technologyGroupDetails.xml"/>
+
+        <view:view resource="view/multiUpload.xml"/>
+
+        <view:view resource="view/changeTechnologyParameters.xml"/>
+        <view:view resource="view/modifyTechnology.xml"/>
+
+        <view:view resource="view/operationSkillDetails.xml"/>
+        <view:view resource="view/skillOperationDetails.xml"/>
+
+        <view:view resource="view/productsToProductGroupTechnologyList.xml"/>
+        <view:view resource="view/productsToProductGroupTechnologyImport.xml"/>
+        <view:view resource="view/productToProductGroupTechnologyDetails.xml"/>
+
+        <view:view resource="view/technologiesParameters.xml"/>
+        <view:view resource="view/technologicalProcessesList.xml"/>
+        <view:view resource="view/technologicalProcessDetails.xml"/>
+        <view:view resource="view/technologicalProcessListsList.xml"/>
+        <view:view resource="view/technologicalProcessListDetails.xml"/>
+        <view:view resource="view/addProcesses.xml"/>
+        <view:view resource="view/technologicalProcessComponentDetails.xml"/>
+        <view:view resource="view/technologyOperationComponentProcessListDetails.xml"/>
+
+        <view:view resource="view/technologyInputProductTypesList.xml"/>
+        <view:view resource="view/technologyInputProductTypeDetails.xml"/>
+
+        <view:view resource="view/productionLineTechnologyGroupList.xml"/>
+        <view:view resource="view/productionLineTechnologyGroupDetails.xml"/>
+
+        <view:view resource="view/productBySizeGroupDetails.xml"/>
+
+        <view:view resource="view/productDatasList.xml"/>
+        <view:view resource="view/productDataDetails.xml"/>
+        <view:view resource="view/productDataInputDetails.xml"/>
+        <view:view resource="view/productDataOperationDetails.xml"/>
+
+        <view:view resource="view/sectionDetails.xml"/>
+
+        <view:view resource="view/operationComponentDetails.xml"/>
+        <view:view resource="view/technologyProductionLineDetails.xml"/>
+
+        <view:view-ribbon-group resource="view/ribbonExtensions/productDetails.xml"/>
+        <view:view-ribbon-group resource="view/ribbonExtensions/pieceRateDetails.xml"/>
+        <view:view-ribbon-group resource="view/ribbonExtensions/workstationDetails.xml"/>
+
+        <view:view-tab resource="view/tabExtensions/productDetails.xml"/>
+        <view:view-tab resource="view/tabExtensions/skillDetails.xml"/>
+
+        <view:view resource="view/workstationChangeoverNormsList.xml"/>
+        <view:view resource="view/workstationChangeoverNormsImport.xml"/>
+        <view:view resource="view/workstationChangeoverNormDetails.xml"/>
+
+        <view:resource uri="public/**/*"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showTechnologiesWithTechnologyGroup"
+                            class="com.sleektiv.mes.technologies.listeners.ProductDetailsListenersT"
+                            method="showTechnologiesWithTechnologyGroup"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showTechnologiesWithProduct"
+                            class="com.sleektiv.mes.technologies.listeners.ProductDetailsListenersT"
+                            method="showTechnologiesWithProduct"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showTechnologiesWithFamilyProduct"
+                            class="com.sleektiv.mes.technologies.listeners.ProductDetailsListenersT"
+                            method="showTechnologiesWithFamilyProduct"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showTechnologiesWithUsingProduct"
+                            class="com.sleektiv.mes.technologies.listeners.ProductDetailsListenersT"
+                            method="showTechnologiesWithUsingProduct"/>
+
+        <view:view-listener plugin="basic" view="productDetails"
+                            component="form" event="showProductGroupTechnologies"
+                            class="com.sleektiv.mes.technologies.listeners.ProductDetailsListenersT"
+                            method="showProductGroupTechnologies"/>
+
+        <view:view-listener plugin="basic" view="workstationDetails"
+                            component="form" event="changeState" method="changeState"
+                            class="com.sleektiv.mes.technologies.listeners.WorkstationDetailsListenersT"/>
+
+        <view:view-listener plugin="basic" view="pieceRateDetails"
+                            component="form" event="showTechnologiesWithUsingPieceRate"
+                            class="com.sleektiv.mes.technologies.listeners.PieceRateDetailsListenersT"
+                            method="showTechnologiesWithUsingPieceRate"/>
+
+        <view:view-hook plugin="basic" view="productDetails"
+                        type="beforeRender"
+                        class="com.sleektiv.mes.technologies.hooks.ProductDetailsViewHooksT"
+                        method="updateRibbonState"/>
+
+        <view:view-hook plugin="basic" view="productAdditionalDetails"
+                        type="beforeRender"
+                        class="com.sleektiv.mes.technologies.hooks.ProductDetailsViewHooksT"
+                        method="updateTabsVisible"/>
+
+        <custom:custom class="com.sleektiv.mes.technologies.states.module.TechnologyStateServiceRegisterModule"/>
+        <custom:custom class="com.sleektiv.mes.technologies.TechnologiesLoaderModule" />
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

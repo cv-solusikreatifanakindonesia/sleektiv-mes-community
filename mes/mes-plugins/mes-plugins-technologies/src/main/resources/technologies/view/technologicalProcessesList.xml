@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_TECHNOLOGICAL_PROCESSES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-	xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_TECHNOLOGICAL_PROCESSES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+	xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
 	name="technologicalProcessesList"
 	modelName="technologicalProcess"
 	menuAccessible="true">
@@ -40,11 +40,11 @@
 			<option type="column" name="workstationType" fields="workstationType" expression="#workstationType['number']" width="60"/>
 			<option type="column" name="workstation" fields="workstation" expression="#workstation['number']" width="60"/>
 			<option type="column" name="tpz" fields="tpz" width="40"
-					expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#tpz)"/>
+					expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#tpz)"/>
 			<option type="column" name="tj" fields="tj" width="40"
-					expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#tj)"/>
+					expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#tj)"/>
 			<option type="column" name="additionalTime" fields="additionalTime" width="40"
-					expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#additionalTime)"/>
+					expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#additionalTime)"/>
 			<option type="column" name="extendedTimeForSizeGroup" fields="extendedTimeForSizeGroup"/>
 			<option type="column" name="increasePercent" fields="increasePercent" />
 			<option type="column" name="sizeGroup" fields="sizeGroup" expression="#sizeGroup['number']"/>

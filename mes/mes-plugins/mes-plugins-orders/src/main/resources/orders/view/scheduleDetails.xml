@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_SCHEDULES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="scheduleDetails" modelName="schedule">
 
     <component type="window" name="window" reference="window">
@@ -193,7 +193,7 @@
                         <option type="searchable" value="dateAndTime,sourceState,targetState,shiftName,worker"/>
                         <option type="orderable" value="dateAndTime,sourceState,targetState,shiftName,worker"/>
                         <criteriaModifier
-                                class="com.qcadoo.mes.states.criteriaModifier.CommonCriteriaModifiers"
+                                class="com.sleektiv.mes.states.criteriaModifier.CommonCriteriaModifiers"
                                 method="filterHistory"/>
                     </component>
                 </layoutElement>
@@ -217,7 +217,7 @@
 
                 <option type="multiselect" value="true"/>
                 <criteriaModifier
-                        class="com.qcadoo.mes.orders.criteriaModifiers.ScheduleOrderCriteriaModifiers"
+                        class="com.sleektiv.mes.orders.criteriaModifiers.ScheduleOrderCriteriaModifiers"
                         method="filterByState"/>
             </component>
 
@@ -256,10 +256,10 @@
 
                 <listener event="addExistingEntity"
                           method="informAboutGetOperations"
-                          class="com.qcadoo.mes.orders.listeners.ScheduleDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.ScheduleDetailsListeners"/>
                 <listener event="remove"
                           method="informAboutGetOperations"
-                          class="com.qcadoo.mes.orders.listeners.ScheduleDetailsListeners"/>
+                          class="com.sleektiv.mes.orders.listeners.ScheduleDetailsListeners"/>
 
             </component>
         </windowTab>
@@ -268,7 +268,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.orders.hooks.ScheduleDetailsHooks"
+                class="com.sleektiv.mes.orders.hooks.ScheduleDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

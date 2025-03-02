@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.qcadoo.mes</groupId>
+        <groupId>com.sleektiv.mes</groupId>
         <artifactId>mes</artifactId>
         <version>1.5-SNAPSHOT</version>
     </parent>
@@ -13,7 +13,7 @@
     <artifactId>mes-application</artifactId>
     <packaging>war</packaging>
 
-    <name>Qcadoo MES :: Application</name>
+    <name>Sleektiv MES :: Application</name>
 
     <properties>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
@@ -21,204 +21,204 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-deliveries</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-production-scheduling</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-orders</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-basic</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-states</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-material-requirements</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-work-plans</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-technologies</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-stoppage</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-gantt-for-shifts</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-gantt-for-operation</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-material-flow</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-material-flow-resources</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-time-norms-for-operations</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cost-norms-for-product</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cost-norms-for-operation</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cost-calculation</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-production-counting</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-basic-production-counting</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cost-norms-for-materials</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-production-lines</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-operation-time-calculations</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-operation-cost-calculations</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-production-per-shift</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-deviation-causes-reporting</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-line-changeover-norms</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-line-changeover-norms-for-orders</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-wage-groups</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-assignment-to-shift</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cost-norms-for-operation-in-order</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-avg-labor-cost-calc-for-order</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-column-extension</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-deliveries-to-material-flow</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cat-numbers-in-deliveries</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-master-orders</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cmms-machine-parts</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-warehouse-minimal-state</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-unit-conversion-management</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-unit-conversion-management</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-commons</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-commons</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo</groupId>
-            <artifactId>qcadoo-plugins-plugin-management</artifactId>
-            <version>${qcadoo.version}</version>
+            <groupId>com.sleektiv</groupId>
+            <artifactId>sleektiv-plugins-plugin-management</artifactId>
+            <version>${sleektiv.version}</version>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
@@ -261,108 +261,108 @@
             <version>${postgres.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-product-catalog-numbers</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-tech-subcontracting</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-tech-subcontr-for-oper-tasks</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-tech-subcontr-for-deliveries</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-tech-subcontr-for-production-counting</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-deliveries-min-state</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-advanced-genealogy</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-supply-negotiations</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-cat-numbers-in-negot</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-product-flow-thru-division</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-material-requirement-coverage-for-order</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-tech-subcontr-for-negot</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-tech-subcontr-for-order-supplies</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-order-supplies</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-orders-for-subproducts-generation</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-time-gaps-preview</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-technologies-generator</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-email-notifications</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.qcadoo.mes</groupId>
+            <groupId>com.sleektiv.mes</groupId>
             <artifactId>mes-plugins-deliveries-min-state</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -380,10 +380,10 @@
                             <target>
                                 <mkdir dir="${basedir}/target/classes"/>
                                 <echo file="${basedir}/target/classes/build.properties">
-                                    buildApplicationName = Qcadoo MES
+                                    buildApplicationName = Sleektiv MES
                                     buildApplicationVersion = ${project.version}
-                                    buildFrameworkVersion = ${qcadoo.version}
-                                    buildVersionForUser = ${qcadoo.buildVersionForUser}
+                                    buildFrameworkVersion = ${sleektiv.version}
+                                    buildVersionForUser = ${sleektiv.buildVersionForUser}
                                     buildTime = ${maven.build.timestamp}
                                     ${buildNumber}
                                     buildRevision = ${buildRevision}
@@ -405,9 +405,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.qcadoo</groupId>
-                        <artifactId>qcadoo-maven-plugin</artifactId>
-                        <version>${qcadoo.maven.plugin.version}</version>
+                        <groupId>com.sleektiv</groupId>
+                        <artifactId>sleektiv-maven-plugin</artifactId>
+                        <version>${sleektiv.maven.plugin.version}</version>
                         <configuration>
                             <jdbcDriver>
                                 ${basedir}/target/tomcat-archiver/${project.artifactId}/webapps/ROOT/WEB-INF/lib/postgresql-${postgres.version}.jar
@@ -432,7 +432,7 @@
             </build>
         </profile>
         <profile>
-            <id>qcadoodev</id>
+            <id>sleektivdev</id>
             <build>
                 <plugins>
                     <plugin>
@@ -441,7 +441,7 @@
                         <version>${maven.antrun.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>deploy-to-qcadoodev</id>
+                                <id>deploy-to-sleektivdev</id>
                                 <phase>deploy</phase>
                                 <configuration>
                                     <target>
@@ -459,11 +459,11 @@
             </build>
             <distributionManagement>
                 <repository>
-                    <id>qcadoo-releases-repository</id>
+                    <id>sleektiv-releases-repository</id>
                     <url>file://target</url>
                 </repository>
                 <snapshotRepository>
-                    <id>qcadoo-snapshots-repository</id>
+                    <id>sleektiv-snapshots-repository</id>
                     <url>file://target</url>
                     <uniqueVersion>false</uniqueVersion>
                 </snapshotRepository>
@@ -479,7 +479,7 @@
                         <version>${maven.antrun.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>package-to-qcadoodev</id>
+                                <id>package-to-sleektivdev</id>
                                 <phase>deploy</phase>
                                 <configuration>
                                     <target>
@@ -497,11 +497,11 @@
             </build>
             <distributionManagement>
                 <repository>
-                    <id>qcadoo-releases-repository</id>
+                    <id>sleektiv-releases-repository</id>
                     <url>file://target</url>
                 </repository>
                 <snapshotRepository>
-                    <id>qcadoo-snapshots-repository</id>
+                    <id>sleektiv-snapshots-repository</id>
                     <url>file://target</url>
                     <uniqueVersion>false</uniqueVersion>
                 </snapshotRepository>
@@ -523,7 +523,7 @@
                                     <goal>upload-single</goal>
                                 </goals>
                                 <configuration>
-                                    <serverId>qcadoo-public</serverId>
+                                    <serverId>sleektiv-public</serverId>
                                     <fromFile>${basedir}/target/${project.artifactId}.zip</fromFile>
                                     <toFile>${destination.file.name}.zip</toFile>
                                     <url>${wagon.url}</url>

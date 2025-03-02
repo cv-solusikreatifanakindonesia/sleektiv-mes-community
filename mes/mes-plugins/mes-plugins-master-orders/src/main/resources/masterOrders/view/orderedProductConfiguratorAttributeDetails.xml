@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PLANNING" name="orderedProductConfiguratorAttributeDetails" modelName="orderedProductConfiguratorAttribute"
-	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-	  xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+	  xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
 	<component name="window" type="window" reference="window">
 		<ribbon>
@@ -76,7 +76,7 @@
 							<option type="filtersDefaultVisible" value="false"/>
 
 							<criteriaModifier
-									class="com.qcadoo.mes.masterOrders.criteriaModifier.OrderedProductConfiguratorCriteriaModifiers"
+									class="com.sleektiv.mes.masterOrders.criteriaModifier.OrderedProductConfiguratorCriteriaModifiers"
 									method="restrictOrderedProductConfiguratorAttributes"/>
 						</component>
 					</layoutElement>
@@ -85,7 +85,7 @@
 				<option type="header" value="false" />
 
 				<listener event="createOrderedProductConfiguratorAttributes"
-						  class="com.qcadoo.mes.masterOrders.listeners.OrderedProductConfiguratorAttributeDetailsListeners"
+						  class="com.sleektiv.mes.masterOrders.listeners.OrderedProductConfiguratorAttributeDetailsListeners"
 						  method="createOrderedProductConfiguratorAttributes"/>
 			</component>
 		</windowTab>
@@ -93,7 +93,7 @@
 	</component>
 
 	<hooks>
-		<beforeRender class="com.qcadoo.mes.masterOrders.hooks.OrderedProductConfiguratorAttributeDetailsHooks"
+		<beforeRender class="com.sleektiv.mes.masterOrders.hooks.OrderedProductConfiguratorAttributeDetailsHooks"
 					  method="onBeforeRender"/>
 	</hooks>
 </view>

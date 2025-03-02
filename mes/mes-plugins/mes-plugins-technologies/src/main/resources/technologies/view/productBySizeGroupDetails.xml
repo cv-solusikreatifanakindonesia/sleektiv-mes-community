@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_TECHNOLOGIES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_TECHNOLOGIES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productBySizeGroupDetails"
       modelName="productBySizeGroup">
 
@@ -67,9 +67,9 @@
                         <option type="fieldCode" value="number"/>
 
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.technologies.listeners.ProductBySizeGroupDetailsListeners"
+                                  class="com.sleektiv.mes.technologies.listeners.ProductBySizeGroupDetailsListeners"
                                   method="onProductChange"/>
-                        <criteriaModifier class="com.qcadoo.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
+                        <criteriaModifier class="com.sleektiv.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
                                           method="showParticularProductOnly"/>
                     </component>
                 </layoutElement>
@@ -91,7 +91,7 @@
                         <option type="alignment" value="right"/>
 
                        <listener event="onInputChange" method="onGivenQuantityChange"
-                                  class="com.qcadoo.mes.technologies.listeners.ProductBySizeGroupDetailsListeners"/>
+                                  class="com.sleektiv.mes.technologies.listeners.ProductBySizeGroupDetailsListeners"/>
                     </component>
                 </layoutElement>
 
@@ -100,7 +100,7 @@
                                hasLabel="false" field="givenUnit">
 
                       <listener event="onSelectedEntityChange" method="onGivenUnitChange"
-                                  class="com.qcadoo.mes.technologies.listeners.ProductBySizeGroupDetailsListeners"/>
+                                  class="com.sleektiv.mes.technologies.listeners.ProductBySizeGroupDetailsListeners"/>
                     </component>
                 </layoutElement>
             </component>
@@ -112,7 +112,7 @@
 
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.technologies.hooks.ProductBySizeGroupDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.technologies.hooks.ProductBySizeGroupDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

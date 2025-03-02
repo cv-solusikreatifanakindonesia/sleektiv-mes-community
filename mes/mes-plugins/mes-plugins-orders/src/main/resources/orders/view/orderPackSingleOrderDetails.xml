@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PLANNING" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="orderPackSingleOrderDetails" modelName="orderPack">
 
     <component type="window" name="window" reference="window">
@@ -77,9 +77,9 @@
                 </script>
                 <script type="text/javascript" src="/orders/public/js/orderPack.js"></script>
                 <script type="text/javascript" src="/orders/public/js/orderPack_form.js"></script>
-                <listener event="changeState" class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                <listener event="changeState" class="com.sleektiv.mes.orders.listeners.OrderPacksSingleOrderListListeners"
                           method="changeState"/>
-                <listener event="showPackageProcesses" class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                <listener event="showPackageProcesses" class="com.sleektiv.mes.orders.listeners.OrderPacksSingleOrderListListeners"
                           method="showPackageProcesses"/>
 
                 <component type="gridLayout" name="gridLayout" columns="3"
@@ -153,7 +153,7 @@
                                     <option type="labelWidth" value="35"/>
 
                                     <listener event="onInputChange"
-                                              class="com.qcadoo.view.api.listeners.RerenderListener"
+                                              class="com.sleektiv.view.api.listeners.RerenderListener"
                                               method="onChangeRerender"/>
                                 </component>
                             </layoutElement>
@@ -190,7 +190,7 @@
                         <option type="orderable" value="dateAndTime,sourceState,targetState,shiftName,worker"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.states.criteriaModifier.CommonCriteriaModifiers"
+                                class="com.sleektiv.mes.states.criteriaModifier.CommonCriteriaModifiers"
                                 method="filterHistory"/>
                     </component>
                 </layoutElement>
@@ -200,7 +200,7 @@
 
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.orders.hooks.OrderPackSingleOrderDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.orders.hooks.OrderPackSingleOrderDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 

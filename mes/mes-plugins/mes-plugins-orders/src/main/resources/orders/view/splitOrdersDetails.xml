@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_ORDERS_VIEW" name="splitOrdersDetails"
       modelName="splitOrderHelper"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -199,7 +199,7 @@
                                                                field="plannedQuantity" reference="splitPlannedQuantity">
                                                         <option type="alignment" value="right"/>
                                                         <listener event="onInputChange" method="onPlannedQuantityChange"
-                                                                  class="com.qcadoo.mes.orders.listeners.SplitOrdersListeners"/>
+                                                                  class="com.sleektiv.mes.orders.listeners.SplitOrdersListeners"/>
                                                     </component>
                                                 </layoutElement>
                                                 <layoutElement column="17" row="1" width="2">
@@ -213,11 +213,11 @@
                                         </components>
 
                                         <listener event="onAddRow"
-                                                  class="com.qcadoo.mes.orders.listeners.SplitOrdersListeners"
+                                                  class="com.sleektiv.mes.orders.listeners.SplitOrdersListeners"
                                                   method="onAddOrder"/>
 
                                         <listener event="onDeleteRow"
-                                                  class="com.qcadoo.mes.orders.listeners.SplitOrdersListeners"
+                                                  class="com.sleektiv.mes.orders.listeners.SplitOrdersListeners"
                                                   method="onDeleteRow"/>
 
                                     </component>
@@ -233,10 +233,10 @@
 
 
                 <listener event="splitOrders"
-                          class="com.qcadoo.mes.orders.listeners.SplitOrdersListeners"
+                          class="com.sleektiv.mes.orders.listeners.SplitOrdersListeners"
                           method="splitOrders"/>
                 <listener event="fillDates"
-                          class="com.qcadoo.mes.orders.listeners.SplitOrdersListeners"
+                          class="com.sleektiv.mes.orders.listeners.SplitOrdersListeners"
                           method="fillDates"/>
 
 

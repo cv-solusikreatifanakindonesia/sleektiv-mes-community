@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<windowTabExtension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/modules/windowTabExtension"
-                    xsi:schemaLocation="http://schema.qcadoo.org/modules/windowTabExtension http://schema.qcadoo.org/modules/windowTabExtension.xsd"
+<windowTabExtension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/modules/windowTabExtension"
+                    xsi:schemaLocation="http://schema.sleektiv.org/modules/windowTabExtension http://schema.sleektiv.org/modules/windowTabExtension.xsd"
                     plugin="orders"
                     view="scheduleDetails">
 
@@ -49,7 +49,7 @@
             <option type="column" name="quantity" fields="quantity" width="40"/>
             <option type="column" name="productUnit" fields="productUnit" width="40"/>
             <option type="column" name="setupTime" fields="setupTime"
-                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#setupTime)"
+                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#setupTime)"
                     width="60"/>
             <option type="column" name="startTime" fields="startTime" width="100"/>
             <option type="column" name="endTime" fields="endTime" width="100"/>
@@ -58,13 +58,13 @@
                     classesNames="red-cell"/>
             <option type="column" name="endTimeAfterOrderDeadline" fields="endTimeAfterOrderDeadline" hidden="true"/>
             <option type="column" name="laborWorkTime" fields="laborWorkTime"
-                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#laborWorkTime)"
+                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#laborWorkTime)"
                     width="60"/>
             <option type="column" name="machineWorkTime" fields="machineWorkTime"
-                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#machineWorkTime)"
+                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#machineWorkTime)"
                     width="60"/>
             <option type="column" name="additionalTime" fields="additionalTime"
-                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#additionalTime)"
+                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#additionalTime)"
                     width="60"/>
 
             <option type="correspondingView" value="orders/schedulePositionDetails"/>

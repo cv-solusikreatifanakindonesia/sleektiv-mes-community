@@ -1,13 +1,13 @@
 <%--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -43,10 +43,10 @@
     </c:forEach>
 </script>
 
-<link rel="stylesheet" href="/qcadooView/public/ChartJS/Chart.min.css?ver=${buildNumber}" type="text/css" />
+<link rel="stylesheet" href="/sleektivView/public/ChartJS/Chart.min.css?ver=${buildNumber}" type="text/css" />
 
-<script type="text/javascript" src="/qcadooView/public/ChartJS/Chart.min.js?ver=${buildNumber}"></script>
-<script type="text/javascript" src="/qcadooView/public/jspdf/jspdf.min.js"></script>
+<script type="text/javascript" src="/sleektivView/public/ChartJS/Chart.min.js?ver=${buildNumber}"></script>
+<script type="text/javascript" src="/sleektivView/public/jspdf/jspdf.min.js"></script>
 
 <div id="linesProducedQuantitiesChart" class="chart-container">
     <canvas id="chart"></canvas>

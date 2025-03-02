@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_ASSIGNMENT_TO_SHIFT" name="multiAssignmentToShiftDetails"
       modelName="multiAssignmentToShift"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window">
 
@@ -48,7 +48,7 @@
                                    reference="occupationType">
 
                             <listener event="onSelectedEntityChange" method="enabledFieldWhenTypeIsSpecific"
-                                      class="com.qcadoo.mes.assignmentToShift.listeners.MultiAssignmentToShiftListeners"/>
+                                      class="com.sleektiv.mes.assignmentToShift.listeners.MultiAssignmentToShiftListeners"/>
                         </component>
                     </layoutElement>
                     <layoutElement column="1" row="2">
@@ -93,7 +93,7 @@
 		
 		                    <option type="multiselect" value="true"/>
 		                    <criteriaModifier
-		                        class="com.qcadoo.mes.assignmentToShift.criteriaModifiers.StaffCriteriaModifier"
+		                        class="com.sleektiv.mes.assignmentToShift.criteriaModifiers.StaffCriteriaModifier"
 		                        method="filterByCrewAndUnassigned"/>
 		                </component>
 		                <component type="grid" name="workers" reference="workers"
@@ -121,7 +121,7 @@
                     </layoutElement>
                 </component>
                 <listener event="addManyWorkers"
-                          class="com.qcadoo.mes.assignmentToShift.listeners.MultiAssignmentToShiftListeners"
+                          class="com.sleektiv.mes.assignmentToShift.listeners.MultiAssignmentToShiftListeners"
                           method="addManyWorkers"/>
                 <option type="header" value="true" />
 				<option type="expression" value="" />
@@ -132,7 +132,7 @@
 
     <hooks>
 		<beforeRender
-                class="com.qcadoo.mes.assignmentToShift.hooks.MultiAssignmentToShiftDetailsHooks"
+                class="com.sleektiv.mes.assignmentToShift.hooks.MultiAssignmentToShiftDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 </view>

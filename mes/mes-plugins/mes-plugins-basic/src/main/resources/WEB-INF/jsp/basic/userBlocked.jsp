@@ -1,13 +1,13 @@
 <%--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -33,9 +33,9 @@
     <head>
         <title>${applicationDisplayName} :: error</title>
 
-        <link rel="shortcut icon" href="/qcadooView/public/img/core/icons/favicon.png">
+        <link rel="shortcut icon" href="/sleektivView/public/img/core/icons/favicon.png">
 
-        <script type="text/javascript" src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/_jquery-1.4.2.min.js?ver=${buildNumber}"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/_jquery-1.4.2.min.js?ver=${buildNumber}"></script>
 
         <style type="text/css">
             body {
@@ -53,7 +53,7 @@
             #content #codeDivSad {
                 width: 130px;
                 height: 130px;
-                background-image: url('/qcadooView/public/img/core/error/errorCodeBgSad.png');
+                background-image: url('/sleektivView/public/img/core/error/errorCodeBgSad.png');
                 background-repeat: no-repeat;
                 font-size: 45px;
                 text-align: center;
@@ -86,7 +86,7 @@
             }
 
         </style>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/custom.css?ver=${buildNumber}" type="text/css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/custom.css?ver=${buildNumber}" type="text/css" />
     </head>
 
     <body>

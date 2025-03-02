@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_CALCULATIONS" name="costCalculationDetails" modelName="costCalculation"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -85,14 +85,14 @@
                 <option type="expression" value="#name"/>
 
                 <listener event="generateCostCalculation"
-                          class="com.qcadoo.mes.costCalculation.listeners.CostCalculationDetailsListeners"
+                          class="com.sleektiv.mes.costCalculation.listeners.CostCalculationDetailsListeners"
                           method="generateCostCalculation"/>
                 <listener event="printCostCalculation"
-                          class="com.qcadoo.mes.costCalculation.listeners.CostCalculationDetailsListeners"
+                          class="com.sleektiv.mes.costCalculation.listeners.CostCalculationDetailsListeners"
                           method="printCostCalculationReport"/>
 
                 <listener event="saveNominalCosts"
-                          class="com.qcadoo.mes.costCalculation.listeners.CostCalculationDetailsListeners"
+                          class="com.sleektiv.mes.costCalculation.listeners.CostCalculationDetailsListeners"
                           method="saveNominalCosts"/>
             </component>
         </windowTab>
@@ -117,7 +117,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.technologies.criteriaModifiers.TechnologyCriteriaModifiers"
+                                class="com.sleektiv.mes.technologies.criteriaModifiers.TechnologyCriteriaModifiers"
                                 method="showAcceptedAndCheckedPatternTechnology"/>
                     </component>
                     <component type="grid" name="technologies" reference="technologies"
@@ -159,7 +159,7 @@
                                            field="#{form}.materialCostsUsed">
                                     <option type="labelWidth" value="40"/>
                                     <listener event="onSelectedEntityChange"
-                                              class="com.qcadoo.view.api.listeners.RerenderListener"
+                                              class="com.sleektiv.view.api.listeners.RerenderListener"
                                               method="onChangeRerender"/>
                                 </component>
                             </layoutElement>
@@ -175,7 +175,7 @@
                                     <option type="fieldCode" value="number"/>
                                     <option type="labelWidth" value="40"/>
                                     <criteriaModifier
-                                            class="com.qcadoo.mes.supplyNegotiations.criteriaModifiers.OfferCriteriaModifiers"
+                                            class="com.sleektiv.mes.supplyNegotiations.criteriaModifiers.OfferCriteriaModifiers"
                                             method="showAcceptedOffers"/>
                                 </component>
                             </layoutElement>
@@ -204,7 +204,7 @@
                                            hasDescription="true">
                                     <option type="labelWidth" value="40"/>
                                     <listener event="onSelectedEntityChange"
-                                              class="com.qcadoo.view.api.listeners.RerenderListener"
+                                              class="com.sleektiv.view.api.listeners.RerenderListener"
                                               method="onChangeRerender"/>
                                 </component>
                             </layoutElement>
@@ -409,7 +409,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.costCalculation.hooks.CostCalculationDetailsHooks"
+                class="com.sleektiv.mes.costCalculation.hooks.CostCalculationDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
 
 -->
 <view name="productsBySize" modelName="productsBySizeHelper" defaultAuthorizationRole="ROLE_SALE"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -81,11 +81,11 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
+                                    class="com.sleektiv.mes.basic.criteriaModifiers.ProductCriteriaModifiers"
                                     method="showProductFamilyOnly"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.masterOrders.listeners.ProductsBySizeListeners"
+                                      class="com.sleektiv.mes.masterOrders.listeners.ProductsBySizeListeners"
                                       method="changeProductFamily"/>
                         </component>
                     </layoutElement>
@@ -130,7 +130,7 @@
                             <option type="paginable" value="false"/>
 
                             <listener event="addPositionsToOrder"
-                                      class="com.qcadoo.mes.masterOrders.listeners.ProductsBySizeListeners"
+                                      class="com.sleektiv.mes.masterOrders.listeners.ProductsBySizeListeners"
                                       method="addPositionsToOrder"/>
                         </component>
                     </layoutElement>

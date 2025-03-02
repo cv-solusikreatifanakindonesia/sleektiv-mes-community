@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_DOCUMENTS_CORRECTIONS_MIN_STATES"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="warehouseMinimumStateList" modelName="warehouseMinimumState" modelPlugin="warehouseMinimalState">
 
     <component type="window" name="window" reference="window">
@@ -47,7 +47,7 @@
 
         <component type="grid" name="grid" reference="grid">
             <listener event="redirectToAddManyMinimalState" method="redirectToAddManyMinimalState"
-                      class="com.qcadoo.mes.warehouseMinimalState.listeners.WarehouseMinimumStateListListener"/>
+                      class="com.sleektiv.mes.warehouseMinimalState.listeners.WarehouseMinimumStateListListener"/>
 
             <option type="column" name="locationNumber" fields="location"
                     expression="#location['number']" link="true"/>
@@ -83,7 +83,7 @@
             <option type="fullscreen" value="true"/>
 
             <listener event="printDocument"
-                      class="com.qcadoo.mes.warehouseMinimalState.listeners.WarehouseMinimumStateListListener"
+                      class="com.sleektiv.mes.warehouseMinimalState.listeners.WarehouseMinimumStateListListener"
                       method="printDocument"/>
         </component>
         <option type="fixedHeight" value="true"/>

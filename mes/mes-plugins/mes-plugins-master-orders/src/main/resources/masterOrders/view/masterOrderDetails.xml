@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_SALE" name="masterOrderDetails" modelName="masterOrder"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -338,7 +338,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.masterOrders.criteriaModifier.SalesPlanCriteriaModifier"
+                                    class="com.sleektiv.mes.masterOrders.criteriaModifier.SalesPlanCriteriaModifier"
                                     method="showOnlyDrafts"/>
                         </component>
                     </layoutElement>
@@ -369,7 +369,7 @@
                             <option type="labelWidth" value="40"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                                       method="clearAddress"/>
                         </component>
                     </layoutElement>
@@ -408,7 +408,7 @@
                             <option type="labelWidth" value="40"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                                       method="clearAddress"/>
                         </component>
                     </layoutElement>
@@ -460,27 +460,27 @@
                 <option type="expression" value="#number + ' - ' + '@masterOrders.masterOrderDto.state.value.' + #state"/>
 
                 <listener event="addProductsBySize"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="addProductsBySize"/>
 
                 <listener event="addProductsByAttribute"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="addProductsByAttribute"/>
 
                 <listener event="createOrder"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="createOrder"/>
 
                 <listener event="generateOrders"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="generateOrders"/>
 
                 <listener event="createReleaseDocument"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="createReleaseDocument"/>
 
                 <listener event="changeState"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="changeState"/>
             </component>
         </windowTab>
@@ -543,7 +543,7 @@
                         value="masterOrderQuantity,cumulatedOrderQuantity,producedOrderQuantity,leftToRelease,quantityRemainingToOrder,quantityTakenFromWarehouse"/>
 
                 <listener event="onSelectedEntityChange"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"
                           method="onProductsChange"/>
             </component>
         </windowTab>
@@ -563,7 +563,7 @@
                 <option type="multiselect" value="true"/>
 
                 <criteriaModifier
-                        class="com.qcadoo.mes.masterOrders.criteriaModifier.OrderCriteriaModifier"
+                        class="com.sleektiv.mes.masterOrders.criteriaModifier.OrderCriteriaModifier"
                         method="filterByMasterOrderNumber"/>
             </component>
 
@@ -605,11 +605,11 @@
 
                 <listener event="addExistingEntity"
                           method="onAddExistingEntity"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"/>
 
                 <listener event="remove"
                           method="onRemoveSelectedEntity"
-                          class="com.qcadoo.mes.masterOrders.listeners.MasterOrderDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.MasterOrderDetailsListeners"/>
             </component>
         </windowTab>
 
@@ -640,7 +640,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.masterOrders.hooks.MasterOrderDetailsHooks"
+                class="com.sleektiv.mes.masterOrders.hooks.MasterOrderDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

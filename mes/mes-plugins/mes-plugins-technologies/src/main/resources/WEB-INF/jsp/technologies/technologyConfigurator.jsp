@@ -1,12 +1,12 @@
 <%--
    ***************************************************************************
-   Copyright (c) 2010 Qcadoo Limited
-   Project: Qcadoo MES
+   Copyright (c) 2025 Sleektiv.
+   Project: Sleektiv MES
    Version: 1.4
 
-   This file is part of Qcadoo.
+   This file is part of Sleektiv.
 
-   Qcadoo is free software; you can redistribute it and/or modify
+   Sleektiv is free software; you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as published
    by the Free Software Foundation; either version 3 of the License,
    or (at your option) any later version.
@@ -34,30 +34,30 @@
     <head>
         <sec:csrfMetaTags/>
 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/ChartJS/Chart.min.css?ver=${buildNumber}" type="text/css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/core/lib/bootstrap.min.css?ver=${buildNumber}" type="text/css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/core/lib/bootstrap-glyphicons.css?ver=${buildNumber}" type="text/css" />
-        <link href="${pageContext.request.contextPath}/qcadooView/public/css/core/notification.css?ver=${buildNumber}" rel="stylesheet" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/ChartJS/Chart.min.css?ver=${buildNumber}" type="text/css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/core/lib/bootstrap.min.css?ver=${buildNumber}" type="text/css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/core/lib/bootstrap-glyphicons.css?ver=${buildNumber}" type="text/css" />
+        <link href="${pageContext.request.contextPath}/sleektivView/public/css/core/notification.css?ver=${buildNumber}" rel="stylesheet" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/technologies/public/css/technologyConfigurator.css?ver=${buildNumber}" type="text/css" />
 
         <c:choose>
             <c:when test="${useCompressedStaticResources}">
-                <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/qcadoo-min.css?ver=${buildNumber}" type="text/css" />
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/sleektiv-min.css?ver=${buildNumber}" type="text/css" />
             </c:when>
             <c:otherwise>
-                <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/core/dashboard.css?ver=${buildNumber}" type="text/css" />
-                <link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/core/menu/style.css?ver=${buildNumber}" type="text/css" />
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/core/dashboard.css?ver=${buildNumber}" type="text/css" />
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/core/menu/style.css?ver=${buildNumber}" type="text/css" />
             </c:otherwise>
         </c:choose>
 
-        <script type="text/javascript" src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/jquery-3.2.1.min.js?ver=${buildNumber}"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/moment-with-locales.js?ver=${buildNumber}"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/popper.min.js?ver=${buildNumber}"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/bootstrap.min.js?ver=${buildNumber}"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/jquery-3.2.1.min.js?ver=${buildNumber}"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/moment-with-locales.js?ver=${buildNumber}"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/popper.min.js?ver=${buildNumber}"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/bootstrap.min.js?ver=${buildNumber}"></script>
         <script type="text/javascript"
-                src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/jquery.pnotify.js?ver=${buildNumber}"></script>
+                src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/jquery.pnotify.js?ver=${buildNumber}"></script>
         <script type="text/javascript"
-                src="${pageContext.request.contextPath}/qcadooView/public/js/core/qcd/core/messagesController.js?ver=${buildNumber}"></script>
+                src="${pageContext.request.contextPath}/sleektivView/public/js/core/qcd/core/messagesController.js?ver=${buildNumber}"></script>
 
         <script type="text/javascript">
             var QCD = QCD || {};
@@ -98,7 +98,7 @@
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <img src="/qcadooView/public/img/core/loading_indicator32.gif"/>
+                            <img src="/sleektivView/public/img/core/loading_indicator32.gif"/>
                         </div>
                     </div>
                 </div>

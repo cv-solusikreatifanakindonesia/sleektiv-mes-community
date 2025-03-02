@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,10 +25,10 @@
 
 -->
 <column>
-	<row IDENTIFIER="succession" NAME="supplyNegotiations.columnForRequests.name.value.succession" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.succession" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="productNumber" NAME="supplyNegotiations.columnForRequests.name.value.productNumber" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.productNumber" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="productName" NAME="supplyNegotiations.columnForRequests.name.value.productName" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.productName" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="orderedQuantity" NAME="supplyNegotiations.columnForRequests.name.value.orderedQuantity" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.orderedQuantity" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
-	<row IDENTIFIER="productUnit" NAME="supplyNegotiations.columnForRequests.name.value.productUnit" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.productUnit" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="annualVolume" NAME="supplyNegotiations.columnForRequests.name.value.annualVolume" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.annualVolume" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" /> 
+	<row IDENTIFIER="succession" NAME="supplyNegotiations.columnForRequests.name.value.succession" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.succession" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="productNumber" NAME="supplyNegotiations.columnForRequests.name.value.productNumber" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.productNumber" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="productName" NAME="supplyNegotiations.columnForRequests.name.value.productName" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.productName" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="orderedQuantity" NAME="supplyNegotiations.columnForRequests.name.value.orderedQuantity" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.orderedQuantity" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
+	<row IDENTIFIER="productUnit" NAME="supplyNegotiations.columnForRequests.name.value.productUnit" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.productUnit" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="annualVolume" NAME="supplyNegotiations.columnForRequests.name.value.annualVolume" DESCRIPTION="supplyNegotiations.columnForRequests.description.value.annualVolume" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" /> 
 </column>

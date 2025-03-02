@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,12 +25,12 @@
 
 -->
 <column>
-	<row IDENTIFIER="succession" NAME="supplyNegotiations.columnForOffers.name.value.succession" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.succession" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="productNumber" NAME="supplyNegotiations.columnForOffers.name.value.productNumber" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.productNumber" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="productName" NAME="supplyNegotiations.columnForOffers.name.value.productName" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.productName" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="quantity" NAME="supplyNegotiations.columnForOffers.name.value.quantity" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.quantity" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
-	<row IDENTIFIER="productUnit" NAME="supplyNegotiations.columnForOffers.name.value.productUnit" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.productUnit" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
-	<row IDENTIFIER="pricePerUnit" NAME="supplyNegotiations.columnForOffers.name.value.pricePerUnit" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.pricePerUnit" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
-	<row IDENTIFIER="totalPrice" NAME="supplyNegotiations.columnForOffers.name.value.totalPrice" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.totalPrice" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
-	<row IDENTIFIER="currency" NAME="supplyNegotiations.columnForOffers.name.value.currency" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.currency" COLUMNFILLER="com.qcadoo.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="succession" NAME="supplyNegotiations.columnForOffers.name.value.succession" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.succession" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="productNumber" NAME="supplyNegotiations.columnForOffers.name.value.productNumber" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.productNumber" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="productName" NAME="supplyNegotiations.columnForOffers.name.value.productName" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.productName" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="quantity" NAME="supplyNegotiations.columnForOffers.name.value.quantity" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.quantity" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
+	<row IDENTIFIER="productUnit" NAME="supplyNegotiations.columnForOffers.name.value.productUnit" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.productUnit" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
+	<row IDENTIFIER="pricePerUnit" NAME="supplyNegotiations.columnForOffers.name.value.pricePerUnit" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.pricePerUnit" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
+	<row IDENTIFIER="totalPrice" NAME="supplyNegotiations.columnForOffers.name.value.totalPrice" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.totalPrice" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="02right" />
+	<row IDENTIFIER="currency" NAME="supplyNegotiations.columnForOffers.name.value.currency" DESCRIPTION="supplyNegotiations.columnForOffers.description.value.currency" COLUMNFILLER="com.sleektiv.mes.supplyNegotiations.columnExtension.SupplyNegotiationsColumnFiller" ALIGNMENT="01left" />
 </column>

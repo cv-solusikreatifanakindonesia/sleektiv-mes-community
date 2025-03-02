@@ -1,13 +1,13 @@
 <%--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -43,20 +43,20 @@
     </c:forEach>
 </script>
 
-<link rel="stylesheet" href="/qcadooView/public/SlickGrid-2.4.14/slick.grid.css" type="text/css"/>
-<link rel="stylesheet" href="/qcadooView/public/SlickGrid-2.4.14/controls/slick.pager.css" type="text/css"/>
-<link rel="stylesheet" href="/qcadooView/public/SlickGrid-2.4.14/css/smoothness/jquery-ui-1.11.3.custom.css"
+<link rel="stylesheet" href="/sleektivView/public/SlickGrid-2.4.14/slick.grid.css" type="text/css"/>
+<link rel="stylesheet" href="/sleektivView/public/SlickGrid-2.4.14/controls/slick.pager.css" type="text/css"/>
+<link rel="stylesheet" href="/sleektivView/public/SlickGrid-2.4.14/css/smoothness/jquery-ui-1.11.3.custom.css"
       type="text/css"/>
-<link rel="stylesheet" href="/qcadooView/public/SlickGrid-2.4.14/css/custom.css?ver=${buildNumber}" type="text/css"/>
+<link rel="stylesheet" href="/sleektivView/public/SlickGrid-2.4.14/css/custom.css?ver=${buildNumber}" type="text/css"/>
 
-<script src="/qcadooView/public/SlickGrid-2.4.14/lib/jquery.event.drag-2.3.0.js"></script>
+<script src="/sleektivView/public/SlickGrid-2.4.14/lib/jquery.event.drag-2.3.0.js"></script>
 
-<script src="/qcadooView/public/SlickGrid-2.4.14/slick.core.js"></script>
-<script src="/qcadooView/public/SlickGrid-2.4.14/slick.grid.js"></script>
-<script src="/qcadooView/public/SlickGrid-2.4.14/slick.dataview.js"></script>
-<script src="/qcadooView/public/SlickGrid-2.4.14/controls/slick.pager.js"></script>
+<script src="/sleektivView/public/SlickGrid-2.4.14/slick.core.js"></script>
+<script src="/sleektivView/public/SlickGrid-2.4.14/slick.grid.js"></script>
+<script src="/sleektivView/public/SlickGrid-2.4.14/slick.dataview.js"></script>
+<script src="/sleektivView/public/SlickGrid-2.4.14/controls/slick.pager.js"></script>
 
-<div id="documentPositionsAttributesGrid" class="qcadoo-grid"></div>
+<div id="documentPositionsAttributesGrid" class="sleektiv-grid"></div>
 <div id="pager" style="width:100%;height:20px;"></div>
 
 <script src="/materialFlowResources/public/js/documentPositionsAttributes.js?ver=${buildNumber}"></script>

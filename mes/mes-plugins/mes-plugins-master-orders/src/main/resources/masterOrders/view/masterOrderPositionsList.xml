@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_SALE" name="masterOrderPositionsList" modelName="masterOrderPositionDto"
       menuAccessible="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
         <ribbon>
@@ -208,19 +208,19 @@
             </predefinedFilters>
 
             <listener event="createOrder"
-                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
                       method="createOrder"/>
             <listener event="goToGenerateOrders"
-                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
                       method="goToGenerateOrders"/>
             <listener event="showGroupedByProduct"
-                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
                       method="showGroupedByProduct"/>
             <listener event="showGroupedByProductAndDate"
-                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
                       method="showGroupedByProductAndDate"/>
             <listener event="updateWarehouseStateAndDelivery"
-                      class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                      class="com.sleektiv.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
                       method="updateWarehouseStateAndDelivery"/>
         </component>
 
@@ -228,13 +228,13 @@
         <option type="header" value="false"/>
 
         <listener event="openMasterOrdersImportPage"
-                  class="com.qcadoo.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
+                  class="com.sleektiv.mes.masterOrders.listeners.MasterOrderPositionsListListeners"
                   method="openMasterOrdersImportPage"/>
     </component>
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.masterOrders.hooks.MasterOrderPositionsListHooks"
+                class="com.sleektiv.mes.masterOrders.hooks.MasterOrderPositionsListHooks"
                 method="disableButton"/>
     </hooks>
 

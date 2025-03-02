@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -27,8 +27,8 @@
 <view defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING" name="productionTrackingsDraftList"
       modelName="productionTrackingDraftDto"
       menuAccessible="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -215,7 +215,7 @@
             <option type="suppressSelectEvent" value="true" />
 
             <listener event="changeState"
-                      class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                      class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                       method="changeTrackingState"/>
 
 
@@ -226,6 +226,6 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.productionCounting.hooks.ProductionTrackingsDraftListHooks" method="onBeforeRender"/>
+        <beforeRender class="com.sleektiv.mes.productionCounting.hooks.ProductionTrackingsDraftListHooks" method="onBeforeRender"/>
     </hooks>
 </view>

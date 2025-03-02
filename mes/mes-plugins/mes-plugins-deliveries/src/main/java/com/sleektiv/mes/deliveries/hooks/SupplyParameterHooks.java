@@ -1,0 +1,193 @@
+/**
+ * ***************************************************************************
+ * Copyright (c) 2025 Sleektiv.
+ * Project: Sleektiv MES
+ * Version: 1.4
+ * <p>
+ * This file is part of Sleektiv.
+ * <p>
+ * Sleektiv is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation; either version 3 of the License,
+ * or (at your option) any later version.
+ * <p>
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Affero General Public License for more details.
+ * <p>
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * ***************************************************************************
+ */
+package com.sleektiv.mes.deliveries.hooks;
+
+import com.sleektiv.localization.api.TranslationService;
+import com.sleektiv.mes.basic.constants.BasicConstants;
+import com.sleektiv.mes.basic.constants.NumberPatternFields;
+import com.sleektiv.mes.basic.constants.ProductFields;
+import com.sleektiv.mes.deliveries.constants.ParameterFieldsD;
+import com.sleektiv.model.api.DataDefinition;
+import com.sleektiv.model.api.DataDefinitionService;
+import com.sleektiv.model.api.Entity;
+import com.sleektiv.model.api.search.SearchRestrictions;
+import com.sleektiv.view.api.ComponentState;
+import com.sleektiv.view.api.ViewDefinitionState;
+import com.sleektiv.view.api.components.CheckBoxComponent;
+import com.sleektiv.view.api.components.FieldComponent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Service;
+
+import static com.sleektiv.mes.deliveries.constants.DefaultAddressType.OTHER;
+import static com.sleektiv.mes.deliveries.constants.ParameterFieldsD.DEFAULT_ADDRESS;
+import static com.sleektiv.mes.deliveries.constants.ParameterFieldsD.OTHER_ADDRESS;
+
+@Service
+public class SupplyParameterHooks {
+
+    public static final String QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING = "sleektivView.validate.field.error.missing";
+    @Autowired
+    private DataDefinitionService dataDefinitionService;
+
+    @Autowired
+    private TranslationService translationService;
+
+    public void setFieldsVisibleAndRequired(final ViewDefinitionState view, final ComponentState componentState,
+                                            final String[] args) {
+        setFieldsVisibleAndRequired(view);
+    }
+
+
+    public void onBeforeRender(final ViewDefinitionState view) {
+        setFieldsVisibleAndRequired(view);
+        setBatchNumberPatternEnabled(view);
+    }
+
+    public final void setBatchNumberPatternEnabled(final ViewDefinitionState view) {
+        CheckBoxComponent batchEvidence = (CheckBoxComponent) view
+                .getComponentByReference(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_EVIDENCE);
+        FieldComponent batchNumberPattern = (FieldComponent) view.getComponentByReference(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_NUMBER_PATTERN);
+
+        if (batchEvidence.isChecked()) {
+            batchNumberPattern.setEnabled(true);
+        } else {
+            batchNumberPattern.setEnabled(false);
+            batchNumberPattern.setFieldValue(null);
+        }
+    }
+
+    public void setFieldsVisibleAndRequired(final ViewDefinitionState view) {
+        FieldComponent defaultAddress = (FieldComponent) view.getComponentByReference(DEFAULT_ADDRESS);
+
+        boolean selectForAddress = OTHER.getStringValue().equals(defaultAddress.getFieldValue());
+
+        changeFieldsState(view, OTHER_ADDRESS, selectForAddress);
+
+        CheckBoxComponent sendEmailToSupplier = (CheckBoxComponent) view
+                .getComponentByReference(ParameterFieldsD.SEND_EMAIL_TO_SUPPLIER);
+        boolean sendEmailToSupplierValue = sendEmailToSupplier.isChecked();
+        changeFieldEnabledAndRequired(view, ParameterFieldsD.DELIVERY_EMAIL_SUBJECT, sendEmailToSupplierValue);
+        changeFieldEnabledAndRequired(view, ParameterFieldsD.DELIVERY_EMAIL_BODY, sendEmailToSupplierValue);
+    }
+
+    private void changeFieldEnabledAndRequired(final ViewDefinitionState view, final String fieldName, final boolean enabled) {
+        FieldComponent field = (FieldComponent) view.getComponentByReference(fieldName);
+        field.setEnabled(enabled);
+        field.setRequired(enabled);
+
+        if (!enabled) {
+            field.setFieldValue(null);
+        }
+
+        field.requestComponentUpdateState();
+    }
+
+    private void changeFieldsState(final ViewDefinitionState view, final String fieldName, final boolean selectForAddress) {
+        FieldComponent field = (FieldComponent) view.getComponentByReference(fieldName);
+        field.setVisible(selectForAddress);
+        field.setRequired(selectForAddress);
+
+        if (!selectForAddress) {
+            field.setFieldValue(null);
+        }
+
+        field.requestComponentUpdateState();
+    }
+
+    public void onCreate(final DataDefinition dataDefinition, final Entity parameter) {
+        parameter.setField(ParameterFieldsD.DELIVERED_BIGGER_THAN_ORDERED, true);
+    }
+
+    public final boolean checkIfNumberPatternIsSelected(final DataDefinition parameterDD, final Entity parameter) {
+        if (parameter.getBooleanField(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_EVIDENCE)
+                && parameter.getBelongsToField(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_NUMBER_PATTERN) == null) {
+            parameter.addError(parameterDD.getField(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_NUMBER_PATTERN),
+                    "basic.parameter.message.numberPatternIsNotSelected");
+            return false;
+        }
+
+        return true;
+    }
+
+    public final boolean checkIfDeliveryEmailFieldsFilled(final DataDefinition parameterDD, final Entity parameter) {
+        boolean isValid = true;
+        if (parameter.getBooleanField(ParameterFieldsD.SEND_EMAIL_TO_SUPPLIER)) {
+            if (parameter.getStringField(ParameterFieldsD.DELIVERY_EMAIL_SUBJECT) == null) {
+                parameter.addError(parameterDD.getField(ParameterFieldsD.DELIVERY_EMAIL_SUBJECT),
+                        QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                isValid = false;
+            }
+            if (parameter.getStringField(ParameterFieldsD.DELIVERY_EMAIL_BODY) == null) {
+                parameter.addError(parameterDD.getField(ParameterFieldsD.DELIVERY_EMAIL_BODY),
+                        QCADOO_VIEW_VALIDATE_FIELD_ERROR_MISSING);
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    public void setUsedInForNumberPattern(final DataDefinition parameterDD, final Entity parameter) {
+        Entity numberPattern = parameter.getBelongsToField(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_NUMBER_PATTERN);
+        DataDefinition numberPatternDD = dataDefinitionService.get(BasicConstants.PLUGIN_IDENTIFIER,
+                BasicConstants.MODEL_NUMBER_PATTERN);
+        String usedInValue = translationService.translate("basic.parameter.numberPattern.usedInDeliveryProductBatch.value",
+                LocaleContextHolder.getLocale());
+
+        Entity dbNumberPattern = null;
+        boolean usedInOtherPlaces = false;
+        if (parameter.getId() != null) {
+            dbNumberPattern = parameterDD.get(parameter.getId()).getBelongsToField(ParameterFieldsD.PRODUCT_DELIVERY_BATCH_NUMBER_PATTERN);
+            usedInOtherPlaces = isUsedInOtherPlaces(dbNumberPattern);
+        }
+        if (numberPattern != null) {
+            numberPattern.setField(NumberPatternFields.USED, true);
+            if (dbNumberPattern != null && !dbNumberPattern.getId().equals(numberPattern.getId())) {
+                numberPattern.setField(NumberPatternFields.USED_IN, usedInValue);
+                numberPatternDD.save(numberPattern);
+                if (!usedInOtherPlaces) {
+                    dbNumberPattern.setField(NumberPatternFields.USED_IN, null);
+                    numberPatternDD.save(dbNumberPattern);
+                }
+            } else if (dbNumberPattern == null) {
+                numberPattern.setField(NumberPatternFields.USED_IN, usedInValue);
+                numberPatternDD.save(numberPattern);
+            }
+        } else if (dbNumberPattern != null && !usedInOtherPlaces) {
+            dbNumberPattern.setField(NumberPatternFields.USED_IN, null);
+            numberPatternDD.save(dbNumberPattern);
+        }
+    }
+
+    private boolean isUsedInOtherPlaces(Entity dbNumberPattern) {
+        if (dbNumberPattern != null) {
+            DataDefinition productDD = dataDefinitionService.get(BasicConstants.PLUGIN_IDENTIFIER,
+                    BasicConstants.MODEL_PRODUCT);
+            int countProductsWithNumberPattern = productDD.find().add(SearchRestrictions.belongsTo(ProductFields.BATCH_NUMBER_PATTERN, dbNumberPattern)).list().getTotalNumberOfEntities();
+            return countProductsWithNumberPattern > 0;
+        }
+        return false;
+    }
+}

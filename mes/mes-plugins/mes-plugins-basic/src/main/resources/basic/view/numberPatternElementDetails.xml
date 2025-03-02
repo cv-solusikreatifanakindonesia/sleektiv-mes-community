@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_NUMBER_PATTERN" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_NUMBER_PATTERN" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="numberPatternElementDetails" modelName="numberPatternElement">
 
     <component type="window" name="window">
@@ -43,7 +43,7 @@
                 <layoutElement column="1" row="2">
                     <component type="select" name="element" field="element" reference="element">
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.basic.listeners.NumberPatternElementDetailsListeners"
+                                  class="com.sleektiv.mes.basic.listeners.NumberPatternElementDetailsListeners"
                                   method="onChangeElement"/>
                     </component>
                 </layoutElement>
@@ -53,7 +53,7 @@
                 <layoutElement column="1" row="4">
                     <component type="select" name="sequenceCycle" field="sequenceCycle" reference="sequenceCycle" hasDescription="true">
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.basic.listeners.NumberPatternElementDetailsListeners"
+                                  class="com.sleektiv.mes.basic.listeners.NumberPatternElementDetailsListeners"
                                   method="onChangeSequenceCycle"/>
                     </component>
                 </layoutElement>
@@ -64,7 +64,7 @@
 
     </component>
     <hooks>
-        <beforeRender class="com.qcadoo.mes.basic.hooks.NumberPatternElementDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.basic.hooks.NumberPatternElementDetailsHooks"
                       method="onBeforeRender" />
     </hooks>
 </view>

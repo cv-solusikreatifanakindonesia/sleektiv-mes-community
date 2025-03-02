@@ -1,0 +1,93 @@
+/**
+ * ***************************************************************************
+ * Copyright (c) 2025 Sleektiv.
+ * Project: Sleektiv Framework
+ * Version: 1.4
+ *
+ * This file is part of Sleektiv.
+ *
+ * Sleektiv is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation; either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * ***************************************************************************
+ */
+package com.sleektiv.model.internal.dictionaries.hooks;
+
+import java.util.Objects;
+
+import org.springframework.stereotype.Service;
+
+import com.sleektiv.model.api.DataDefinition;
+import com.sleektiv.model.api.Entity;
+import com.sleektiv.model.api.search.SearchCriteriaBuilder;
+import com.sleektiv.model.api.search.SearchRestrictions;
+import com.sleektiv.model.api.search.SearchResult;
+import com.sleektiv.model.constants.DictionaryItemFields;
+
+@Service
+public class DictionaryItemValidators {
+
+    public boolean onValidate(final DataDefinition dictionaryItemDD, final Entity dictionaryItem) {
+        boolean isValid = true;
+
+        isValid = isValid && checkIfIsUnique(dictionaryItemDD, dictionaryItem, DictionaryItemFields.NAME);
+        isValid = isValid && checkIfIsUnique(dictionaryItemDD, dictionaryItem, DictionaryItemFields.EXTERNAL_NUMBER);
+        isValid = disallowNameChange(dictionaryItemDD, dictionaryItem) && isValid;
+
+        return isValid;
+    }
+
+    private boolean checkIfIsUnique(final DataDefinition dictionaryItemDD, final Entity dictionaryItem, final String fieldName) {
+        if (!checkIfDictionaryItemIsUnique(dictionaryItemDD, dictionaryItem, fieldName)) {
+            dictionaryItem.addError(dictionaryItemDD.getField(fieldName), "sleektivView.validate.field.error.duplicated");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkIfDictionaryItemIsUnique(final DataDefinition dictionaryItemDD, final Entity dictionaryItem,
+            final String fieldName) {
+        Entity dictionary = dictionaryItem.getBelongsToField(DictionaryItemFields.DICTIONARY);
+        String fieldValue = dictionaryItem.getStringField(fieldName);
+
+        SearchCriteriaBuilder searchCriteriaBuilder = dictionaryItemDD.find()
+                .add(SearchRestrictions.belongsTo(DictionaryItemFields.DICTIONARY, dictionary))
+                .add(SearchRestrictions.eq(fieldName, fieldValue));
+
+        if (Objects.nonNull(dictionaryItem.getId())) {
+            searchCriteriaBuilder.add(SearchRestrictions.idNe(dictionaryItem.getId()));
+        }
+
+        SearchResult searchResult = searchCriteriaBuilder.list();
+
+        return searchResult.getEntities().isEmpty();
+    }
+
+    private boolean disallowNameChange(final DataDefinition dictionaryItemDD, final Entity dictionaryItem) {
+        if (Objects.nonNull(dictionaryItem.getId())) {
+            Entity existingEntity = dictionaryItemDD.get(dictionaryItem.getId());
+
+            if (!Objects.equals(dictionaryItem.getStringField(DictionaryItemFields.NAME),
+                    existingEntity.getStringField(DictionaryItemFields.NAME))) {
+                dictionaryItem.addError(dictionaryItemDD.getField(DictionaryItemFields.NAME),
+                        "sleektivDictionaries.dictionaryItem.validateError.nameChange");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+}

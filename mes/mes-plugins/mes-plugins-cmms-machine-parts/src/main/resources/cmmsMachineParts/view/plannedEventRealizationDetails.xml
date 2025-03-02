@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_MAINTENANCE" name="plannedEventRealizationDetails"
       modelName="plannedEventRealization"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window">
 
@@ -62,7 +62,7 @@
                             <option type="column" name="responsibleWorkerName" fields="responsibleWorkerName" link="true" />
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.PlannedEventRealizationCriteriaModifiers"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.PlannedEventRealizationCriteriaModifiers"
                                     method="showActionsForEvent"/>
                         </component>
                     </layoutElement>
@@ -71,7 +71,7 @@
                                    reference="startDate">
                             <option type="withTimePicker" value="true"/>
                             <listener event="onChange"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventRealizationDetailsListeners"
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventRealizationDetailsListeners"
                                       method="calculateDuration"/>
                         </component>
                     </layoutElement>
@@ -80,7 +80,7 @@
                                    reference="finishDate">
                             <option type="withTimePicker" value="true"/>
                             <listener event="onChange"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventRealizationDetailsListeners"
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventRealizationDetailsListeners"
                                       method="calculateDuration"/>
                         </component>
                     </layoutElement>
@@ -97,7 +97,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.cmmsMachineParts.hooks.PlannedEventRealizationDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.cmmsMachineParts.hooks.PlannedEventRealizationDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 

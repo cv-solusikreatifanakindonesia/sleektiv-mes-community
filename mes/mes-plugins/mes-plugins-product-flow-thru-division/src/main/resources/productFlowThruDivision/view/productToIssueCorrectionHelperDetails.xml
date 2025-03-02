@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_REQUIREMENTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productToIssueCorrectionHelperDetails" modelName="productToIssueCorrectionHelper">
 
     <component type="window" name="window">
@@ -68,7 +68,7 @@
                             <option type="expression"
                                     value="#number"/>
                             <option type="fieldCode" value="number"/>
-                            <criteriaModifier class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.criteriaModifiers.ProductToIssueCorrectionCriteriaModifiers"
+                            <criteriaModifier class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.criteriaModifiers.ProductToIssueCorrectionCriteriaModifiers"
                                               method="showAvailableWarehouses"/>
                         </component>
                     </layoutElement>
@@ -180,7 +180,7 @@
                                             <option type="alignment" value="right"/>
 
                                             <listener event="onInputChange"
-                                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductToIssueCorrectionDetailsListeners"
+                                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductToIssueCorrectionDetailsListeners"
                                                       method="quantityChanged"/>
                                         </component>
                                     </layoutElement>
@@ -190,7 +190,7 @@
                                             <option type="alignment" value="right"/>
 
                                             <listener event="onInputChange"
-                                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductToIssueCorrectionDetailsListeners"
+                                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductToIssueCorrectionDetailsListeners"
                                                       method="additionalQuantityChanged"/>
                                         </component>
                                     </layoutElement>
@@ -225,13 +225,13 @@
                 </component>
                 <option type="header" value="true"/>
                 <listener event="correct"
-                          class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductToIssueCorrectionDetailsListeners"
+                          class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductToIssueCorrectionDetailsListeners"
                           method="correct"/>
             </component>
         </windowTab>
     </component>
     <hooks>
-        <beforeRender class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.hooks.ProductToIssueCorrectionHelperHooks"
+        <beforeRender class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.hooks.ProductToIssueCorrectionHelperHooks"
                       method="onBeforeRender"/>
     </hooks>
 

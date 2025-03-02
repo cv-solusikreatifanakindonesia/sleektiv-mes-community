@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/basic/public/css/style.css?ver=${buildNumber}" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/basic/public/css/fonts/material-icon/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/qcadooView/public/css/core/lib/bootstrap-glyphicons.css?ver=${buildNumber}" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/sleektivView/public/css/core/lib/bootstrap-glyphicons.css?ver=${buildNumber}" type="text/css" />
 <link href="${pageContext.request.contextPath}/basic/public/css/bootstrap-table.css?ver=${buildNumber}" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/basic/public/css/bootstrap-table-filter-control.css?ver=${buildNumber}" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/basic/public/css/bootstrap-datetimepicker.css?ver=${buildNumber}" rel="stylesheet" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/typeahead.min.js?ver=${buildNumber}"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/typeahead.min.js?ver=${buildNumber}"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/basic/public/js/jquery.steps.min.js?ver=${buildNumber}"></script>
 <div class="modal" tabindex="-1" role="dialog" id="operationalTasksDefinitionWizard" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog" role="document">
@@ -680,13 +680,13 @@
    </div>
 </div>
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/bootstrap/bootstrap-treeview.js?ver=${buildNumber}"></script>
+   src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/bootstrap/bootstrap-treeview.js?ver=${buildNumber}"></script>
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/bootstrap/bootstrap-datetimepicker.js?ver=${buildNumber}"></script>
+   src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/bootstrap/bootstrap-datetimepicker.js?ver=${buildNumber}"></script>
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/bootstrap/bootstrap-table.js?ver=${buildNumber}"></script>
+   src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/bootstrap/bootstrap-table.js?ver=${buildNumber}"></script>
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/bootstrap/bootstrap-table-locale-all.js?ver=${buildNumber}"></script>
+   src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/bootstrap/bootstrap-table-locale-all.js?ver=${buildNumber}"></script>
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/qcadooView/public/js/core/lib/bootstrap/bootstrap-table-i18n-enhance.js?ver=${buildNumber}"></script>
+   src="${pageContext.request.contextPath}/sleektivView/public/js/core/lib/bootstrap/bootstrap-table-i18n-enhance.js?ver=${buildNumber}"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/basic/public/js/operationalTasksDefinitionWizard.js?ver=${buildNumber}"></script>

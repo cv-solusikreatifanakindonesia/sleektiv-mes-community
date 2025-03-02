@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_DOCUMENTS_CORRECTIONS_MIN_STATES"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="documentDetails" modelName="document">
 
     <component type="window" name="window" reference="window">
@@ -157,7 +157,7 @@
                                    reference="type">
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                                      class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                                       method="clearWarehouseFields"/>
                         </component>
                     </layoutElement>
@@ -187,7 +187,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
+                                    class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
                                     method="showWarehousesOnly"/>
                         </component>
                     </layoutElement>
@@ -203,11 +203,11 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
+                                    class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
                                     method="showWarehousesOnly"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                                      class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                                       method="setCriteriaModifiersParameters"/>
                         </component>
                     </layoutElement>
@@ -223,7 +223,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                                      class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                                       method="setCriteriaModifiersParameters"/>
                         </component>
                     </layoutElement>
@@ -240,7 +240,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.basic.criteriaModifiers.AddressCriteriaModifiers"
+                                    class="com.sleektiv.mes.basic.criteriaModifiers.AddressCriteriaModifiers"
                                     method="showOnlyCompanyAddresses"/>
                         </component>
                     </layoutElement>
@@ -267,31 +267,31 @@
                         value="#number + ' - ' + '@materialFlowResources.document.state.value.'+#state"/>
 
                 <listener event="createResourcesForDocuments"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="createResourcesForDocuments"/>
                 <listener event="printDocument"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="printDocument"/>
                 <listener event="printDispositionOrder"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="printDispositionOrder"/>
                 <listener event="save"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="onSave"/>
                 <listener event="fillResources"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="fillResources"/>
                 <listener event="checkResourcesStock"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="checkResourcesStock"/>
                 <listener event="addMultipleResources"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="addMultipleResources"/>
                 <listener event="openPositionsImportPage"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="openPositionsImportPage"/>
                 <listener event="showProductAttributes"
-                          class="com.qcadoo.mes.materialFlowResources.listeners.DocumentDetailsListeners"
+                          class="com.sleektiv.mes.materialFlowResources.listeners.DocumentDetailsListeners"
                           method="showProductAttributes"/>
             </component>
         </windowTab>
@@ -363,7 +363,7 @@
                                reference="createLinkedDocument">
                         <option type="labelWidth" value="40"/>
                         <listener event="onChange"
-                                  class="com.qcadoo.mes.materialFlowResources.hooks.DocumentDetailsHooks"
+                                  class="com.sleektiv.mes.materialFlowResources.hooks.DocumentDetailsHooks"
                                   method="onCreateLinkedDocumentChange"/>
                     </component>
                 </layoutElement>
@@ -380,7 +380,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
+                                class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
                                 method="showWarehousesOnly"/>
                     </component>
                 </layoutElement>
@@ -390,7 +390,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.materialFlowResources.hooks.DocumentDetailsHooks"
+                class="com.sleektiv.mes.materialFlowResources.hooks.DocumentDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

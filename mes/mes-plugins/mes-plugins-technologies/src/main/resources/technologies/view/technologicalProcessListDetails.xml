@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view name="technologicalProcessListDetails" modelName="technologicalProcessList"
       defaultAuthorizationRole="ROLE_TECHNOLOGICAL_PROCESSES"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component name="window" type="window" reference="window">
         <ribbon>
@@ -93,7 +93,7 @@
                                 <![CDATA[
                                 var that = this;
                                 this.onDeleteButtonClicked = function () {
-                                    if (window.confirm("#{translate(qcadooView.grid.confirmDeleteMessage)}" + "?")) {
+                                    if (window.confirm("#{translate(sleektivView.grid.confirmDeleteMessage)}" + "?")) {
                                         #{technologicalProcessComponents}.fireEvent(null,'removeSelectedEntities',[]);
                                     }
                                 };
@@ -102,11 +102,11 @@
                             <option type="column" name="technologicalProcess" fields="technologicalProcess"
                                     expression="#technologicalProcess['name']" width="100" link="true"/>
                             <option type="column" name="tpz" fields="tpz" width="40"
-                                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#tpz)"/>
+                                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#tpz)"/>
                             <option type="column" name="tj" fields="tj" width="40"
-                                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#tj)"/>
+                                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#tj)"/>
                             <option type="column" name="additionalTime" fields="additionalTime" width="40"
-                                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#additionalTime)"/>
+                                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#additionalTime)"/>
                             <option type="column" name="extendedTimeForSizeGroup" fields="extendedTimeForSizeGroup"/>
                             <option type="column" name="remarks" fields="remarks" />
                             <option type="column" name="increasePercent" fields="increasePercent" />
@@ -130,14 +130,14 @@
 
                             <listener event="removeSelectedEntities"
                                       method="onRemoveSelectedEntities"
-                                      class="com.qcadoo.mes.technologies.listeners.TechnologicalProcessListDetailsListeners"/>
+                                      class="com.sleektiv.mes.technologies.listeners.TechnologicalProcessListDetailsListeners"/>
                         </component>
                     </layoutElement>
                 </component>
 
                 <listener event="addProcesses"
                           method="addProcesses"
-                          class="com.qcadoo.mes.technologies.listeners.TechnologicalProcessListDetailsListeners"/>
+                          class="com.sleektiv.mes.technologies.listeners.TechnologicalProcessListDetailsListeners"/>
 
                 <option type="header" value="true"/>
                 <option type="expression" value="#number + (#name != null ? ' - ' + #name : '')"/>
@@ -165,7 +165,7 @@
                         <option type="fullscreen" value="true"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.technologies.criteriaModifiers.TechnologicalProcessListDetailsCriteriaModifiers"
+                                class="com.sleektiv.mes.technologies.criteriaModifiers.TechnologicalProcessListDetailsCriteriaModifiers"
                                 method="filterTechnologies"/>
                     </component>
                 </layoutElement>
@@ -174,7 +174,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.technologies.hooks.TechnologicalProcessListDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.technologies.hooks.TechnologicalProcessListDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 

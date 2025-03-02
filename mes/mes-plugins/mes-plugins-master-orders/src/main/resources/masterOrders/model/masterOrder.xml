@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <model name="masterOrder" activable="true" auditable="true"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
-       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/model"
+       xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
     <fields>
         <belongsTo name="masterOrderDefinition" model="masterOrderDefinition"/>
@@ -48,7 +48,7 @@
 
         <datetime name="deadline">
             <validatesWith
-                    class="com.qcadoo.mes.masterOrders.validators.MasterOrderValidators"
+                    class="com.sleektiv.mes.masterOrders.validators.MasterOrderValidators"
                     method="checkIfCanChangeDeadline"/>
         </datetime>
         <datetime name="startDate"/>
@@ -61,13 +61,13 @@
 
         <belongsTo name="company" plugin="basic" model="company">
             <validatesWith
-                    class="com.qcadoo.mes.masterOrders.validators.MasterOrderValidators"
+                    class="com.sleektiv.mes.masterOrders.validators.MasterOrderValidators"
                     method="checkIfCanChangeCompany"/>
         </belongsTo>
 
         <belongsTo name="companyPayer" plugin="basic" model="company">
             <validatesWith
-                    class="com.qcadoo.mes.masterOrders.validators.MasterOrderValidators"
+                    class="com.sleektiv.mes.masterOrders.validators.MasterOrderValidators"
                     method="checkIfCanChangeCompany"/>
         </belongsTo>
 
@@ -122,15 +122,15 @@
 
     <hooks>
         <validatesWith
-                class="com.qcadoo.mes.masterOrders.validators.MasterOrderValidators"
+                class="com.sleektiv.mes.masterOrders.validators.MasterOrderValidators"
                 method="onValidate"/>
-        <onCreate class="com.qcadoo.mes.masterOrders.hooks.MasterOrderHooks"
+        <onCreate class="com.sleektiv.mes.masterOrders.hooks.MasterOrderHooks"
                   method="onCreate"/>
-        <onSave class="com.qcadoo.mes.masterOrders.hooks.MasterOrderHooks"
+        <onSave class="com.sleektiv.mes.masterOrders.hooks.MasterOrderHooks"
                 method="onSave"/>
-        <onCopy class="com.qcadoo.mes.masterOrders.hooks.MasterOrderHooks"
+        <onCopy class="com.sleektiv.mes.masterOrders.hooks.MasterOrderHooks"
                 method="onCopy"/>
-        <onUpdate class="com.qcadoo.mes.masterOrders.hooks.MasterOrderHooks"
+        <onUpdate class="com.sleektiv.mes.masterOrders.hooks.MasterOrderHooks"
                   method="onUpdate"/>
     </hooks>
 

@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <windowTabExtension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xmlns="http://schema.qcadoo.org/modules/windowTabExtension"
-                    xsi:schemaLocation="http://schema.qcadoo.org/modules/windowTabExtension http://schema.qcadoo.org/modules/windowTabExtension.xsd"
+                    xmlns="http://schema.sleektiv.org/modules/windowTabExtension"
+                    xsi:schemaLocation="http://schema.sleektiv.org/modules/windowTabExtension http://schema.sleektiv.org/modules/windowTabExtension.xsd"
                     plugin="deliveries" view="supplyParameters">
 
     <windowTab name="warehouseIssue">
@@ -36,7 +36,7 @@
 				<component type="select" name="warehouseIssueProductsSource" field="#{form}.warehouseIssueProductsSource"
 					reference="warehouseIssueProductsSource">
 					<listener event="onSelectedEntityChange" method="toggleGenerateIssuesTo"
-                              class="com.qcadoo.mes.productFlowThruDivision.listeners.SupplyParametersListenersPFTD"/>
+                              class="com.sleektiv.mes.productFlowThruDivision.listeners.SupplyParametersListenersPFTD"/>
                 </component>
 			</layoutElement>
             <layoutElement column="1" row="2">
@@ -48,7 +48,7 @@
                 <component type="checkbox" name="generateWarehouseIssuesToOrders"
                            reference="generateWarehouseIssuesToOrders" field="#{form}.generateWarehouseIssuesToOrders" hasDescription="true" >
                            <listener event="onInputChange" method="onGenerateWarehouseIssuesToOrdersChange"
-                                          class="com.qcadoo.mes.productFlowThruDivision.listeners.SupplyParametersListenersPFTD"/>
+                                          class="com.sleektiv.mes.productFlowThruDivision.listeners.SupplyParametersListenersPFTD"/>
                             <option type="labelWidth" value="60"/>
                 </component>
             </layoutElement>

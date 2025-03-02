@@ -1,7 +1,7 @@
 var QCD = QCD || {};
 
 QCD.employeePieceworkSettlement = (function() {
-    let localStorageKey = 'qcadoo-productionCounting-employeePieceworkSettlement';
+    let localStorageKey = 'sleektiv-productionCounting-employeePieceworkSettlement';
     let grid;
     let dataView;
     let options = {
@@ -16,10 +16,10 @@ QCD.employeePieceworkSettlement = (function() {
         footerRowHeight: 21
     };
     let pagerOptions = {
-        showAllText: QCD.translate('qcadooView.slickGrid.pager.showAllText'),
-        showPageText: QCD.translate('qcadooView.slickGrid.pager.showPageText'),
-        show: QCD.translate('qcadooView.slickGrid.pager.show'),
-        all: QCD.translate('qcadooView.slickGrid.pager.all')
+        showAllText: QCD.translate('sleektivView.slickGrid.pager.showAllText'),
+        showPageText: QCD.translate('sleektivView.slickGrid.pager.showPageText'),
+        show: QCD.translate('sleektivView.slickGrid.pager.show'),
+        all: QCD.translate('sleektivView.slickGrid.pager.all')
     };
     let columnFilters = {};
 
@@ -124,7 +124,7 @@ QCD.employeePieceworkSettlement = (function() {
 
                 new QCD.MessagesController().addMessage({
                     type: 'failure',
-                    title: QCD.translate('qcadooView.notification.failure'),
+                    title: QCD.translate('sleektivView.notification.failure'),
                     content: QCD.translate(message),
                     autoClose: false,
                     extraLarge: false

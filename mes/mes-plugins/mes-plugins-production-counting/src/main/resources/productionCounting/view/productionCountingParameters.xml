@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -27,8 +27,8 @@
 <view name="productionCountingParameters" modelPlugin="basic" modelName="parameter"
       defaultAuthorizationRole="ROLE_PARAMETERS"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window">
 
@@ -65,7 +65,7 @@
                         <component type="checkbox" name="registerProductionTime"
                                    reference="registerProductionTime" field="#{form}.registerProductionTime">
                             <listener event="onChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                             <option type="labelWidth" value="60"/>
                         </component>
@@ -89,7 +89,7 @@
                                    field="#{form}.justOne" hasDescription="true">
                             <option type="labelWidth" value="80"/>
                             <listener event="onChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -139,7 +139,7 @@
                                    field="#{form}.consumptionOfRawMaterialsBasedOnStandards">
                             <option type="labelWidth" value="60"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -164,7 +164,7 @@
                                    field="#{form}.releaseOfMaterials" hasDescription="true">
                             <option type="labelWidth" value="60"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionCountingParametersListeners"
+                                      class="com.sleektiv.mes.productionCounting.listeners.ProductionCountingParametersListeners"
                                       method="onReleaseOfMaterialsChange"/>
                         </component>
                     </layoutElement>
@@ -175,7 +175,7 @@
                                    field="#{form}.receiptOfProducts" hasDescription="true">
                             <option type="labelWidth" value="60"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionCountingParametersListeners"
+                                      class="com.sleektiv.mes.productionCounting.listeners.ProductionCountingParametersListeners"
                                       method="onReceiptOfProductsChange"/>
                         </component>
                     </layoutElement>
@@ -196,7 +196,7 @@
 
     <hooks>
         <beforeRender
-            class="com.qcadoo.mes.productionCounting.hooks.ParametersHooksPC"
+            class="com.sleektiv.mes.productionCounting.hooks.ParametersHooksPC"
             method="onBeforeRender"/>
     </hooks>
 

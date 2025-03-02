@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_SALE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="salesPlanDetails" modelName="salesPlan">
 
     <component type="window" name="window" reference="window">
@@ -134,27 +134,27 @@
                         value="#number + ' - ' + '@masterOrders.salesPlan.state.value.' + #state"/>
 
                 <listener event="addProductsBySize" method="addProductsBySize"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
                 <listener event="getOrderedQuantities" method="getOrderedQuantities"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
                 <listener event="showOrderedProductsForFamily" method="showOrderedProductsForFamily"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
                 <listener event="createSalesPlanMaterialRequirement" method="createSalesPlanMaterialRequirement"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
                 <listener event="createOrderGroup" method="createOrderGroup"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
                 <listener event="createOrders" method="createOrders"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
-                <listener event="changeState" class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"/>
+                <listener event="changeState" class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"
                           method="changeState"/>
                 <listener event="openPositionsImportPage"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"
                           method="openPositionsImportPage"/>
                 <listener event="useOtherTechnology"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"
                           method="useOtherTechnology"/>
                 <listener event="fillTechnology"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanDetailsListeners"
                           method="fillTechnology"/>
             </component>
         </windowTab>
@@ -198,7 +198,7 @@
                         value="productNumber,productName,productEntityType,productFamily,productModel,productAssortment,technologyNumber,plannedQuantity,productUnit,orderedQuantity,orderedToWarehouse,surplusFromPlan,ordersPlannedQuantity"/>
 
                 <listener event="onSelect"
-                          class="com.qcadoo.view.api.listeners.RerenderListener"
+                          class="com.sleektiv.view.api.listeners.RerenderListener"
                           method="onChangeRerender"/>
 
                 <option type="correspondingView" value="masterOrders/salesPlanProductDetails"/>
@@ -220,7 +220,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.masterOrders.hooks.SalesPlanDetailsHooks"
+                class="com.sleektiv.mes.masterOrders.hooks.SalesPlanDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

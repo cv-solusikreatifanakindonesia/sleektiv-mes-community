@@ -4,31 +4,31 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.qcadoo.mes</groupId>
+		<groupId>com.sleektiv.mes</groupId>
 		<artifactId>mes-plugins</artifactId>
 		<version>1.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mes-plugins-master-orders</artifactId>
-	<groupId>com.qcadoo.mes</groupId>
-	<packaging>qcadoo-plugin</packaging>
+	<groupId>com.sleektiv.mes</groupId>
+	<packaging>sleektiv-plugin</packaging>
 
-	<name>Qcadoo MES :: Plugins :: Sales orders</name>
+	<name>Sleektiv MES :: Plugins :: Sales orders</name>
 	<version>1.5-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.qcadoo.mes</groupId>
+			<groupId>com.sleektiv.mes</groupId>
 			<artifactId>mes-plugins-orders</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.qcadoo.mes</groupId>
+			<groupId>com.sleektiv.mes</groupId>
 			<artifactId>mes-plugins-line-changeover-norms</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.qcadoo.mes</groupId>
+			<groupId>com.sleektiv.mes</groupId>
 			<artifactId>mes-plugins-deliveries</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
@@ -37,9 +37,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.qcadoo</groupId>
-				<artifactId>qcadoo-maven-plugin</artifactId>
-				<version>${qcadoo.maven.plugin.version}</version>
+				<groupId>com.sleektiv</groupId>
+				<artifactId>sleektiv-maven-plugin</artifactId>
+				<version>${sleektiv.maven.plugin.version}</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>

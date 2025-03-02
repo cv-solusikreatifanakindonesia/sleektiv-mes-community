@@ -1,42 +1,42 @@
-qcadoo MES - open source web manufacturing management system
+sleektiv MES - open source web manufacturing management system
 
-website: htts://qcadoo.com
-authors: Qcadoo Limited and the projects Community
-email: welcome@qcadoo.com
+website: htts://sleektiv.com
+authors: Sleektiv. and the projects Community
+email: welcome@sleektiv.com
 
 == Installation ==
 
-qcadoo MES is a web server application. We've made the installation as easy as possible.
+sleektiv MES is a web server application. We've made the installation as easy as possible.
 
 The installation process requires some basic technical skills. Please read the
 Installation Guide:
-https://qcadoo.atlassian.net/wiki/display/QCDMESDOC/Installation+manual
+https://sleektiv.atlassian.net/wiki/display/QCDMESDOC/Installation+manual
 
-If you would just like to start working with qcadoo MES and not to worry about
+If you would just like to start working with sleektiv MES and not to worry about
 the systems configuration, updates and backups then we recommend to buy it as
-a hosted internet application from Qcadoo in the Software as a Service model
+a hosted internet application from Sleektiv in the Software as a Service model
 (called SaaS in short). All the details you can find here:
-https://qcadoo.com/en/
+https://sleektiv.com/en/
 
 == More information ==
 
-Read more about qcadoo MES functionality on the web site:
-http://www.qcadoo.com/en/features.html
+Read more about sleektiv MES functionality on the web site:
+http://www.sleektiv.com/en/features.html
 
 If you need any help please feel free to report bugs and feature requests on our issue tracker:
-https://qcadoo.atlassian.net/secure/Dashboard.jspa
+https://sleektiv.atlassian.net/secure/Dashboard.jspa
 
-If you would like to learn how to program modules for qcadoo MES please have a
+If you would like to learn how to program modules for sleektiv MES please have a
 look at the Developers Documentation:
-http://wiki.qcadoo.org/display/QCDMESDOC/Home
+http://wiki.sleektiv.org/display/QCDMESDOC/Home
 
 == News ==
 
 Product blog:
-http://blog.qcadoo.com/
+http://blog.sleektiv.com/
 
 Twitter:
-http://twitter.com/qcadoo
+http://twitter.com/sleektiv
 
 Facebook:
-http://www.facebook.com/qcadoo
+http://www.facebook.com/sleektiv

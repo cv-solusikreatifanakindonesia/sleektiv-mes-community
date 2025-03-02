@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING" name="anomalyDetails"
       modelName="anomaly"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -167,7 +167,7 @@
                             <script>
                                 <![CDATA[
                                 this.onDeleteButtonClicked = function () {
-                                    if (window.confirm("#{translate(qcadooView.grid.confirmDeleteMessage)}" + "?")) {
+                                    if (window.confirm("#{translate(sleektivView.grid.confirmDeleteMessage)}" + "?")) {
                                         #{anomalyExplanations}.fireEvent(null,'removeSelectedEntites',[]);
                                     }
                                 };
@@ -201,7 +201,7 @@
                             <option type="fixedHeight" value="true"/>
                             <listener event="removeSelectedEntites"
                                       method="onRemoveSelectedEntity"
-                                      class="com.qcadoo.mes.productionCounting.listeners.AnomalyExplanationDetailsListeners"/>
+                                      class="com.sleektiv.mes.productionCounting.listeners.AnomalyExplanationDetailsListeners"/>
                         </component>
                     </layoutElement>
                 </component>
@@ -209,7 +209,7 @@
                 <option type="expression" value="#number + ', ' + '@productionCounting.anomalyDto.state.value.' + #state"/>
 
                 <listener event="completeWithoutIssue"
-                          class="com.qcadoo.mes.productionCounting.listeners.AnomalyDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.AnomalyDetailsListeners"
                           method="completeWithoutIssue"/>
             </component>
         </windowTab>
@@ -217,7 +217,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.productionCounting.hooks.AnomalyDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.productionCounting.hooks.AnomalyDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 

@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.3
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="positionAddMulti" modelName="positionAddMultiHelper" modelPlugin="materialFlowResources">
 
     <component type="window" name="window" reference="window">
@@ -97,14 +97,14 @@
                             <option type="multiselect" value="true"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.ResourceCriteriaModifiers"
+                                    class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.ResourceCriteriaModifiers"
                                     method="restrictToLocation"/>
                         </component>
                     </layoutElement>
 
                 </component>
 
-                <listener class="com.qcadoo.mes.materialFlowResources.listeners.PositionAddMultiListeners"
+                <listener class="com.sleektiv.mes.materialFlowResources.listeners.PositionAddMultiListeners"
                           method="addPositions"
                           event="addPositions"/>
 
@@ -115,7 +115,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.materialFlowResources.hooks.PositionAddMultiHooks"
+        <beforeRender class="com.sleektiv.mes.materialFlowResources.hooks.PositionAddMultiHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

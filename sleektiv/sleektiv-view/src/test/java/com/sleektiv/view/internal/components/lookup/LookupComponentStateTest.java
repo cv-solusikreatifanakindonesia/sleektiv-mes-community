@@ -1,0 +1,215 @@
+/**
+ * ***************************************************************************
+ * Copyright (c) 2025 Sleektiv.
+ * Project: Sleektiv Framework
+ * Version: 1.4
+ *
+ * This file is part of Sleektiv.
+ *
+ * Sleektiv is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation; either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * ***************************************************************************
+ */
+package com.sleektiv.view.internal.components.lookup;
+
+import com.sleektiv.model.api.DataDefinition;
+import com.sleektiv.model.api.Entity;
+import com.sleektiv.model.api.ExpressionService;
+import com.sleektiv.model.api.FieldDefinition;
+import com.sleektiv.model.internal.ExpressionServiceImpl;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.util.ReflectionTestUtils;
+
+import java.util.Locale;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.util.ReflectionTestUtils.setField;
+
+public class LookupComponentStateTest {
+
+    private LookupComponentState lookup;
+
+    @Mock
+    private FieldDefinition scopeField;
+
+    @Mock
+    private Entity entity;
+
+    @Mock
+    private DataDefinition dataDefinition;
+
+    @Mock
+    private LookupComponentPattern pattern;
+
+    @Mock
+    private ExpressionService expressionService;
+
+    @Mock
+    private JSONObject json;
+
+    @Mock
+    private ApplicationContext applicationContext;
+
+    ExpressionServiceImpl expressionServiceImpl;
+
+    @Before
+    public void init() throws JSONException {
+        MockitoAnnotations.initMocks(this);
+
+        when(pattern.isPersistent()).thenReturn(true);
+
+        setField(pattern, "applicationContext", applicationContext);
+
+        lookup = new LookupComponentState(scopeField, "fieldCode", "expression", pattern);
+
+        lookup.initialize(json, Locale.ENGLISH);
+        lookup.setDataDefinition(dataDefinition);
+
+        expressionServiceImpl = new ExpressionServiceImpl();
+
+        ReflectionTestUtils.invokeMethod(expressionServiceImpl, "initialise", expressionService);
+    }
+
+    @After
+    public void after() throws JSONException {
+        ReflectionTestUtils.invokeMethod(expressionServiceImpl, "initialise", new ExpressionServiceImpl());
+    }
+
+    @Test
+    public void shouldReturnNullWhenValueIsNull() throws Exception {
+        // given
+        lookup.setFieldValue(null);
+
+        // when
+        Entity result = lookup.getEntity();
+
+        // then
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void shouldReturnNullWhenValueIsIncorrect() throws Exception {
+        // given
+        lookup.setFieldValue("");
+
+        // when
+        Entity result = lookup.getEntity();
+
+        // then
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void shouldReturnEntityWhenIdIsString() throws Exception {
+        // given
+        String id = "1";
+        when(dataDefinition.get(Long.valueOf(id))).thenReturn(entity);
+        lookup.setFieldValue(id);
+
+        // when
+        Entity result = lookup.getEntity();
+
+        // then
+        Assert.assertEquals(entity, result);
+    }
+
+    @Test
+    public void shouldReturnNullWhenEntityDoesnotExistsInDB() throws Exception {
+        // given
+        Long id = 1L;
+        lookup.setFieldValue(id);
+        when(dataDefinition.get(id)).thenReturn(null);
+
+        // when
+        Entity result = lookup.getEntity();
+
+        // then
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void shouldReturnEntity() throws Exception {
+        // given
+        Long id = 1L;
+        when(dataDefinition.get(id)).thenReturn(entity);
+        lookup.setFieldValue(id);
+
+        // when
+        Entity result = lookup.getEntity();
+
+        // then
+        Assert.assertEquals(entity, result);
+    }
+
+    @Test
+    public void shouldIsEmptyReturnTrueForNullValue() throws Exception {
+        // given
+        lookup.setFieldValue(null);
+
+        // when
+        boolean result = lookup.isEmpty();
+
+        // then
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void shouldIsEmptyReturnTrueForEmptyStringValue() throws Exception {
+        // given
+        lookup.setFieldValue("");
+
+        // when
+        boolean result = lookup.isEmpty();
+
+        // then
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void shouldIsEmptyReturnFalseForLongValue() throws Exception {
+        // given
+        Long id = 1L;
+        when(dataDefinition.get(id)).thenReturn(entity);
+        lookup.setFieldValue(id);
+
+        // when
+        boolean result = lookup.isEmpty();
+
+        // then
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void shouldIsEmptyReturnFalseForNumberStringValue() throws Exception {
+        // given
+        Long id = 1L;
+        when(dataDefinition.get(id)).thenReturn(entity);
+        lookup.setFieldValue("" + id);
+
+        // when
+        boolean result = lookup.isEmpty();
+
+        // then
+        Assert.assertFalse(result);
+    }
+
+}

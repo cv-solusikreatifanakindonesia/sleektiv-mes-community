@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_TECHNOLOGIES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="technologyOperationComponentDetails"
       modelName="technologyOperationComponent"
       windowHeight="495">
@@ -66,10 +66,10 @@
                             <option type="required" value="true"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.technologies.listeners.TOCDetailsListeners"
+                                      class="com.sleektiv.mes.technologies.listeners.TOCDetailsListeners"
                                       method="copyWorkstationsSettingsFromOperation"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.technologies.listeners.TOCDetailsListeners"
+                                      class="com.sleektiv.mes.technologies.listeners.TOCDetailsListeners"
                                       method="fillProductDataFields"/>
                         </component>
                     </layoutElement>
@@ -85,7 +85,7 @@
                 <option type="expression" value="#operation['name']"/>
 
                 <listener event="addUpTheNumberOfWorkstations" method="addUpTheNumberOfWorkstations"
-                          class="com.qcadoo.mes.technologies.listeners.TOCDetailsListeners"/>
+                          class="com.sleektiv.mes.technologies.listeners.TOCDetailsListeners"/>
             </component>
         </windowTab>
 
@@ -96,7 +96,7 @@
                     <component type="select" name="assignedToOperation"
                                field="#{form}.assignedToOperation" reference="assignedToOperation">
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.technologies.listeners.TOCDetailsListeners"
+                                  class="com.sleektiv.mes.technologies.listeners.TOCDetailsListeners"
                                   method="setWorkstationsTabFields"/>
                     </component>
                 </layoutElement>
@@ -132,7 +132,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.view.api.listeners.RerenderListener"
+                                  class="com.sleektiv.view.api.listeners.RerenderListener"
                                   method="onChangeRerender"/>
                     </component>
                 </layoutElement>
@@ -155,7 +155,7 @@
                         <option type="multiselect" value="true"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
+                                class="com.sleektiv.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
                                 method="showWorkstationsForCurrentDivision"/>
                     </component>
                     <component type="grid" name="workstations" reference="workstations"
@@ -221,7 +221,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.technologies.hooks.TOCDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.technologies.hooks.TOCDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

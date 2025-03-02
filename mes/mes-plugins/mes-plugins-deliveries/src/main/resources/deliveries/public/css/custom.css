@@ -1,12 +1,12 @@
 /**
  * ***************************************************************************
- * Copyright (c) 2010 Qcadoo Limited
- * Project: Qcadoo Framework
+ * Copyright (c) 2025 Sleektiv.
+ * Project: Sleektiv Framework
  * Version: 1.4
  *
- * This file is part of Qcadoo.
+ * This file is part of Sleektiv.
  *
- * Qcadoo is free software; you can redistribute it and/or modify
+ * Sleektiv is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
  * by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
@@ -30,7 +30,7 @@
 }
 
 #gridContainer .ui-th-column, #gridContainer .ui-search-toolbar  {
-    background: transparent url('/qcadooView/public/css/crud/images/grid/gradientygrid/gradient_header.png') repeat-x 0 0;
+    background: transparent url('/sleektivView/public/css/crud/images/grid/gradientygrid/gradient_header.png') repeat-x 0 0;
     font-family: "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
     font-size: 11px;
     color: #e8e8e8;
@@ -49,7 +49,7 @@ input.eac-square {
     margin-bottom: 3px;
     display:table-cell;
     border: 1px solid #aaaaaa;
-    background: #ffffff url(/qcadooView/public/css/core/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    background: #ffffff url(/sleektivView/public/css/core/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
     color: #222222;
 }
 
@@ -62,7 +62,7 @@ input[type="text"] {
     margin-bottom: 3px;
     display:table-cell;
     border: 1px solid #aaaaaa;
-    background: #ffffff url(/qcadooView/public/css/core/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    background: #ffffff url(/sleektivView/public/css/core/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
     color: #222222;
 }
 
@@ -96,7 +96,7 @@ button .customelement {
     vertical-align: middle;
     overflow: hidden;
     height: 70px;
-    background: url('/qcadooView/public/css/core/menu/images/q_row3_bg.png') repeat-x top left;
+    background: url('/sleektivView/public/css/core/menu/images/q_row3_bg.png') repeat-x top left;
     border-top-color: #000;
     display: table-cell;
 }
@@ -131,7 +131,7 @@ div.headerActionButton a {
     font-size: 11px;
     height: 23px;
     width: auto;
-    background-image: url('/qcadooView/public/css/core/menu/images/lt_twoB_l.png');
+    background-image: url('/sleektivView/public/css/core/menu/images/lt_twoB_l.png');
     background-repeat: no-repeat;
     background-position: left;
     cursor: default;
@@ -146,11 +146,11 @@ div.headerActionButton a {
 }
 
 #add_new_icon {
-    background-image: url('/qcadooView/public/img/core/icons/newIcon16.png');
+    background-image: url('/sleektivView/public/img/core/icons/newIcon16.png');
 }
 
 #cancel_icon {
-    background-image: url('/qcadooView/public/img/core/icons/cancelIcon24.png');
+    background-image: url('/sleektivView/public/img/core/icons/cancelIcon24.png');
 }
 
 div.gridTitle {
@@ -262,7 +262,7 @@ input[type="number"] {
     display: none !important;
 }
 
-.qcadooRowClass { background-color: #DDDDDC; background-image: none; }
+.sleektivRowClass { background-color: #DDDDDC; background-image: none; }
 
 .disabled-button {
     opacity: 0.5;
@@ -314,7 +314,7 @@ input[type="number"] {
     width: 20px;
     float: left;
     display: inline-block;
-    background:#ffffff url(/qcadooView/public/css/crud/images/form/input_icon_2.png) no-repeat -21px 1px;
+    background:#ffffff url(/sleektivView/public/css/crud/images/form/input_icon_2.png) no-repeat -21px 1px;
     vertical-align: middle;
     border: solid #a1a1a1 1px;
     border-left: 0;
@@ -326,7 +326,7 @@ input[type="number"] {
 }
 
 .editable__searchBtn[disabled=disabled] {
-    background: #f5f5f5 url(/qcadooView/public/css/crud/images/form/input_icon_2.png) no-repeat -21px 1px;
+    background: #f5f5f5 url(/sleektivView/public/css/crud/images/form/input_icon_2.png) no-repeat -21px 1px;
     border: solid #cccccc 1px;
     border-bottom: solid #e8e8e8 1px;
     border-left: 0;
@@ -383,7 +383,7 @@ button.ui-datepicker-trigger {
     width: 20px;
     float: left;
     display: inline-block;
-    background:#ffffff url(/qcadooView/public/css/crud/images/form/input_icon_2.png) no-repeat -1px -20px;
+    background:#ffffff url(/sleektivView/public/css/crud/images/form/input_icon_2.png) no-repeat -1px -20px;
     vertical-align: middle;
     border: solid #a1a1a1 1px;
     border-left: 0;
@@ -398,7 +398,7 @@ button.ui-datepicker-trigger:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url('/qcadooView/public/css/core/menu/images/q_row3_bg.png');
+    background-image: url('/sleektivView/public/css/core/menu/images/q_row3_bg.png');
     background-position: top;
     background-repeat: repeat-x;
     width: 100%;
@@ -424,11 +424,11 @@ button.ui-datepicker-trigger:hover{
 }
 
 #Act_Buttons #cData {
-    background-image: url('/qcadooView/public/img/core/icons/cancelIcon24.png');    
+    background-image: url('/sleektivView/public/img/core/icons/cancelIcon24.png');    
 }
 
 #Act_Buttons #sData {
-    background-image: url('/qcadooView/public/img/core/icons/saveIcon24.png');
+    background-image: url('/sleektivView/public/img/core/icons/saveIcon24.png');
 }
 
 #Act_Buttons label {
@@ -451,7 +451,7 @@ button.ui-datepicker-trigger:hover{
     height: 16px;
     display: none;
     background: transparent
-        url('/qcadooView/public/css/crud/images/grid/sortArrows.png')
+        url('/sleektivView/public/css/crud/images/grid/sortArrows.png')
         no-repeat 0 -16px;
     vertical-align: top;
     margin-left: 5px;

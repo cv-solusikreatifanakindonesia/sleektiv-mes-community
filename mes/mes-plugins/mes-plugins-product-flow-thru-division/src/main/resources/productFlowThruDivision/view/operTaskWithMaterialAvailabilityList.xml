@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_ORDER_MATERIAL_AVAILABILITY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="operTaskWithMaterialAvailabilityList" modelName="operationalTask"
       modelPlugin="orders" menuAccessible="true">
 
@@ -120,13 +120,13 @@
                         <option type="fixedHeight" value="true"/>
 
                         <listener event="showAvailability"
-                                  class="com.qcadoo.mes.productFlowThruDivision.listeners.OperationalTaskListenersPFTD"
+                                  class="com.sleektiv.mes.productFlowThruDivision.listeners.OperationalTaskListenersPFTD"
                                   method="showAvailability"/>
                         <listener event="showReplacementsAvailability"
-                                  class="com.qcadoo.mes.productFlowThruDivision.listeners.OperationalTaskListenersPFTD"
+                                  class="com.sleektiv.mes.productFlowThruDivision.listeners.OperationalTaskListenersPFTD"
                                   method="showReplacementsAvailability"/>
                         <listener event="showWarehouseResources"
-                                  class="com.qcadoo.mes.productFlowThruDivision.listeners.OperationalTaskListenersPFTD"
+                                  class="com.sleektiv.mes.productFlowThruDivision.listeners.OperationalTaskListenersPFTD"
                                   method="showWarehouseResources"/>
                     </component>
                 </layoutElement>
@@ -138,7 +138,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.productFlowThruDivision.hooks.OperationalTaskWithMaterialAvailabilityListHooks"
+                class="com.sleektiv.mes.productFlowThruDivision.hooks.OperationalTaskWithMaterialAvailabilityListHooks"
                 method="toggleShowAvailabilityButton"/>
     </hooks>
 

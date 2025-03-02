@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -27,8 +27,8 @@
 <view name="orderExternalServiceCostDetails" modelName="orderExternalServiceCost"
       defaultAuthorizationRole="ROLE_CALCULATIONS"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -55,11 +55,11 @@
 
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.techSubcontracting.criteriaModifiers.TechnologyOperationComponentCriteriaModifiersTS"
+                                    class="com.sleektiv.mes.techSubcontracting.criteriaModifiers.TechnologyOperationComponentCriteriaModifiersTS"
                                     method="restrictTechnologyOperationComponentsToOrderTechnology"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"
+                                      class="com.sleektiv.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"
                                       method="onTechnologyOperationComponentChange"/>
                         </component>
                     </layoutElement>
@@ -85,7 +85,7 @@
                             <option type="alignment" value="right"/>
 
                             <listener event="onInputChange" method="calculateTotalCost"
-                                      class="com.qcadoo.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"/>
+                                      class="com.sleektiv.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"/>
                         </component>
                     </layoutElement>
                     <layoutElement column="1" row="4">
@@ -98,7 +98,7 @@
                                     <option type="labelWidth" value="40"/>
 
                                     <listener event="onInputChange" method="calculateCosts"
-                                              class="com.qcadoo.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"/>
+                                              class="com.sleektiv.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"/>
                                 </component>
                             </layoutElement>
                             <layoutElement column="4" row="1">
@@ -115,7 +115,7 @@
                             <option type="alignment" value="right"/>
 
                             <listener event="onInputChange" method="calculateUnitCost"
-                                      class="com.qcadoo.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"/>
+                                      class="com.sleektiv.mes.techSubcontracting.listeners.OrderExternalServiceCostDetailsListeners"/>
                         </component>
                     </layoutElement>
                 </component>
@@ -127,7 +127,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.techSubcontracting.hooks.OrderExternalServiceCostDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.techSubcontracting.hooks.OrderExternalServiceCostDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

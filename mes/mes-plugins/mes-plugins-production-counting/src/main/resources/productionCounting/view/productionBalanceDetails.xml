@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTION_COUNTING" name="productionBalanceDetails" modelName="productionBalance"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -140,13 +140,13 @@
                 <option type="expression" value="#number"/>
 
                 <listener event="generateProductionBalance"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionBalanceDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionBalanceDetailsListeners"
                           method="generateProductionBalance"/>
                 <listener event="printProductionBalance"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionBalanceDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionBalanceDetailsListeners"
                           method="printProductionBalance"/>
                 <listener event="addAllRelatedOrders"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionBalanceDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionBalanceDetailsListeners"
                           method="addAllRelatedOrders"/>
             </component>
         </windowTab>
@@ -183,7 +183,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.productionCounting.criteriaModifiers.OrderCriteriaModifiersPC"
+                                class="com.sleektiv.mes.productionCounting.criteriaModifiers.OrderCriteriaModifiersPC"
                                 method="showOrdersForProductionBalance"/>
                     </component>
                     <component type="grid" name="orders" reference="orders"
@@ -412,16 +412,16 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
+                class="com.sleektiv.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
                 method="generateOrderNumber"/>
         <beforeRender
-                class="com.qcadoo.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
+                class="com.sleektiv.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
                 method="disableFieldsAndGridsWhenGenerated"/>
         <beforeRender
-                class="com.qcadoo.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
+                class="com.sleektiv.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
                 method="fillCurrencyAndUnitFields"/>
         <beforeRender
-                class="com.qcadoo.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
+                class="com.sleektiv.mes.productionCounting.hooks.ProductionBalanceDetailsHooks"
                 method="setTheFieldBasedOnParameters"/>
 
     </hooks>

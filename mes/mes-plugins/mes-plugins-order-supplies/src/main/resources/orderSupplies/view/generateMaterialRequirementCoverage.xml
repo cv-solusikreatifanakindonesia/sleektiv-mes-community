@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_REQUIREMENTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="generateMaterialRequirementCoverage" modelName="materialRequirementCoverage"
       menuAccessible="true">
 
@@ -168,28 +168,28 @@
                 <option type="expression" value="' '"/>
 
                 <listener event="generateMaterialRequirementCoverage"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="generateMaterialRequirementCoverage"/>
                 <listener event="printMaterialRequirementCoverage"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="printMaterialRequirementCoverage"/>
                 <listener event="saveMaterialRequirementCoverage"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="saveMaterialRequirementCoverage"/>
                 <listener event="showMaterialRequirementCoverages"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="showMaterialRequirementCoverages"/>
                 <listener event="createRequestForQuotation"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="createRequestForQuotation"/>
                 <listener event="createDelivery"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="createDelivery"/>
                 <listener event="showReplacementsAvailability"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="showReplacementsAvailability"/>
                 <listener event="generateCoverageAnalysis"
-                          class="com.qcadoo.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.GenerateMaterialRequirementCoverageListeners"
                           method="generateCoverageAnalysis"/>
             </component>
 
@@ -215,7 +215,7 @@
                         <option type="searchable" value="number,name,productionLine,division"/>
                         <option type="orderable" value="number,name,productionLine,division"/>
                         <criteriaModifier
-                                class="com.qcadoo.mes.orderSupplies.criteriaModifiers.OrdersCriteriaModifiersOS"
+                                class="com.sleektiv.mes.orderSupplies.criteriaModifiers.OrdersCriteriaModifiersOS"
                                 method="hideFinishedAndDeclinedOrders"/>
                     </component>
 
@@ -327,14 +327,14 @@
                 <option type="correspondingComponent" value="form"/>
 
                 <criteriaModifier
-                        class="com.qcadoo.mes.orderSupplies.criteriaModifiers.MRCCriteriaModifiers"
+                        class="com.sleektiv.mes.orderSupplies.criteriaModifiers.MRCCriteriaModifiers"
                         method="baseModifier"/>
                 <rowStyleResolver
-                        class="com.qcadoo.mes.orderSupplies.rowStyleResolvers.MaterialRequirementCoverageRowStyleResolver"
+                        class="com.sleektiv.mes.orderSupplies.rowStyleResolvers.MaterialRequirementCoverageRowStyleResolver"
                         method="fillRowStyles"/>
 
                 <listener event="onSelectedEntityChange"
-                          class="com.qcadoo.mes.orderSupplies.listeners.CoverageProductsListeners"
+                          class="com.sleektiv.mes.orderSupplies.listeners.CoverageProductsListeners"
                           method="onRowSelect"/>
 
                 <option type="fullscreen" value="true"/>
@@ -388,7 +388,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.orderSupplies.hooks.GenerateMaterialRequirementCoverageHooks"
+                class="com.sleektiv.mes.orderSupplies.hooks.GenerateMaterialRequirementCoverageHooks"
                 method="onBeforeRender"/>
     </hooks>
 

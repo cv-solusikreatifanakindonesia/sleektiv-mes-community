@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_TECHNOLOGIES_ADVANCED" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_TECHNOLOGIES_ADVANCED" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="technologyGroupDetails" modelName="technologyGroup">
 
     <component type="window" name="window" reference="window">
@@ -55,7 +55,7 @@
                 <option type="expression" value="#name"/>
 
                 <listener event="save"
-                          class="com.qcadoo.mes.technologies.hooks.TechnologyGroupDetailsViewHooks"
+                          class="com.sleektiv.mes.technologies.hooks.TechnologyGroupDetailsViewHooks"
                           method="addTechnologyGroupToProduct"/>
 
             </component>
@@ -77,7 +77,7 @@
                         value="'&lt;b&gt;' + #number + '&lt;/b&gt; - ' + #name"/>
                 <option type="fieldCode" value="number"/>
 
-                <criteriaModifier class="com.qcadoo.mes.technologies.criteriaModifiers.TechnologyCriteriaModifiers"
+                <criteriaModifier class="com.sleektiv.mes.technologies.criteriaModifiers.TechnologyCriteriaModifiers"
                                   method="showPatternTechnologyWithoutGroup"/>
             </component>
             <component type="grid" name="technologies" reference="grid" source="#{form}.technologies">
@@ -109,6 +109,6 @@
 
     </component>
     <hooks>
-        <beforeRender class="com.qcadoo.mes.technologies.TechnologyService" method="generateTechnologyGroupNumber"/>
+        <beforeRender class="com.sleektiv.mes.technologies.TechnologyService" method="generateTechnologyGroupNumber"/>
     </hooks>
 </view>

@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_MATERIAL_FLOW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_MATERIAL_FLOW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="costNormsGenerator" modelName="costNormsGenerator">
 
     <component type="window" name="window" reference="window">
@@ -64,7 +64,7 @@
                                             <option type="fieldCode" value="number"/>
 
                                             <criteriaModifier
-                                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
+                                                    class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
                                                     method="showWarehousesWithoutExternalNumber"/>
                                         </component>
                                     </layoutElement>
@@ -82,7 +82,7 @@
                     <component type="select" name="productsToUpdate" field="productsToUpdate"
                                reference="productsToUpdate">
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.materialFlowResources.listeners.CostNormsGeneratorListeners"
+                                  class="com.sleektiv.mes.materialFlowResources.listeners.CostNormsGeneratorListeners"
                                   method="toggleProductsGrid"/>
                     </component>
                 </layoutElement>
@@ -102,7 +102,7 @@
 
                         <option type="multiselect" value="true"/>
 
-						<criteriaModifier class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.ProductsCriteriaModifiers"
+						<criteriaModifier class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.ProductsCriteriaModifiers"
                                           method="filterProducts" />
                     </component>
                     <component type="grid" name="products" reference="products"
@@ -131,13 +131,13 @@
             <option type="header" value="false"/>
 
             <listener event="updateCostNorms" method="updateCostNorms"
-                      class="com.qcadoo.mes.materialFlowResources.listeners.CostNormsGeneratorListeners"/>
+                      class="com.sleektiv.mes.materialFlowResources.listeners.CostNormsGeneratorListeners"/>
         </component>
     </component>
 
     <hooks>
         <beforeRender
-            class="com.qcadoo.mes.materialFlowResources.hooks.CostNormsGeneratorHooks"
+            class="com.sleektiv.mes.materialFlowResources.hooks.CostNormsGeneratorHooks"
             method="onBeforeRender"/>
     </hooks>
 </view>

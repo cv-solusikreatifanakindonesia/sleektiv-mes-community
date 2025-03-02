@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 <view defaultAuthorizationRole="ROLE_WORKSTATION_CHANGEOVERS"
       name="workstationChangeoverForOperationalTasksList" modelName="workstationChangeoverForOperationalTaskDto"
       menuAccessible="true"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window">
         <ribbon>
@@ -66,7 +66,7 @@
             <option type="column" name="startDate" fields="startDate" link="true" width="80"/>
             <option type="column" name="finishDate" fields="finishDate" link="true" width="80"/>
             <option type="column" name="duration" fields="duration" link="true" width="80"
-                    expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#duration)"/>
+                    expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#duration)"/>
             <option type="column" name="name" fields="name" link="true" width="100"/>
             <option type="column" name="description" fields="description" width="100"/>
             <option type="column" name="changeoverType" fields="changeoverType"/>
@@ -92,7 +92,7 @@
             <option type="multiselect" value="true"/>
 
             <listener event="onSelect"
-                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                      class="com.sleektiv.view.api.listeners.RerenderListener"
                       method="onChangeRerender"/>
         </component>
 
@@ -102,7 +102,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.orders.hooks.WorkstationChangeoverForOperationalTasksListHooks"
+                class="com.sleektiv.mes.orders.hooks.WorkstationChangeoverForOperationalTasksListHooks"
                 method="onBeforeRender"/>
     </hooks>
 </view>

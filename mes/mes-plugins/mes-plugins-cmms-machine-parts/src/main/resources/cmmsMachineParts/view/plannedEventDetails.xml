@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_PLANNED_EVENTS_ACTIONS_VIEW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="plannedEventDetails" modelName="plannedEvent" modelPlugin="cmmsMachineParts">
 
     <component type="window" name="window" reference="window">
@@ -335,7 +335,7 @@
                         <component type="select" name="type" field="type" reference="type" defaultEnabled="true">
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"
                                       method="toggleFieldsVisible"/>
                         </component>
                     </layoutElement>
@@ -353,9 +353,9 @@
 
                             <listener event="onSelectedEntityChange"
                                       method="factoryChanged"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"/>
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
                                     method="selectFactory"/>
                         </component>
                     </layoutElement>
@@ -372,9 +372,9 @@
 
                             <listener event="onSelectedEntityChange"
                                       method="divisionChanged"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"/>
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
                                     method="selectDivision"/>
                         </component>
                     </layoutElement>
@@ -391,9 +391,9 @@
 
                             <listener event="onSelectedEntityChange"
                                       method="productionLineChanged"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"/>
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
                                     method="selectProductionLine"/>
                         </component>
                     </layoutElement>
@@ -410,9 +410,9 @@
 
                             <listener event="onSelectedEntityChange"
                                       method="workstationChanged"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"/>
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
                                     method="selectWorkstation"/>
                         </component>
                     </layoutElement>
@@ -429,9 +429,9 @@
 
                             <listener event="onSelectedEntityChange"
                                       method="subassemblyChanged"
-                                      class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"/>
+                                      class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
                                     method="selectSubassembly"/>
                         </component>
                     </layoutElement>
@@ -467,7 +467,7 @@
                                 <layoutElement row="1" column="1">
                                     <component type="select" name="basedOn" reference="basedOn" field="basedOn">
                                         <listener event="onSelectedEntityChange"
-                                                  class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"
+                                                  class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"
                                                   method="toggleEnabledFromBasedOn"/>
                                     </component>
                                 </layoutElement>
@@ -521,7 +521,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.SourceCostCriteriaModifiers"
+                                    class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.SourceCostCriteriaModifiers"
                                     method="selectActive"/>
                         </component>
                     </layoutElement>
@@ -559,23 +559,23 @@
                 <option type="expression"
                         value="#number + ' - ' + '@cmmsMachineParts.plannedEvent.type.value.' + #type + ' - ' + '@cmmsMachineParts.plannedEvent.state.value.' + #state"/>
                 <listener event="fillFieldValues"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"
                           method="fillFieldValues"/>
 
                 <listener event="downloadAttachment" method="downloadAttachment"
-                          class="com.qcadoo.mes.basic.listeners.AttachmentsListeners"/>
+                          class="com.sleektiv.mes.basic.listeners.AttachmentsListeners"/>
 
                 <listener event="showMaintenanceEvent" method="showMaintenanceEvent"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
 
                 <listener event="gotToActions" method="gotToActions"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
 
                 <listener event="showSolutions" method="showSolutions"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.EventListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.EventListeners"/>
 
                 <listener event="changeState"
-                          class="com.qcadoo.mes.cmmsMachineParts.states.PlannedEventStateChangeViewClient"
+                          class="com.sleektiv.mes.cmmsMachineParts.states.PlannedEventStateChangeViewClient"
                           method="changeState"/>
             </component>
         </windowTab>
@@ -647,10 +647,10 @@
 
                 <listener event="addExistingEntity"
                           method="onAddExistingResponsible"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
                 <listener event="remove"
                           method="onRemoveExistingResponsible"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
             </component>
         </windowTab>
 
@@ -677,7 +677,7 @@
 
                 <option type="multiselect" value="true"/>
                 <criteriaModifier
-                        class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.PlannedEventsCriteriaModifiers"
+                        class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.PlannedEventsCriteriaModifiers"
                         method="filterRealizedAndCancelledEvents"/>
             </component>
             <component type="grid" name="relatedEvents" reference="relatedEvents"
@@ -688,7 +688,7 @@
                                 this.onDeleteButtonClicked = function () {
                                     var selectedEntities = #{relatedEvents}.getValue().content.selectedEntities;
 
-                                    if (window.confirm("#{translate(qcadooView.grid.confirmDeleteMessage)}" + "?")) {
+                                    if (window.confirm("#{translate(sleektivView.grid.confirmDeleteMessage)}" + "?")) {
                                         #{relatedEvents}.fireEvent(null,'removeSelectedEntites',[selectedEntities]);
                                     }
                                 };
@@ -720,10 +720,10 @@
 
                 <listener event="addExistingEntity"
                           method="onAddExistingRelatedEvent"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
                 <listener event="removeSelectedEntites"
                           method="onRemoveRelatedEvents"
-                          class="com.qcadoo.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
+                          class="com.sleektiv.mes.cmmsMachineParts.listeners.PlannedEventDetailsListeners"/>
             </component>
         </windowTab>
         <windowTab name="realizationTab" reference="realizationTab">
@@ -741,7 +741,7 @@
                 <option type="column" name="startDate" fields="startDate"/>
                 <option type="column" name="finishDate" fields="finishDate"/>
                 <option type="column" name="duration" fields="duration"
-                        expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#duration)"/>
+                        expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#duration)"/>
                 <option type="column" name="confirmed" fields="confirmed"/>
                 <option type="searchable"
                         value="workerName,workerSurname,action,startDate,finishDate,confirmed"/>
@@ -848,7 +848,7 @@
                 <option type="fixedHeight" value="true"/>
                 <option type="searchable" value="dateAndTime,previousState,currentState,worker,comment"/>
                 <option type="orderable" value="dateAndTime,previousState,currentState,worker"/>
-                <criteriaModifier class="com.qcadoo.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
+                <criteriaModifier class="com.sleektiv.mes.cmmsMachineParts.criteriaModifiers.EventCriteriaModifiersCMP"
                                   method="hideFailedStateChanges"/>
             </component>
         </windowTab>
@@ -887,17 +887,17 @@
         </windowTab>
 
         <listener event="showWorkTime" method="showWorkTime"
-                  class="com.qcadoo.mes.cmmsMachineParts.listeners.WorkTimeForUserListeners"/>
+                  class="com.sleektiv.mes.cmmsMachineParts.listeners.WorkTimeForUserListeners"/>
     </component>
     <hooks>
 
-        <beforeRender class="com.qcadoo.mes.cmmsMachineParts.hooks.PlannedEventDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.cmmsMachineParts.hooks.PlannedEventDetailsHooks"
                       method="toggleFieldsVisible"/>
 
-        <beforeRender class="com.qcadoo.mes.cmmsMachineParts.hooks.PlannedEventDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.cmmsMachineParts.hooks.PlannedEventDetailsHooks"
                       method="plannedEventBeforeRender"/>
 
-        <beforeRender class="com.qcadoo.mes.cmmsMachineParts.hooks.PlannedEventDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.cmmsMachineParts.hooks.PlannedEventDetailsHooks"
                       method="setEventIdForMultiUploadField"/>
     </hooks>
 </view>

@@ -1,6 +1,6 @@
 <view defaultAuthorizationRole="ROLE_PLANNING" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="orderPacksSingleOrderList" modelName="order">
 
     <component type="window" name="window" reference="window">
@@ -54,7 +54,7 @@
 
         <component type="form" name="order" reference="order">
             <listener event="generateOrderPacks"
-                      class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                      class="com.sleektiv.mes.orders.listeners.OrderPacksSingleOrderListListeners"
                       method="generateOrderPacks"/>
         </component>
 
@@ -101,14 +101,14 @@
 
             <option type="fullscreen" value="true"/>
             <option type="multiselect" value="true"/>
-            <listener event="changeState" class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+            <listener event="changeState" class="com.sleektiv.mes.orders.listeners.OrderPacksSingleOrderListListeners"
                       method="changeState"/>
 
-            <listener event="showPackageProcesses" class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+            <listener event="showPackageProcesses" class="com.sleektiv.mes.orders.listeners.OrderPacksSingleOrderListListeners"
                       method="showPackageProcessesFromList"/>
 
             <listener event="printLabels"
-                      class="com.qcadoo.mes.orders.listeners.OrderPacksSingleOrderListListeners"
+                      class="com.sleektiv.mes.orders.listeners.OrderPacksSingleOrderListListeners"
                       method="printLabels"/>
         </component>
 
@@ -117,6 +117,6 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.orders.hooks.OrderPacksSingleOrderListHooks" method="onBeforeRender"/>
+        <beforeRender class="com.sleektiv.mes.orders.hooks.OrderPacksSingleOrderListHooks" method="onBeforeRender"/>
     </hooks>
 </view>

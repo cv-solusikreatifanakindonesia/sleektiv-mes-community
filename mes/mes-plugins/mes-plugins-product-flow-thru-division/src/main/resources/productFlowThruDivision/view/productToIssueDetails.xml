@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo Framework
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_REQUIREMENTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="productToIssueDetails" modelName="productsToIssue">
 
     <component type="window" name="window">
@@ -53,7 +53,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners"
+                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners"
                                       method="onProductSelect"/>
                         </component>
                     </layoutElement>
@@ -70,7 +70,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners"
+                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners"
                                       method="onLocationSelect"/>
                         </component>
                     </layoutElement>
@@ -81,7 +81,7 @@
                             <option type="labelWidth" value="45"/>
 
                             <listener event="onInputChange" method="onDemandQuantityChange"
-                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners" />
+                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners" />
                         </component>
                     </layoutElement>
                     <layoutElement column="5" row="3">
@@ -97,7 +97,7 @@
                             <option type="labelWidth" value="45"/>
 
                             <listener event="onInputChange" method="onAdditionalDemandQuantityChange"
-                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners" />
+                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners" />
                         </component>
                     </layoutElement>
                     <layoutElement column="5" row="4">
@@ -113,7 +113,7 @@
                             <option type="labelWidth" value="45" />
 
                             <listener event="onInputChange" method="onConversionChange"
-                                      class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners" />
+                                      class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.listeners.ProductsToIssueDetailsListeners" />
                         </component>
                     </layoutElement>
                     <layoutElement column="1" row="6" width="4">
@@ -139,7 +139,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.productFlowThruDivision.warehouseIssue.hooks.ProductToIssueDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.productFlowThruDivision.warehouseIssue.hooks.ProductToIssueDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

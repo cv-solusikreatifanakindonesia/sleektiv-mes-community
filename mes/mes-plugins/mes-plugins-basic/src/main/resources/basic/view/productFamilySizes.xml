@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view name="productFamilySizes" modelName="product" defaultAuthorizationRole="ROLE_PRODUCTS"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -72,7 +72,7 @@
                                     value="number,name,size"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.basic.criteriaModifiers.ProductFamilySizesCriteriaModifiers"
+                                    class="com.sleektiv.mes.basic.criteriaModifiers.ProductFamilySizesCriteriaModifiers"
                                     method="filter"/>
 
                             <option type="fixedHeight" value="true"/>
@@ -80,7 +80,7 @@
                     </layoutElement>
                 </component>
 
-                <listener event="addSizes" class="com.qcadoo.mes.basic.listeners.ProductFamilySizesListeners"
+                <listener event="addSizes" class="com.sleektiv.mes.basic.listeners.ProductFamilySizesListeners"
                           method="addSizes"/>
             </component>
         </windowTab>
@@ -90,7 +90,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.basic.hooks.ProductFamilySizesHooks"
+        <beforeRender class="com.sleektiv.mes.basic.hooks.ProductFamilySizesHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

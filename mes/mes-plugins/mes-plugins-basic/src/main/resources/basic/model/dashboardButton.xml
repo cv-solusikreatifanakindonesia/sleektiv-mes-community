@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,21 +26,21 @@
 -->
 <model name="dashboardButton"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns="http://schema.qcadoo.org/model"
-	   xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+	   xmlns="http://schema.sleektiv.org/model"
+	   xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
 	<fields>
 		<belongsTo name="parameter" model="parameter" required="true"/>
 
 		<string name="identifier" required="true"/>
-		<belongsTo name="item" plugin="qcadooView" model="item"/>
+		<belongsTo name="item" plugin="sleektivView" model="item"/>
 		<string name="icon" required="true"/>
 		<priority name="succession" required="true"/>
 		<boolean name="active" default="false" required="true"/>
 	</fields>
 
 	<hooks>
-		<validatesWith class="com.qcadoo.mes.basic.hooks.DashboardButtonHooks"
+		<validatesWith class="com.sleektiv.mes.basic.hooks.DashboardButtonHooks"
 					   method="validatesWith" />
 	</hooks>
 

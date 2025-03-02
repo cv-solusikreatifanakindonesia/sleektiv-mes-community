@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_TECHNOLOGIES" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="operationProductInComponentDetails"
       modelName="operationProductInComponent">
 
@@ -57,7 +57,7 @@
                                    field="#{form}.differentProductsInDifferentSizes" hasDescription="true">
 
                             <listener event="onChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -67,7 +67,7 @@
                                    field="#{form}.variousQuantitiesInProductsBySize" hasDescription="true">
 
                             <listener event="onChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -88,10 +88,10 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"
+                                      class="com.sleektiv.mes.technologies.listeners.OPICDetailsListeners"
                                       method="onProductChange"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"
+                                      class="com.sleektiv.mes.technologies.listeners.OPICDetailsListeners"
                                       method="fillProductDataFields"/>
                         </component>
                     </layoutElement>
@@ -112,7 +112,7 @@
                             <option type="alignment" value="right"/>
 
                             <listener event="onInputChange" method="calculateQuantityFormula"
-                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"/>
+                                      class="com.sleektiv.mes.technologies.listeners.OPICDetailsListeners"/>
                         </component>
                     </layoutElement>
                     <layoutElement column="1" row="7" width="5">
@@ -120,14 +120,14 @@
                             <option type="alignment" value="right"/>
 
                             <listener event="onInputChange" method="calculateQuantity"
-                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"/>
+                                      class="com.sleektiv.mes.technologies.listeners.OPICDetailsListeners"/>
                         </component>
                     </layoutElement>
                     <layoutElement column="6" row="7">
                         <component type="select" name="givenUnit" reference="givenUnit"
                                    hasLabel="false" field="givenUnit">
                             <listener event="onSelectedEntityChange" method="calculateQuantity"
-                                      class="com.qcadoo.mes.technologies.listeners.OPICDetailsListeners"/>
+                                      class="com.sleektiv.mes.technologies.listeners.OPICDetailsListeners"/>
                         </component>
                     </layoutElement>
                     <layoutElement column="1" row="8" height="2" width="5">
@@ -190,7 +190,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.basic.criteriaModifiers.AttributeCriteriaModifiers"
+                                class="com.sleektiv.mes.basic.criteriaModifiers.AttributeCriteriaModifiers"
                                 method="showForProductCalculatedType"/>
                     </component>
                 </layoutElement>
@@ -265,7 +265,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.technologies.hooks.OPICDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.technologies.hooks.OPICDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

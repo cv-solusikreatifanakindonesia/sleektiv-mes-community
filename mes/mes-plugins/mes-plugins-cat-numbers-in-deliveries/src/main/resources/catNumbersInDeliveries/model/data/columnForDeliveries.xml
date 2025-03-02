@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,5 +25,5 @@
 
 -->
 <column>
-	<row IDENTIFIER="catalogNumber" NAME="deliveries.columnForDeliveries.name.value.catalogNumber" DESCRIPTION="deliveries.columnForDeliveries.description.value.catalogNumber" COLUMNFILLER="com.qcadoo.mes.catNumbersInDeliveries.columnExtension.DeliveriesColumnFillerCNID" ALIGNMENT="01left" />
+	<row IDENTIFIER="catalogNumber" NAME="deliveries.columnForDeliveries.name.value.catalogNumber" DESCRIPTION="deliveries.columnForDeliveries.description.value.catalogNumber" COLUMNFILLER="com.sleektiv.mes.catNumbersInDeliveries.columnExtension.DeliveriesColumnFillerCNID" ALIGNMENT="01left" />
 </column>

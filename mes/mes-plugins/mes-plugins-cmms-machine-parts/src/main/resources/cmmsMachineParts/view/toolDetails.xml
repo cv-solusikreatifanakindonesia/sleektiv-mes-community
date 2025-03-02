@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -24,8 +24,8 @@
     ***************************************************************************
 
 -->
-<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="toolDetails" modelName="tool" defaultAuthorizationRole="ROLE_TOOLS">
 
     <component type="window" name="window" reference="window">
@@ -101,7 +101,7 @@
                 <option type="expression" value="#number"/>
 
                 <listener event="downloadAttachment" method="downloadAttachment"
-                          class="com.qcadoo.mes.basic.listeners.AttachmentsListeners"/>
+                          class="com.sleektiv.mes.basic.listeners.AttachmentsListeners"/>
 
             </component>
         </windowTab>
@@ -141,7 +141,7 @@
     </component>
 
     <hooks>
-        <beforeRender class="com.qcadoo.mes.cmmsMachineParts.hooks.ToolDetailsHooks"
+        <beforeRender class="com.sleektiv.mes.cmmsMachineParts.hooks.ToolDetailsHooks"
                       method="onBeforeRender"/>
     </hooks>
 </view>

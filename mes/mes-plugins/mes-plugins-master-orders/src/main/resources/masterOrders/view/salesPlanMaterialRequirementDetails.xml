@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_REQUIREMENTS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="salesPlanMaterialRequirementDetails" modelName="salesPlanMaterialRequirement">
 
     <component type="window" name="window" reference="window">
@@ -105,7 +105,7 @@
                             <option type="expression" value="#number"/>
                             <option type="fieldCode" value="number"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.masterOrders.criteriaModifier.SalesPlanCriteriaModifier"
+                                    class="com.sleektiv.mes.masterOrders.criteriaModifier.SalesPlanCriteriaModifier"
                                     method="showOnlyDrafts"/>
                         </component>
                     </layoutElement>
@@ -129,16 +129,16 @@
                 <option type="expression" value="#number + ' ' + '@masterOrders.salesPlanMaterialRequirementDetails.window.mainTab.salesPlan.salesPlan' + ' ' + #salesPlan.get('number')"/>
 
                 <listener event="generateSalesPlanMaterialRequirement"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
                           method="generateSalesPlanMaterialRequirement"/>
                 <listener event="createDelivery"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
                           method="createDelivery"/>
                 <listener event="showTechnologiesWithUsingProduct"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
                           method="showTechnologiesWithUsingProduct"/>
                 <listener event="showSalesPlanDeliveries"
-                          class="com.qcadoo.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
+                          class="com.sleektiv.mes.masterOrders.listeners.SalesPlanMaterialRequirementDetailsListeners"
                           method="showSalesPlanDeliveries"/>
             </component>
         </windowTab>
@@ -186,7 +186,7 @@
                 <option type="fixedHeight" value="true"/>
 
                 <listener event="onSelect"
-                          class="com.qcadoo.view.api.listeners.RerenderListener"
+                          class="com.sleektiv.view.api.listeners.RerenderListener"
                           method="onChangeRerender"/>
             </component>
         </windowTab>
@@ -205,7 +205,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.masterOrders.hooks.SalesPlanMaterialRequirementDetailsHooks"
+                class="com.sleektiv.mes.masterOrders.hooks.SalesPlanMaterialRequirementDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

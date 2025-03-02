@@ -3,21 +3,21 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.qcadoo.mes</groupId>
+		<groupId>com.sleektiv.mes</groupId>
 		<artifactId>mes-plugins</artifactId>
 		<version>1.5-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mes-plugins-basic</artifactId>
-	<packaging>qcadoo-plugin</packaging>
+	<packaging>sleektiv-plugin</packaging>
 
-	<name>Qcadoo MES :: Plugins :: Basic</name>
+	<name>Sleektiv MES :: Plugins :: Basic</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.qcadoo</groupId>
-			<artifactId>qcadoo-plugins-unit-conversion-management</artifactId>
-			<version>${qcadoo.version}</version>
+			<groupId>com.sleektiv</groupId>
+			<artifactId>sleektiv-plugins-unit-conversion-management</artifactId>
+			<version>${sleektiv.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.opencsv</groupId>
@@ -29,9 +29,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.qcadoo</groupId>
-				<artifactId>qcadoo-maven-plugin</artifactId>
-				<version>${qcadoo.maven.plugin.version}</version>
+				<groupId>com.sleektiv</groupId>
+				<artifactId>sleektiv-maven-plugin</artifactId>
+				<version>${sleektiv.maven.plugin.version}</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>

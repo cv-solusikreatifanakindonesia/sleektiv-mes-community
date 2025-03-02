@@ -4,7 +4,7 @@
 	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="144"/>
-	<template><![CDATA["qcadooReport/report/qcadooStyles.jrtx"]]></template>
+	<template><![CDATA["sleektivReport/report/sleektivStyles.jrtx"]]></template>
 	<parameter name="Author" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["Default author"]]></defaultValueExpression>
 	</parameter>
@@ -64,9 +64,9 @@
 					stateChange.status = '03successful'
 			) AS orders_order_endworker
 			FROM
-			com.qcadoo.model.beans.basic.BasicCompany AS company,
-			com.qcadoo.model.beans.basic.BasicParameter AS parameter,
-			com.qcadoo.model.beans.orders.OrdersOrder AS orders
+			com.sleektiv.model.beans.basic.BasicCompany AS company,
+			com.sleektiv.model.beans.basic.BasicParameter AS parameter,
+			com.sleektiv.model.beans.orders.OrdersOrder AS orders
             LEFT OUTER JOIN
             company.country AS country
 			LEFT OUTER JOIN
@@ -118,33 +118,33 @@
 	<pageHeader>
 		<band height="134" splitType="Stretch">
 			<textField>
-				<reportElement style="qcadooPageNumber" x="167" y="18" width="380" height="16"/>
+				<reportElement style="sleektivPageNumber" x="167" y="18" width="380" height="16"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$R{qcadooReport.commons.page.label} + " " + $V{PAGE_NUMBER} + " " +$R{qcadooReport.commons.of.label}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{sleektivReport.commons.page.label} + " " + $V{PAGE_NUMBER} + " " +$R{sleektivReport.commons.of.label}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement style="qcadooPageNumber" x="550" y="18" width="19" height="16"/>
+				<reportElement style="sleektivPageNumber" x="550" y="18" width="19" height="16"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement style="qcadooPageNumberLine" x="0" y="32" width="555" height="1"/>
+				<reportElement style="sleektivPageNumberLine" x="0" y="32" width="555" height="1"/>
 			</line>
 			<textField>
-				<reportElement style="qcadooHeaderTitle" x="0" y="45" width="555" height="61"/>
+				<reportElement style="sleektivHeaderTitle" x="0" y="45" width="555" height="61"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA["<font color=\"#464646\">"+ $R{orders.order.report.order}+ "</font> " + $F{orders_order_number}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement style="qcadooHeaderLine" x="0" y="106" width="555" height="1"/>
+				<reportElement style="sleektivHeaderLine" x="0" y="106" width="555" height="1"/>
 			</line>
 			<textField>
-				<reportElement style="qcadooHeaderDetails" x="3" y="112" width="412" height="20"/>
+				<reportElement style="sleektivHeaderDetails" x="3" y="112" width="412" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA["<font color=\"#464646\">" +$R{qcadooReport.commons.generatedBy.label} +"</font> "+ $P{Author}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["<font color=\"#464646\">" +$R{sleektivReport.commons.generatedBy.label} +"</font> "+ $P{Author}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooHeaderDetails" x="415" y="112" width="140" height="20"/>
+				<reportElement style="sleektivHeaderDetails" x="415" y="112" width="140" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 			</textField>
@@ -165,21 +165,21 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textField>
-					<reportElement key="" style="qcadooLabel7" x="10" y="10" width="170" height="15"/>
+					<reportElement key="" style="sleektivLabel7" x="10" y="10" width="170" height="15"/>
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.number.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="10" y="25" width="170" height="30">
+					<reportElement style="sleektivValue9" x="10" y="25" width="170" height="30">
 						<property name="local_mesure_unity" value="pixel"/>
 					</reportElement>
 					<textElement/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orders_order_number}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement key="" style="qcadooLabel7" x="190" y="10" width="170" height="15">
+					<reportElement key="" style="sleektivLabel7" x="190" y="10" width="170" height="15">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
@@ -189,7 +189,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.name.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="190" y="25" width="170" height="30">
+					<reportElement style="sleektivValue9" x="190" y="25" width="170" height="30">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
@@ -197,7 +197,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orders_order_name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="10" y="60" width="170" height="15">
+					<reportElement style="sleektivLabel7" x="10" y="60" width="170" height="15">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -211,7 +211,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.product.label}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="qcadooValue9" x="10" y="75" width="170" height="30">
+					<reportElement style="sleektivValue9" x="10" y="75" width="170" height="30">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -223,7 +223,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{basic_product_name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement key="" style="qcadooLabel7" x="190" y="60" width="170" height="15">
+					<reportElement key="" style="sleektivLabel7" x="190" y="60" width="170" height="15">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -237,7 +237,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.dateFrom.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="190" y="75" width="170" height="30">
+					<reportElement style="sleektivValue9" x="190" y="75" width="170" height="30">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -247,7 +247,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orders_order_startdate} == null ? "-" : new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format($F{orders_order_startdate})]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="370" y="60" width="170" height="15">
+					<reportElement style="sleektivLabel7" x="370" y="60" width="170" height="15">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -261,7 +261,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.dateTo.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="370" y="75" width="170" height="30">
+					<reportElement style="sleektivValue9" x="370" y="75" width="170" height="30">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -272,7 +272,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orders_order_finishdate} == null ? "-" : new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format($F{orders_order_finishdate})]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="370" y="10" width="170" height="15">
+					<reportElement style="sleektivLabel7" x="370" y="10" width="170" height="15">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
@@ -282,7 +282,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.state.label}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="qcadooValue9" x="370" y="25" width="170" height="30">
+					<reportElement style="sleektivValue9" x="370" y="25" width="170" height="30">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -293,7 +293,7 @@
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="qcadooParagraph" x="10" y="150" width="250" height="15"/>
+				<reportElement style="sleektivParagraph" x="10" y="150" width="250" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.date.label}]]></textFieldExpression>
 			</textField>
@@ -311,7 +311,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textField>
-					<reportElement style="qcadooValue9" x="10" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="10" y="23" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -321,7 +321,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orders_order_datefrom} == null ? "-" : new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format($F{orders_order_datefrom})]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="10" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="10" y="8" width="250" height="15">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
@@ -329,7 +329,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.effectiveDateFrom.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="290" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="290" y="8" width="250" height="15">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -339,7 +339,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.effectiveDateTo.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="290" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="290" y="23" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -350,7 +350,7 @@
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="qcadooParagraph" x="10" y="240" width="250" height="15"/>
+				<reportElement style="sleektivParagraph" x="10" y="240" width="250" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.productQuantity.label}]]></textFieldExpression>
 			</textField>
@@ -368,14 +368,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textField>
-					<reportElement style="qcadooValue9" x="10" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="10" y="23" width="250" height="30">
 						<property name="local_mesure_unity" value="pixel"/>
 					</reportElement>
 					<textElement/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{orders_order_plannedquantity} == null ? "-" : $F{orders_order_plannedquantity}.toString() + " " +$F{unit}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="10" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="10" y="8" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
@@ -383,7 +383,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.plannedQuantity.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="290" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="290" y="8" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
@@ -391,7 +391,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.doneQuantity.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="290" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="290" y="23" width="250" height="30">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
@@ -400,7 +400,7 @@
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="qcadooParagraph" x="10" y="330" width="250" height="15"/>
+				<reportElement style="sleektivParagraph" x="10" y="330" width="250" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.technology.pattern}]]></textFieldExpression>
 			</textField>
@@ -419,7 +419,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textField>
-					<reportElement style="qcadooValue9" x="290" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="290" y="23" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -429,7 +429,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{technologies_technology_name} == null ? "-" : $F{technologies_technology_name}]]></textFieldExpression>	
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="290" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="290" y="8" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -439,7 +439,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.technologyName.label}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="qcadooValue9" x="11" y="21" width="250" height="30">
+					<reportElement style="sleektivValue9" x="11" y="21" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -449,7 +449,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{technologies_technology_number} == null ? "-" : $F{technologies_technology_number}]]></textFieldExpression>	
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="11" y="7" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="11" y="7" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -460,7 +460,7 @@
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="qcadooParagraph" x="10" y="420" width="250" height="15"/>
+				<reportElement style="sleektivParagraph" x="10" y="420" width="250" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.technologyPrototype.label}]]></textFieldExpression>
 			</textField>
@@ -479,7 +479,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textField>
-					<reportElement style="qcadooValue9" x="290" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="290" y="23" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -489,7 +489,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{technologies_technology_prototype_name} == null ? "-" : $F{technologies_technology_prototype_name}]]></textFieldExpression>	
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="290" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="290" y="8" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -499,7 +499,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.technologyPrototypeName.label}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="qcadooValue9" x="11" y="21" width="250" height="30">
+					<reportElement style="sleektivValue9" x="11" y="21" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -509,7 +509,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{technologies_technology_prototype_number} == null ? "-" : $F{technologies_technology_prototype_number}]]></textFieldExpression>	
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="11" y="7" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="11" y="7" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -520,7 +520,7 @@
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="qcadooParagraph" x="10" y="510" width="250" height="15">
+				<reportElement style="sleektivParagraph" x="10" y="510" width="250" height="15">
 					<property name="local_mesure_unitx" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
@@ -542,7 +542,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textField>
-					<reportElement style="qcadooValue9" x="290" y="23" width="250" height="30">
+					<reportElement style="sleektivValue9" x="290" y="23" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -552,7 +552,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{masterorders_masterorder_name} == null ? "-" : $F{masterorders_masterorder_name}]]></textFieldExpression>	
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="290" y="8" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="290" y="8" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -562,7 +562,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$R{orders.order.report.masterOrderName.label}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="qcadooValue9" x="11" y="21" width="250" height="30">
+					<reportElement style="sleektivValue9" x="11" y="21" width="250" height="30">
 						<property name="local_mesure_unitx" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="local_mesure_unity" value="pixel"/>
@@ -572,7 +572,7 @@
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{masterorders_masterorder_number} == null ? "-" : $F{masterorders_masterorder_number}]]></textFieldExpression>	
 				</textField>
 				<textField>
-					<reportElement style="qcadooLabel7" x="11" y="7" width="250" height="15">
+					<reportElement style="sleektivLabel7" x="11" y="7" width="250" height="15">
 						<property name="local_mesure_unity" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="local_mesure_unitx" value="pixel"/>
@@ -587,40 +587,40 @@
 	<pageFooter>
 		<band height="46" splitType="Stretch">
 			<line>
-				<reportElement style="qcadooPageNumberLine" x="0" y="-1" width="555" height="1"/>
+				<reportElement style="sleektivPageNumberLine" x="0" y="-1" width="555" height="1"/>
 			</line>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="3" y="3" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="3" y="3" width="380" height="13"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{company_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="3" y="18" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="3" y="18" width="380" height="13"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{street} != null && $F{house} != null && $F{zipCode} != null && $F{city} != null ? ($F{street} + " " + $F{house} + ($F{flat} != null ? "/" + $F{flat} : "") + ", " + $F{zipCode} + " " + $F{city} + ($F{country_country} != null ? ", " + $F{country_country} : "")) : ($F{phone} != null ? ( $R{basic.company.phone.label} + ": " + $F{phone}) : "") + ($F{email} != null && $F{phone} != null ? ", " : "") + ($F{email} != null ? "E-mail: " + $F{email} : "") )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="3" y="33" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="3" y="33" width="380" height="13"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{street} != null && $F{house} != null && $F{zipCode} != null && $F{city} != null ? ($F{phone} != null ? ( $R{basic.company.phone.label} + ": " + $F{phone}) : "") + ($F{email} != null && $F{phone} != null ? ", " : "") + ($F{email} != null ? "E-mail: " + $F{email} : "") : "")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="168" y="3" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="168" y="3" width="380" height="13"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$R{qcadooReport.commons.page.label} + " " + $V{PAGE_NUMBER} + " " +$R{qcadooReport.commons.of.label}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{sleektivReport.commons.page.label} + " " + $V{PAGE_NUMBER} + " " +$R{sleektivReport.commons.of.label}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement style="qcadooPageNumber" x="551" y="3" width="19" height="16"/>
+				<reportElement style="sleektivPageNumber" x="551" y="3" width="19" height="16"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="175" y="18" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="175" y="18" width="380" height="13"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$R{qcadooReport.commons.generatedBy.label} + " " + $P{Author}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{sleektivReport.commons.generatedBy.label} + " " + $P{Author}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="175" y="33" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="175" y="33" width="380" height="13"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 			</textField>
@@ -629,45 +629,45 @@
 	<lastPageFooter>
 		<band height="61" splitType="Stretch">
 			<line>
-				<reportElement style="qcadooPageNumberLine" x="0" y="-1" width="555" height="1"/>
+				<reportElement style="sleektivPageNumberLine" x="0" y="-1" width="555" height="1"/>
 			</line>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="3" y="3" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="3" y="3" width="380" height="13"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{company_name} + ($F{street} != null ? ", " + $R{basic.company.tax.label} + ": " + $F{tax}  : "")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="3" y="18" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="3" y="18" width="380" height="13"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{street} != null && $F{house} != null && $F{zipCode} != null && $F{city} != null ? ($F{street} + " " + $F{house} + ($F{flat} != null ? "/" + $F{flat} : "") + ", " + $F{zipCode} + " " + $F{city} + ($F{country_country} != null ? ", " + $F{country_country} : "")) : ($F{phone} != null ? ( $R{basic.company.phone.label} + ": " + $F{phone}) : "") + ($F{email} != null && $F{phone} != null ? ", " : "") + ($F{email} != null ? "E-mail: " + $F{email} : "") )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="3" y="33" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="3" y="33" width="380" height="13"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{street} != null && $F{house} != null && $F{zipCode} != null && $F{city} != null ? ($F{phone} != null ? ( $R{basic.company.phone.label} + ": " + $F{phone}) : "") + ($F{email} != null && $F{phone} != null ? ", " : "") + ($F{email} != null ? "E-mail: " + $F{email} : "") : "")]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="qcadooPageNumber" x="250" y="3" width="190" height="50"/>
+				<reportElement style="sleektivPageNumber" x="250" y="3" width="190" height="50"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{additional_text}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="168" y="3" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="168" y="3" width="380" height="13"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$R{qcadooReport.commons.page.label} + " " + $V{PAGE_NUMBER} + " " +$R{qcadooReport.commons.of.label}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{sleektivReport.commons.page.label} + " " + $V{PAGE_NUMBER} + " " +$R{sleektivReport.commons.of.label}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement style="qcadooPageNumber" x="551" y="3" width="19" height="16"/>
+				<reportElement style="sleektivPageNumber" x="551" y="3" width="19" height="16"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="175" y="18" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="175" y="18" width="380" height="13"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$R{qcadooReport.commons.generatedBy.label} + " " + $P{Author}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{sleektivReport.commons.generatedBy.label} + " " + $P{Author}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="qcadooPageNumber" x="175" y="33" width="380" height="13"/>
+				<reportElement style="sleektivPageNumber" x="175" y="33" width="380" height="13"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
 			</textField>

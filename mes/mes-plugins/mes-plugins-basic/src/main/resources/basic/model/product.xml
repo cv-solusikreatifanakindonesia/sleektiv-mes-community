@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <model name="product" activable="true" auditable="true" versionable="true"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
-       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/model"
+       xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
     <fields>
         <string name="number" required="true" unique="true">
             <validatesLength max="255"/>
@@ -36,7 +36,7 @@
         </string>
         <enum name="globalTypeOfMaterial" values="01component,02intermediate,03finalProduct,04waste,05package"/>
         <string name="ean">
-            <validatesWith class="com.qcadoo.mes.basic.validators.ProductValidators"
+            <validatesWith class="com.sleektiv.mes.basic.validators.ProductValidators"
                            method="checkEanUniqueness"/>
         </string>
         <dictionary name="category" dictionary="categories"/>
@@ -50,7 +50,7 @@
         </string>
 
         <hasMany name="conversionItems" joinField="product" model="unitConversionItem"
-                 plugin="qcadooModel" cascade="delete"/>
+                 plugin="sleektivModel" cascade="delete"/>
 
         <belongsTo name="parent" model="product"/>
         <hasMany name="children" joinField="parent"
@@ -89,20 +89,20 @@
     </fields>
 
     <hooks>
-        <validatesWith class="com.qcadoo.mes.basic.hooks.ProductHooks"
+        <validatesWith class="com.sleektiv.mes.basic.hooks.ProductHooks"
                        method="validateAdditionalUnit"/>
-        <validatesWith class="com.qcadoo.mes.basic.hooks.ProductHooks"
+        <validatesWith class="com.sleektiv.mes.basic.hooks.ProductHooks"
                        method="checkIfParentIsFamily"/>
-        <validatesWith class="com.qcadoo.mes.basic.hooks.ProductHooks"
+        <validatesWith class="com.sleektiv.mes.basic.hooks.ProductHooks"
                        method="validateProductAttributeValues"/>
 
-        <onCreate class="com.qcadoo.mes.basic.hooks.ProductHooks" method="onCreate"/>
+        <onCreate class="com.sleektiv.mes.basic.hooks.ProductHooks" method="onCreate"/>
 
-        <onSave class="com.qcadoo.mes.basic.hooks.ProductHooks" method="onSave"/>
+        <onSave class="com.sleektiv.mes.basic.hooks.ProductHooks" method="onSave"/>
 
-        <onCopy class="com.qcadoo.mes.basic.hooks.ProductHooks" method="onCopy"/>
+        <onCopy class="com.sleektiv.mes.basic.hooks.ProductHooks" method="onCopy"/>
 
-        <onUpdate class="com.qcadoo.mes.basic.hooks.ProductHooks"
+        <onUpdate class="com.sleektiv.mes.basic.hooks.ProductHooks"
                   method="calculateConversionIfUnitChanged"/>
     </hooks>
 

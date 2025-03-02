@@ -1,5 +1,5 @@
 ***************************************************************************
-Copyright (c) 2017 Qcadoo Limited
+Copyright (c) 2017 Sleektiv.
 Copyright (c) 2025 Sleektiv (CV. SOLUSI KREATIF ANAK INDONESIA)
 Project: Sleektiv MES Community (Manufacturing Execution System)
  

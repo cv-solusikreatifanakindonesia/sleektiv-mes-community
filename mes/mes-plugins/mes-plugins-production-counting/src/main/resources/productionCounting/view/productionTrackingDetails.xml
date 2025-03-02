@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING_REGISTRATION" name="productionTrackingDetails"
       modelName="productionTracking"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -327,11 +327,11 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.productionCounting.criteriaModifiers.OrderCriteriaModifiersPC"
+                                    class="com.sleektiv.mes.productionCounting.criteriaModifiers.OrderCriteriaModifiersPC"
                                     method="showAcceptedAndInterrupted"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                                      class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                                       method="onOrderChange"/>
                         </component>
                         <component type="lookup" name="productionLine" field="#{order}.productionLine"
@@ -358,10 +358,10 @@
                             <option type="expression" value="#nodeNumber + '  ' + #operation['name']"/>
                             <option type="fieldCode" value="nodeNumber"/>
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                                      class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                                       method="onTechnologyOperationComponentChange"/>
                             <criteriaModifier
-                                    class="com.qcadoo.mes.productionCounting.criteriaModifiers.TechnologyOperationComponentCriteriaModifiersPC"
+                                    class="com.sleektiv.mes.productionCounting.criteriaModifiers.TechnologyOperationComponentCriteriaModifiersPC"
                                     method="restrictTechnologyOperationComponentsToOrderTechnology"/>
                         </component>
                     </layoutElement>
@@ -517,7 +517,7 @@
                             <option type="fieldCode" value="surname"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                                      class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                                       method="onStaffChange"/>
                         </component>
                         <component type="lookup" name="workstation"
@@ -532,7 +532,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                                      class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                                       method="fillDivisionField"/>
                         </component>
                         <component type="lookup" name="division" reference="division"
@@ -565,35 +565,35 @@
                 <option type="expression" value="#number"/>
 
                 <listener event="changeTrackingState"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="changeTrackingState"/>
 
                 <listener event="copyProductionTracking"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="copyProductionTracking"/>
 
                 <listener event="copyPlannedQuantityToUsedQuantity"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="copyPlannedQuantityToUsedQuantity"/>
 
                 <listener event="calcTotalLaborTime"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="calcTotalLaborTime"/>
 
                 <listener event="correct"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="correct"/>
 
                 <listener event="goToProductionCountingQuantities"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="goToProductionCountingQuantities"/>
 
                 <listener event="addToAnomaliesList"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="addToAnomaliesList"/>
 
                 <listener event="useReplacement"
-                          class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                          class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                           method="useReplacement"/>
             </component>
         </windowTab>
@@ -737,7 +737,7 @@
                         <option type="column" name="effectiveExecutionTimeStart" fields="effectiveExecutionTimeStart"/>
                         <option type="column" name="effectiveExecutionTimeEnd" fields="effectiveExecutionTimeEnd"/>
                         <option type="column" name="laborTime" fields="laborTime"
-                                expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#laborTime)"/>
+                                expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#laborTime)"/>
 
                         <option type="order" column="workerNumber" direction="asc"/>
 
@@ -784,7 +784,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.productionCounting.criteriaModifiers.BatchCriteriaModifierPC"
+                                class="com.sleektiv.mes.productionCounting.criteriaModifiers.BatchCriteriaModifierPC"
                                 method="filterByOrder"/>
                     </component>
                 </layoutElement>
@@ -792,7 +792,7 @@
                     <component type="checkbox" name="addBatch" field="#{form}.addBatch"
                                reference="addBatch" hasDescription="true">
                         <listener event="onChange"
-                                  class="com.qcadoo.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
+                                  class="com.sleektiv.mes.productionCounting.listeners.ProductionTrackingDetailsListeners"
                                   method="onAddBatchChange"/>
                     </component>
                 </layoutElement>
@@ -821,7 +821,7 @@
                     ]]>
                 </script>
                 <option type="column" name="duration" fields="duration"
-                        expression="T(com.qcadoo.view.api.utils.TimeConverterService).convertTimeToString(#duration)"
+                        expression="T(com.sleektiv.view.api.utils.TimeConverterService).convertTimeToString(#duration)"
                         link="true"/>
                 <option type="column" name="dateFrom" fields="dateFrom" link="true"/>
                 <option type="column" name="dateTo" fields="dateTo" link="true"/>
@@ -843,7 +843,7 @@
                 <option type="orderable" value="duration,dateFrom,dateTo,reason,description"/>
 
                 <listener event="addNew"
-                          class="com.qcadoo.mes.stoppage.listeners.AllStoppagesListeners"
+                          class="com.sleektiv.mes.stoppage.listeners.AllStoppagesListeners"
                           method="addNewFromProductionTracking"/>
             </component>
         </windowTab>
@@ -865,7 +865,7 @@
                         <option type="orderable" value="dateAndTime,targetState,worker"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.states.criteriaModifier.CommonCriteriaModifiers"
+                                class="com.sleektiv.mes.states.criteriaModifier.CommonCriteriaModifiers"
                                 method="filterHistory"/>
                     </component>
                 </layoutElement>
@@ -876,7 +876,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.productionCounting.hooks.ProductionTrackingDetailsHooks"
+                class="com.sleektiv.mes.productionCounting.hooks.ProductionTrackingDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

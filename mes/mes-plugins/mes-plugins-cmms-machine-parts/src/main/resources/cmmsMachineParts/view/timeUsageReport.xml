@@ -1,13 +1,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -23,8 +23,8 @@
     ***************************************************************************
 
 -->
-<view defaultAuthorizationRole="ROLE_MAINTENANCE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+<view defaultAuthorizationRole="ROLE_MAINTENANCE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="timeUsageReport" modelName="timeUsageReportFilter" modelPlugin="cmmsMachineParts">
 
     <component type="window" name="window" reference="window">
@@ -49,7 +49,7 @@
                 </layoutElement>
                 <layoutElement column="2" row="1">
                     <component type="select" name="workersSelection" reference="workersSelection" field="workersSelection">
-                    	<listener event="onSelectedEntityChange" method="workersSelectionChanged" class="com.qcadoo.mes.cmmsMachineParts.listeners.TimeUsageReportListeners" />
+                    	<listener event="onSelectedEntityChange" method="workersSelectionChanged" class="com.sleektiv.mes.cmmsMachineParts.listeners.TimeUsageReportListeners" />
                     </component>
                 </layoutElement>
                 <layoutElement column="2" row="2" width="2">
@@ -96,12 +96,12 @@
             <option type="expression" value=""/>
         </component>
         <listener event="printXlsReport" method="printXlsReport"
-                  class="com.qcadoo.mes.cmmsMachineParts.listeners.TimeUsageReportListeners"/>
+                  class="com.sleektiv.mes.cmmsMachineParts.listeners.TimeUsageReportListeners"/>
     </component>
 
     <hooks>
     	<beforeRender
-                class="com.qcadoo.mes.cmmsMachineParts.hooks.TimeUsageReportHooks"
+                class="com.sleektiv.mes.cmmsMachineParts.hooks.TimeUsageReportHooks"
                 method="onBeforeRender"/>
     </hooks>
 </view>

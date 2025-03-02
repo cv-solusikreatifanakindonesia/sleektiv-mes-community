@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <model name="order" activable="true" versionable="true"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/model"
-       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/model"
+       xsi:schemaLocation="http://schema.sleektiv.org/model http://schema.sleektiv.org/model.xsd">
 
     <fields>
         <string name="number" required="true" unique="true">
@@ -57,16 +57,16 @@
         <datetime name="effectiveDateTo"/>
         <datetime name="deadline"/>
         <datetime name="correctedDateFrom">
-            <validatesWith class="com.qcadoo.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
+            <validatesWith class="com.sleektiv.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
         </datetime>
         <datetime name="correctedDateTo">
-            <validatesWith class="com.qcadoo.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
+            <validatesWith class="com.sleektiv.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
         </datetime>
         <datetime name="startDate">
-            <validatesWith class="com.qcadoo.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
+            <validatesWith class="com.sleektiv.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
         </datetime>
         <datetime name="finishDate">
-            <validatesWith class="com.qcadoo.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
+            <validatesWith class="com.sleektiv.mes.orders.hooks.OrderHooks" method="setDateChanged"/>
         </datetime>
 
         <date name="expirationDate"/>
@@ -210,15 +210,15 @@
     </fields>
 
     <hooks>
-        <validatesWith class="com.qcadoo.mes.orders.hooks.OrderHooks"
+        <validatesWith class="com.sleektiv.mes.orders.hooks.OrderHooks"
                        method="validatesWith"/>
-        <onCreate class="com.qcadoo.mes.orders.hooks.OrderHooks"
+        <onCreate class="com.sleektiv.mes.orders.hooks.OrderHooks"
                   method="onCreate"/>
-        <onSave class="com.qcadoo.mes.orders.hooks.OrderHooks"
+        <onSave class="com.sleektiv.mes.orders.hooks.OrderHooks"
                 method="onSave"/>
-        <onCopy class="com.qcadoo.mes.orders.hooks.OrderHooks"
+        <onCopy class="com.sleektiv.mes.orders.hooks.OrderHooks"
                 method="onCopy"/>
-        <onDelete class="com.qcadoo.mes.orders.hooks.OrderHooks"
+        <onDelete class="com.sleektiv.mes.orders.hooks.OrderHooks"
                 method="onDelete"/>
     </hooks>
 

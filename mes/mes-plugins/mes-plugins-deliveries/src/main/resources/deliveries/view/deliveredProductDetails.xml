@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_DELIVERIES" name="deliveredProductDetails" modelName="deliveredProduct"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       windowWidth="800" windowHeight="515">
 
     <component type="window" name="window">
@@ -57,7 +57,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                      class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                       method="onSelectedEntityChange"/>
                         </component>
                     </layoutElement>
@@ -96,10 +96,10 @@
                                                 <option type="labelWidth" value="45"/>
 
                                                 <listener event="onInputChange"
-                                                          class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                                          class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                                           method="calculatePrice"/>
                                                 <listener event="onInputChange"
-                                                          class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                                          class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                                           method="quantityChange"/>
                                             </component>
                                         </layoutElement>
@@ -122,7 +122,7 @@
                                                 <option type="labelWidth" value="45"/>
 
                                                 <listener event="onInputChange"
-                                                          class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                                          class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                                           method="additionalQuantityChange"/>
                                             </component>
                                         </layoutElement>
@@ -142,7 +142,7 @@
                                         <option type="labelWidth" value="45"/>
 
                                         <listener event="onInputChange"
-                                                  class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                                  class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                                   method="quantityChange"/>
                                     </component>
                                 </layoutElement>
@@ -195,7 +195,7 @@
                                                 <option type="labelWidth" value="45"/>
 
                                                 <listener event="onInputChange"
-                                                          class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                                          class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                                           method="calculatePriceFromTotalPrice"/>
                                             </component>
                                         </layoutElement>
@@ -218,7 +218,7 @@
                                                 <option type="labelWidth" value="45"/>
 
                                                 <listener event="onInputChange"
-                                                          class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                                          class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                                           method="calculatePriceFromPricePerUnit"/>
                                             </component>
                                         </layoutElement>
@@ -289,7 +289,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.StorageLocationCriteriaModifiers"
+                                class="com.sleektiv.mes.materialFlowResources.criteriaModifiers.StorageLocationCriteriaModifiers"
                                 method="showStorageLocationsForLocation"/>
                     </component>
                 </layoutElement>
@@ -304,7 +304,7 @@
                         <option type="fieldCode" value="number"/>
 
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                  class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                   method="fillPalletTypeField"/>
                     </component>
                 </layoutElement>
@@ -327,11 +327,11 @@
                         <option type="required" value="true"/>
 
                         <listener event="onSelectedEntityChange"
-                                  class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                  class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                   method="fillOrderedQuantities"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.advancedGenealogy.criteriaModifier.BatchCriteriaModifier"
+                                class="com.sleektiv.mes.advancedGenealogy.criteriaModifier.BatchCriteriaModifier"
                                 method="filterByProduct"/>
                     </component>
                 </layoutElement>
@@ -339,7 +339,7 @@
                     <component type="checkbox" name="addBatch" field="#{form}.addBatch"
                                reference="addBatch" hasDescription="true">
                         <listener event="onChange"
-                                  class="com.qcadoo.view.api.listeners.RerenderListener"
+                                  class="com.sleektiv.view.api.listeners.RerenderListener"
                                   method="onChangeRerender"/>
                     </component>
                 </layoutElement>
@@ -347,7 +347,7 @@
                     <component type="input" name="batchNumber" field="#{form}.batchNumber"
                                reference="batchNumber" hasDescription="true">
                         <listener event="onInputChange"
-                                  class="com.qcadoo.mes.deliveries.listeners.DeliveredProductDetailsListeners"
+                                  class="com.sleektiv.mes.deliveries.listeners.DeliveredProductDetailsListeners"
                                   method="fillOrderedQuantities"/>
                     </component>
                 </layoutElement>
@@ -364,7 +364,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.deliveries.hooks.DeliveredProductDetailsHooks"
+                class="com.sleektiv.mes.deliveries.hooks.DeliveredProductDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

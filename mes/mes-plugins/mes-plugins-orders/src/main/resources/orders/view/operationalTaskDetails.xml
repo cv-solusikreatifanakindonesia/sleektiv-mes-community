@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -26,8 +26,8 @@
 -->
 <view name="operationalTaskDetails" modelName="operationalTask"
       defaultAuthorizationRole="ROLE_OPERATIONAL_TASKS"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd">
 
     <component type="window" name="window" reference="window">
 
@@ -127,7 +127,7 @@
                         <component type="select" name="type" reference="type"
                                    field="type">
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                                       method="onTypeChange"/>
                         </component>
                     </layoutElement>
@@ -185,11 +185,11 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.orders.criteriaModifiers.OrdersCriteriaModifiers"
+                                    class="com.sleektiv.mes.orders.criteriaModifiers.OrdersCriteriaModifiers"
                                     method="showWithProductionLines"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                                       method="onOrderChange"/>
                         </component>
                         <component type="lookup" name="technology" field="technology"
@@ -220,7 +220,7 @@
                             <option type="fieldCode" value="nodeNumber"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                                       method="onTechnologyOperationComponentChange"/>
                         </component>
                     </layoutElement>
@@ -311,7 +311,7 @@
                             <option type="fieldCode" value="number"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                                      class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                                       method="onDivisionChange"/>
                         </component>
                     </layoutElement>
@@ -328,11 +328,11 @@
                             <option type="fieldCode" value="number"/>
 
                             <criteriaModifier
-                                    class="com.qcadoo.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
+                                    class="com.sleektiv.mes.productionLines.criteriaModifiers.WorkstationCriteriaModifiers"
                                     method="showWorkstationsForCurrentDivision"/>
 
                             <listener event="onSelectedEntityChange"
-                                      class="com.qcadoo.view.api.listeners.RerenderListener"
+                                      class="com.sleektiv.view.api.listeners.RerenderListener"
                                       method="onChangeRerender"/>
                         </component>
                     </layoutElement>
@@ -347,19 +347,19 @@
                 <option type="expression" value="#number + ', ' + '@orders.operationalTask.state.value.' + #state"/>
 
                 <listener event="showOrder"
-                          class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                           method="showOrder"/>
 
                 <listener event="showOperationParameters"
-                          class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                           method="showOperationParameters"/>
 
                 <listener event="showOperationalTasksWithOrder"
-                          class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                           method="showOperationalTasksWithOrder"/>
 
                 <listener event="showWorkstationChangeoverForOperationalTasks"
-                          class="com.qcadoo.mes.orders.listeners.OperationalTaskDetailsListeners"
+                          class="com.sleektiv.mes.orders.listeners.OperationalTaskDetailsListeners"
                           method="showWorkstationChangeoverForOperationalTasks"/>
             </component>
         </windowTab>
@@ -381,7 +381,7 @@
                         <option type="orderable" value="dateAndTime,sourceState,targetState,shiftName,worker"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.states.criteriaModifier.CommonCriteriaModifiers"
+                                class="com.sleektiv.mes.states.criteriaModifier.CommonCriteriaModifiers"
                                 method="filterHistory"/>
                     </component>
                 </layoutElement>
@@ -412,7 +412,7 @@
                         <option type="alignment" value="right"/>
 
                         <listener event="onInputChange"
-                                  class="com.qcadoo.view.api.listeners.RerenderListener"
+                                  class="com.sleektiv.view.api.listeners.RerenderListener"
                                   method="onChangeRerender"/>
                     </component>
                 </layoutElement>
@@ -432,7 +432,7 @@
                         <option type="multiselect" value="true"/>
 
                         <criteriaModifier
-                                class="com.qcadoo.mes.orders.criteriaModifiers.OperationalTaskDetailsCriteriaModifiers"
+                                class="com.sleektiv.mes.orders.criteriaModifiers.OperationalTaskDetailsCriteriaModifiers"
                                 method="criteriaForOperationalTasks"/>
                     </component>
                     <component type="grid" name="workers" reference="workers"
@@ -461,7 +461,7 @@
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.orders.hooks.OperationalTasksDetailsHooks"
+                class="com.sleektiv.mes.orders.hooks.OperationalTasksDetailsHooks"
                 method="onBeforeRender"/>
     </hooks>
 

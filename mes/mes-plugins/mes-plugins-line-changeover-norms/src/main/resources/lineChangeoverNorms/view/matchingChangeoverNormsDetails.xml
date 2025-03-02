@@ -2,13 +2,13 @@
 <!--
 
     ***************************************************************************
-    Copyright (c) 2010 Qcadoo Limited
-    Project: Qcadoo MES
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv MES
     Version: 1.4
 
-    This file is part of Qcadoo.
+    This file is part of Sleektiv.
 
-    Qcadoo is free software; you can redistribute it and/or modify
+    Sleektiv is free software; you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation; either version 3 of the License,
     or (at your option) any later version.
@@ -25,8 +25,8 @@
 
 -->
 <view defaultAuthorizationRole="ROLE_CALCULATIONS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://schema.qcadoo.org/view"
-      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      xmlns="http://schema.sleektiv.org/view"
+      xsi:schemaLocation="http://schema.sleektiv.org/view http://schema.sleektiv.org/view.xsd"
       name="matchingChangeoverNormsDetails" modelName="lineChangeoverNorms">
 
     <component type="window" name="window" menuAccessible="true">
@@ -60,7 +60,7 @@
                                     <option type="fieldCode" value="number"/>
 
                                     <listener event="onSelectedEntityChange"
-                                              class="com.qcadoo.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
+                                              class="com.sleektiv.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
                                               method="enabledButtonAfterSelectionTechnologies"/>
                                 </component>
                             </layoutElement>
@@ -77,7 +77,7 @@
                                     <option type="fieldCode" value="number"/>
 
                                     <listener event="onSelectedEntityChange"
-                                              class="com.qcadoo.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
+                                              class="com.sleektiv.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
                                               method="enabledButtonAfterSelectionTechnologies"/>
                                 </component>
                             </layoutElement>
@@ -115,7 +115,7 @@
                                 <component type="select" name="changeoverType" field="changeoverType"
                                            reference="changeoverType" defaultEnabled="false">
                                     <listener event="onSelectedEntityChange"
-                                              class="com.qcadoo.mes.lineChangeoverNorms.hooks.LineChangeoverNormsDetailsHooks"
+                                              class="com.sleektiv.mes.lineChangeoverNorms.hooks.LineChangeoverNormsDetailsHooks"
                                               method="setFieldsVisibleAndRequired"/>
                                 </component>
                             </layoutElement>
@@ -196,20 +196,20 @@
             </component>
 
             <listener event="matchingChangeoverNorm"
-                      class="com.qcadoo.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
+                      class="com.sleektiv.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
                       method="matchingChangeoverNorm"/>
             <listener event="editChangeoverNorm"
-                      class="com.qcadoo.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
+                      class="com.sleektiv.mes.lineChangeoverNorms.listeners.MatchingChangeoverNormsDetailsListeners"
                       method="redirectToChangedNormsDetails"/>
         </component>
     </component>
 
     <hooks>
         <beforeRender
-                class="com.qcadoo.mes.lineChangeoverNorms.hooks.MatchingChangeoverNormsDetailsHooks"
+                class="com.sleektiv.mes.lineChangeoverNorms.hooks.MatchingChangeoverNormsDetailsHooks"
                 method="setFieldsVisible"/>
         <beforeRender
-                class="com.qcadoo.mes.lineChangeoverNorms.hooks.MatchingChangeoverNormsDetailsHooks"
+                class="com.sleektiv.mes.lineChangeoverNorms.hooks.MatchingChangeoverNormsDetailsHooks"
                 method="fillOrCleanFields"/>
     </hooks>
 </view>

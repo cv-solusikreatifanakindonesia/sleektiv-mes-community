@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2025 Sleektiv.
+    Project: Sleektiv Framework
+    Version: 1.4
+
+    This file is part of Sleektiv.
+
+    Sleektiv is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<plugin plugin="sleektivUsers" group="framework" version="${sleektiv.plugin.version}"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.sleektiv.org/plugin"
+    xmlns:security="http://schema.sleektiv.org/modules/security" xmlns:view="http://schema.sleektiv.org/modules/view"
+	xmlns:menu="http://schema.sleektiv.org/modules/menu" xmlns:localization="http://schema.sleektiv.org/modules/localization"
+	xsi:schemaLocation="
+		http://schema.sleektiv.org/plugin 
+		http://schema.sleektiv.org/plugin.xsd 
+		http://schema.sleektiv.org/modules/security
+		http://schema.sleektiv.org/modules/security.xsd
+		http://schema.sleektiv.org/modules/view 
+		http://schema.sleektiv.org/modules/view.xsd 
+		http://schema.sleektiv.org/modules/localization 
+		http://schema.sleektiv.org/modules/localization.xsd 
+		http://schema.sleektiv.org/modules/menu 
+		http://schema.sleektiv.org/modules/menu.xsd">
+
+	<information>
+		<name>Sleektiv User Management</name>
+		<vendor>
+			<name>Sleektiv.</name>
+			<url>http://www.sleektiv.com/</url>
+		</vendor>
+		<description>This is a plugin responsible for user management.</description>
+		<license>AGPL</license>
+	</information>
+
+	<dependencies>
+		<dependency>
+			<plugin>sleektivView</plugin>
+			<version>[0.4.1</version>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<security:role identifier="ROLE_USERS_EDIT"/>
+
+		<localization:translation path="locales" />
+
+		<menu:menu-item name="users" category="administration"
+			view="usersList" />
+		<menu:menu-item-url name="profile" category="administration"
+			url="/userProfile.html" defaultAuthorizationRole="ROLE_HOME_PROFILE"/>
+			
+		<menu:menu-item name="roles" category="administration"
+			view="rolesList" />
+			
+		<menu:menu-item name="groups" category="administration"
+			view="groupsList" />
+
+		<view:view resource="view/usersList.xml" />
+		<view:view resource="view/userDetails.xml" />
+		<view:view resource="view/userChangePassword.xml" />
+		<view:view resource="view/rolesList.xml" />
+		<view:view resource="view/roleDetails.xml" />
+		<view:view resource="view/groupsList.xml" />
+		<view:view resource="view/groupDetails.xml" />
+		<view:view resource="view/profile.xml" />
+		<view:view resource="view/profileChangePassword.xml" />
+	</modules>
+
+</plugin>
