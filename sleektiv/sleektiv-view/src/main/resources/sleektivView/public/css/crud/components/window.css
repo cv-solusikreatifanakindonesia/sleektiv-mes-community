@@ -34,7 +34,7 @@
 	position: relative;
 	margin: 0;
 	padding: 0;
-	background: #9b9b9b;
+	background: #ffd0d0;
 }
 
 .windowContainer .windowContainerRibbon {
@@ -68,9 +68,16 @@
 .windowContainer .windowContent {
 	margin-left: auto;
 	margin-right: auto;
-	//background: white;
-	background: #fafafa; /*EDISONDA NEW*/
+	/*
+	background: white;
+	background: #fafafa;
+	*/ 
+	/*EDISONDA NEW*/
+	/*border: solid #666666 1px;*/
+	background: #ffebeb;
 	border: solid #666666 1px;
+	border-radius: 20px;
+	overflow: hidden;
 }
 
 .windowContainer .windowContent .windowHeader {
@@ -207,9 +214,12 @@
 #q_row3_out_container {
 	height:70px;
 	font-family: Arial, Helvetica, sans-serif;	
+	background: #F1F1F1;
+	/*
 	background-image:url('/sleektivView/public/css/core/menu/images/q_row3_bg.png');
 	background-position: top;
 	background-repeat: repeat-x;
+	*/
 }
 
 #q_row3_out_container #q_row3_out_left {
