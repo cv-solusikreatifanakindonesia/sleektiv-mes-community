@@ -96,3 +96,7 @@ The procedure is as follows:
     Log in the account again.
 
 If you have any problems with building MES with this guide, feel free to contact us: info@solusikreatifanakindonesia.com.
+
+## Credits:
+----
+- [Qcadoo Limited Sp. z o.o.]([https://www.qcadoo.com/])
